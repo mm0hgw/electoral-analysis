@@ -84,7 +84,7 @@ plot_all <- function() {
 
 analyse_plot <- function(table=plot_all()){
 		# setup output
-	pdf("analysis.pdf",paper="a4",width=7,height=10)
+	pdf("turnout_analysis.pdf",paper="a4",width=7,height=10)
 	data <- as.numeric(table[,"intersect"])
 	density_obj <- density(data)
 	ecdf_obj <- ecdf(data)
@@ -102,5 +102,6 @@ analyse_plot <- function(table=plot_all()){
 	abline(h=0.5)
 	abline(v=0.5)
 	dev.off()
+	write.csv(table,file="turnout_analysis.csv")
 	return(table)
 }
