@@ -1,74 +1,74 @@
-Constituency,N,V,NP,VP
-Airdrie and Shotts,51336,23958,5091,3513
-Coatbridge and Chryston,51206,23388,4933,3289
-Cumbernauld and Kilsyth,48006,25191,5252,3757
-East Kilbride,58251,29999,6062,4475
-Falkirk East,56408,28249,5749,4286
-Falkirk West,55739,28332,6235,4464
-"Hamilton, Larkhall and Stonehouse",56123,25491,5808,4062
-Motherwell and Wishaw,53610,24536,5007,3426
-Uddingston and Bellshill,55584,25096,5018,3289
-Anniesland,55411,24080,5970,4082
-Cathcart,58525,26396,5588,3924
-Kelvin,61893,24804,4884,3249
-Maryhill and Springburn,56622,20654,5550,3448
-Pollok,58429,23083,5480,3672
-Provan,55138,19321,5335,3292
-Shettleston,55874,21303,4768,3157
-Southside,52325,22827,5071,3327
-Rutherglen,57777,27195,6574,4578
-Argyll and Bute,48925,26658,7642,5758
-"Caithness, Sutherland and Ross",55121,28743,7323,5210
-Inverness and Nairn,62183,32814,9999,7342
-Moray,56215,28703,9262,6993
-Na h-Eileanan an Iar,21833,13093,3297,2517
-Orkney,16406,8178,2043,1634
-Shetland,17505,9417,2046,1660
-"Skye, Lochaber and Badenoch",57028,32103,7814,5757
-Almond Valley,59896,30828,9063,6513
-Edinburgh Central,53606,29320,9508,6662
-Edinburgh Eastern,55773,30887,9882,7131
-Edinburgh Northern and Leith,59138,31080,10216,6932
-Edinburgh Pentlands,52620,30211,10009,7770
-Edinburgh Southern,54868,33935,10790,8088
-Edinburgh Western,56338,33572,10677,8166
-Linlithgow,65025,34322,9598,7111
-Midlothian North and Musselburgh,58264,29941,8831,6365
-Clackmannanshire and Dunblane,49415,27485,5556,4302
-Cowdenbeath,54284,25805,7414,5180
-Dunfermline,55479,29446,8777,6281
-Kirkcaldy,60079,28002,9654,6805
-Mid Fife and Glenrothes,53701,26439,7531,5394
-North East Fife,58858,29861,7887,5723
-Perthshire North,53412,30075,7718,5959
-Perthshire South and Kinross-shire,58093,31338,8011,6214
-Stirling,52185,30535,6061,4743
-Aberdeen Central,57396,25243,9937,6935
-Aberdeen Donside,56145,26888,10515,7498
-Aberdeen South and North Kincardine,54338,28424,10965,8026
-Aberdeenshire East,57591,30374,9869,7240
-Aberdeenshire West,53779,28746,9678,7070
-Angus North and Mearns,52124,25052,7228,5173
-Angus South,54922,27736,7704,5797
-Banffshire and Buchan Coast,53698,25097,9948,7065
-Dundee City East,54404,25700,8906,6155
-Dundee City West,53841,24712,8038,5898
-Ayr,61563,33567,11406,8829
-"Carrick, Cumnock and Doon Valley",59368,28837,9292,6618
-Clydesdale,56828,30052,7296,5382
-Dumfriesshire,59716,32061,11029,8582
-East Lothian,56333,32265,8876,6551
-"Ettrick, Roxburgh and Berwickshire",54327,28890,5794,4754
-Galloway and West Dumfries,56611,30061,9966,7618
-Kilmarnock and Irvine Valley,63257,31999,8443,6154
-"Midlothian South, Tweeddale, and Lauderdale",57781,31965,6772,5193
-Clydebank and Milngavie,53018,28459,6719,5021
-Cunninghame North,56548,29715,8269,6164
-Cunninghame South,50926,22175,6370,4406
-Dumbarton,53470,28602,7198,5297
-Eastwood,50476,31973,9365,7324
-Greenock and Inverclyde,56989,28303,9577,6944
-Paisley,52066,25648,10064,6392
-Renfrewshire North and West,49060,27581,8410,5653
-Renfrewshire South,50221,27019,7963,5283
-Strathkelvin and Bearsden,59323,33882,7621,5852
+"","Constituency","N","V","NP","VP","Region"
+"1","Airdrie and Shotts",51336,23958,5091,3513,"Central Scotland"
+"2","Coatbridge and Chryston",51206,23388,4933,3289,"Central Scotland"
+"3","Cumbernauld and Kilsyth",48006,25191,5252,3757,"Central Scotland"
+"4","East Kilbride",58251,29999,6062,4475,"Central Scotland"
+"5","Falkirk East",56408,28249,5749,4286,"Central Scotland"
+"6","Falkirk West",55739,28332,6235,4464,"Central Scotland"
+"7","Hamilton, Larkhall and Stonehouse",56123,25491,5808,4062,"Central Scotland"
+"8","Motherwell and Wishaw",53610,24536,5007,3426,"Central Scotland"
+"9","Uddingston and Bellshill",55584,25096,5018,3289,"Central Scotland"
+"10","Anniesland",55411,24080,5970,4082,"Glasgow"
+"11","Cathcart",58525,26396,5588,3924,"Glasgow"
+"12","Kelvin",61893,24804,4884,3249,"Glasgow"
+"13","Maryhill and Springburn",56622,20654,5550,3448,"Glasgow"
+"14","Pollok",58429,23083,5480,3672,"Glasgow"
+"15","Provan",55138,19321,5335,3292,"Glasgow"
+"16","Shettleston",55874,21303,4768,3157,"Glasgow"
+"17","Southside",52325,22827,5071,3327,"Glasgow"
+"18","Rutherglen",57777,27195,6574,4578,"Glasgow"
+"19","Argyll and Bute",48925,26658,7642,5758,"Highlands and Islands"
+"20","Caithness, Sutherland and Ross",55121,28743,7323,5210,"Highlands and Islands"
+"21","Inverness and Nairn",62183,32814,9999,7342,"Highlands and Islands"
+"22","Moray",56215,28703,9262,6993,"Highlands and Islands"
+"23","Na h-Eileanan an Iar",21833,13093,3297,2517,"Highlands and Islands"
+"24","Orkney",16406,8178,2043,1634,"Highlands and Islands"
+"25","Shetland",17505,9417,2046,1660,"Highlands and Islands"
+"26","Skye, Lochaber and Badenoch",57028,32103,7814,5757,"Highlands and Islands"
+"27","Almond Valley",59896,30828,9063,6513,"Lothian"
+"28","Edinburgh Central",53606,29320,9508,6662,"Lothian"
+"29","Edinburgh Eastern",55773,30887,9882,7131,"Lothian"
+"30","Edinburgh Northern and Leith",59138,31080,10216,6932,"Lothian"
+"31","Edinburgh Pentlands",52620,30211,10009,7770,"Lothian"
+"32","Edinburgh Southern",54868,33935,10790,8088,"Lothian"
+"33","Edinburgh Western",56338,33572,10677,8166,"Lothian"
+"34","Linlithgow",65025,34322,9598,7111,"Lothian"
+"35","Midlothian North and Musselburgh",58264,29941,8831,6365,"Lothian"
+"36","Clackmannanshire and Dunblane",49415,27485,5556,4302,"Mid Scotland and Fife"
+"37","Cowdenbeath",54284,25805,7414,5180,"Mid Scotland and Fife"
+"38","Dunfermline",55479,29446,8777,6281,"Mid Scotland and Fife"
+"39","Kirkcaldy",60079,28002,9654,6805,"Mid Scotland and Fife"
+"40","Mid Fife and Glenrothes",53701,26439,7531,5394,"Mid Scotland and Fife"
+"41","North East Fife",58858,29861,7887,5723,"Mid Scotland and Fife"
+"42","Perthshire North",53412,30075,7718,5959,"Mid Scotland and Fife"
+"43","Perthshire South and Kinross-shire",58093,31338,8011,6214,"Mid Scotland and Fife"
+"44","Stirling",52185,30535,6061,4743,"Mid Scotland and Fife"
+"45","Aberdeen Central",57396,25243,9937,6935,"North East Scotland"
+"46","Aberdeen Donside",56145,26888,10515,7498,"North East Scotland"
+"47","Aberdeen South and North Kincardine",54338,28424,10965,8026,"North East Scotland"
+"48","Aberdeenshire East",57591,30374,9869,7240,"North East Scotland"
+"49","Aberdeenshire West",53779,28746,9678,7070,"North East Scotland"
+"50","Angus North and Mearns",52124,25052,7228,5173,"North East Scotland"
+"51","Angus South",54922,27736,7704,5797,"North East Scotland"
+"52","Banffshire and Buchan Coast",53698,25097,9948,7065,"North East Scotland"
+"53","Dundee City East",54404,25700,8906,6155,"North East Scotland"
+"54","Dundee City West",53841,24712,8038,5898,"North East Scotland"
+"55","Ayr",61563,33567,11406,8829,"South Scotland"
+"56","Carrick, Cumnock and Doon Valley",59368,28837,9292,6618,"South Scotland"
+"57","Clydesdale",56828,30052,7296,5382,"South Scotland"
+"58","Dumfriesshire",59716,32061,11029,8582,"South Scotland"
+"59","East Lothian",56333,32265,8876,6551,"South Scotland"
+"60","Ettrick, Roxburgh and Berwickshire",54327,28890,5794,4754,"South Scotland"
+"61","Galloway and West Dumfries",56611,30061,9966,7618,"South Scotland"
+"62","Kilmarnock and Irvine Valley",63257,31999,8443,6154,"South Scotland"
+"63","Midlothian South, Tweeddale, and Lauderdale",57781,31965,6772,5193,"South Scotland"
+"64","Clydebank and Milngavie",53018,28459,6719,5021,"West Scotland"
+"65","Cunninghame North",56548,29715,8269,6164,"West Scotland"
+"66","Cunninghame South",50926,22175,6370,4406,"West Scotland"
+"67","Dumbarton",53470,28602,7198,5297,"West Scotland"
+"68","Eastwood",50476,31973,9365,7324,"West Scotland"
+"69","Greenock and Inverclyde",56989,28303,9577,6944,"West Scotland"
+"70","Paisley",52066,25648,10064,6392,"West Scotland"
+"71","Renfrewshire North and West",49060,27581,8410,5653,"West Scotland"
+"72","Renfrewshire South",50221,27019,7963,5283,"West Scotland"
+"73","Strathkelvin and Bearsden",59323,33882,7621,5852,"West Scotland"
