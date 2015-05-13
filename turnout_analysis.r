@@ -8,7 +8,7 @@ cook_election <- function(ballot){
 	return(ballot)
 }
 
-# plot a single cdf display with population mean
+# plot a single cdf display with population mean and intersection data
 plot_single_display<-function(a,pm,main){
 	intersect<-(sum(a<pm)/length(a))
 	sub<-paste("population mean intersected by c.d.f. at",intersect)
@@ -24,6 +24,9 @@ multi_plot_election <- function(name){
 	name<-sub(".csv$","",name)
 		# load data
 	ballot <- read.csv(paste(name,".csv",sep=""))
+		# sanity check for cookability
+	if(is.null(ballot$V)||is.null(ballot$N)||is.null(ballot$VP)||is.null(ballot$NP))
+		{return()} # back away slowly if uncookable
 		#check for regions
 	out<-if(!is.null(ballot$Region)){
 			# iterate over regions, rbind, order not important
@@ -71,37 +74,44 @@ plot_multi_display<-function(ballot,name){
 
 # make displays from all csvs in current directory
 plot_all <- function() {
+		# use all .csv in current directory to make plots
 	out<-foreach(name=list.files(pattern=".csv$"),
 		.combine=rbind,
                 .inorder=FALSE,
                 .multicombine=TRUE) %dopar% {
 		multi_plot_election(name)
 	}
+		# sort collected error data
 	out<-out[order(as.numeric(out[,"intersect"])),]
-	
 	return(out)
 }
 
 analyse_plot <- function(table=plot_all()){
 		# setup output
 	pdf("turnout_analysis.pdf",paper="a4",width=7,height=10)
+		# pull & compute data for display
 	data <- as.numeric(table[,"intersect"])
 	density_obj <- density(data)
 	ecdf_obj <- ecdf(data)
 	SIR_points <- data[grep(pattern="SIR",table[,"name"])]
 	sub <- "Scottish Independence Referendum points marked with red intersections"
+		# do density plot
 	plot(density_obj,main="Overall error density",sub=sub)
 	abline(v=0.5)
 	for(point in SIR_points){
 		abline(v=point,col="red")
 	}
+		# do c.d.f. plot
 	plot(ecdf_obj,main="Overall error c.d.f.",sub=sub)
 	for(point in SIR_points){
 		abline(v=point,col="red")
 	}
 	abline(h=0.5)
 	abline(v=0.5)
+		# close output
 	dev.off()
+		# write intercept data to .csv
 	write.csv(table,file="turnout_analysis.csv")
+		# and toss it out in case someone wants it
 	return(table)
 }
