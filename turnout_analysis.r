@@ -9,17 +9,26 @@ cook_election <- function(ballot){
 }
 
 # plot a single cdf display with population mean and intersection data
-plot_single_display<-function(a,pm,main){
+plot_single_display<-function(a,pm,main,grepping_pattern){
+		# switch for detailed output on match
+	if(any(grep(main,pattern=grepping_pattern))){
+		output<-TRUE
+	}else{
+		output<-FALSE
+	}
 	intersect<-(sum(a<pm)/length(a))
-	sub<-paste("population mean intersected by c.d.f. at",intersect)
-	plot(ecdf(a),main=main,sub=sub)
-	abline(v=pm)
-	abline(h=0.5)
+	
+	if(output==TRUE){
+                sub<-paste("population mean intersected by c.d.f. at",intersect)
+                plot(ecdf(a),main=main,sub=sub)
+                abline(v=pm)
+                abline(h=0.5)
+        }
 	return(c(name=main,intersect=intersect))
 }
 
 # read file, analyse and schedule plots
-multi_plot_election <- function(name){
+multi_plot_election <- function(name,grepping_pattern){
 		# remove any csv suffix from data and setup output
 	name<-sub(".csv$","",name)
 		# load data
@@ -36,17 +45,15 @@ multi_plot_election <- function(name){
 			.multicombine=TRUE)%dopar%{
                         rballot <- ballot[ballot$Region == region,]
                         rname <- paste(name,region) 
-                        plot_multi_display(rballot,rname)
+                        plot_multi_display(rballot,rname,grepping_pattern)
                 }
 	}
-	out<-rbind(out,plot_multi_display(ballot,name))
+	out<-rbind(out,plot_multi_display(ballot,name,grepping_pattern))
 	return(out)
 }
 
 # cdf tri plot of election with population mean
-plot_multi_display<-function(ballot,name){
-		# setup output
-	pdf(paste(name,".pdf",sep=""),paper="a4",width=7,height=10)
+plot_multi_display<-function(ballot,name,grepping_pattern){
 		# cook election
 	ballot<-cook_election(ballot)
 		# pull turnout vectors
@@ -63,47 +70,46 @@ plot_multi_display<-function(ballot,name){
 	main_anp <- paste(name,"non-postal turnout cdf")
 		# plot displays
 	out<-rbind(
-                plot_single_display(a,pm_a,main_a),
-                plot_single_display(ap,pm_ap,main_ap),
-                plot_single_display(anp,pm_anp,main_anp)
+                plot_single_display(a,pm_a,main_a,grepping_pattern),
+                plot_single_display(ap,pm_ap,main_ap,grepping_pattern),
+                plot_single_display(anp,pm_anp,main_anp,grepping_pattern)
 	)
-		# close output
-	dev.off()
 	return(out)
 }
 
 # make displays from all csvs in current directory
-plot_all <- function() {
+plot_all <- function(grepping_pattern="SIR") {
 		# use all .csv in current directory to make plots
 	out<-foreach(name=list.files(pattern=".csv$"),
 		.combine=rbind,
                 .inorder=FALSE,
                 .multicombine=TRUE) %dopar% {
-		multi_plot_election(name)
+		multi_plot_election(name,grepping_pattern)
 	}
 		# sort collected error data
 	out<-out[order(as.numeric(out[,"intersect"])),]
 	return(out)
 }
 
-analyse_plot <- function(table=plot_all()){
+analyse_plot <- function(grepping_pattern="SIR"){
 		# setup output
 	pdf("turnout_analysis.pdf",paper="a4",width=7,height=10)
 		# pull & compute data for display
-	data <- as.numeric(table[,"intersect"])
-	density_obj <- density(data)
-	ecdf_obj <- ecdf(data)
-	SIR_points <- data[grep(pattern="SIR",table[,"name"])]
-	sub <- "Scottish Independence Referendum points marked with red intersections"
+	table<-plot_all(grepping_pattern)
+	intersect <- as.numeric(table[,"intersect"])
+	density_obj <- density(intersect)
+	ecdf_obj <- ecdf(intersect)
+	matched_points <- intersect[grep(pattern=grepping_pattern,table[,"name"])]
+	sub <- paste("points matching \"",grepping_pattern,"\" marked with red intersections",sep="")
 		# do density plot
 	plot(density_obj,main="Overall error density",sub=sub)
 	abline(v=0.5)
-	for(point in SIR_points){
+	for(point in matched_points){
 		abline(v=point,col="red")
 	}
 		# do c.d.f. plot
 	plot(ecdf_obj,main="Overall error c.d.f.",sub=sub)
-	for(point in SIR_points){
+	for(point in matched_points){
 		abline(v=point,col="red")
 	}
 	abline(h=0.5)
