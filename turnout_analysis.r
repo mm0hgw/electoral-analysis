@@ -109,11 +109,11 @@ analyse_plot <- function(grepping_pattern="SIR"){
 	}
 		# do c.d.f. plot
 	plot(ecdf_obj,main="Overall error c.d.f.",sub=sub)
+	abline(h=0.5)
+	abline(v=0.5)
 	for(point in matched_points){
 		abline(v=point,col="red")
 	}
-	abline(h=0.5)
-	abline(v=0.5)
 		# close output
 	dev.off()
 		# write intercept data to .csv
