@@ -93,7 +93,7 @@ plot_all <- function(grepping_pattern="SIR") {
 
 analyse_plot <- function(grepping_pattern="SIR"){
 		# setup output
-	pdf("turnout_analysis.pdf",paper="a4",width=7,height=10)
+	pdf(paste("turnout_analysis_",grepping_pattern,".pdf",sep=""),paper="a4",width=7,height=10)
 		# pull & compute data for display
 	table<-plot_all(grepping_pattern)
 	intersect <- as.numeric(table[,"intersect"])
@@ -117,7 +117,9 @@ analyse_plot <- function(grepping_pattern="SIR"){
 		# close output
 	dev.off()
 		# write intercept data to .csv
+	
 	write.csv(table,file="turnout_analysis.csv")
+	write.csv(table[grep(table[,"name"],pattern=grepping_pattern),],file=paste("turnout_analysis_",grepping_pattern,".csv",sep=""))
 		# and toss it out in case someone wants it
 	return(table)
 }
