@@ -10,12 +10,12 @@ cook_election <- function(ballot){
 
 # plot a single cdf display with population mean
 plot_single_display<-function(a,pm,main){
-	dev<-abs(sum(a<pm)/length(a) - 0.5)
-	sub<-paste("population mean marked",dev,"deviation")
+	intersect<-(sum(a<pm)/length(a))
+	sub<-paste("population mean intersected by c.d.f. at",intersect)
 	plot(ecdf(a),main=main,sub=sub)
 	abline(v=pm)
 	abline(h=0.5)
-	return(c(name=main,deviation=dev))
+	return(c(name=main,intersect=intersect))
 }
 
 # read file, analyse and schedule plots
@@ -77,6 +77,30 @@ plot_all <- function() {
                 .multicombine=TRUE) %dopar% {
 		multi_plot_election(name)
 	}
-	out<-out[order(out[,2],decreasing=TRUE),]
+	out<-out[order(as.numeric(out[,"intersect"])),]
+	
 	return(out)
+}
+
+analyse_plot <- function(table=plot_all()){
+		# setup output
+	pdf("analysis.pdf",paper="a4",width=7,height=10)
+	data <- as.numeric(table[,"intersect"])
+	density_obj <- density(data)
+	ecdf_obj <- ecdf(data)
+	SIR_points <- data[grep(pattern="SIR",table[,"name"])]
+	sub <- "Scottish Independence Referendum points marked with red intersections"
+	plot(density_obj,main="Overall error density",sub=sub)
+	abline(v=0.5)
+	for(point in SIR_points){
+		abline(v=point,col="red")
+	}
+	plot(ecdf_obj,main="Overall error c.d.f.",sub=sub)
+	for(point in SIR_points){
+		abline(v=point,col="red")
+	}
+	abline(h=0.5)
+	abline(v=0.5)
+	dev.off()
+	return(table)
 }
