@@ -1,5 +1,5 @@
 require("foreach")
-
+source("mod/sneaky.r")
 # calculate non-postal totals by removing postal totals from overall totals
 # calculate turnout fractions of all 3 categories by division
 cook_election <- function(ballot){
@@ -91,28 +91,22 @@ plot_all <- function(grepping_pattern="SIR") {
 	return(out)
 }
 
-#custom sd calculator based upon "Eq. S1" and "Eq. S2"
-#in Kilmek et al. 2009
-custom_sd <- function(x,center=mean(x)){
-        sqrt(mean((x-center)^2))  
-}
 
-
-analyse_plot <- function(grepping_pattern="SIR"){
+analyse_plot <- function(grepping_pattern="EPE2014 Scotland"){
 		# setup output
 	pdf(paste("turnout_analysis_",grepping_pattern,".pdf",sep=""),paper="a4",width=7,height=10)
 		# pull & compute data for display
-	table<-plot_all(grepping_pattern)
-	intersect <- as.numeric(table[,"intersect"])
+	bucket<-plot_all(grepping_pattern)
+	intersect <- as.numeric(bucket[,"intersect"])
 	density_obj <- density(intersect)
 	ecdf_obj <- ecdf(intersect)
-	matched_points <- grep(pattern=grepping_pattern,table[,"name"])
+	matched_points <- grep(pattern=grepping_pattern,bucket[,"name"])
 	matched_sd <- custom_sd(intersect[matched_points],center=0.5)
 	unmatched_sd <- custom_sd(intersect[-matched_points],center=0.5)
 	sd_ratio <- matched_sd/unmatched_sd
 	main <- paste("Matching \"",grepping_pattern,"\"",sep="")
-	sub <- paste("matched SD:",sprintf("%.3f",matched_sd),
-		" unmatched SD:",sprintf("%.3f",unmatched_sd),
+	sub <- paste("matched SD:",sprintf("%.2f",matched_sd),
+		" unmatched SD:",sprintf("%.2f",unmatched_sd),
 		" ratio:",sprintf("%.1f",sd_ratio),sep="")
 		# do density plot
 	plot(density_obj,main=paste(main,"Overall error density"),sub=sub)
@@ -131,8 +125,8 @@ analyse_plot <- function(grepping_pattern="SIR"){
 	dev.off()
 		# write intercept data to .csv
 	
-	write.csv(table,file="turnout_analysis.csv")
-	write.csv(table[grep(table[,"name"],pattern=grepping_pattern),],file=paste("turnout_analysis_",grepping_pattern,".csv",sep=""))
+	write.csv(bucket,file="turnout_analysis.csv")
+	write.csv(bucket[grep(bucket[,"name"],pattern=grepping_pattern),],file=paste("turnout_analysis_",grepping_pattern,".csv",sep=""))
 		# and toss it out in case someone wants it
-	return(table)
+	return(bucket)
 }
