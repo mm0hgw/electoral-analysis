@@ -91,6 +91,13 @@ plot_all <- function(grepping_pattern="SIR") {
 	return(out)
 }
 
+#custom sd calculator based upon "Eq. S1" and "Eq. S2"
+#in Kilmek et al. 2009
+custom_sd <- function(x,center=mean(x)){
+        sqrt(mean((x-center)^2))  
+}
+
+
 analyse_plot <- function(grepping_pattern="SIR"){
 		# setup output
 	pdf(paste("turnout_analysis_",grepping_pattern,".pdf",sep=""),paper="a4",width=7,height=10)
@@ -99,19 +106,25 @@ analyse_plot <- function(grepping_pattern="SIR"){
 	intersect <- as.numeric(table[,"intersect"])
 	density_obj <- density(intersect)
 	ecdf_obj <- ecdf(intersect)
-	matched_points <- intersect[grep(pattern=grepping_pattern,table[,"name"])]
-	sub <- paste("points matching \"",grepping_pattern,"\" marked with red intersections",sep="")
+	matched_points <- grep(pattern=grepping_pattern,table[,"name"])
+	matched_sd <- custom_sd(intersect[matched_points],center=0.5)
+	unmatched_sd <- custom_sd(intersect[-matched_points],center=0.5)
+	sd_ratio <- matched_sd/unmatched_sd
+	main <- paste("Matching \"",grepping_pattern,"\"",sep="")
+	sub <- paste("matched SD:",sprintf("%.3f",matched_sd),
+		" unmatched SD:",sprintf("%.3f",unmatched_sd),
+		" ratio:",sprintf("%.1f",sd_ratio),sep="")
 		# do density plot
-	plot(density_obj,main="Overall error density",sub=sub)
+	plot(density_obj,main=paste(main,"Overall error density"),sub=sub)
 	abline(v=0.5)
-	for(point in matched_points){
+	for(point in intersect[matched_points]){
 		abline(v=point,col="red")
 	}
 		# do c.d.f. plot
-	plot(ecdf_obj,main="Overall error c.d.f.",sub=sub)
+	plot(ecdf_obj,main=paste(main,"Overall error c.d.f."),sub=sub)
 	abline(h=0.5)
 	abline(v=0.5)
-	for(point in matched_points){
+	for(point in intersect[matched_points]){
 		abline(v=point,col="red")
 	}
 		# close output
