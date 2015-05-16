@@ -100,9 +100,11 @@ analyse_plot <- function(grepping_pattern="EPE2014 Scotland"){
 	intersect <- as.numeric(bucket[,"intersect"])
 	density_obj <- density(intersect)
 	ecdf_obj <- ecdf(intersect)
+	i_peak <- density_obj$x[which.max(density_obj$y)]
+	i_sd <- custom_sd(intersect,i_peak)
 	matched_points <- grep(pattern=grepping_pattern,bucket[,"name"])
-	matched_sd <- custom_sd(intersect[matched_points],center=0.5)
-	unmatched_sd <- custom_sd(intersect[-matched_points],center=0.5)
+	matched_sd <- custom_sd(intersect[matched_points],center=i_peak)
+	unmatched_sd <- custom_sd(intersect[-matched_points],center=i_peak)
 	sd_ratio <- matched_sd/unmatched_sd
 	main <- paste("Matching \"",grepping_pattern,"\"",sep="")
 	sub <- paste("matched SD:",sprintf("%.2f",matched_sd),
@@ -110,14 +112,19 @@ analyse_plot <- function(grepping_pattern="EPE2014 Scotland"){
 		" ratio:",sprintf("%.1f",sd_ratio),sep="")
 		# do density plot
 	plot(density_obj,main=paste(main,"Overall error density"),sub=sub)
-	abline(v=0.5)
+	abline(v=i_peak,col="green")
+	abline(v=i_peak+i_sd,col="blue")
+	abline(v=i_peak-i_sd,col="blue")
 	for(point in intersect[matched_points]){
 		abline(v=point,col="red")
 	}
 		# do c.d.f. plot
 	plot(ecdf_obj,main=paste(main,"Overall error c.d.f."),sub=sub)
+	abline(v=i_peak,col="green")
+	abline(v=i_peak+i_sd,col="blue")
+	abline(v=i_peak-i_sd,col="blue")
 	abline(h=0.5)
-	abline(v=0.5)
+
 	for(point in intersect[matched_points]){
 		abline(v=point,col="red")
 	}
