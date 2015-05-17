@@ -21,8 +21,8 @@ plot_single_display<-function(a,pm,main,grepping_pattern){
 	if(output==TRUE){
                 sub<-paste("population mean intersected by c.d.f. at",intersect)
                 plot(ecdf(a),main=main,sub=sub)
-                abline(v=pm)
-                abline(h=0.5)
+                abline(v=pm,col="blue")
+		abline(h=intersect,col="red")
         }
 	return(c(name=main,intersect=intersect))
 }
