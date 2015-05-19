@@ -1,6 +1,7 @@
 results_by_region <- function(bal,tag,title){
         lev<-levels(as.factor(bal$Region))   
         lev<-lev[lev!=""]
+	mask<-bal$ballots["N",]==0
         out<-foreach(region=lev,
                         .combine=rbind,
                         .init=c(paste(title,tag),
@@ -8,10 +9,12 @@ results_by_region <- function(bal,tag,title){
                         .inorder=FALSE,
                         .multicombine=TRUE) %dopar%{
                         c(paste(title,region,tag),
-				cdf_mean_intercept(bal$ballots[,bal$Region==region]))
+				cdf_mean_intercept(bal$ballots[,union(bal$Region==region,mask)]))
         }
         return(out)
 }
+
+
 
 # how we like our ballots cooked for easy grepping
 cook_ballot <- function(ballot,title){
@@ -71,30 +74,75 @@ read_custom_csv <- function(file){
         return(cook_ballot(ballot,file))
 }
 
+find_LE2014_files<-function(){
+	p<-list.files(path="csv/",pattern="Local elections 2014")
+	p<-p[-grep(p,pattern="AGGREG")]
+	p<-paste("csv/",p,sep="")
+	return(p)
+}
 
 
+#establish horizontal reading key
+find_LE2014_key<-function(file="csv/Local elections 2014 - Electoral data - UNITARIES.csv"){
+	p<-read.csv(file,header=F,stringsAsFactors=F)[c(1,2),]
+	first<-p[1,]
+	key<-rep(as.integer(0),6)
+	key[1]<-grep(first,pattern="Ward")
+	key[2]<-grep(first,pattern="Local Authority")
+	second<-p[2,]
+	key[3]<-grep(second,pattern="Electorate")
+	key[4]<-grep(second,pattern="Total votes cast")
+	key[5]<-grep(second,pattern="Number of postal ballot papers issued")
+	key[6]<-grep(second,pattern="Number of postal votes included in the count")
+	return(key)
+}
 
-read_unitaries_ballot <- function(){
-	unitaries_key <- c(2,3,4,5,17,34)
-        p<-read.csv("csv/Local elections 2014 - Electoral data - UNITARIES.csv")[,unitaries_key]
-        p2<-p[p[,1]!=""&p[,2]!=""&p[,3]!=""&p[,4]!=""&p[,5]!=""&p[,6]!="",]
-        title<-"LE2014 UNITARIES"
+count_occurances<-function(x){
+	lev<-levels(x)
+	
+}
+
+really_strip_whitespace<-function(x){
+	y<-as.character(x)
+	z<-gsub(" |,","",y)
+	a<-gsub("^$","0",z)
+	
+	(out<-as.numeric(a))
+	if(sum(is.na(out))>0){
+		print(a[is.na(out)])
+	}
+	return(out)
+}
+
+read_LE2014_ballot <- function(i){
+	index<-find_LE2014_files()
+	file<-index[i]
+	key <- find_LE2014_key(file)
+	if(sum(key==0)>0){
+		return()
+	}
+        p<-read.csv(file,strip.white=T,sep=",",stringsAsFactors=F,header=T)[,key]
+	i<-p[,1]!=""
+#	return(p[i,])
+        p2<-p[p[,1]!=""&p[,3]!=""&p[,3]!="0",]
+#	print(p2[-grep(p2[,5],pattern=""),])	
+	
         ballot<-list(
-		title=title,
-                name=as.character(p2[,2]),
-                Region=as.factor(p2[,1]),
-                N=as.numeric(as.character(p2[,3])),
-                V=as.numeric(as.character(p2[,4])),
-                NP=as.numeric(as.character(p2[,5])),
-                VP=as.numeric(as.character(p2[,6])))
-        return(cook_ballot(ballot,title))
+                name=p2[,1],
+                Region=as.factor(p2[,2]),
+                N=really_strip_whitespace(p2[,3]),
+                V=really_strip_whitespace(p2[,4]),
+                NP=really_strip_whitespace(p2[,5]),
+                VP=really_strip_whitespace(p2[,6]))
+#	return(p)
+        return(cook_ballot(ballot,file))
 }
 
 
 read_all_custom_csv<-function(){
 	p<-paste("csv/",list.files(path="csv/",pattern="--.csv$"),sep="")
 	
-	print(grep(p,pattern=".csv$",value=T))
+#	print(grep(p,pattern=".csv$",value=T))
 	q<-foreach(n=grep(p,pattern=".csv$",value=T),
 		.combine=rbind,
 		.inorder=F,
