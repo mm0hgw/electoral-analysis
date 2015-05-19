@@ -8,7 +8,7 @@ cook_election <- function(ballot){
 	return(ballot)
 }
 
-# plot a single cdf display with population mean and intersection data
+# plot a single cdf display with population mean and interception data
 plot_single_display<-function(a,pm,main,grepping_pattern){
 		# switch for detailed output on match
 	if(any(grep(main,pattern=grepping_pattern))){
@@ -16,15 +16,15 @@ plot_single_display<-function(a,pm,main,grepping_pattern){
 	}else{
 		output<-FALSE
 	}
-	intersect<-(sum(a<pm)/length(a))
+	intercept<-(sum(a<=pm)/length(a))
 	
 	if(output==TRUE){
-                sub<-paste("population mean intersected by c.d.f. at",intersect)
-                plot(ecdf(a),main=main,sub=sub)
+                sub<-paste("population mean intercepted by c.d.f. at",intercept)
+                plot(ecdf(a),main=main,sub=sub,verticals=T,do.points=F)
                 abline(v=pm,col="blue")
-		abline(h=intersect,col="red")
+		abline(h=intercept,col="red")
         }
-	return(c(name=main,intersect=intersect))
+	return(c(name=main,intercept=intercept))
 }
 
 # read file, analyse and schedule plots
@@ -87,7 +87,7 @@ plot_all <- function(grepping_pattern="SIR") {
 		multi_plot_election(name,grepping_pattern)
 	}
 		# sort collected error data
-	out<-out[order(as.numeric(out[,"intersect"])),]
+	out<-out[order(as.numeric(out[,"intercept"])),]
 	return(out)
 }
 
@@ -97,14 +97,17 @@ analyse_plot <- function(grepping_pattern="EPE2014 Scotland"){
 	pdf(paste("turnout_analysis_",grepping_pattern,".pdf",sep=""),paper="a4",width=7,height=10)
 		# pull & compute data for display
 	bucket<-plot_all(grepping_pattern)
-	intersect <- as.numeric(bucket[,"intersect"])
-	density_obj <- density(intersect)
-	ecdf_obj <- ecdf(intersect)
+	intercept <- as.numeric(bucket[,"intercept"])
+	density_obj <- density(intercept)
+	i_x<-density_obj$x
+	ecdf_obj <- ecdf(intercept)
 	i_peak <- density_obj$x[which.max(density_obj$y)]
-	i_sd <- custom_sd(intersect,i_peak)
+	i_sd <- custom_sd(intercept,i_peak)
 	matched_points <- grep(pattern=grepping_pattern,bucket[,"name"])
-	matched_sd <- custom_sd(intersect[matched_points],center=i_peak)
-	unmatched_sd <- custom_sd(intersect[-matched_points],center=i_peak)
+	i_match <-intercept[matched_points]
+	i_unmatch <- intercept[-matched_points]
+	matched_sd <- custom_sd(i_match,center=i_peak)
+	unmatched_sd <- custom_sd(i_unmatch,center=i_peak)
 	sd_ratio <- matched_sd/unmatched_sd
 	main <- paste("Matching \"",grepping_pattern,"\"",sep="")
 	sub <- paste("matched SD:",sprintf("%.2f",matched_sd),
@@ -112,22 +115,19 @@ analyse_plot <- function(grepping_pattern="EPE2014 Scotland"){
 		" ratio:",sprintf("%.1f",sd_ratio),sep="")
 		# do density plot
 	plot(density_obj,main=paste(main,"Overall error density"),sub=sub)
+	lines(x=i_x,dnorm(x=i_x,mean=i_peak,sd=i_sd),col="magenta")
 	abline(v=i_peak,col="green")
 	abline(v=i_peak+i_sd,col="blue")
 	abline(v=i_peak-i_sd,col="blue")
-	for(point in intersect[matched_points]){
-		abline(v=point,col="red")
-	}
+	points(x=i_match,y=dnorm(x=i_match,mean=i_peak,sd=i_sd),pch=1,col="red")
 		# do c.d.f. plot
-	plot(ecdf_obj,main=paste(main,"Overall error c.d.f."),sub=sub)
+	plot(ecdf_obj,verticals=T,do.points=F,main=paste(main,"Overall error c.d.f."),sub=sub)
+	lines(x=i_x,pnorm(q=i_x,mean=i_peak,sd=i_sd),col="magenta")
+	points(x=i_match,y=pnorm(q=i_match,mean=i_peak,sd=i_sd),pch=1,col="red")
 	abline(v=i_peak,col="green")
 	abline(v=i_peak+i_sd,col="blue")
 	abline(v=i_peak-i_sd,col="blue")
 	abline(h=0.5)
-
-	for(point in intersect[matched_points]){
-		abline(v=point,col="red")
-	}
 		# close output
 	dev.off()
 		# write intercept data to .csv
