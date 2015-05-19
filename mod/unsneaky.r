@@ -1,7 +1,7 @@
 results_by_region <- function(bal,tag,title){
         lev<-levels(as.factor(bal$Region))   
         lev<-lev[lev!=""]
-	mask<-bal$ballots["N",]==0
+#	mask<-bal$ballots["N",]==0
         out<-foreach(region=lev,
                         .combine=rbind,
                         .init=c(paste(title,tag),
@@ -9,7 +9,7 @@ results_by_region <- function(bal,tag,title){
                         .inorder=FALSE,
                         .multicombine=TRUE) %dopar%{
                         c(paste(title,region,tag),
-				cdf_mean_intercept(bal$ballots[,union(bal$Region==region,mask)]))
+				cdf_mean_intercept(bal$ballots[,bal$Region==region]))
         }
         return(out)
 }
@@ -75,9 +75,9 @@ read_custom_csv <- function(file){
 }
 
 find_LE2014_files<-function(){
-	p<-list.files(path="csv/",pattern="Local elections 2014")
-	p<-p[-grep(p,pattern="AGGREG")]
-	p<-paste("csv/",p,sep="")
+	p<-sub(list.files(path="csv/",pattern="Local elections 2014"),pattern="^",replacement="csv/")
+#	p<-p[-grep(p,pattern="AGGREG")]
+#	p<-paste("csv/",p,sep="")
 	return(p)
 }
 
@@ -97,11 +97,6 @@ find_LE2014_key<-function(file="csv/Local elections 2014 - Electoral data - UNIT
 	return(key)
 }
 
-count_occurances<-function(x){
-	lev<-levels(x)
-	
-}
-
 really_strip_whitespace<-function(x){
 	y<-as.character(x)
 	z<-gsub(" |,","",y)
@@ -116,6 +111,7 @@ really_strip_whitespace<-function(x){
 
 read_LE2014_ballot <- function(i){
 	index<-find_LE2014_files()
+#	print(index)
 	file<-index[i]
 	key <- find_LE2014_key(file)
 	if(sum(key==0)>0){
