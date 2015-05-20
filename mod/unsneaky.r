@@ -8,21 +8,30 @@ results_by_region <- function(bal,tag,title){
 				cdf_mean_intercept(bal$ballots)),
                         .inorder=FALSE,
                         .multicombine=TRUE) %dopar%{
+			b<-bal$ballots[,bal$Region==region]
+			if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
+				return()
+			}
                         c(paste(title,region,tag),
 				cdf_mean_intercept(bal$ballots[,bal$Region==region]))
         }
         return(out)
 }
 
-
+calculate_a <- function(V,N){
+	mask <- N==0
+	a<-V/N
+	a[mask]<-0
+	return(a)
+}
 
 # how we like our ballots cooked for easy grepping
 cook_ballot <- function(ballot,title){
         ballot$NNP<-ballot$N-ballot$NP
         ballot$VNP<-ballot$V-ballot$VP
-        ballot$a<-ballot$V/ballot$N   
-        ballot$ap<-ballot$VP/ballot$NP
-        ballot$anp<-ballot$VNP/ballot$NNP
+        ballot$a<-calculate_a(ballot$V,ballot$N)
+        ballot$ap<-calculate_a(ballot$VP,ballot$NP)
+        ballot$anp<-calculate_a(ballot$VNP,ballot$NNP)
 
         bal=rbind(N=ballot$N,
                         V=ballot$V,
@@ -67,10 +76,10 @@ read_custom_csv <- function(file){
         ballot<-list(
                 name=as.character(bal$name),
                 Region=as.factor(Region),
-                N=as.numeric(as.character(bal$N)),
-                V=as.numeric(as.character(bal$V)),
-                NP=as.numeric(as.character(bal$NP)),
-                VP=as.numeric(as.character(bal$VP)))
+                N=really_strip_whitespace(bal$N),
+                V=really_strip_whitespace(bal$V),
+                NP=really_strip_whitespace(bal$NP),
+                VP=really_strip_whitespace(bal$VP))
         return(cook_ballot(ballot,file))
 }
 
