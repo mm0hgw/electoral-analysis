@@ -20,7 +20,11 @@ custom_sd <- function(x,center=mean(x)){
 #given a matrix with N,V,a rows, compute population mean, compare turnout vector to mean
 #count occurances and divide by vector length
 cdf_mean_intercept<-function(bal){
-        return(sum(bal["a",]<sum(bal["V",])/sum(bal["N",])) / length(bal["N",]))
+        out<-(sum(bal["a",]<sum(bal["V",])/sum(bal["N",])) / length(bal["N",]))
+	if(out>1){
+		return(1)
+	}
+	return(out)
 }
 
 #calculate deviation in SDs

@@ -85,8 +85,6 @@ read_custom_csv <- function(file){
 
 find_LE2014_files<-function(){
 	p<-sub(list.files(path="csv/",pattern="Local elections 2014"),pattern="^",replacement="csv/")
-#	p<-p[-grep(p,pattern="AGGREG")]
-#	p<-paste("csv/",p,sep="")
 	return(p)
 }
 
@@ -118,10 +116,22 @@ really_strip_whitespace<-function(x){
 	return(out)
 }
 
-read_LE2014_ballot <- function(i){
-	index<-find_LE2014_files()
+read_all_LE2014_files<-function(){
+	p<-find_LE2014_files()
+#	print(p)
+	foreach(n=p,
+		.combine=rbind,
+		.inorder=F,
+		.multicombine=T)%dopar%{
+#		print(n)
+		read_LE2014_ballot(n)
+	}
+}
+
+read_LE2014_ballot <- function(file){
+#	index<-find_LE2014_files()
 #	print(index)
-	file<-index[i]
+#	file<-index[i]
 	key <- find_LE2014_key(file)
 	if(sum(key==0)>0){
 		return()

@@ -1,7 +1,7 @@
 source ("mod/sneaky.r")
 source ("mod/unsneaky.r")
 
-total_sample <- rbind(read_all_custom_csv())
+total_sample <- rbind(read_all_custom_csv(),read_all_LE2014_files())
 
 
 do_display<-function(match_pattern="SIR2014",sample=total_sample){
@@ -10,3 +10,4 @@ do_display<-function(match_pattern="SIR2014",sample=total_sample){
 	dev.off()
 	return(out)
 }
+
