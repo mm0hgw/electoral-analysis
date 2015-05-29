@@ -1,7 +1,6 @@
 results_by_region <- function(bal,tag,title){
         lev<-levels(as.factor(bal$Region))   
         lev<-lev[lev!=""]
-#	mask<-bal$ballots["N",]==0
         out<-foreach(region=lev,
                         .combine=rbind,
                         .init=c(paste(title,tag),
@@ -16,13 +15,6 @@ results_by_region <- function(bal,tag,title){
 				cdf_mean_intercept(bal$ballots[,bal$Region==region]))
         }
         return(out)
-}
-
-calculate_a <- function(V,N){
-	mask <- N==0
-	a<-V/N
-	a[mask]<-0
-	return(a)
 }
 
 # how we like our ballots cooked for easy grepping
@@ -80,7 +72,8 @@ read_custom_csv <- function(file){
                 V=really_strip_whitespace(bal$V),
                 NP=really_strip_whitespace(bal$NP),
                 VP=really_strip_whitespace(bal$VP))
-        return(cook_ballot(ballot,file))
+        out<-cook_ballot(ballot,file)
+	return(out)
 }
 
 find_LE2014_files<-function(){
@@ -109,7 +102,7 @@ really_strip_whitespace<-function(x){
 	z<-gsub(" |,","",y)
 	a<-gsub("^$","0",z)
 	
-	(out<-as.numeric(a))
+	out<-as.numeric(a)
 	if(sum(is.na(out))>0){
 		print(a[is.na(out)])
 	}
@@ -156,18 +149,17 @@ read_LE2014_ballot <- function(file){
 
 read_all_custom_csv<-function(){
 	p<-paste("csv/",list.files(path="csv/",pattern="--.csv$"),sep="")
-	
-#	print(grep(p,pattern=".csv$",value=T))
 	q<-foreach(n=grep(p,pattern=".csv$",value=T),
 		.combine=rbind,
 		.inorder=F,
 		.multicombine=T)%dopar%{
 		read_custom_csv(n)
-	}	
+	}
+	return(q)
 }
 
 
-custom_plot_ecdf<-function(bucket,match_pattern){
+custom_plot_ecdf<-function(bucket,match_pattern,do.density=T,do.cdf=T){
 	names<-as.character(bucket[,1])
 	intercept<-as.numeric(bucket[,2])
         matched_points <- grep(pattern=match_pattern,names)
@@ -184,17 +176,21 @@ custom_plot_ecdf<-function(bucket,match_pattern){
         sub <- paste("Matched sample ranges from ",sprintf("%.2f",min(i_dev)),
                 " to ",sprintf("%.2f",max(i_dev)),
                 " in SDs of deviation.",sep="")
-                # do density plot  
-        plot(density_obj,main=paste(main,"population mean / cdf intercept error density"),sub=sub)
-        lines(x=i_x,dnorm(x=i_x,mean=i_peak,sd=custom_sd(intercept,i_peak)),col="magenta")
-	peak_separate_sd_lines(intercept,i_peak)
-        points(x=i_match,y=dnorm(x=i_match,mean=i_peak,sd=i_sd),pch=1,col="red")
+                # do density plot
+	if(do.density==T){
+                plot(density_obj,main=paste(main,"population mean / cdf intercept error density"),sub=sub)
+                lines(x=i_x,dnorm(x=i_x,mean=i_peak,sd=custom_sd(intercept,i_peak)),col="magenta")
+                peak_separate_sd_lines(intercept,i_peak)
+                points(x=i_match,y=dnorm(x=i_match,mean=i_peak,sd=i_sd),pch=1,col="red")
+	}
                 # do c.d.f. plot
-        plot(ecdf_obj,verticals=T,do.points=F,main=paste(main,"population mean / cdf intercept error c.d.f."),sub=sub)
-        lines(x=i_x,pnorm(q=i_x,mean=i_mean,sd=sd(intercept)),col="magenta")
-        points(x=i_match,y=pnorm(q=i_match,mean=i_mean,sd=custom_sd(intercept,i_mean)),pch=1,col="red")
-	peak_separate_sd_lines(intercept,i_mean)
-        abline(h=0.5)
+	if(do.cdf==T){
+                plot(ecdf_obj,verticals=T,do.points=F,main=paste(main,"population mean / cdf intercept error c.d.f."),sub=sub)
+                lines(x=i_x,pnorm(q=i_x,mean=i_mean,sd=sd(intercept)),col="magenta")
+                points(x=i_match,y=pnorm(q=i_match,mean=i_mean,sd=custom_sd(intercept,i_mean)),pch=1,col="red")
+                peak_separate_sd_lines(intercept,i_mean)
+                abline(h=0.5)
+	}
 	return(i_dev)
 }
 
