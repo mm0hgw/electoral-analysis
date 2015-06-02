@@ -1,13 +1,20 @@
+# calculate cdf/mean intercepts for ballot and subregions
 results_by_region <- function(bal,tag,title){
+		# identify any subregions
         lev<-levels(as.factor(bal$Region))   
         lev<-lev[lev!=""]
+		# for each sub region, run cdf_mean_intercept, seed results with whole set
         out<-foreach(region=lev,
-                        .combine=rbind,
                         .init=c(paste(title,tag),
 				cdf_mean_intercept(bal$ballots)),
                         .inorder=FALSE,
+                        .combine=rbind,
                         .multicombine=TRUE) %dopar%{
-			b<-bal$ballots[,bal$Region==region]
+				# data sanity checks. Remove NA elements. Check populated elements
+				# number over 1 and total population does not number 0 
+			a<-bal$ballots[,bal$Region==region]
+			mask<-!is.na(a["N",])
+			b<-a[,mask]
 			if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
 				return()
 			}
@@ -54,6 +61,7 @@ cook_ballot <- function(ballot,title){
         return(rbind(out,outp,outnp))
 }
 
+# read custom scrubbed format
 read_custom_csv <- function(file){
         bal<-read.csv(file)
         if(is.null(bal$V)||is.null(bal$N)||is.null(bal$VP)||is.null(bal$NP)||is.null(bal$name)){
@@ -100,7 +108,7 @@ find_LE2014_key<-function(file="csv/Local elections 2014 - Electoral data - UNIT
 really_strip_whitespace<-function(x){
 	y<-as.character(x)
 	z<-gsub(" |,","",y)
-	a<-gsub("^$","0",z)
+	a<-gsub("^$","0",z) # <<<<<<<<<<<<<<<< think this is superseded by a na check downstream
 	
 	out<-as.numeric(a)
 	if(sum(is.na(out))>0){
