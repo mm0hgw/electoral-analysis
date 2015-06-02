@@ -6,21 +6,29 @@ results_by_region <- function(bal,tag,title){
 		# for each sub region, run cdf_mean_intercept, seed results with whole set
         out<-foreach(region=lev,
                         .init=c(paste(title,tag),
-				cdf_mean_intercept(bal$ballots)),
+				cdf_mean_intercept(bal$ballots[,!is.na(bal$ballots["N",])])),
                         .inorder=FALSE,
                         .combine=rbind,
                         .multicombine=TRUE) %dopar%{
 				# data sanity checks. Remove NA elements. Check populated elements
 				# number over 1 and total population does not number 0 
 			a<-bal$ballots[,bal$Region==region]
-			mask<-!is.na(a["N",])
-			b<-a[,mask]
+			mask<-is.na(a["N",])
+			b<-a[,!mask]
+			if(sum(mask)>0){
+				print(a)
+				print(b)
+			}
 			if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
 				return()
 			}
-                        c(paste(title,region,tag),
-				cdf_mean_intercept(bal$ballots[,bal$Region==region]))
+			out<-cdf_mean_intercept(bal$ballots[,bal$Region==region])
+			if(is.na(out)){
+				return()
+			}
+	                return(c(paste(title,region,tag),out))
         }
+	print(out)
         return(out)
 }
 
@@ -108,11 +116,9 @@ find_LE2014_key<-function(file="csv/Local elections 2014 - Electoral data - UNIT
 really_strip_whitespace<-function(x){
 	y<-as.character(x)
 	z<-gsub(" |,","",y)
-	a<-gsub("^$","0",z) # <<<<<<<<<<<<<<<< think this is superseded by a na check downstream
-	
-	out<-as.numeric(a)
+	out<-as.numeric(z)
 	if(sum(is.na(out))>0){
-		print(a[is.na(out)])
+		print(z[is.na(out)])
 	}
 	return(out)
 }
