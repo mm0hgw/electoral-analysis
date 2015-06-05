@@ -3,6 +3,10 @@
 #
 require(foreach)
 
+sort_sample <- function(sample){
+	sample[order(sample[,2]),]
+}
+
 #custom sd calculator based upon "Eq. S1" and "Eq. S2"
 #in Klimek et al. (2009)
 custom_sd <- function(x,center=mean(x)){
