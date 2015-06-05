@@ -3,6 +3,7 @@
 # NO BIG FEET!
 
 require(parallel)
+require(foreach)
 require(chron)
 require(doMC)
 registerDoMC(cores=detectCores(),nocompile=TRUE)
@@ -62,7 +63,8 @@ peak_separate_sd_lines<-function(i,i_peak){
         abline(v=i_peak+i_r_sd,col="blue")
         abline(v=i_peak-i_l_sd,col="blue")
 }
- 
+
+# open a pdf display
 pdf_target<-function(name="turnout_analysis"){
         pdf(file=paste(name,".pdf",sep=""),paper="a4",width=7,height=10)
 }

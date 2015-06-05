@@ -15,10 +15,6 @@ results_by_region <- function(bal,tag,title){
 			a<-bal$ballots[,bal$Region==region]
 			mask<-is.na(a["N",])
 			b<-a[,!mask]
-			if(sum(mask)>0){
-				print(a)
-				print(b)
-			}
 			if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
 				return()
 			}
@@ -28,7 +24,6 @@ results_by_region <- function(bal,tag,title){
 			}
 	                return(c(paste(title,region,tag),out))
         }
-	print(out)
         return(out)
 }
 
@@ -125,29 +120,22 @@ really_strip_whitespace<-function(x){
 
 read_all_LE2014_files<-function(){
 	p<-find_LE2014_files()
-#	print(p)
 	foreach(n=p,
 		.combine=rbind,
 		.inorder=F,
 		.multicombine=T)%dopar%{
-#		print(n)
 		read_LE2014_ballot(n)
 	}
 }
 
 read_LE2014_ballot <- function(file){
-#	index<-find_LE2014_files()
-#	print(index)
-#	file<-index[i]
 	key <- find_LE2014_key(file)
 	if(sum(key==0)>0){
 		return()
 	}
         p<-read.csv(file,strip.white=T,sep=",",stringsAsFactors=F,header=T)[,key]
 	i<-p[,1]!=""
-#	return(p[i,])
         p2<-p[p[,1]!=""&p[,3]!=""&p[,3]!="0",]
-#	print(p2[-grep(p2[,5],pattern=""),])	
 	
         ballot<-list(
                 name=p2[,1],
@@ -156,7 +144,6 @@ read_LE2014_ballot <- function(file){
                 V=really_strip_whitespace(p2[,4]),
                 NP=really_strip_whitespace(p2[,5]),
                 VP=really_strip_whitespace(p2[,6]))
-#	return(p)
         return(cook_ballot(ballot,file))
 }
 
