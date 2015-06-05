@@ -162,9 +162,6 @@ really_strip_whitespace<-function(x){
 	y<-as.character(x)
 	z<-gsub(" |,","",y)
 	out<-as.numeric(z)
-	if(sum(is.na(out))>0){
-		print(z[is.na(out)])
-	}
 	return(out)
 }
 
@@ -185,7 +182,6 @@ read_LE2014_ballot <- function(file,key=find_LE2014_key(file)){
 	}
         p<-read.csv(file,strip.white=T,sep=",",stringsAsFactors=F,header=T)[,key]
         p2<-p[p[,1]!=""&p[,3]!=""&p[,3]!="0",]
-
         ballot<-list(
                 name=p2[,1],
                 Region=as.factor(p2[,2]),
@@ -193,7 +189,6 @@ read_LE2014_ballot <- function(file,key=find_LE2014_key(file)){
                 V=really_strip_whitespace(p2[,4]),
                 NP=really_strip_whitespace(p2[,5]),
                 VP=really_strip_whitespace(p2[,6]))
-	print(ballot)
         return(cook_ballot(ballot,file))
 }
 

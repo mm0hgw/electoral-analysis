@@ -54,7 +54,6 @@ custom_plot_ecdf<-function(bucket,match_pattern,do.density=T,do.cdf=T){
         i_mean <- mean(intercept)
         i_sd <- custom_sd(intercept,i_mean)
         i_dev <- deviation_in_SDs(i_match,i_mean,i_sd)
-	print(i_dev)
         main <- paste("Matching \"",match_pattern,"\"",sep="")
         sub <- paste("Matched sample ranges from ",sprintf("%.2f",min(i_dev)),
                 " to ",sprintf("%.2f",max(i_dev)),
