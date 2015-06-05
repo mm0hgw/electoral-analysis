@@ -129,7 +129,7 @@ assemble_sample <- function(){
 	file_keys<-find_key(files)
 	l_files<-length(files)
 	if(l_files>0){
-		foreach(id=seq(1,l_files),.combine=rbind,.multicombine=T)%do%{
+		sort_sample(foreach(id=seq(1,l_files),.combine=rbind,.multicombine=T)%do%{
 			key<-file_keys[[id]]
 			out<-vector()
 			if(valid_key(key)==T){
@@ -137,7 +137,7 @@ assemble_sample <- function(){
 				out<-read_LE2014_ballot(file,key)
 			}
 			out
-		}
+		})
 	}
 }
 
