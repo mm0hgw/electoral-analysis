@@ -1,0 +1,6 @@
+
+*.pdf
+
+.RData
+
+.Rhistory
