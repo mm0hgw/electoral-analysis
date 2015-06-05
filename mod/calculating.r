@@ -50,7 +50,8 @@ results_by_region <- function(bal,tag,title){
 				cdf_mean_intercept(bal$ballots[,!is.na(bal$ballots["N",])])),
                         .inorder=FALSE,
                         .combine=rbind,
-                        .multicombine=TRUE) %dopar%{
+                        .multicombine=TRUE,
+			.options.multicore=mcoptions) %dopar%{
 				# data sanity checks. Remove NA elements. Check populated elements
 				# number over 1 and total population does not number 0 
 			a<-bal$ballots[,bal$Region==region]
