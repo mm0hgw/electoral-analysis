@@ -13,10 +13,3 @@ makeCustomCluster <- function(){
 	registerDoParallel(cl=cl,cores=no_cores)
 	cl
 }
-
-
-
-#if(!exists("cl")){
-#	cl<-makeCustomCluster()
-#}
-#registerDoSEQ()
