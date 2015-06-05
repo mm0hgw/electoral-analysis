@@ -64,7 +64,7 @@ key_collect<-function(...){
 find_key <- function(filenames){
 	k_len<-length(keys[1,])
 	foreach(file=filenames,.combine=list,.multicombine=T,.inorder=T)%:%
-	foreach(key_id=seq(1,k_len),.inorder=F,.combine=key_collect,.multicombine=T)%dopar%{
+	foreach(key_id=seq(1,k_len),.inorder=F,.combine=key_collect,.multicombine=T,.export=c("try_key","valid_key”,”read_headers"))%dopar%{
 		k<-try_key(file,keys[,key_id])
 		if(valid_key(k)==T){
 			k
