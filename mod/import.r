@@ -18,7 +18,7 @@ key_build <- function(...){
 	if(l_len==0){
 		return()
 	}
-	out<-foreach(l=seq(1,l_len),.combine=c,.multicombine=T,.inorder=T)%do%{
+	out<-foreach(l=seq(1,l_len),.combine=c,.multicombine=T,.inorder=T)%dopar%{
 		max(p[,l])
 	}
 	out
@@ -29,7 +29,7 @@ try_key <- function(filename,key){
 	p<-read_headers(filename)
 	l_len<-seq(1,length(p[,1]))
 	foreach(l=l_len,.combine=key_build,.multicombine=T,.inorder=F)%:%
-	foreach(k=key,.combine=c,.multicombine=T,.inorder=T)%do%{
+	foreach(k=key,.combine=c,.multicombine=T,.inorder=T)%dopar%{
 		match<-(grep(pattern=k,x=p[l,]))
 		if(any(match)){
 			min(match)
@@ -52,7 +52,7 @@ key_collect<-function(...){
 	p<-rbind(...)
 	p_len<-length(p[,1])
 	if(p_len>0){
-		mask<-foreach(p_id=seq(1,p_len),.combine=c,.multicombine=T,.inorder=T)%do%{
+		mask<-foreach(p_id=seq(1,p_len),.combine=c,.multicombine=T,.inorder=T)%dopar%{
 			valid_key(p[p_id,])
 		}
 		return(p[mask,])
@@ -64,7 +64,7 @@ key_collect<-function(...){
 find_key <- function(filenames){
 	k_len<-length(keys[1,])
 	foreach(file=filenames,.combine=list,.multicombine=T,.inorder=T)%:%
-	foreach(key_id=seq(1,k_len),.inorder=F,.combine=key_collect,.multicombine=T)%do%{
+	foreach(key_id=seq(1,k_len),.inorder=F,.combine=key_collect,.multicombine=T)%dopar%{
 		k<-try_key(file,keys[,key_id])
 		if(valid_key(k)==T){
 			k
@@ -84,7 +84,7 @@ assemble_sample <- function(){
 	file_keys<-find_key(files)
 	l_files<-length(files)
 	if(l_files>0){
-		sort_sample(foreach(id=seq(1,l_files),.combine=rbind,.multicombine=T)%do%{
+		sort_sample(foreach(id=seq(1,l_files),.combine=rbind,.multicombine=T)%dopar%{
 			key<-file_keys[[id]]
 			out<-vector()
 			if(valid_key(key)==T){
