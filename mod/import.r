@@ -84,7 +84,7 @@ assemble_sample <- function(){
 	file_keys<-find_key(files)
 	l_files<-length(files)
 	if(l_files>0){
-		sort_sample(foreach(id=seq(1,l_files),.combine=rbind,.multicombine=T)%dopar%{
+		sort_sample(foreach(id=seq(1,l_files),.inorder=F,.combine=rbind,.multicombine=T)%dopar%{
 			key<-file_keys[[id]]
 			out<-vector()
 			if(valid_key(key)==T){
