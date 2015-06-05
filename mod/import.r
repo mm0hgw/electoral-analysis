@@ -84,12 +84,12 @@ assemble_sample <- function(){
 	file_keys<-find_key(files)
 	l_files<-length(files)
 	if(l_files>0){
-		sort_sample(foreach(id=seq(1,l_files),.combine=rbind,.multicombine=T)%dopar%{
+		sort_sample(foreach(id=seq(1,l_files),.inorder=F,.combine=rbind,.multicombine=T)%dopar%{
 			key<-file_keys[[id]]
 			out<-vector()
 			if(valid_key(key)==T){
 				file<-files[[id]]
-				out<-read_LE2014_ballot(file,key)
+				out<-read_ballot(file,key)
 			}
 			out
 		})
@@ -105,8 +105,8 @@ really_strip_whitespace<-function(x){
 	return(out)
 }
 
-# import LE2014 ballot file
-read_LE2014_ballot <- function(file,key=find_key(file)){
+# import ballot file
+read_ballot <- function(file,key=find_key(file)){
 	if(!valid_key(key)){
 		return()
 	}
