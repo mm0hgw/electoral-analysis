@@ -3,23 +3,7 @@
 #
 require(foreach)
 
-# key constant for grepping files
-LE2014_key <- c("Ward",
-	"Local Authority",
-	"Electorate",
-	"Total votes cast",
-	"Number of postal ballot papers issued",
-	"Number of postal votes included in the count")
-
-custom_key <- c("^name$",
-	"^Region$",
-	"^N$",
-	"^V$",
-	"^NP$",
-	"^VP$")
-
-keys <- cbind(LE2014_key,
-	custom_key)
+keys <- read.table("keys.tab")
 
 # read headers
 read_headers <- function(filename){
