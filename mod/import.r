@@ -95,35 +95,6 @@ list_csv_files <- function(){
 	paste(sep="","csv/",list.files(path="csv/",pattern=".csv$"))
 }
 
-# read custom scrubbed format
-read_custom_csv <- function(file){
-        bal<-read.csv(file)
-        if(is.null(bal$V)||is.null(bal$N)||is.null(bal$VP)||is.null(bal$NP)||is.null(bal$name)){
-                print(paste("Crisis! file",file,"makes crisis!"))
-                return(NULL)
-        }
-        if(is.null(bal$Region)){
-                Region <- rep("",length(bal$name))
-        }else{
-                Region <- bal$Region
-        }
-        ballot<-list(
-                name=as.character(bal$name),
-                Region=as.factor(Region),
-                N=really_strip_whitespace(bal$N),
-                V=really_strip_whitespace(bal$V),
-                NP=really_strip_whitespace(bal$NP),
-                VP=really_strip_whitespace(bal$VP))
-        out<-cook_ballot(ballot,file)
-	return(out)
-}
-
-# find LE2014 files
-find_LE2014_files<-function(){
-	p<-sub(list.files(path="csv/",pattern="Local elections 2014"),pattern="^",replacement="csv/")
-	return(p)
-}
-
 assemble_sample <- function(){
 	files<-list_csv_files()
 	file_keys<-find_key(files)
@@ -142,21 +113,6 @@ assemble_sample <- function(){
 }
 
 
-#establish horizontal reading key
-find_LE2014_key<-function(file="csv/Local elections 2014 - Electoral data - UNITARIES.csv"){
-	p<-read.csv(file,header=F,stringsAsFactors=F)[c(1,2),]
-	first<-p[1,]
-	key<-rep(as.integer(0),6)
-	key[1]<-grep(first,pattern="Ward")
-	key[2]<-grep(first,pattern="Local Authority")
-	second<-p[2,]
-	key[3]<-grep(second,pattern="Electorate")
-	key[4]<-grep(second,pattern="Total votes cast")
-	key[5]<-grep(second,pattern="Number of postal ballot papers issued")
-	key[6]<-grep(second,pattern="Number of postal votes included in the count")
-	return(key)
-}
-
 # whitespace stripping function
 really_strip_whitespace<-function(x){
 	y<-as.character(x)
@@ -165,18 +121,8 @@ really_strip_whitespace<-function(x){
 	return(out)
 }
 
-read_all_LE2014_files<-function(){
-	p<-find_LE2014_files()
-	foreach(n=p,
-		.combine=rbind,
-		.inorder=F,
-		.multicombine=T)%do%{
-		read_LE2014_ballot(n)
-	}
-}
-
 # import LE2014 ballot file
-read_LE2014_ballot <- function(file,key=find_LE2014_key(file)){
+read_LE2014_ballot <- function(file,key=find_key(file)){
 	if(!valid_key(key)){
 		return()
 	}
@@ -191,16 +137,3 @@ read_LE2014_ballot <- function(file,key=find_LE2014_key(file)){
                 VP=really_strip_whitespace(p2[,6]))
         return(cook_ballot(ballot,file))
 }
-
-# pull custom csv data
-read_all_custom_csv<-function(){
-	p<-paste("csv/",list.files(path="csv/",pattern="--.csv$"),sep="")
-	q<-foreach(n=grep(p,pattern=".csv$",value=T),
-		.combine=rbind,
-		.inorder=F,
-		.multicombine=T)%do%{
-		read_custom_csv(n)
-	}
-	return(q)
-}
-

@@ -9,7 +9,7 @@ source("mod/display.r")
 source("mod/import.r")
 
 # build sample
-total_sample <- sort_sample(rbind(read_all_custom_csv(),read_all_LE2014_files()))
+total_sample <- assemble_sample()
 
 # basic display
 do_display<-function(match_pattern="SIR2014",sample=total_sample){
