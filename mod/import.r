@@ -22,7 +22,8 @@ key_build <- function(...){
 		.combine=c,
 		.multicombine=T,
 		.inorder=T,
-		.options.multicore=mcoptions)%dopar%{
+		.options.multicore=mcoptions
+	)%dopar%{
 		max(p[,l])
 	}
 	out
@@ -36,12 +37,14 @@ try_key <- function(filename,key){
 		.combine=key_build,
 		.multicombine=T,
 		.inorder=F,
-		.options.multicore=mcoptions)%:%
+		.options.multicore=mcoptions
+	)%:%
 	foreach(k=key,
 		.combine=c,
 		.multicombine=T,
 		.inorder=T,
-		.options.multicore=mcoptions)%dopar%{
+		.options.multicore=mcoptions
+	)%dopar%{
 		match<-(grep(pattern=k,x=p[l,]))
 		if(any(match)){
 			min(match)
@@ -51,9 +54,16 @@ try_key <- function(filename,key){
 	}
 }
 
-# identify a valid key. Keys are valid without a Region field
+# identify a valid key.
 valid_key <- function(key){
-	if(key[1]!=0&key[2]!=0&key[3]!=0&key[4]!=0&key[5]!=0&key[6]!=0){
+	if(length(key)==6&
+		key[1]!=0&
+		key[2]!=0&
+		key[3]!=0&
+		key[4]!=0&
+		key[5]!=0&
+		key[6]!=0
+	){
 		return(TRUE)
 	}
 	return(FALSE)
@@ -68,7 +78,8 @@ key_collect<-function(...){
 			.combine=c,
 			.multicombine=T,
 			.inorder=T,
-			.options.multicore=mcoptions)%dopar%{
+			.options.multicore=mcoptions
+		)%dopar%{
 			valid_key(p[p_id,])
 		}
 		return(p[mask,])
@@ -83,12 +94,14 @@ find_key <- function(filenames){
 		.combine=list,
 		.multicombine=T,
 		.inorder=T,
-		.options.multicore=mcoptions)%:%
+		.options.multicore=mcoptions
+	)%:%
 	foreach(key_id=seq(1,k_len),
 		.inorder=F,
 		.combine=key_collect,
 		.multicombine=T,
-		.options.multicore=mcoptions)%dopar%{
+		.options.multicore=mcoptions
+	)%dopar%{
 		k<-try_key(file,keys[,key_id])
 		if(valid_key(k)==T){
 			k
@@ -112,7 +125,8 @@ assemble_sample <- function(){
 			.inorder=F,
 			.combine=rbind,
 			.multicombine=T,
-			.options.multicore=mcoptions)%dopar%{
+			.options.multicore=mcoptions
+		)%dopar%{
 			key<-file_keys[[id]]
 			out<-vector()
 			if(valid_key(key)==T){
@@ -123,7 +137,6 @@ assemble_sample <- function(){
 		})
 	}
 }
-
 
 # whitespace stripping function
 really_strip_whitespace<-function(x){

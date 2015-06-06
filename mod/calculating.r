@@ -46,25 +46,26 @@ results_by_region <- function(bal,tag,title){
         lev<-lev[lev!=""]
 		# for each sub region, run cdf_mean_intercept, seed results with whole set
         out<-foreach(region=lev,
-                        .init=c(paste(title,tag),
-				cdf_mean_intercept(bal$ballots[,!is.na(bal$ballots["N",])])),
-                        .inorder=FALSE,
-                        .combine=rbind,
-                        .multicombine=TRUE,
-			.options.multicore=mcoptions) %dopar%{
-				# data sanity checks. Remove NA elements. Check populated elements
-				# number over 1 and total population does not number 0 
-			a<-bal$ballots[,bal$Region==region]
-			mask<-is.na(a["N",])
-			b<-a[,!mask]
-			if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
-				return()
-			}
-			out<-cdf_mean_intercept(bal$ballots[,bal$Region==region])
-			if(is.na(out)){
-				return()
-			}
-	                return(c(paste(title,region,tag),out))
+        	.init=c(paste(title,tag),
+			cdf_mean_intercept(bal$ballots[,!is.na(bal$ballots["N",])])),
+ 		.inorder=FALSE,
+ 		.combine=rbind,
+ 		.multicombine=TRUE,
+		.options.multicore=mcoptions
+	) %dopar%{
+			# data sanity checks. Remove NA elements. Check populated elements
+			# number over 1 and total population does not number 0 
+		a<-bal$ballots[,bal$Region==region]
+		mask<-is.na(a["N",])
+		b<-a[,!mask]
+		if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
+			return()
+		}
+		out<-cdf_mean_intercept(bal$ballots[,bal$Region==region])
+		if(is.na(out)){
+			return()
+		}
+                return(c(paste(title,region,tag),out))
         }
         return(out)
 }

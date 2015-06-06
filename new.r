@@ -3,7 +3,7 @@
 #
 
 # import components
-source("mod/init.r")
+source("mod/cluster.r")
 source("mod/calculating.r")
 source("mod/display.r")
 source("mod/import.r")
