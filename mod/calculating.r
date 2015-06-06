@@ -3,6 +3,7 @@
 #
 require(foreach)
 
+# sample sorting
 sort_sample <- function(sample){
 	sample[order(sample[,2]),]
 }

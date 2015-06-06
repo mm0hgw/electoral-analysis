@@ -116,6 +116,7 @@ list_csv_files <- function(){
 	paste(sep="","csv/",list.files(path="csv/",pattern=".csv$"))
 }
 
+# assemble sample
 assemble_sample <- function(){
 	files<-list_csv_files()
 	file_keys<-find_key(files)
@@ -152,7 +153,7 @@ read_ballot <- function(file,key=find_key(file)){
 		return()
 	}
         p<-read.csv(file,strip.white=T,sep=",",stringsAsFactors=F,header=T)[,key]
-        p2<-p[p[,1]!=""&p[,3]!=""&p[,3]!="0",]
+        p2<-p[p[,1]!=""&p[p[,1]]!="Total"&p[,3]!=""&p[,3]!="0",]
         ballot<-list(
                 name=p2[,1],
                 Region=as.factor(p2[,2]),
@@ -160,5 +161,6 @@ read_ballot <- function(file,key=find_key(file)){
                 V=really_strip_whitespace(p2[,4]),
                 NP=really_strip_whitespace(p2[,5]),
                 VP=really_strip_whitespace(p2[,6]))
+#	print(ballot)
         return(cook_ballot(ballot,file))
 }
