@@ -41,9 +41,9 @@ peak_separate_sd_lines<-function(i,i_peak,separate_sd=F){
 #
 
 # custom plot function
-custom_plot_ecdf<-function(bucket,match_pattern,do.density=T,do.cdf=T){
-        names<-as.character(bucket[,1])
-        intercept<-as.numeric(bucket[,2])
+custom_plot_ecdf<-function(sample,match_pattern,do.density=T,do.cdf=T){
+        names<-names(sample)
+        intercept<-sample
         matched_points <- grep(pattern=match_pattern,names)
         i_match <-intercept[matched_points]
         i_unmatch <- intercept[-matched_points]
