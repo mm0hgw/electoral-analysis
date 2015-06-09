@@ -18,7 +18,7 @@ key_build <- function(...){
 	if(l_len==0){
 		return()
 	}
-	out<-foreach(l=seq(1,l_len),
+	out<-foreach(l=icount(l_len),
 		.combine=c,
 		.multicombine=T,
 		.inorder=T,
@@ -32,7 +32,7 @@ key_build <- function(...){
 # grep headers, find key
 try_key <- function(filename,key){
 	p<-read_headers(filename)
-	l_len<-seq(1,length(p[,1]))
+	l_len<-icount(length(p[,1]))
 	foreach(l=l_len,
 		.combine=key_build,
 		.multicombine=T,
@@ -74,7 +74,7 @@ key_collect<-function(...){
 	p<-rbind(...)
 	p_len<-length(p[,1])
 	if(p_len>0){
-		mask<-foreach(p_id=seq(1,p_len),
+		mask<-foreach(p_id=icount(p_len),
 			.combine=c,
 			.multicombine=T,
 			.inorder=T,
@@ -96,7 +96,7 @@ find_key <- function(filenames){
 		.inorder=T,
 		.options.multicore=mcoptions
 	)%:%
-	foreach(key_id=seq(1,k_len),
+	foreach(key_id=icount(k_len),
 		.inorder=F,
 		.combine=key_collect,
 		.multicombine=T,
@@ -122,9 +122,9 @@ assemble_sample <- function(){
 	file_keys<-find_key(files)
 	l_files<-length(files)
 	if(l_files>0){
-		sort_sample(foreach(id=seq(1,l_files),
+		sort_sample(foreach(id=icount(l_files),
 			.inorder=F,
-			.combine=rbind,
+			.combine=c,
 			.multicombine=T,
 			.options.multicore=mcoptions
 		)%dopar%{

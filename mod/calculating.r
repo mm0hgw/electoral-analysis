@@ -5,7 +5,9 @@ require(foreach)
 
 # sample sorting
 sort_sample <- function(sample){
-	sample[order(sample[,2]),]
+	o<-as.numeric(sample)
+	p<-abs(o-mean(o))
+	sample[order(p,decreasing=T)]
 }
 
 #custom sd calculator based upon "Eq. S1" and "Eq. S2"
@@ -43,31 +45,39 @@ deviation_in_SDs <- function(x,x_mean=mean(x),x_sd=sd(x)){
 # calculate cdf/mean intercepts for ballot and subregions
 results_by_region <- function(bal,tag,title){
 		# identify any subregions
-        lev<-levels(as.factor(bal$Region))   
-        lev<-lev[lev!=""]
+        regions<-levels(as.factor(bal$Region))
+	if(sum(regions=="")==0){
+		regions<-c("",regions)
+	}
 		# for each sub region, run cdf_mean_intercept, seed results with whole set
-        out<-foreach(region=lev,
-        	.init=c(paste(title,tag),
-			cdf_mean_intercept(bal$ballots[,!is.na(bal$ballots["N",])])),
- 		.inorder=FALSE,
- 		.combine=rbind,
- 		.multicombine=TRUE,
-		.options.multicore=mcoptions
-	) %dopar%{
-			# data sanity checks. Remove NA elements. Check populated elements
-			# number over 1 and total population does not number 0 
-		a<-bal$ballots[,bal$Region==region]
+	FUN<-function(r){
+		if(r==""){
+			a<-bal$ballots
+		}else{
+			a<-bal$ballots[,bal$Region==r]
+		}
 		mask<-is.na(a["N",])
 		b<-a[,!mask]
 		if(length(b["N",b["N",]!=0])<=2|sum(b["N",])==0){
-			return()
+			return(-1)
 		}
-		out<-cdf_mean_intercept(bal$ballots[,bal$Region==region])
+		out<-cdf_mean_intercept(b)
 		if(is.na(out)){
-			return()
+			return(-1)
 		}
-                return(c(paste(title,region,tag),out))
-        }
+                out
+	}
+	out_names<-paste(title,regions,tag)
+	out<-foreach(r=regions,
+		.inorder=F,
+		.combine=c,
+		.multicombine=T,
+		.options.multicore=mcoptions
+	)%dopar%{
+		FUN(r)
+	}
+	names(out)=out_names
+	out<-out[out!=-1]
         return(out)
 }
 
@@ -105,5 +115,5 @@ cook_ballot <- function(ballot,title){
 	outp<-results_by_region(objp,"postal",title)
 	outnp<-results_by_region(objnp,"non-p",title)
 
-        return(rbind(out,outp,outnp))
+        return(c(out,outp,outnp))
 }
