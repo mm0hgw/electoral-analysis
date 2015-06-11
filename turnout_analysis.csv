@@ -1,627 +1,626 @@
-"","V1","V2"
-"outp","csv/SIR2014--.csv postal","0.1875"
-"result.17","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Craven total","0.222222222222222"
-"result.17","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Craven non-p","0.222222222222222"
-"outnp","csv/SIR2014--.csv non-p","0.25"
-"result.3","csv/SP2011-c--.csv Highlands and Islands total","0.25"
-"result.47","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Purbeck total","0.25"
-"result.16","csv/Local elections 2014 - Electoral data - LONDON.csv Hillingdon postal","0.272727272727273"
-"result.39","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Mole Valley postal","0.285714285714286"
-"result.34","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Huntingdonshire postal","0.294117647058824"
-"result.25","csv/Local elections 2014 - Electoral data - METS.csv Solihull non-p","0.294117647058824"
-"out","csv/SIR2014--.csv total","0.3125"
-"result.14","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cherwell total","0.3125"
-"result.68","csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Oxfordshire total","0.3125"
-"result.14","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cherwell non-p","0.3125"
-"result.68","csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Oxfordshire non-p","0.3125"
-"result.22","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Epping Forest postal","0.315789473684211"
-"result.16","csv/Local elections 2014 - Electoral data - UNITARIES.csv Swindon postal","0.315789473684211"
-"result.5","csv/SP2011-c--.csv Mid Scotland and Fife postal","0.333333333333333"
-"result.20","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Eastleigh postal","0.333333333333333"
-"result.59","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stratford On Avon non-p","0.333333333333333"
-"result.28","csv/Local elections 2014 - Electoral data - LONDON.csv Sutton postal","0.333333333333333"
-"result.4","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basingstoke & Deane postal","0.35"
-"result.3","csv/Local elections 2014 - Electoral data - METS.csv Bolton postal","0.35"
-"result.3","csv/Local elections 2014 - Electoral data - METS.csv Bolton non-p","0.35"
-"result.34","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Huntingdonshire total","0.352941176470588"
-"result.60","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stroud non-p","0.352941176470588"
-"result.5","csv/Local elections 2014 - Electoral data - METS.csv Bury total","0.352941176470588"
-"result.39","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Mole Valley total","0.357142857142857"
-"result.9","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cambridge postal","0.357142857142857"
-"result.62","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tandridge postal","0.357142857142857"
-"result.39","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Mole Valley non-p","0.357142857142857"
-"result.52","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rugby non-p","0.357142857142857"
-"result.7","csv/EPE2014--.csv South East postal","0.358208955223881"
-"result.29","csv/Local elections 2014 - Electoral data - METS.csv Sunderland non-p","0.36"
-"result.9","csv/GE2010--.csv South West postal","0.363636363636364"
-"result.28","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harlow postal","0.363636363636364"
-"result.35","csv/Local elections 2014 - Electoral data - METS.csv Wirral postal","0.363636363636364"
-"result.35","csv/Local elections 2014 - Electoral data - METS.csv Wirral non-p","0.363636363636364"
-"result.10","csv/EPE2014--.csv West Midlands non-p","0.366666666666667"
-"result.21","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Elmbridge postal","0.368421052631579"
-"result.29","csv/Local elections 2014 - Electoral data - LONDON.csv Tower Hamlets postal","0.368421052631579"
-"result.12","csv/Local elections 2014 - Electoral data - METS.csv Knowsley postal","0.368421052631579"
-"result.9","csv/Local elections 2014 - Electoral data - UNITARIES.csv Peterborough postal","0.368421052631579"
-"result.1","csv/EPE2014--.csv East Midlands non-p","0.375"
-"result.3","csv/SP2011-c--.csv Highlands and Islands non-p","0.375"
-"result.3","csv/SP2011-r--.csv Highlands and Islands postal","0.375"
-"result.44","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Oxford postal","0.375"
-"result.68","csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Oxfordshire postal","0.375"
-"result.47","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Purbeck non-p","0.375"
-"result.12","csv/Local elections 2014 - Electoral data - LONDON.csv Hammersmith & Fulham postal","0.375"
-"result.27","csv/Local elections 2014 - Electoral data - METS.csv St Helens total","0.375"
-"result.27","csv/Local elections 2014 - Electoral data - METS.csv St Helens non-p","0.375"
-"result.14","csv/Local elections 2014 - Electoral data - UNITARIES.csv Southampton total","0.375"
-"result.14","csv/Local elections 2014 - Electoral data - UNITARIES.csv Southampton postal","0.375"
-"result.3","csv/Local elections 2014 - Electoral data - LONDON.csv Bexley total","0.380952380952381"
-"result.3","csv/Local elections 2014 - Electoral data - LONDON.csv Bexley non-p","0.380952380952381"
-"result.1","csv/Local elections 2014 - Electoral data - METS.csv Barnsley postal","0.380952380952381"
-"result.5","csv/EPE2014--.csv North West non-p","0.384615384615385"
-"result.27","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Great Yarmouth total","0.384615384615385"
-"result.50","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rochford total","0.384615384615385"
-"result.63","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Three Rivers total","0.384615384615385"
-"result.10","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cannock Chase postal","0.384615384615385"
-"result.27","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Great Yarmouth non-p","0.384615384615385"
-"result.50","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rochford non-p","0.384615384615385"
-"result.5","csv/GE2010--.csv Northern Ireland postal","0.388888888888889"
-"result.59","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stratford On Avon total","0.388888888888889"
-"result.67","csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Lancashire total","0.388888888888889"
-"result.19","csv/Local elections 2014 - Electoral data - LONDON.csv Kensington & Chelsea total","0.388888888888889"
-"result.28","csv/Local elections 2014 - Electoral data - LONDON.csv Sutton total","0.388888888888889"
-"result.19","csv/Local elections 2014 - Electoral data - LONDON.csv Kensington & Chelsea postal","0.388888888888889"
-"result.19","csv/Local elections 2014 - Electoral data - UNITARIES.csv Wokingham total","0.388888888888889"
-"result.8","csv/Local elections 2014 - Electoral data - LONDON.csv Ealing postal","0.391304347826087"
-"result.10","csv/EPE2014--.csv West Midlands postal","0.4"
-"result.6","csv/SP2011-c--.csv North East Scotland total","0.4"
-"result.8","csv/SP2011-c--.csv West Scotland total","0.4"
-"result.6","csv/SP2011-c--.csv North East Scotland non-p","0.4"
-"result.8","csv/SP2011-c--.csv West Scotland non-p","0.4"
-"result.8","csv/SP2011-r--.csv West Scotland total","0.4"
-"result.8","csv/SP2011-r--.csv West Scotland postal","0.4"
-"result.8","csv/SP2011-r--.csv West Scotland non-p","0.4"
-"result.20","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Eastleigh total","0.4"
-"result.48","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Redditch total","0.4"
-"result.61","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tamworth total","0.4"
-"result.40","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Newcastle-under-Lyme postal","0.4"
-"result.48","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Redditch postal","0.4"
-"result.32","csv/Local elections 2014 - Electoral data - LONDON.csv Westminster postal","0.4"
-"result.3","csv/Local elections 2014 - Electoral data - METS.csv Bolton total","0.4"
-"result.19","csv/Local elections 2014 - Electoral data - METS.csv Rochdale postal","0.4"
-"result.8","csv/EPE2014--.csv South West postal","0.405405405405405"
-"result.8","csv/EPE2014--.csv South West non-p","0.405405405405405"
-"result.35","csv/Local elections 2014 - Electoral data - METS.csv Wirral total","0.409090909090909"
-"result.5","csv/EPE2014--.csv North West postal","0.41025641025641"
-"accum","csv/SP2011-c--.csv non-p","0.410958904109589"
-"accum","csv/SP2011-r--.csv total","0.410958904109589"
-"accum","csv/SP2011-r--.csv non-p","0.410958904109589"
-"result.15","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Chorley total","0.411764705882353"
-"result.60","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stroud total","0.411764705882353"
-"result.26","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gosport postal","0.411764705882353"
-"result.34","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Huntingdonshire non-p","0.411764705882353"
-"result.25","csv/Local elections 2014 - Electoral data - METS.csv Solihull total","0.411764705882353"
-"result.5","csv/Local elections 2014 - Electoral data - METS.csv Bury non-p","0.411764705882353"
-"result.3","csv/Local elections 2014 - Electoral data - UNITARIES.csv Derby postal","0.411764705882353"
-"result.15","csv/Local elections 2014 - Electoral data - UNITARIES.csv Southend On Sea postal","0.411764705882353"
-"result.4","csv/EPE2014--.csv North East postal","0.416666666666667"
-"result.4","csv/EPE2014--.csv North East non-p","0.416666666666667"
-"result.8","csv/GE2010--.csv South East postal","0.416666666666667"
-"result.19","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Daventry total","0.416666666666667"
-"result.51","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rossendale total","0.416666666666667"
-"result.71","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Woking total","0.416666666666667"
-"result.18","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Crawley postal","0.416666666666667"
-"result.19","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Daventry postal","0.416666666666667"
-"result.71","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Woking postal","0.416666666666667"
-"result.19","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Daventry non-p","0.416666666666667"
-"result.65","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Watford non-p","0.416666666666667"
-"result.71","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Woking non-p","0.416666666666667"
-"result.46","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Preston postal","0.421052631578947"
-"result.70","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Winchester non-p","0.421052631578947"
-"result.18","csv/Local elections 2014 - Electoral data - UNITARIES.csv Warrington postal","0.421052631578947"
-"result.16","csv/Local elections 2014 - Electoral data - UNITARIES.csv Swindon non-p","0.421052631578947"
-"accum","csv/SP2011-c--.csv total","0.424657534246575"
-"result.10","csv/GE2010--.csv Wales postal","0.425"
-"result.2","csv/Local elections 2014 - Electoral data - METS.csv Birmingham postal","0.425"
-"result.12","csv/GE2010--.csv Yorkshire and the Humber postal","0.425925925925926"
-"accum","csv/EPE2014--.csv postal","0.426315789473684"
-"result.6","csv/GE2010--.csv North West postal","0.426666666666667"
-"result.11","csv/EPE2014--.csv Yorkshire & the Humber non-p","0.428571428571429"
-"result.3","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basildon total","0.428571428571429"
-"result.12","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Castle Point total","0.428571428571429"
-"result.32","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Havant total","0.428571428571429"
-"result.52","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rugby total","0.428571428571429"
-"result.53","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Runnymede total","0.428571428571429"
-"result.53","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Runnymede postal","0.428571428571429"
-"result.3","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basildon non-p","0.428571428571429"
-"result.9","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cambridge non-p","0.428571428571429"
-"result.12","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Castle Point non-p","0.428571428571429"
-"result.32","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Havant non-p","0.428571428571429"
-"result.74","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Wyre Forest non-p","0.428571428571429"
-"result.27","csv/Local elections 2014 - Electoral data - LONDON.csv Southwark postal","0.428571428571429"
-"result.28","csv/Local elections 2014 - Electoral data - METS.csv Stockport total","0.428571428571429"
-"result.24","csv/Local elections 2014 - Electoral data - METS.csv Sheffield postal","0.428571428571429"
-"result.28","csv/Local elections 2014 - Electoral data - METS.csv Stockport non-p","0.428571428571429"
-"result.1","csv/Local elections 2014 - Electoral data - UNITARIES.csv Blackburn with Darwen total","0.428571428571429"
-"result.11","csv/Local elections 2014 - Electoral data - UNITARIES.csv Portsmouth total","0.428571428571429"
-"result.4","csv/Local elections 2014 - Electoral data - UNITARIES.csv Halton non-p","0.428571428571429"
-"result.11","csv/Local elections 2014 - Electoral data - UNITARIES.csv Portsmouth non-p","0.428571428571429"
-"result.8","csv/EPE2014--.csv South West total","0.432432432432432"
-"result.10","csv/EPE2014--.csv West Midlands total","0.433333333333333"
-"result.5","csv/EPE2014--.csv North West total","0.435897435897436"
-"result.6","csv/EPE2014--.csv Scotland postal","0.4375"
-"result.36","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Ipswich total","0.4375"
-"result.5","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Bassetlaw postal","0.4375"
-"result.14","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cherwell postal","0.4375"
-"result.36","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Ipswich postal","0.4375"
-"result.5","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Bassetlaw non-p","0.4375"
-"result.20","csv/Local elections 2014 - Electoral data - LONDON.csv Kingston Upon Thames total","0.4375"
-"result.20","csv/Local elections 2014 - Electoral data - LONDON.csv Kingston Upon Thames non-p","0.4375"
-"result.17","csv/Local elections 2014 - Electoral data - UNITARIES.csv Thurrock total","0.4375"
-"result.17","csv/Local elections 2014 - Electoral data - UNITARIES.csv Thurrock postal","0.4375"
-"result.14","csv/Local elections 2014 - Electoral data - UNITARIES.csv Southampton non-p","0.4375"
-"result.17","csv/Local elections 2014 - Electoral data - UNITARIES.csv Thurrock non-p","0.4375"
-"result.6","csv/GE2010--.csv North West non-p","0.44"
-"result.29","csv/Local elections 2014 - Electoral data - METS.csv Sunderland total","0.44"
-"accum","csv/Local elections 2014 - Electoral data - UNITARIES.csv postal","0.443425076452599"
-"result.2","csv/SP2011-c--.csv Glasgow total","0.444444444444444"
-"result.2","csv/SP2011-c--.csv Glasgow postal","0.444444444444444"
-"result.5","csv/SP2011-r--.csv Mid Scotland and Fife total","0.444444444444444"
-"result.2","csv/SP2011-r--.csv Glasgow postal","0.444444444444444"
-"result.7","csv/SP2011-r--.csv South Scotland postal","0.444444444444444"
-"result.4","csv/SP2011-r--.csv Lothian non-p","0.444444444444444"
-"result.5","csv/SP2011-r--.csv Mid Scotland and Fife non-p","0.444444444444444"
-"result.7","csv/SP2011-r--.csv South Scotland non-p","0.444444444444444"
-"result.38","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Maidstone total","0.444444444444444"
-"result.38","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Maidstone non-p","0.444444444444444"
-"result.67","csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Lancashire non-p","0.444444444444444"
-"result.15","csv/Local elections 2014 - Electoral data - LONDON.csv Havering total","0.444444444444444"
-"result.22","csv/Local elections 2014 - Electoral data - LONDON.csv Lewisham postal","0.444444444444444"
-"result.15","csv/Local elections 2014 - Electoral data - LONDON.csv Havering non-p","0.444444444444444"
-"result.7","csv/Local elections 2014 - Electoral data - METS.csv Coventry postal","0.444444444444444"
-"result.26","csv/Local elections 2014 - Electoral data - METS.csv South Tyneside postal","0.444444444444444"
-"result.19","csv/Local elections 2014 - Electoral data - UNITARIES.csv Wokingham non-p","0.444444444444444"
-"result.1","csv/GE2010--.csv Eastern postal","0.448275862068966"
-"result.4","csv/GE2010--.csv North East postal","0.448275862068966"
-"result.16","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Colchester total","0.45"
-"result.57","csv/Local elections 2014 - Electoral data - DISTRICTS.csv St Albans postal","0.45"
-"result.16","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Colchester non-p","0.45"
-"result.24","csv/Local elections 2014 - Electoral data - LONDON.csv Newham postal","0.45"
-"result.2","csv/Local elections 2014 - Electoral data - LONDON.csv Barnet non-p","0.45"
-"result.19","csv/Local elections 2014 - Electoral data - METS.csv Rochdale total","0.45"
-"result.36","csv/Local elections 2014 - Electoral data - METS.csv Wolverhampton total","0.45"
-"result.17","csv/Local elections 2014 - Electoral data - METS.csv North Tyneside postal","0.45"
-"result.6","csv/Local elections 2014 - Electoral data - UNITARIES.csv Kingston Upon Hull postal","0.45"
-"result.6","csv/GE2010--.csv North West total","0.453333333333333"
-"result.9","csv/GE2010--.csv South West total","0.454545454545455"
-"result.30","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hart total","0.454545454545455"
-"result.37","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Lincoln total","0.454545454545455"
-"result.30","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hart postal","0.454545454545455"
-"result.35","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hyndburn postal","0.454545454545455"
-"result.37","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Lincoln postal","0.454545454545455"
-"result.28","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harlow non-p","0.454545454545455"
-"result.37","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Lincoln non-p","0.454545454545455"
-"result.5","csv/Local elections 2014 - Electoral data - LONDON.csv Bromley total","0.454545454545455"
-"result.16","csv/Local elections 2014 - Electoral data - LONDON.csv Hillingdon total","0.454545454545455"
-"result.13","csv/Local elections 2014 - Electoral data - METS.csv Leeds total","0.454545454545455"
-"result.23","csv/Local elections 2014 - Electoral data - METS.csv Sefton total","0.454545454545455"
-"result.13","csv/Local elections 2014 - Electoral data - METS.csv Leeds non-p","0.454545454545455"
-"result.23","csv/Local elections 2014 - Electoral data - METS.csv Sefton non-p","0.454545454545455"
-"result.5","csv/Local elections 2014 - Electoral data - UNITARIES.csv Hartlepool postal","0.454545454545455"
-"result.5","csv/Local elections 2014 - Electoral data - UNITARIES.csv Hartlepool non-p","0.454545454545455"
-"result.2","csv/GE2010--.csv East Midlands total","0.456521739130435"
-"result.2","csv/GE2010--.csv East Midlands postal","0.456521739130435"
-"result.44","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Oxford non-p","0.458333333333333"
-"result.7","csv/Local elections 2014 - Electoral data - LONDON.csv Croydon total","0.458333333333333"
-"result.7","csv/Local elections 2014 - Electoral data - LONDON.csv Croydon postal","0.458333333333333"
-"result.22","csv/Local elections 2014 - Electoral data - METS.csv Sandwell postal","0.458333333333333"
-"result.6","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Brentwood total","0.461538461538462"
-"result.10","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cannock Chase total","0.461538461538462"
-"result.6","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Brentwood postal","0.461538461538462"
-"result.23","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Exeter postal","0.461538461538462"
-"result.54","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rushmoor postal","0.461538461538462"
-"result.63","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Three Rivers postal","0.461538461538462"
-"result.6","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Brentwood non-p","0.461538461538462"
-"result.33","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hertsmere non-p","0.461538461538462"
-"result.63","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Three Rivers non-p","0.461538461538462"
-"result.7","csv/EPE2014--.csv South East total","0.462686567164179"
-"accum","csv/Local elections 2014 - Electoral data - DISTRICTS.csv postal","0.464673913043478"
-"result.25","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gloucester total","0.466666666666667"
-"result.8","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Burnley non-p","0.466666666666667"
-"result.25","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gloucester non-p","0.466666666666667"
-"result.8","csv/Local elections 2014 - Electoral data - UNITARIES.csv North East Lincolnshire total","0.466666666666667"
-"result.8","csv/Local elections 2014 - Electoral data - UNITARIES.csv North East Lincolnshire postal","0.466666666666667"
-"result.12","csv/Local elections 2014 - Electoral data - UNITARIES.csv Reading postal","0.466666666666667"
-"result.13","csv/Local elections 2014 - Electoral data - UNITARIES.csv Slough postal","0.466666666666667"
-"result.8","csv/Local elections 2014 - Electoral data - UNITARIES.csv North East Lincolnshire non-p","0.466666666666667"
-"result.13","csv/Local elections 2014 - Electoral data - UNITARIES.csv Slough non-p","0.466666666666667"
-"accum","csv/GE2010--.csv postal","0.467692307692308"
-"result.2","csv/EPE2014--.csv  East of England  total","0.468085106382979"
-"result.2","csv/EPE2014--.csv  East of England  postal","0.468085106382979"
-"accum","csv/EPE2014--.csv total","0.468421052631579"
-"result.15","csv/Local elections 2014 - Electoral data - METS.csv Manchester total","0.46875"
-"result.15","csv/Local elections 2014 - Electoral data - METS.csv Manchester postal","0.46875"
-"result.15","csv/Local elections 2014 - Electoral data - METS.csv Manchester non-p","0.46875"
-"result.11","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Carlisle postal","0.470588235294118"
-"result.15","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Chorley postal","0.470588235294118"
-"result.41","csv/Local elections 2014 - Electoral data - DISTRICTS.csv North Hertfordshire postal","0.470588235294118"
-"result.43","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Nuneaton & Bedworth postal","0.470588235294118"
-"result.60","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stroud postal","0.470588235294118"
-"result.15","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Chorley non-p","0.470588235294118"
-"result.26","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gosport non-p","0.470588235294118"
-"result.1","csv/Local elections 2014 - Electoral data - LONDON.csv Barking & Dagenham total","0.470588235294118"
-"result.10","csv/Local elections 2014 - Electoral data - LONDON.csv Greenwich total","0.470588235294118"
-"result.10","csv/Local elections 2014 - Electoral data - LONDON.csv Greenwich non-p","0.470588235294118"
-"result.25","csv/Local elections 2014 - Electoral data - METS.csv Solihull postal","0.470588235294118"
-"result.9","csv/GE2010--.csv South West non-p","0.472727272727273"
-"result.13","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cheltenham total","0.473684210526316"
-"result.22","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Epping Forest total","0.473684210526316"
-"result.55","csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Cambridgeshire total","0.473684210526316"
-"result.70","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Winchester total","0.473684210526316"
-"result.55","csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Cambridgeshire postal","0.473684210526316"
-"result.70","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Winchester postal","0.473684210526316"
-"result.13","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cheltenham non-p","0.473684210526316"
-"result.55","csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Cambridgeshire non-p","0.473684210526316"
-"result.29","csv/Local elections 2014 - Electoral data - LONDON.csv Tower Hamlets total","0.473684210526316"
-"result.29","csv/Local elections 2014 - Electoral data - LONDON.csv Tower Hamlets non-p","0.473684210526316"
-"result.30","csv/Local elections 2014 - Electoral data - METS.csv Tameside non-p","0.473684210526316"
-"result.10","csv/Local elections 2014 - Electoral data - UNITARIES.csv Plymouth total","0.473684210526316"
-"result.16","csv/Local elections 2014 - Electoral data - UNITARIES.csv Swindon total","0.473684210526316"
-"result.7","csv/Local elections 2014 - Electoral data - UNITARIES.csv Milton Keynes postal","0.473684210526316"
-"result.10","csv/Local elections 2014 - Electoral data - UNITARIES.csv Plymouth postal","0.473684210526316"
-"result.10","csv/Local elections 2014 - Electoral data - UNITARIES.csv Plymouth non-p","0.473684210526316"
-"result.18","csv/Local elections 2014 - Electoral data - UNITARIES.csv Warrington non-p","0.473684210526316"
-"result.11","csv/GE2010--.csv West Midlands non-p","0.474576271186441"
-"result.1","csv/EPE2014--.csv East Midlands total","0.475"
-"result.11","csv/EPE2014--.csv Yorkshire & the Humber postal","0.476190476190476"
-"result.9","csv/Local elections 2014 - Electoral data - LONDON.csv Enfield total","0.476190476190476"
-"result.11","csv/Local elections 2014 - Electoral data - LONDON.csv Hackney total","0.476190476190476"
-"result.14","csv/Local elections 2014 - Electoral data - LONDON.csv Harrow total","0.476190476190476"
-"result.3","csv/Local elections 2014 - Electoral data - LONDON.csv Bexley postal","0.476190476190476"
-"result.9","csv/Local elections 2014 - Electoral data - LONDON.csv Enfield postal","0.476190476190476"
-"result.14","csv/Local elections 2014 - Electoral data - LONDON.csv Harrow postal","0.476190476190476"
-"result.11","csv/Local elections 2014 - Electoral data - LONDON.csv Hackney non-p","0.476190476190476"
-"result.14","csv/Local elections 2014 - Electoral data - LONDON.csv Harrow non-p","0.476190476190476"
-"result.31","csv/Local elections 2014 - Electoral data - METS.csv Trafford total","0.476190476190476"
-"result.32","csv/Local elections 2014 - Electoral data - METS.csv Wakefield total","0.476190476190476"
-"result.20","csv/Local elections 2014 - Electoral data - METS.csv Rotherham postal","0.476190476190476"
-"result.28","csv/Local elections 2014 - Electoral data - METS.csv Stockport postal","0.476190476190476"
-"result.32","csv/Local elections 2014 - Electoral data - METS.csv Wakefield postal","0.476190476190476"
-"result.2","csv/GE2010--.csv East Midlands non-p","0.478260869565217"
-"result.8","csv/Local elections 2014 - Electoral data - LONDON.csv Ealing non-p","0.478260869565217"
-"result.11","csv/Local elections 2014 - Electoral data - METS.csv Kirklees total","0.478260869565217"
-"result.11","csv/Local elections 2014 - Electoral data - METS.csv Kirklees postal","0.478260869565217"
-"result.3","csv/GE2010--.csv London total","0.479452054794521"
-"result.3","csv/GE2010--.csv London postal","0.479452054794521"
-"result.29","csv/Local elections 2014 - Electoral data - METS.csv Sunderland postal","0.48"
-"accum","csv/Local elections 2014 - Electoral data - DISTRICTS.csv total","0.480978260869565"
-"result.12","csv/GE2010--.csv Yorkshire and the Humber total","0.481481481481481"
-"accum","csv/GE2010--.csv total","0.481538461538462"
-"accum","csv/GE2010--.csv non-p","0.481538461538462"
-"accum","csv/EPE2014--.csv non-p","0.484210526315789"
-"accum","csv/Local elections 2014 - Electoral data - DISTRICTS.csv non-p","0.484601449275362"
-"accum","csv/Local elections 2014 - Electoral data - METS.csv postal","0.484624846248462"
-"result.3","csv/EPE2014--.csv London postal","0.484848484848485"
-"accum","csv/Local elections 2014 - Electoral data - LONDON.csv postal","0.488038277511962"
-"result.8","csv/GE2010--.csv South East total","0.488095238095238"
-"result.11","csv/GE2010--.csv West Midlands total","0.491525423728814"
-"accum","csv/Local elections 2014 - Electoral data - UNITARIES.csv total","0.492354740061162"
-"result.3","csv/GE2010--.csv London non-p","0.493150684931507"
-"accum","csv/SP2011-c--.csv postal","0.493150684931507"
-"accum","csv/SP2011-r--.csv postal","0.493150684931507"
-"result.4","csv/EPE2014--.csv North East total","0.5"
-"result.6","csv/EPE2014--.csv Scotland total","0.5"
-"result.9","csv/EPE2014--.csv Wales postal","0.5"
-"result.1","csv/GE2010--.csv Eastern total","0.5"
-"result.8","csv/GE2010--.csv South East non-p","0.5"
-"result.12","csv/GE2010--.csv Yorkshire and the Humber non-p","0.5"
-"result.3","csv/SP2011-c--.csv Highlands and Islands postal","0.5"
-"result.6","csv/SP2011-c--.csv North East Scotland postal","0.5"
-"result.8","csv/SP2011-c--.csv West Scotland postal","0.5"
-"result.3","csv/SP2011-r--.csv Highlands and Islands total","0.5"
-"result.6","csv/SP2011-r--.csv North East Scotland postal","0.5"
-"result.3","csv/SP2011-r--.csv Highlands and Islands non-p","0.5"
-"result.6","csv/SP2011-r--.csv North East Scotland non-p","0.5"
-"result.2","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Amber Valley total","0.5"
-"result.4","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basingstoke & Deane total","0.5"
-"result.5","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Bassetlaw total","0.5"
-"result.44","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Oxford total","0.5"
-"result.45","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Pendle total","0.5"
-"result.57","csv/Local elections 2014 - Electoral data - DISTRICTS.csv St Albans total","0.5"
-"result.74","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Wyre Forest total","0.5"
-"result.1","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Adur postal","0.5"
-"result.2","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Amber Valley postal","0.5"
-"result.3","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basildon postal","0.5"
-"result.7","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Broxbourne postal","0.5"
-"result.32","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Havant postal","0.5"
-"result.38","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Maidstone postal","0.5"
-"result.59","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stratford On Avon postal","0.5"
-"result.61","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tamworth postal","0.5"
-"result.65","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Watford postal","0.5"
-"result.4","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basingstoke & Deane non-p","0.5"
-"result.31","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hastings non-p","0.5"
-"result.36","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Ipswich non-p","0.5"
-"result.48","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Redditch non-p","0.5"
-"result.51","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rossendale non-p","0.5"
-"result.53","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Runnymede non-p","0.5"
-"result.57","csv/Local elections 2014 - Electoral data - DISTRICTS.csv St Albans non-p","0.5"
-"result.61","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tamworth non-p","0.5"
-"result.64","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tunbridge Wells non-p","0.5"
-"result.22","csv/Local elections 2014 - Electoral data - LONDON.csv Lewisham total","0.5"
-"result.24","csv/Local elections 2014 - Electoral data - LONDON.csv Newham total","0.5"
-"result.26","csv/Local elections 2014 - Electoral data - LONDON.csv Richmond Upon Thames total","0.5"
-"result.30","csv/Local elections 2014 - Electoral data - LONDON.csv Waltham Forest total","0.5"
-"result.31","csv/Local elections 2014 - Electoral data - LONDON.csv Wandsworth total","0.5"
-"result.2","csv/Local elections 2014 - Electoral data - LONDON.csv Barnet postal","0.5"
-"result.5","csv/Local elections 2014 - Electoral data - LONDON.csv Bromley postal","0.5"
-"result.6","csv/Local elections 2014 - Electoral data - LONDON.csv Camden postal","0.5"
-"result.15","csv/Local elections 2014 - Electoral data - LONDON.csv Havering postal","0.5"
-"result.17","csv/Local elections 2014 - Electoral data - LONDON.csv Hounslow postal","0.5"
-"result.20","csv/Local elections 2014 - Electoral data - LONDON.csv Kingston Upon Thames postal","0.5"
-"result.23","csv/Local elections 2014 - Electoral data - LONDON.csv Merton postal","0.5"
-"result.5","csv/Local elections 2014 - Electoral data - LONDON.csv Bromley non-p","0.5"
-"result.12","csv/Local elections 2014 - Electoral data - LONDON.csv Hammersmith & Fulham non-p","0.5"
-"result.19","csv/Local elections 2014 - Electoral data - LONDON.csv Kensington & Chelsea non-p","0.5"
-"result.22","csv/Local elections 2014 - Electoral data - LONDON.csv Lewisham non-p","0.5"
-"result.24","csv/Local elections 2014 - Electoral data - LONDON.csv Newham non-p","0.5"
-"result.28","csv/Local elections 2014 - Electoral data - LONDON.csv Sutton non-p","0.5"
-"result.30","csv/Local elections 2014 - Electoral data - LONDON.csv Waltham Forest non-p","0.5"
-"result.31","csv/Local elections 2014 - Electoral data - LONDON.csv Wandsworth non-p","0.5"
-"result.2","csv/Local elections 2014 - Electoral data - METS.csv Birmingham total","0.5"
-"result.4","csv/Local elections 2014 - Electoral data - METS.csv Bradford total","0.5"
-"result.21","csv/Local elections 2014 - Electoral data - METS.csv Salford total","0.5"
-"result.22","csv/Local elections 2014 - Electoral data - METS.csv Sandwell total","0.5"
-"result.24","csv/Local elections 2014 - Electoral data - METS.csv Sheffield total","0.5"
-"result.9","csv/Local elections 2014 - Electoral data - METS.csv Dudley postal","0.5"
-"result.14","csv/Local elections 2014 - Electoral data - METS.csv Liverpool postal","0.5"
-"result.21","csv/Local elections 2014 - Electoral data - METS.csv Salford postal","0.5"
-"result.27","csv/Local elections 2014 - Electoral data - METS.csv St Helens postal","0.5"
-"result.36","csv/Local elections 2014 - Electoral data - METS.csv Wolverhampton postal","0.5"
-"result.4","csv/Local elections 2014 - Electoral data - METS.csv Bradford non-p","0.5"
-"result.19","csv/Local elections 2014 - Electoral data - METS.csv Rochdale non-p","0.5"
-"result.22","csv/Local elections 2014 - Electoral data - METS.csv Sandwell non-p","0.5"
-"result.24","csv/Local elections 2014 - Electoral data - METS.csv Sheffield non-p","0.5"
-"result.36","csv/Local elections 2014 - Electoral data - METS.csv Wolverhampton non-p","0.5"
-"result.4","csv/Local elections 2014 - Electoral data - UNITARIES.csv Halton total","0.5"
-"result.4","csv/Local elections 2014 - Electoral data - UNITARIES.csv Halton postal","0.5"
-"result.19","csv/Local elections 2014 - Electoral data - UNITARIES.csv Wokingham postal","0.5"
-"result.7","csv/EPE2014--.csv South East non-p","0.507462686567164"
-"result.7","csv/GE2010--.csv Scotland total","0.508474576271186"
-"result.11","csv/GE2010--.csv West Midlands postal","0.508474576271186"
-"result.7","csv/GE2010--.csv Scotland non-p","0.508474576271186"
-"accum","csv/Local elections 2014 - Electoral data - LONDON.csv non-p","0.511961722488038"
-"result.3","csv/EPE2014--.csv London total","0.515151515151515"
-"result.13","csv/Local elections 2014 - Electoral data - METS.csv Leeds postal","0.515151515151515"
-"accum","csv/Local elections 2014 - Electoral data - LONDON.csv total","0.516746411483254"
-"result.4","csv/GE2010--.csv North East total","0.517241379310345"
-"result.4","csv/GE2010--.csv North East non-p","0.517241379310345"
-"accum","csv/Local elections 2014 - Electoral data - UNITARIES.csv non-p","0.519877675840979"
-"result.34","csv/Local elections 2014 - Electoral data - METS.csv Wigan postal","0.52"
-"result.8","csv/Local elections 2014 - Electoral data - LONDON.csv Ealing total","0.521739130434783"
-"result.11","csv/Local elections 2014 - Electoral data - METS.csv Kirklees non-p","0.521739130434783"
-"accum","csv/Local elections 2014 - Electoral data - METS.csv total","0.522755227552276"
-"result.11","csv/EPE2014--.csv Yorkshire & the Humber total","0.523809523809524"
-"result.21","csv/Local elections 2014 - Electoral data - LONDON.csv Lambeth total","0.523809523809524"
-"result.25","csv/Local elections 2014 - Electoral data - LONDON.csv Redbridge total","0.523809523809524"
-"result.21","csv/Local elections 2014 - Electoral data - LONDON.csv Lambeth postal","0.523809523809524"
-"result.25","csv/Local elections 2014 - Electoral data - LONDON.csv Redbridge postal","0.523809523809524"
-"result.21","csv/Local elections 2014 - Electoral data - LONDON.csv Lambeth non-p","0.523809523809524"
-"result.27","csv/Local elections 2014 - Electoral data - LONDON.csv Southwark non-p","0.523809523809524"
-"result.20","csv/Local elections 2014 - Electoral data - METS.csv Rotherham total","0.523809523809524"
-"result.8","csv/Local elections 2014 - Electoral data - METS.csv Doncaster postal","0.523809523809524"
-"result.31","csv/Local elections 2014 - Electoral data - METS.csv Trafford postal","0.523809523809524"
-"result.1","csv/Local elections 2014 - Electoral data - METS.csv Barnsley non-p","0.523809523809524"
-"result.31","csv/Local elections 2014 - Electoral data - METS.csv Trafford non-p","0.523809523809524"
-"result.32","csv/Local elections 2014 - Electoral data - METS.csv Wakefield non-p","0.523809523809524"
-"result.1","csv/Local elections 2014 - Electoral data - UNITARIES.csv Blackburn with Darwen postal","0.523809523809524"
-"result.1","csv/Local elections 2014 - Electoral data - UNITARIES.csv Blackburn with Darwen non-p","0.523809523809524"
-"result.1","csv/EPE2014--.csv East Midlands postal","0.525"
-"result.46","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Preston total","0.526315789473684"
-"result.13","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cheltenham postal","0.526315789473684"
-"result.22","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Epping Forest non-p","0.526315789473684"
-"result.46","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Preston non-p","0.526315789473684"
-"result.30","csv/Local elections 2014 - Electoral data - METS.csv Tameside total","0.526315789473684"
-"result.30","csv/Local elections 2014 - Electoral data - METS.csv Tameside postal","0.526315789473684"
-"result.7","csv/Local elections 2014 - Electoral data - UNITARIES.csv Milton Keynes total","0.526315789473684"
-"result.7","csv/Local elections 2014 - Electoral data - UNITARIES.csv Milton Keynes non-p","0.526315789473684"
-"result.26","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gosport total","0.529411764705882"
-"result.41","csv/Local elections 2014 - Electoral data - DISTRICTS.csv North Hertfordshire total","0.529411764705882"
-"result.56","csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Lakeland total","0.529411764705882"
-"result.49","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Reigate & Banstead postal","0.529411764705882"
-"result.56","csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Lakeland postal","0.529411764705882"
-"result.41","csv/Local elections 2014 - Electoral data - DISTRICTS.csv North Hertfordshire non-p","0.529411764705882"
-"result.1","csv/Local elections 2014 - Electoral data - LONDON.csv Barking & Dagenham postal","0.529411764705882"
-"result.10","csv/Local elections 2014 - Electoral data - LONDON.csv Greenwich postal","0.529411764705882"
-"result.6","csv/Local elections 2014 - Electoral data - METS.csv Calderdale total","0.529411764705882"
-"result.5","csv/Local elections 2014 - Electoral data - METS.csv Bury postal","0.529411764705882"
-"result.6","csv/Local elections 2014 - Electoral data - METS.csv Calderdale non-p","0.529411764705882"
-"result.15","csv/Local elections 2014 - Electoral data - UNITARIES.csv Southend On Sea total","0.529411764705882"
-"result.6","csv/EPE2014--.csv Scotland non-p","0.53125"
-"result.8","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Burnley total","0.533333333333333"
-"result.8","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Burnley postal","0.533333333333333"
-"result.25","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gloucester postal","0.533333333333333"
-"result.20","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Eastleigh non-p","0.533333333333333"
-"result.12","csv/Local elections 2014 - Electoral data - UNITARIES.csv Reading total","0.533333333333333"
-"result.13","csv/Local elections 2014 - Electoral data - UNITARIES.csv Slough total","0.533333333333333"
-"result.1","csv/GE2010--.csv Eastern non-p","0.53448275862069"
-"result.23","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Exeter total","0.538461538461538"
-"result.33","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hertsmere total","0.538461538461538"
-"result.54","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rushmoor total","0.538461538461538"
-"result.27","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Great Yarmouth postal","0.538461538461538"
-"result.33","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hertsmere postal","0.538461538461538"
-"result.58","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stevenage postal","0.538461538461538"
-"result.23","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Exeter non-p","0.538461538461538"
-"result.54","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rushmoor non-p","0.538461538461538"
-"result.16","csv/Local elections 2014 - Electoral data - METS.csv Newcastle Upon Tyne total","0.538461538461538"
-"accum","csv/Local elections 2014 - Electoral data - METS.csv non-p","0.538745387453875"
-"result.9","csv/Local elections 2014 - Electoral data - METS.csv Dudley total","0.541666666666667"
-"result.9","csv/Local elections 2014 - Electoral data - METS.csv Dudley non-p","0.541666666666667"
-"result.9","csv/EPE2014--.csv Wales total","0.545454545454545"
-"result.3","csv/EPE2014--.csv London non-p","0.545454545454545"
-"result.28","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harlow total","0.545454545454545"
-"result.35","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hyndburn non-p","0.545454545454545"
-"result.16","csv/Local elections 2014 - Electoral data - LONDON.csv Hillingdon non-p","0.545454545454545"
-"result.10","csv/Local elections 2014 - Electoral data - METS.csv Gateshead postal","0.545454545454545"
-"result.5","csv/Local elections 2014 - Electoral data - UNITARIES.csv Hartlepool total","0.545454545454545"
-"result.10","csv/GE2010--.csv Wales total","0.55"
-"result.40","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Newcastle-under-Lyme total","0.55"
-"result.40","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Newcastle-under-Lyme non-p","0.55"
-"result.2","csv/Local elections 2014 - Electoral data - LONDON.csv Barnet total","0.55"
-"result.17","csv/Local elections 2014 - Electoral data - LONDON.csv Hounslow total","0.55"
-"result.32","csv/Local elections 2014 - Electoral data - LONDON.csv Westminster total","0.55"
-"result.30","csv/Local elections 2014 - Electoral data - LONDON.csv Waltham Forest postal","0.55"
-"result.31","csv/Local elections 2014 - Electoral data - LONDON.csv Wandsworth postal","0.55"
-"result.17","csv/Local elections 2014 - Electoral data - LONDON.csv Hounslow non-p","0.55"
-"result.32","csv/Local elections 2014 - Electoral data - LONDON.csv Westminster non-p","0.55"
-"result.17","csv/Local elections 2014 - Electoral data - METS.csv North Tyneside total","0.55"
-"result.18","csv/Local elections 2014 - Electoral data - METS.csv Oldham postal","0.55"
-"result.33","csv/Local elections 2014 - Electoral data - METS.csv Walsall postal","0.55"
-"result.2","csv/Local elections 2014 - Electoral data - METS.csv Birmingham non-p","0.55"
-"result.17","csv/Local elections 2014 - Electoral data - METS.csv North Tyneside non-p","0.55"
-"result.18","csv/Local elections 2014 - Electoral data - METS.csv Oldham non-p","0.55"
-"result.6","csv/Local elections 2014 - Electoral data - UNITARIES.csv Kingston Upon Hull total","0.55"
-"result.6","csv/Local elections 2014 - Electoral data - UNITARIES.csv Kingston Upon Hull non-p","0.55"
-"result.1","csv/SP2011-c--.csv Central Scotland total","0.555555555555556"
-"result.5","csv/SP2011-c--.csv Mid Scotland and Fife total","0.555555555555556"
-"result.1","csv/SP2011-c--.csv Central Scotland postal","0.555555555555556"
-"result.4","csv/SP2011-c--.csv Lothian postal","0.555555555555556"
-"result.7","csv/SP2011-c--.csv South Scotland postal","0.555555555555556"
-"result.1","csv/SP2011-c--.csv Central Scotland non-p","0.555555555555556"
-"result.2","csv/SP2011-c--.csv Glasgow non-p","0.555555555555556"
-"result.5","csv/SP2011-c--.csv Mid Scotland and Fife non-p","0.555555555555556"
-"result.1","csv/SP2011-r--.csv Central Scotland total","0.555555555555556"
-"result.2","csv/SP2011-r--.csv Glasgow total","0.555555555555556"
-"result.4","csv/SP2011-r--.csv Lothian total","0.555555555555556"
-"result.7","csv/SP2011-r--.csv South Scotland total","0.555555555555556"
-"result.1","csv/SP2011-r--.csv Central Scotland postal","0.555555555555556"
-"result.4","csv/SP2011-r--.csv Lothian postal","0.555555555555556"
-"result.5","csv/SP2011-r--.csv Mid Scotland and Fife postal","0.555555555555556"
-"result.1","csv/SP2011-r--.csv Central Scotland non-p","0.555555555555556"
-"result.2","csv/SP2011-r--.csv Glasgow non-p","0.555555555555556"
-"result.17","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Craven postal","0.555555555555556"
-"result.26","csv/Local elections 2014 - Electoral data - LONDON.csv Richmond Upon Thames non-p","0.555555555555556"
-"result.26","csv/Local elections 2014 - Electoral data - METS.csv South Tyneside total","0.555555555555556"
-"result.26","csv/Local elections 2014 - Electoral data - METS.csv South Tyneside non-p","0.555555555555556"
-"result.34","csv/Local elections 2014 - Electoral data - METS.csv Wigan total","0.56"
-"result.34","csv/Local elections 2014 - Electoral data - METS.csv Wigan non-p","0.56"
-"result.31","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hastings total","0.5625"
-"result.64","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tunbridge Wells total","0.5625"
-"result.66","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Welwyn Hatfield total","0.5625"
-"result.31","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hastings postal","0.5625"
-"result.66","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Welwyn Hatfield postal","0.5625"
-"result.45","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Pendle non-p","0.5625"
-"result.66","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Welwyn Hatfield non-p","0.5625"
-"result.18","csv/Local elections 2014 - Electoral data - LONDON.csv Islington total","0.5625"
-"result.18","csv/Local elections 2014 - Electoral data - LONDON.csv Islington postal","0.5625"
-"result.18","csv/Local elections 2014 - Electoral data - LONDON.csv Islington non-p","0.5625"
-"result.2","csv/Local elections 2014 - Electoral data - UNITARIES.csv Bristol total","0.565217391304348"
-"result.2","csv/Local elections 2014 - Electoral data - UNITARIES.csv Bristol postal","0.565217391304348"
-"result.2","csv/Local elections 2014 - Electoral data - UNITARIES.csv Bristol non-p","0.565217391304348"
-"result.14","csv/Local elections 2014 - Electoral data - METS.csv Liverpool total","0.566666666666667"
-"result.4","csv/Local elections 2014 - Electoral data - METS.csv Bradford postal","0.566666666666667"
-"result.14","csv/Local elections 2014 - Electoral data - METS.csv Liverpool non-p","0.566666666666667"
-"result.1","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Adur total","0.571428571428571"
-"result.9","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cambridge total","0.571428571428571"
-"result.62","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tandridge total","0.571428571428571"
-"result.12","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Castle Point postal","0.571428571428571"
-"result.52","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rugby postal","0.571428571428571"
-"result.74","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Wyre Forest postal","0.571428571428571"
-"result.2","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Amber Valley non-p","0.571428571428571"
-"result.62","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tandridge non-p","0.571428571428571"
-"result.4","csv/Local elections 2014 - Electoral data - LONDON.csv Brent postal","0.571428571428571"
-"result.9","csv/Local elections 2014 - Electoral data - LONDON.csv Enfield non-p","0.571428571428571"
-"result.25","csv/Local elections 2014 - Electoral data - LONDON.csv Redbridge non-p","0.571428571428571"
-"result.1","csv/Local elections 2014 - Electoral data - METS.csv Barnsley total","0.571428571428571"
-"result.8","csv/Local elections 2014 - Electoral data - METS.csv Doncaster total","0.571428571428571"
-"result.8","csv/Local elections 2014 - Electoral data - METS.csv Doncaster non-p","0.571428571428571"
-"result.2","csv/EPE2014--.csv  East of England  non-p","0.574468085106383"
-"result.16","csv/Local elections 2014 - Electoral data - METS.csv Newcastle Upon Tyne postal","0.576923076923077"
-"result.21","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Elmbridge total","0.578947368421053"
-"result.29","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harrogate postal","0.578947368421053"
-"result.21","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Elmbridge non-p","0.578947368421053"
-"result.13","csv/Local elections 2014 - Electoral data - LONDON.csv Haringey total","0.578947368421053"
-"result.13","csv/Local elections 2014 - Electoral data - LONDON.csv Haringey postal","0.578947368421053"
-"result.13","csv/Local elections 2014 - Electoral data - LONDON.csv Haringey non-p","0.578947368421053"
-"result.12","csv/Local elections 2014 - Electoral data - METS.csv Knowsley total","0.578947368421053"
-"result.12","csv/Local elections 2014 - Electoral data - METS.csv Knowsley non-p","0.578947368421053"
-"result.9","csv/Local elections 2014 - Electoral data - UNITARIES.csv Peterborough total","0.578947368421053"
-"result.18","csv/Local elections 2014 - Electoral data - UNITARIES.csv Warrington total","0.578947368421053"
-"result.9","csv/Local elections 2014 - Electoral data - UNITARIES.csv Peterborough non-p","0.578947368421053"
-"result.18","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Crawley total","0.583333333333333"
-"result.65","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Watford total","0.583333333333333"
-"result.72","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worcester total","0.583333333333333"
-"result.51","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rossendale postal","0.583333333333333"
-"result.69","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Weymouth & Portland postal","0.583333333333333"
-"result.18","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Crawley non-p","0.583333333333333"
-"result.69","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Weymouth & Portland non-p","0.583333333333333"
-"result.72","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worcester non-p","0.583333333333333"
-"result.7","csv/Local elections 2014 - Electoral data - LONDON.csv Croydon non-p","0.583333333333333"
-"result.11","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Carlisle total","0.588235294117647"
-"result.11","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Carlisle non-p","0.588235294117647"
-"result.56","csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Lakeland non-p","0.588235294117647"
-"result.3","csv/Local elections 2014 - Electoral data - UNITARIES.csv Derby total","0.588235294117647"
-"result.10","csv/Local elections 2014 - Electoral data - METS.csv Gateshead total","0.590909090909091"
-"result.10","csv/Local elections 2014 - Electoral data - METS.csv Gateshead non-p","0.590909090909091"
-"result.6","csv/SP2011-r--.csv North East Scotland total","0.6"
-"result.7","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Broxbourne total","0.6"
-"result.24","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Fareham total","0.6"
-"result.16","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Colchester postal","0.6"
-"result.24","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Fareham postal","0.6"
-"result.7","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Broxbourne non-p","0.6"
-"result.24","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Fareham non-p","0.6"
-"result.23","csv/Local elections 2014 - Electoral data - LONDON.csv Merton total","0.6"
-"result.18","csv/Local elections 2014 - Electoral data - METS.csv Oldham total","0.6"
-"result.21","csv/Local elections 2014 - Electoral data - METS.csv Salford non-p","0.6"
-"result.12","csv/Local elections 2014 - Electoral data - UNITARIES.csv Reading non-p","0.6"
-"result.7","csv/GE2010--.csv Scotland postal","0.610169491525424"
-"result.5","csv/GE2010--.csv Northern Ireland total","0.611111111111111"
-"result.5","csv/GE2010--.csv Northern Ireland non-p","0.611111111111111"
-"result.67","csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Lancashire postal","0.611111111111111"
-"result.6","csv/Local elections 2014 - Electoral data - LONDON.csv Camden total","0.611111111111111"
-"result.26","csv/Local elections 2014 - Electoral data - LONDON.csv Richmond Upon Thames postal","0.611111111111111"
-"result.6","csv/Local elections 2014 - Electoral data - LONDON.csv Camden non-p","0.611111111111111"
-"result.7","csv/Local elections 2014 - Electoral data - METS.csv Coventry non-p","0.611111111111111"
-"result.58","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stevenage total","0.615384615384615"
-"result.42","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Norwich postal","0.615384615384615"
-"result.73","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worthing postal","0.615384615384615"
-"result.10","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cannock Chase non-p","0.615384615384615"
-"result.58","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stevenage non-p","0.615384615384615"
-"result.16","csv/Local elections 2014 - Electoral data - METS.csv Newcastle Upon Tyne non-p","0.615384615384615"
-"result.4","csv/Local elections 2014 - Electoral data - LONDON.csv Brent total","0.619047619047619"
-"result.27","csv/Local elections 2014 - Electoral data - LONDON.csv Southwark total","0.619047619047619"
-"result.20","csv/Local elections 2014 - Electoral data - METS.csv Rotherham non-p","0.619047619047619"
-"result.10","csv/GE2010--.csv Wales non-p","0.625"
-"result.45","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Pendle postal","0.625"
-"result.47","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Purbeck postal","0.625"
-"result.12","csv/Local elections 2014 - Electoral data - LONDON.csv Hammersmith & Fulham total","0.625"
-"result.29","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harrogate total","0.631578947368421"
-"result.29","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harrogate non-p","0.631578947368421"
-"result.9","csv/EPE2014--.csv Wales non-p","0.636363636363636"
-"result.35","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hyndburn total","0.636363636363636"
-"result.30","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hart non-p","0.636363636363636"
-"result.23","csv/Local elections 2014 - Electoral data - METS.csv Sefton postal","0.636363636363636"
-"result.1","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Adur non-p","0.642857142857143"
-"result.11","csv/Local elections 2014 - Electoral data - UNITARIES.csv Portsmouth postal","0.642857142857143"
-"result.43","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Nuneaton & Bedworth non-p","0.647058823529412"
-"result.1","csv/Local elections 2014 - Electoral data - LONDON.csv Barking & Dagenham non-p","0.647058823529412"
-"result.6","csv/Local elections 2014 - Electoral data - METS.csv Calderdale postal","0.647058823529412"
-"result.3","csv/Local elections 2014 - Electoral data - UNITARIES.csv Derby non-p","0.647058823529412"
-"result.15","csv/Local elections 2014 - Electoral data - UNITARIES.csv Southend On Sea non-p","0.647058823529412"
-"result.23","csv/Local elections 2014 - Electoral data - LONDON.csv Merton non-p","0.65"
-"result.33","csv/Local elections 2014 - Electoral data - METS.csv Walsall total","0.65"
-"result.4","csv/SP2011-c--.csv Lothian total","0.666666666666667"
-"result.7","csv/SP2011-c--.csv South Scotland total","0.666666666666667"
-"result.4","csv/SP2011-c--.csv Lothian non-p","0.666666666666667"
-"result.7","csv/SP2011-c--.csv South Scotland non-p","0.666666666666667"
-"result.69","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Weymouth & Portland total","0.666666666666667"
-"result.72","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worcester postal","0.666666666666667"
-"result.4","csv/Local elections 2014 - Electoral data - LONDON.csv Brent non-p","0.666666666666667"
-"result.7","csv/Local elections 2014 - Electoral data - METS.csv Coventry total","0.666666666666667"
-"result.64","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tunbridge Wells postal","0.6875"
-"result.42","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Norwich total","0.692307692307692"
-"result.73","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worthing total","0.692307692307692"
-"result.50","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rochford postal","0.692307692307692"
-"result.73","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worthing non-p","0.692307692307692"
-"result.33","csv/Local elections 2014 - Electoral data - METS.csv Walsall non-p","0.7"
-"result.43","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Nuneaton & Bedworth total","0.705882352941177"
-"result.49","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Reigate & Banstead total","0.705882352941177"
-"result.49","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Reigate & Banstead non-p","0.705882352941177"
-"result.42","csv/Local elections 2014 - Electoral data - DISTRICTS.csv Norwich non-p","0.769230769230769"
+"","x"
+"csv/SIR2014.csv  postal",0.1875
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Norwich non-p",0.769230769230769
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Craven total",0.222222222222222
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Craven non-p",0.222222222222222
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Purbeck total",0.25
+"csv/SIR2014.csv  non-p",0.25
+"csv/SP2011-c.csv Highlands and Islands total",0.25
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hillingdon postal",0.272727272727273
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Nuneaton & Bedworth total",0.705882352941177
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Reigate & Banstead total",0.705882352941177
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Reigate & Banstead non-p",0.705882352941177
+"csv/Local elections 2014 - Electoral data - METS.csv Walsall non-p",0.7
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Mole Valley postal",0.285714285714286
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Norwich total",0.692307692307692
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worthing total",0.692307692307692
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rochford postal",0.692307692307692
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worthing non-p",0.692307692307692
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Huntingdonshire postal",0.294117647058824
+"csv/Local elections 2014 - Electoral data - METS.csv Solihull non-p",0.294117647058824
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tunbridge Wells postal",0.6875
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cherwell total",0.3125
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Oxfordshire total",0.3125
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cherwell non-p",0.3125
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Oxfordshire non-p",0.3125
+"csv/SIR2014.csv  total",0.3125
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Epping Forest postal",0.315789473684211
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Swindon postal",0.315789473684211
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Weymouth & Portland total",0.666666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worcester postal",0.666666666666667
+"csv/Local elections 2014 - Electoral data - LONDON.csv Brent non-p",0.666666666666667
+"csv/Local elections 2014 - Electoral data - METS.csv Coventry total",0.666666666666667
+"csv/SP2011-c.csv Lothian total",0.666666666666667
+"csv/SP2011-c.csv South Scotland total",0.666666666666667
+"csv/SP2011-c.csv Lothian non-p",0.666666666666667
+"csv/SP2011-c.csv South Scotland non-p",0.666666666666667
+"csv/Local elections 2014 - Electoral data - LONDON.csv Merton non-p",0.65
+"csv/Local elections 2014 - Electoral data - METS.csv Walsall total",0.65
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Eastleigh postal",0.333333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stratford On Avon non-p",0.333333333333333
+"csv/Local elections 2014 - Electoral data - LONDON.csv Sutton postal",0.333333333333333
+"csv/SP2011-c.csv Mid Scotland and Fife postal",0.333333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Nuneaton & Bedworth non-p",0.647058823529412
+"csv/Local elections 2014 - Electoral data - LONDON.csv Barking & Dagenham non-p",0.647058823529412
+"csv/Local elections 2014 - Electoral data - METS.csv Calderdale postal",0.647058823529412
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Derby non-p",0.647058823529412
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Southend On Sea non-p",0.647058823529412
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Adur non-p",0.642857142857143
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Portsmouth postal",0.642857142857143
+"csv/EPE2014.csv Wales non-p",0.636363636363636
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hyndburn total",0.636363636363636
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hart non-p",0.636363636363636
+"csv/Local elections 2014 - Electoral data - METS.csv Sefton postal",0.636363636363636
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basingstoke & Deane postal",0.35
+"csv/Local elections 2014 - Electoral data - METS.csv Bolton postal",0.35
+"csv/Local elections 2014 - Electoral data - METS.csv Bolton non-p",0.35
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harrogate total",0.631578947368421
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harrogate non-p",0.631578947368421
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Huntingdonshire total",0.352941176470588
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stroud non-p",0.352941176470588
+"csv/Local elections 2014 - Electoral data - METS.csv Bury total",0.352941176470588
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Mole Valley total",0.357142857142857
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cambridge postal",0.357142857142857
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tandridge postal",0.357142857142857
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Mole Valley non-p",0.357142857142857
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rugby non-p",0.357142857142857
+"csv/GE2010.csv Wales non-p",0.625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Pendle postal",0.625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Purbeck postal",0.625
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hammersmith & Fulham total",0.625
+"csv/EPE2014.csv South East postal",0.358208955223881
+"csv/Local elections 2014 - Electoral data - METS.csv Sunderland non-p",0.36
+"csv/Local elections 2014 - Electoral data - LONDON.csv Brent total",0.619047619047619
+"csv/Local elections 2014 - Electoral data - LONDON.csv Southwark total",0.619047619047619
+"csv/Local elections 2014 - Electoral data - METS.csv Rotherham non-p",0.619047619047619
+"csv/GE2010.csv South West postal",0.363636363636364
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harlow postal",0.363636363636364
+"csv/Local elections 2014 - Electoral data - METS.csv Wirral postal",0.363636363636364
+"csv/Local elections 2014 - Electoral data - METS.csv Wirral non-p",0.363636363636364
+"csv/EPE2014.csv West Midlands non-p",0.366666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stevenage total",0.615384615384615
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Norwich postal",0.615384615384615
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worthing postal",0.615384615384615
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cannock Chase non-p",0.615384615384615
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stevenage non-p",0.615384615384615
+"csv/Local elections 2014 - Electoral data - METS.csv Newcastle Upon Tyne non-p",0.615384615384615
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Elmbridge postal",0.368421052631579
+"csv/Local elections 2014 - Electoral data - LONDON.csv Tower Hamlets postal",0.368421052631579
+"csv/Local elections 2014 - Electoral data - METS.csv Knowsley postal",0.368421052631579
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Peterborough postal",0.368421052631579
+"csv/GE2010.csv Northern Ireland total",0.611111111111111
+"csv/GE2010.csv Northern Ireland non-p",0.611111111111111
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Lancashire postal",0.611111111111111
+"csv/Local elections 2014 - Electoral data - LONDON.csv Camden total",0.611111111111111
+"csv/Local elections 2014 - Electoral data - LONDON.csv Richmond Upon Thames postal",0.611111111111111
+"csv/Local elections 2014 - Electoral data - LONDON.csv Camden non-p",0.611111111111111
+"csv/Local elections 2014 - Electoral data - METS.csv Coventry non-p",0.611111111111111
+"csv/GE2010.csv Scotland postal",0.610169491525424
+"csv/EPE2014.csv East Midlands non-p",0.375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Oxford postal",0.375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Oxfordshire postal",0.375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Purbeck non-p",0.375
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hammersmith & Fulham postal",0.375
+"csv/Local elections 2014 - Electoral data - METS.csv St Helens total",0.375
+"csv/Local elections 2014 - Electoral data - METS.csv St Helens non-p",0.375
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Southampton total",0.375
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Southampton postal",0.375
+"csv/SP2011-c.csv Highlands and Islands non-p",0.375
+"csv/SP2011-r.csv Highlands and Islands postal",0.375
+"csv/Local elections 2014 - Electoral data - LONDON.csv Bexley total",0.380952380952381
+"csv/Local elections 2014 - Electoral data - LONDON.csv Bexley non-p",0.380952380952381
+"csv/Local elections 2014 - Electoral data - METS.csv Barnsley postal",0.380952380952381
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Broxbourne total",0.6
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Fareham total",0.6
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Colchester postal",0.6
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Fareham postal",0.6
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Broxbourne non-p",0.6
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Fareham non-p",0.6
+"csv/Local elections 2014 - Electoral data - LONDON.csv Merton total",0.6
+"csv/Local elections 2014 - Electoral data - METS.csv Oldham total",0.6
+"csv/Local elections 2014 - Electoral data - METS.csv Salford non-p",0.6
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Reading non-p",0.6
+"csv/SP2011-r.csv North East Scotland total",0.6
+"csv/EPE2014.csv North West non-p",0.384615384615385
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Great Yarmouth total",0.384615384615385
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rochford total",0.384615384615385
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Three Rivers total",0.384615384615385
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cannock Chase postal",0.384615384615385
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Great Yarmouth non-p",0.384615384615385
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rochford non-p",0.384615384615385
+"csv/GE2010.csv Northern Ireland postal",0.388888888888889
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stratford On Avon total",0.388888888888889
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Lancashire total",0.388888888888889
+"csv/Local elections 2014 - Electoral data - LONDON.csv Kensington & Chelsea total",0.388888888888889
+"csv/Local elections 2014 - Electoral data - LONDON.csv Sutton total",0.388888888888889
+"csv/Local elections 2014 - Electoral data - LONDON.csv Kensington & Chelsea postal",0.388888888888889
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Wokingham total",0.388888888888889
+"csv/Local elections 2014 - Electoral data - LONDON.csv Ealing postal",0.391304347826087
+"csv/Local elections 2014 - Electoral data - METS.csv Gateshead total",0.590909090909091
+"csv/Local elections 2014 - Electoral data - METS.csv Gateshead non-p",0.590909090909091
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Carlisle total",0.588235294117647
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Carlisle non-p",0.588235294117647
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Lakeland non-p",0.588235294117647
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Derby total",0.588235294117647
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Crawley total",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Watford total",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worcester total",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rossendale postal",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Weymouth & Portland postal",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Crawley non-p",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Weymouth & Portland non-p",0.583333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Worcester non-p",0.583333333333333
+"csv/Local elections 2014 - Electoral data - LONDON.csv Croydon non-p",0.583333333333333
+"csv/EPE2014.csv West Midlands postal",0.4
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Eastleigh total",0.4
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Redditch total",0.4
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tamworth total",0.4
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Newcastle-under-Lyme postal",0.4
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Redditch postal",0.4
+"csv/Local elections 2014 - Electoral data - LONDON.csv Westminster postal",0.4
+"csv/Local elections 2014 - Electoral data - METS.csv Bolton total",0.4
+"csv/Local elections 2014 - Electoral data - METS.csv Rochdale postal",0.4
+"csv/SP2011-c.csv North East Scotland total",0.4
+"csv/SP2011-c.csv West Scotland total",0.4
+"csv/SP2011-c.csv North East Scotland non-p",0.4
+"csv/SP2011-c.csv West Scotland non-p",0.4
+"csv/SP2011-r.csv West Scotland total",0.4
+"csv/SP2011-r.csv West Scotland postal",0.4
+"csv/SP2011-r.csv West Scotland non-p",0.4
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Elmbridge total",0.578947368421053
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harrogate postal",0.578947368421053
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Elmbridge non-p",0.578947368421053
+"csv/Local elections 2014 - Electoral data - LONDON.csv Haringey total",0.578947368421053
+"csv/Local elections 2014 - Electoral data - METS.csv Knowsley total",0.578947368421053
+"csv/Local elections 2014 - Electoral data - METS.csv Knowsley non-p",0.578947368421053
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Peterborough total",0.578947368421053
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Warrington total",0.578947368421053
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Peterborough non-p",0.578947368421053
+"csv/EPE2014.csv South West postal",0.405405405405405
+"csv/EPE2014.csv South West non-p",0.405405405405405
+"csv/Local elections 2014 - Electoral data - METS.csv Newcastle Upon Tyne postal",0.576923076923077
+"csv/EPE2014.csv East of England non-p",0.574468085106383
+"csv/Local elections 2014 - Electoral data - METS.csv Wirral total",0.409090909090909
+"csv/EPE2014.csv North West postal",0.41025641025641
+"csv/SP2011-c.csv  non-p",0.410958904109589
+"csv/SP2011-r.csv  total",0.410958904109589
+"csv/SP2011-r.csv  non-p",0.410958904109589
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Adur total",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cambridge total",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tandridge total",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Castle Point postal",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rugby postal",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Wyre Forest postal",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Amber Valley non-p",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tandridge non-p",0.571428571428571
+"csv/Local elections 2014 - Electoral data - LONDON.csv Brent postal",0.571428571428571
+"csv/Local elections 2014 - Electoral data - LONDON.csv Enfield non-p",0.571428571428571
+"csv/Local elections 2014 - Electoral data - LONDON.csv Redbridge non-p",0.571428571428571
+"csv/Local elections 2014 - Electoral data - METS.csv Barnsley total",0.571428571428571
+"csv/Local elections 2014 - Electoral data - METS.csv Doncaster total",0.571428571428571
+"csv/Local elections 2014 - Electoral data - METS.csv Doncaster non-p",0.571428571428571
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Chorley total",0.411764705882353
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stroud total",0.411764705882353
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gosport postal",0.411764705882353
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Huntingdonshire non-p",0.411764705882353
+"csv/Local elections 2014 - Electoral data - METS.csv Solihull total",0.411764705882353
+"csv/Local elections 2014 - Electoral data - METS.csv Bury non-p",0.411764705882353
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Derby postal",0.411764705882353
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Southend On Sea postal",0.411764705882353
+"csv/Local elections 2014 - Electoral data - METS.csv Liverpool total",0.566666666666667
+"csv/Local elections 2014 - Electoral data - METS.csv Bradford postal",0.566666666666667
+"csv/Local elections 2014 - Electoral data - METS.csv Liverpool non-p",0.566666666666667
+"csv/EPE2014.csv North East postal",0.416666666666667
+"csv/EPE2014.csv North East non-p",0.416666666666667
+"csv/GE2010.csv South East postal",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Daventry total",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rossendale total",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Woking total",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Crawley postal",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Daventry postal",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Woking postal",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Daventry non-p",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Watford non-p",0.416666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Woking non-p",0.416666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Bristol total",0.565217391304348
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Bristol postal",0.565217391304348
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Bristol non-p",0.565217391304348
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hastings total",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tunbridge Wells total",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Welwyn Hatfield total",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hastings postal",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Welwyn Hatfield postal",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Pendle non-p",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Welwyn Hatfield non-p",0.5625
+"csv/Local elections 2014 - Electoral data - LONDON.csv Islington total",0.5625
+"csv/Local elections 2014 - Electoral data - LONDON.csv Islington postal",0.5625
+"csv/Local elections 2014 - Electoral data - LONDON.csv Islington non-p",0.5625
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Preston postal",0.421052631578947
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Winchester non-p",0.421052631578947
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Warrington postal",0.421052631578947
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Swindon non-p",0.421052631578947
+"csv/Local elections 2014 - Electoral data - METS.csv Wigan total",0.56
+"csv/Local elections 2014 - Electoral data - METS.csv Wigan non-p",0.56
+"csv/SP2011-c.csv  total",0.424657534246575
+"csv/GE2010.csv Wales postal",0.425
+"csv/Local elections 2014 - Electoral data - METS.csv Birmingham postal",0.425
+"csv/GE2010.csv Yorkshire and the Humber postal",0.425925925925926
+"csv/EPE2014.csv  postal",0.426315789473684
+"csv/GE2010.csv North West postal",0.426666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Craven postal",0.555555555555556
+"csv/Local elections 2014 - Electoral data - LONDON.csv Haringey postal",0.555555555555556
+"csv/Local elections 2014 - Electoral data - LONDON.csv Haringey non-p",0.555555555555556
+"csv/Local elections 2014 - Electoral data - LONDON.csv Richmond Upon Thames non-p",0.555555555555556
+"csv/Local elections 2014 - Electoral data - METS.csv South Tyneside total",0.555555555555556
+"csv/Local elections 2014 - Electoral data - METS.csv South Tyneside non-p",0.555555555555556
+"csv/SP2011-c.csv Central Scotland total",0.555555555555556
+"csv/SP2011-c.csv Mid Scotland and Fife total",0.555555555555556
+"csv/SP2011-c.csv Central Scotland postal",0.555555555555556
+"csv/SP2011-c.csv Lothian postal",0.555555555555556
+"csv/SP2011-c.csv South Scotland postal",0.555555555555556
+"csv/SP2011-c.csv Central Scotland non-p",0.555555555555556
+"csv/SP2011-c.csv Glasgow non-p",0.555555555555556
+"csv/SP2011-c.csv Mid Scotland and Fife non-p",0.555555555555556
+"csv/SP2011-r.csv Central Scotland total",0.555555555555556
+"csv/SP2011-r.csv Glasgow total",0.555555555555556
+"csv/SP2011-r.csv Lothian total",0.555555555555556
+"csv/SP2011-r.csv South Scotland total",0.555555555555556
+"csv/SP2011-r.csv Central Scotland postal",0.555555555555556
+"csv/SP2011-r.csv Lothian postal",0.555555555555556
+"csv/SP2011-r.csv Mid Scotland and Fife postal",0.555555555555556
+"csv/SP2011-r.csv Central Scotland non-p",0.555555555555556
+"csv/SP2011-r.csv Glasgow non-p",0.555555555555556
+"csv/EPE2014.csv Yorkshire & the Humber non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basildon total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Castle Point total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Havant total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rugby total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Runnymede total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Runnymede postal",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basildon non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cambridge non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Castle Point non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Havant non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Wyre Forest non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - LONDON.csv Southwark postal",0.428571428571429
+"csv/Local elections 2014 - Electoral data - METS.csv Stockport total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - METS.csv Sheffield postal",0.428571428571429
+"csv/Local elections 2014 - Electoral data - METS.csv Stockport non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Blackburn with Darwen total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Portsmouth total",0.428571428571429
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Halton non-p",0.428571428571429
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Portsmouth non-p",0.428571428571429
+"csv/EPE2014.csv South West total",0.432432432432432
+"csv/GE2010.csv Wales total",0.55
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Newcastle-under-Lyme total",0.55
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Newcastle-under-Lyme non-p",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Barnet total",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hounslow total",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Westminster total",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Waltham Forest postal",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Wandsworth postal",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hounslow non-p",0.55
+"csv/Local elections 2014 - Electoral data - LONDON.csv Westminster non-p",0.55
+"csv/Local elections 2014 - Electoral data - METS.csv North Tyneside total",0.55
+"csv/Local elections 2014 - Electoral data - METS.csv Oldham postal",0.55
+"csv/Local elections 2014 - Electoral data - METS.csv Walsall postal",0.55
+"csv/Local elections 2014 - Electoral data - METS.csv Birmingham non-p",0.55
+"csv/Local elections 2014 - Electoral data - METS.csv North Tyneside non-p",0.55
+"csv/Local elections 2014 - Electoral data - METS.csv Oldham non-p",0.55
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Kingston Upon Hull total",0.55
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Kingston Upon Hull non-p",0.55
+"csv/EPE2014.csv West Midlands total",0.433333333333333
+"csv/EPE2014.csv North West total",0.435897435897436
+"csv/EPE2014.csv Wales total",0.545454545454545
+"csv/EPE2014.csv London non-p",0.545454545454545
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harlow total",0.545454545454545
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hyndburn non-p",0.545454545454545
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hillingdon non-p",0.545454545454545
+"csv/Local elections 2014 - Electoral data - METS.csv Gateshead postal",0.545454545454545
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Hartlepool total",0.545454545454545
+"csv/EPE2014.csv Scotland postal",0.4375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Ipswich total",0.4375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Bassetlaw postal",0.4375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cherwell postal",0.4375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Ipswich postal",0.4375
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Bassetlaw non-p",0.4375
+"csv/Local elections 2014 - Electoral data - LONDON.csv Kingston Upon Thames total",0.4375
+"csv/Local elections 2014 - Electoral data - LONDON.csv Kingston Upon Thames non-p",0.4375
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Thurrock total",0.4375
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Thurrock postal",0.4375
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Southampton non-p",0.4375
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Thurrock non-p",0.4375
+"csv/GE2010.csv North West non-p",0.44
+"csv/Local elections 2014 - Electoral data - METS.csv Sunderland total",0.44
+"csv/Local elections 2014 - Electoral data - METS.csv Dudley total",0.541666666666667
+"csv/Local elections 2014 - Electoral data - METS.csv Dudley non-p",0.541666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv  postal",0.443425076452599
+"csv/Local elections 2014 - Electoral data - METS.csv  non-p",0.538745387453875
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Exeter total",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hertsmere total",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rushmoor total",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Great Yarmouth postal",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hertsmere postal",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stevenage postal",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Exeter non-p",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rushmoor non-p",0.538461538461538
+"csv/Local elections 2014 - Electoral data - METS.csv Newcastle Upon Tyne total",0.538461538461538
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Maidstone total",0.444444444444444
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Maidstone non-p",0.444444444444444
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv West Lancashire non-p",0.444444444444444
+"csv/Local elections 2014 - Electoral data - LONDON.csv Havering total",0.444444444444444
+"csv/Local elections 2014 - Electoral data - LONDON.csv Lewisham postal",0.444444444444444
+"csv/Local elections 2014 - Electoral data - LONDON.csv Havering non-p",0.444444444444444
+"csv/Local elections 2014 - Electoral data - METS.csv Coventry postal",0.444444444444444
+"csv/Local elections 2014 - Electoral data - METS.csv South Tyneside postal",0.444444444444444
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Wokingham non-p",0.444444444444444
+"csv/SP2011-c.csv Glasgow total",0.444444444444444
+"csv/SP2011-c.csv Glasgow postal",0.444444444444444
+"csv/SP2011-r.csv Mid Scotland and Fife total",0.444444444444444
+"csv/SP2011-r.csv Glasgow postal",0.444444444444444
+"csv/SP2011-r.csv South Scotland postal",0.444444444444444
+"csv/SP2011-r.csv Lothian non-p",0.444444444444444
+"csv/SP2011-r.csv Mid Scotland and Fife non-p",0.444444444444444
+"csv/SP2011-r.csv South Scotland non-p",0.444444444444444
+"csv/GE2010.csv Eastern non-p",0.53448275862069
+"csv/GE2010.csv Eastern postal",0.448275862068966
+"csv/GE2010.csv North East postal",0.448275862068966
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Burnley total",0.533333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Burnley postal",0.533333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gloucester postal",0.533333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Eastleigh non-p",0.533333333333333
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Reading total",0.533333333333333
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Slough total",0.533333333333333
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Colchester total",0.45
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv St Albans postal",0.45
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Colchester non-p",0.45
+"csv/Local elections 2014 - Electoral data - LONDON.csv Newham postal",0.45
+"csv/Local elections 2014 - Electoral data - LONDON.csv Barnet non-p",0.45
+"csv/Local elections 2014 - Electoral data - METS.csv Rochdale total",0.45
+"csv/Local elections 2014 - Electoral data - METS.csv Wolverhampton total",0.45
+"csv/Local elections 2014 - Electoral data - METS.csv North Tyneside postal",0.45
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Kingston Upon Hull postal",0.45
+"csv/EPE2014.csv Scotland non-p",0.53125
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gosport total",0.529411764705882
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv North Hertfordshire total",0.529411764705882
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Lakeland total",0.529411764705882
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Reigate & Banstead postal",0.529411764705882
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Lakeland postal",0.529411764705882
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv North Hertfordshire non-p",0.529411764705882
+"csv/Local elections 2014 - Electoral data - LONDON.csv Barking & Dagenham postal",0.529411764705882
+"csv/Local elections 2014 - Electoral data - LONDON.csv Greenwich postal",0.529411764705882
+"csv/Local elections 2014 - Electoral data - METS.csv Calderdale total",0.529411764705882
+"csv/Local elections 2014 - Electoral data - METS.csv Bury postal",0.529411764705882
+"csv/Local elections 2014 - Electoral data - METS.csv Calderdale non-p",0.529411764705882
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Southend On Sea total",0.529411764705882
+"csv/GE2010.csv North West total",0.453333333333333
+"csv/GE2010.csv South West total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hart total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Lincoln total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hart postal",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hyndburn postal",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Lincoln postal",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Harlow non-p",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Lincoln non-p",0.454545454545455
+"csv/Local elections 2014 - Electoral data - LONDON.csv Bromley total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hillingdon total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - METS.csv Leeds total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - METS.csv Sefton total",0.454545454545455
+"csv/Local elections 2014 - Electoral data - METS.csv Leeds non-p",0.454545454545455
+"csv/Local elections 2014 - Electoral data - METS.csv Sefton non-p",0.454545454545455
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Hartlepool postal",0.454545454545455
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Hartlepool non-p",0.454545454545455
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Preston total",0.526315789473684
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cheltenham postal",0.526315789473684
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Epping Forest non-p",0.526315789473684
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Preston non-p",0.526315789473684
+"csv/Local elections 2014 - Electoral data - METS.csv Tameside total",0.526315789473684
+"csv/Local elections 2014 - Electoral data - METS.csv Tameside postal",0.526315789473684
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Milton Keynes total",0.526315789473684
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Milton Keynes non-p",0.526315789473684
+"csv/GE2010.csv East Midlands total",0.456521739130435
+"csv/GE2010.csv East Midlands postal",0.456521739130435
+"csv/EPE2014.csv East Midlands postal",0.525
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Oxford non-p",0.458333333333333
+"csv/Local elections 2014 - Electoral data - LONDON.csv Croydon total",0.458333333333333
+"csv/Local elections 2014 - Electoral data - LONDON.csv Croydon postal",0.458333333333333
+"csv/Local elections 2014 - Electoral data - METS.csv Sandwell postal",0.458333333333333
+"csv/EPE2014.csv Yorkshire & the Humber total",0.523809523809524
+"csv/Local elections 2014 - Electoral data - LONDON.csv Lambeth total",0.523809523809524
+"csv/Local elections 2014 - Electoral data - LONDON.csv Redbridge total",0.523809523809524
+"csv/Local elections 2014 - Electoral data - LONDON.csv Lambeth postal",0.523809523809524
+"csv/Local elections 2014 - Electoral data - LONDON.csv Redbridge postal",0.523809523809524
+"csv/Local elections 2014 - Electoral data - LONDON.csv Lambeth non-p",0.523809523809524
+"csv/Local elections 2014 - Electoral data - LONDON.csv Southwark non-p",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv Rotherham total",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv Doncaster postal",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv Trafford postal",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv Barnsley non-p",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv Trafford non-p",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv Wakefield non-p",0.523809523809524
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Blackburn with Darwen postal",0.523809523809524
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Blackburn with Darwen non-p",0.523809523809524
+"csv/Local elections 2014 - Electoral data - METS.csv  total",0.522755227552276
+"csv/Local elections 2014 - Electoral data - LONDON.csv Ealing total",0.521739130434783
+"csv/Local elections 2014 - Electoral data - METS.csv Kirklees non-p",0.521739130434783
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Brentwood total",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cannock Chase total",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Brentwood postal",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Exeter postal",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rushmoor postal",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Three Rivers postal",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Brentwood non-p",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hertsmere non-p",0.461538461538462
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Three Rivers non-p",0.461538461538462
+"csv/Local elections 2014 - Electoral data - METS.csv Wigan postal",0.52
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv  non-p",0.519877675840979
+"csv/EPE2014.csv South East total",0.462686567164179
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv  postal",0.464673913043478
+"csv/GE2010.csv North East total",0.517241379310345
+"csv/GE2010.csv North East non-p",0.517241379310345
+"csv/Local elections 2014 - Electoral data - LONDON.csv  total",0.516746411483254
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gloucester total",0.466666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Burnley non-p",0.466666666666667
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gloucester non-p",0.466666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv North East Lincolnshire total",0.466666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv North East Lincolnshire postal",0.466666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Reading postal",0.466666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Slough postal",0.466666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv North East Lincolnshire non-p",0.466666666666667
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Slough non-p",0.466666666666667
+"csv/EPE2014.csv London total",0.515151515151515
+"csv/Local elections 2014 - Electoral data - METS.csv Leeds postal",0.515151515151515
+"csv/GE2010.csv  postal",0.467692307692308
+"csv/EPE2014.csv East of England total",0.468085106382979
+"csv/EPE2014.csv East of England postal",0.468085106382979
+"csv/EPE2014.csv  total",0.468421052631579
+"csv/Local elections 2014 - Electoral data - METS.csv Manchester total",0.46875
+"csv/Local elections 2014 - Electoral data - METS.csv Manchester postal",0.46875
+"csv/Local elections 2014 - Electoral data - METS.csv Manchester non-p",0.46875
+"csv/Local elections 2014 - Electoral data - LONDON.csv  postal",0.469421487603306
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Carlisle postal",0.470588235294118
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Chorley postal",0.470588235294118
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv North Hertfordshire postal",0.470588235294118
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Nuneaton & Bedworth postal",0.470588235294118
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stroud postal",0.470588235294118
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Chorley non-p",0.470588235294118
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Gosport non-p",0.470588235294118
+"csv/Local elections 2014 - Electoral data - LONDON.csv Barking & Dagenham total",0.470588235294118
+"csv/Local elections 2014 - Electoral data - LONDON.csv Greenwich total",0.470588235294118
+"csv/Local elections 2014 - Electoral data - LONDON.csv Greenwich non-p",0.470588235294118
+"csv/Local elections 2014 - Electoral data - METS.csv Solihull postal",0.470588235294118
+"csv/GE2010.csv South West non-p",0.472727272727273
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cheltenham total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Epping Forest total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Cambridgeshire total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Winchester total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Cambridgeshire postal",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Winchester postal",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Cheltenham non-p",0.473684210526316
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv South Cambridgeshire non-p",0.473684210526316
+"csv/Local elections 2014 - Electoral data - LONDON.csv Tower Hamlets total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - LONDON.csv Tower Hamlets non-p",0.473684210526316
+"csv/Local elections 2014 - Electoral data - METS.csv Tameside non-p",0.473684210526316
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Plymouth total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Swindon total",0.473684210526316
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Milton Keynes postal",0.473684210526316
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Plymouth postal",0.473684210526316
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Plymouth non-p",0.473684210526316
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Warrington non-p",0.473684210526316
+"csv/GE2010.csv Scotland total",0.508474576271186
+"csv/GE2010.csv West Midlands postal",0.508474576271186
+"csv/GE2010.csv Scotland non-p",0.508474576271186
+"csv/GE2010.csv West Midlands non-p",0.474576271186441
+"csv/EPE2014.csv East Midlands total",0.475
+"csv/EPE2014.csv South East non-p",0.507462686567164
+"csv/EPE2014.csv Yorkshire & the Humber postal",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Enfield total",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hackney total",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Harrow total",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Bexley postal",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Enfield postal",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Harrow postal",0.476190476190476
+"csv/Local elections 2014 - Electoral data - LONDON.csv Harrow non-p",0.476190476190476
+"csv/Local elections 2014 - Electoral data - METS.csv Trafford total",0.476190476190476
+"csv/Local elections 2014 - Electoral data - METS.csv Wakefield total",0.476190476190476
+"csv/Local elections 2014 - Electoral data - METS.csv Rotherham postal",0.476190476190476
+"csv/Local elections 2014 - Electoral data - METS.csv Stockport postal",0.476190476190476
+"csv/Local elections 2014 - Electoral data - METS.csv Wakefield postal",0.476190476190476
+"csv/GE2010.csv East Midlands non-p",0.478260869565217
+"csv/Local elections 2014 - Electoral data - LONDON.csv Ealing non-p",0.478260869565217
+"csv/Local elections 2014 - Electoral data - METS.csv Kirklees total",0.478260869565217
+"csv/Local elections 2014 - Electoral data - METS.csv Kirklees postal",0.478260869565217
+"csv/GE2010.csv London total",0.479452054794521
+"csv/GE2010.csv London postal",0.479452054794521
+"csv/Local elections 2014 - Electoral data - METS.csv Sunderland postal",0.48
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv  total",0.480978260869565
+"csv/GE2010.csv Yorkshire and the Humber total",0.481481481481481
+"csv/GE2010.csv  total",0.481538461538462
+"csv/GE2010.csv  non-p",0.481538461538462
+"csv/Local elections 2014 - Electoral data - LONDON.csv  non-p",0.500826446280992
+"csv/EPE2014.csv North East total",0.5
+"csv/EPE2014.csv Scotland total",0.5
+"csv/EPE2014.csv Wales postal",0.5
+"csv/GE2010.csv Eastern total",0.5
+"csv/GE2010.csv South East non-p",0.5
+"csv/GE2010.csv Yorkshire and the Humber non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Amber Valley total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basingstoke & Deane total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Bassetlaw total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Oxford total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Pendle total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv St Albans total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Wyre Forest total",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Adur postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Amber Valley postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basildon postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Broxbourne postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Havant postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Maidstone postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Stratford On Avon postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tamworth postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Watford postal",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Basingstoke & Deane non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Hastings non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Ipswich non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Redditch non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Rossendale non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Runnymede non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv St Albans non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tamworth non-p",0.5
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv Tunbridge Wells non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Lewisham total",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Newham total",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Richmond Upon Thames total",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Waltham Forest total",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Wandsworth total",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Barnet postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Bromley postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Camden postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Havering postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hounslow postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Kingston Upon Thames postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Merton postal",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Bromley non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Hammersmith & Fulham non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Kensington & Chelsea non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Lewisham non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Newham non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Sutton non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Waltham Forest non-p",0.5
+"csv/Local elections 2014 - Electoral data - LONDON.csv Wandsworth non-p",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Birmingham total",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Bradford total",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Salford total",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Sandwell total",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Sheffield total",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Dudley postal",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Liverpool postal",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Salford postal",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv St Helens postal",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Wolverhampton postal",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Bradford non-p",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Rochdale non-p",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Sandwell non-p",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Sheffield non-p",0.5
+"csv/Local elections 2014 - Electoral data - METS.csv Wolverhampton non-p",0.5
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Halton total",0.5
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Halton postal",0.5
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv Wokingham postal",0.5
+"csv/SP2011-c.csv Highlands and Islands postal",0.5
+"csv/SP2011-c.csv North East Scotland postal",0.5
+"csv/SP2011-c.csv West Scotland postal",0.5
+"csv/SP2011-r.csv Highlands and Islands total",0.5
+"csv/SP2011-r.csv North East Scotland postal",0.5
+"csv/SP2011-r.csv Highlands and Islands non-p",0.5
+"csv/SP2011-r.csv North East Scotland non-p",0.5
+"csv/EPE2014.csv  non-p",0.484210526315789
+"csv/Local elections 2014 - Electoral data - DISTRICTS.csv  non-p",0.484601449275362
+"csv/Local elections 2014 - Electoral data - METS.csv  postal",0.484624846248462
+"csv/EPE2014.csv London postal",0.484848484848485
+"csv/GE2010.csv South East total",0.488095238095238
+"csv/GE2010.csv London non-p",0.493150684931507
+"csv/SP2011-c.csv  postal",0.493150684931507
+"csv/SP2011-r.csv  postal",0.493150684931507
+"csv/Local elections 2014 - Electoral data - UNITARIES.csv  total",0.492354740061162
+"csv/GE2010.csv West Midlands total",0.491525423728814
