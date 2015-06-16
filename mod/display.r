@@ -54,10 +54,12 @@ custom_plot_ecdf<-function(sample,match_pattern,do.density=T,do.cdf=T){
         i_mean <- mean(intercept)
         i_sd <- custom_sd(intercept,i_mean)
         i_dev <- deviation_in_SDs(i_match,i_mean,i_sd)
+	prob <- sigma_to_probability(i_dev)
         main <- paste("Matching \"",match_pattern,"\"",sep="")
-        sub <- paste("Matched sample ranges from ",sprintf("%.2f",min(i_dev)),
+        sub <- paste("Matched sample range ",sprintf("%.2f",min(i_dev)),
                 " to ",sprintf("%.2f",max(i_dev)),
-                " in SDs of deviation.",sep="")   
+                " sigma. Probability range 1/",sprintf("%.2f",1/max(prob)),
+		" to 1/",sprintf("%.2f",1/min(prob)),sep="")   
                 # do density plot
         if(do.density==T){
                 plot(density_obj,main=paste(main,"population mean / cdf intercept error density"),sub=sub)
@@ -73,7 +75,8 @@ custom_plot_ecdf<-function(sample,match_pattern,do.density=T,do.cdf=T){
                 peak_separate_sd_lines(intercept,i_mean)
                 abline(h=0.5)
         }
-        return(i_dev)
+	names(prob)<-names(i_dev)
+        return(prob)
 }
 
 single_display<-function(sample){

@@ -12,7 +12,9 @@ if(!exists("cl")){
 	cl<-makeCustomCluster()
 }
 
-total_sample <- assemble_sample()
+if(!exists("total_sample")){
+	total_sample <- assemble_sample()
+}
 
 # basic display
 do_display<-function(match_pattern="SIR2014",sample=total_sample){

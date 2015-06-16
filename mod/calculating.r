@@ -2,7 +2,14 @@
 #	Calculating 
 #
 require(foreach)
+require(NORMT3)
 
+# Real number only probability computation
+sigma_to_probability <- function(x){
+        Re(erfc(x/sqrt(2)))
+}
+
+#sort sample by decreasing deviation
 sort_sample <- function(sample){
 	o<-as.numeric(sample)
 	p<-abs(o-mean(o))
@@ -24,6 +31,21 @@ calculate_a <- function(V,N){
         a[mask0]<-0
 	a[mask1]<-1
         return(a)
+}
+
+# specialised subtraction handling edge cases
+calculate_np <- function(total,postal){
+	out <- total - postal
+	out[postal==0] <- 0
+	out
+}
+
+# calculate cdf intercept  
+cdf_intercept <- function(sample,mean){
+        if(length(sample)>0){
+                return(sum(sample<mean)/length(sample))
+        }
+        return()
 }
 
 #given a matrix with N,V,a rows, compute population mean, compare turnout vector to mean
@@ -82,8 +104,8 @@ results_by_region <- function(bal,tag,title){
 
 # how we like our ballots cooked for easy grepping
 cook_ballot <- function(ballot,title){
-        ballot$NNP<-ballot$N-ballot$NP
-        ballot$VNP<-ballot$V-ballot$VP
+        ballot$NNP<-calculate_np(ballot$N,ballot$NP)
+        ballot$VNP<-calculate_np(ballot$V,ballot$VP)
         ballot$a<-calculate_a(ballot$V,ballot$N)
         ballot$ap<-calculate_a(ballot$VP,ballot$NP)
         ballot$anp<-calculate_a(ballot$VNP,ballot$NNP)
