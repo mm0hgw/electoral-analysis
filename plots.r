@@ -74,6 +74,9 @@ plot_triple <- function(file,main=file){
 #apply triple plots to whole csv repo
 do_triple_plots <- function(file="triple_plots.pdf"){
 	pdf(file)
-	foreach(file=paste(sep="","csv/",list.files(path="csv/")))%do%{plot_triple(file)}
+	out<-foreach(file=paste(sep="","csv/",list.files(path="csv/")),.combine=c)%do%{
+		plot_triple(file)
+	}
 	dev.off()
+	return(out)
 }

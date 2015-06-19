@@ -3,7 +3,7 @@
 #
 require(foreach)
 
-keys <- read.table("keys.tab")
+keys <- read.table("keys.tab",stringsAsFactors=F)
 
 # read headers
 read_headers <- function(filename){
@@ -89,7 +89,7 @@ key_collect<-function(...){
 
 # find valid keys for provided files
 find_key <- function(filenames){
-	k_len<-length(keys[1,])
+	k_len<-length(keys[,1])
 	foreach(file=filenames,
 		.combine=list,
 		.multicombine=T,
@@ -102,7 +102,7 @@ find_key <- function(filenames){
 		.multicombine=T,
 		.options.multicore=mcoptions
 	)%dopar%{
-		k<-try_key(file,keys[,key_id])
+		k<-try_key(file,keys[key_id,])
 		if(valid_key(k)==T){
 			k
 		}else{
