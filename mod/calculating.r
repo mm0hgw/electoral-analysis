@@ -58,6 +58,35 @@ cdf_mean_intercept<-function(bal){
 	return(out)
 }
 
+# find a local maximum by iteration.
+first_local_maximum <- function(density_obj,from=min(density_obj$x)){
+                # identify where we're iterating from
+        trail <- which.min(abs(density_obj$x-from))
+                # step forward forward to some positive gradient
+        while(trail<length(density_obj$y)&density_obj$y[trail+1]<=density_obj$y[trail]){
+                trail <- trail + 1
+        }
+                # step up the positive gradient to the trailing edge of the maximum
+        while(trail<length(density_obj$y)&density_obj$y[trail+1]>=density_obj$y[trail]){
+                trail <- trail + 1
+        }
+                # if we've reached the end, we haven't found a maximum
+        if(trail>=length(density_obj$x)){
+                return(NA)      # reached the end of the vector
+        }
+                # now look for the leading edge
+        lead <- trail
+        while(lead<length(density_obj$y)&density_obj$y[lead-1]>=density_obj$y[lead]){
+                lead <- lead - 1
+        }
+                # if we we're asked the next maximum from here, return it.
+        if(density_obj$x[lead] <= from){
+                first_local_maximum(density_obj,from=trail)
+        }
+                # return our answer
+        return(density_obj$x[lead:trail])
+}
+
 #calculate deviation in SDs
 deviation_in_SDs <- function(x,x_mean=mean(x),x_sd=sd(x)){
         abs((x-x_mean)/x_sd)

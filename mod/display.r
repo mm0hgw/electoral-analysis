@@ -17,8 +17,8 @@ pdf_target<-function(name="turnout_analysis"){
 #plot mean/sd lines on a graph
 mean_sd_lines <- function(sample,p_mean=mean(sample),p_sd=sd(sample)){
         abline(v=p_mean,col="green")
-        abline(v=p_mean+p_sd,col="blue")
-        abline(v=p_mean-p_sd,col="blue")
+        abline(v=p_mean+p_sd*seq(1,4),col="blue")
+        abline(v=p_mean-p_sd*seq(1,4),col="blue")
 }
  
 #calculate separate sds for lhs / rhs of peak density and display
@@ -32,8 +32,8 @@ peak_separate_sd_lines<-function(i,i_peak,separate_sd=F){
 		i_r_sd <- i_sd
 	}
         abline(v=i_peak,col="green")
-        abline(v=i_peak+i_r_sd,col="blue")
-        abline(v=i_peak-i_l_sd,col="blue")
+        abline(v=i_peak+i_r_sd*seq(1,4),col="blue")
+        abline(v=i_peak-i_l_sd*seq(1,4),col="blue")
 }
 
 #

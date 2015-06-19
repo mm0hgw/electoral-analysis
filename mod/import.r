@@ -147,7 +147,7 @@ really_strip_whitespace<-function(x){
 }
 
 # import ballot file
-read_ballot <- function(file,key=find_key(file)){
+read_ballot <- function(file,key=find_key(file),do.cook=T){
 	if(!valid_key(key)){
 		return()
 	}
@@ -160,5 +160,9 @@ read_ballot <- function(file,key=find_key(file)){
                 V=really_strip_whitespace(p2[,4]),
                 NP=really_strip_whitespace(p2[,5]),
                 VP=really_strip_whitespace(p2[,6]))
-        return(cook_ballot(ballot,file))
+	if(do.cook==T){
+        	return(cook_ballot(ballot,file))
+	}else{
+		return(ballot)
+	}
 }
