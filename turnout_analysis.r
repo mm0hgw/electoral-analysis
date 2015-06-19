@@ -17,8 +17,8 @@ if(!exists("total_sample")){
 }
 
 # basic display
-do_display<-function(output_fn,match_pattern="SIR2014",sample=total_sample){
-	output_fn(filename=paste("turnout_analysis_",match_pattern,sep=""))
+do_display<-function(match_pattern="SIR2014",sample=total_sample){
+	pdf(file=paste("turnout_analysis_",match_pattern,sep=""))
 	out<-custom_plot_ecdf(sample,match_pattern)
 	dev.off()
 	return(out)
