@@ -1,13 +1,20 @@
 # plots
+source("mod/cluster.r")
 source("mod/calculating.r")
-library(mixtools)
+source("mod/import.r")
+#library(mixtools)
+
+# create greedy cluster
+if(!exists("cl")){
+        cl<-makeCustomCluster()
+}
 
 # calculate regular x values over range of sample
 dom <- function(sample){
 	seq(min(sample),max(sample),length.out=100)
 }
 
-#plot turnout
+#plot turnout cdf
 plot_turnout_cdf <- function(V,N,main){
 	a<-calculate_a(V,N)
 	pop_mean<-calculate_a(sum(V),sum(N))
@@ -22,6 +29,7 @@ plot_turnout_cdf <- function(V,N,main){
 	lines(x=x,y=pnorm(q=x,mean=pop_mean,sd=pop_sd),col="green")	
 }
 
+# plot turnout density
 plot_turnout_density <- function(V,N,main="Add a title",do.model=F){
 	a<-calculate_a(V,N)
 	d<-density(a)
@@ -40,12 +48,13 @@ plot_turnout_density <- function(V,N,main="Add a title",do.model=F){
 }
 
 #plot mix
-plot_mix <- function(V,N,k=2,main="Add a title"){
-	a<-calculate_a(V,N)
-	mixmdl<-normalmixEM(a,k=k)
-	plot(mixmdl,which=2)	
-}
+#plot_mix <- function(V,N,k=2,main="Add a title"){
+#	a<-calculate_a(V,N)
+#	mixmdl<-normalmixEM(a,k=k)
+#	plot(mixmdl,which=2)	
+#}
 
+#plot total/postal/non-postal ballots
 plot_triple <- function(file,main=file){
 	b<-read_ballot(file,do.cook=F)
 	V<-b$V
@@ -62,6 +71,7 @@ plot_triple <- function(file,main=file){
 	plot_turnout_cdf(V=VNP,N=NNP,main=paste(main,"non-postal"))
 }
 
+#apply triple plots to whole csv repo
 do_triple_plots <- function(file="triple_plots.pdf"){
 	pdf(file)
 	foreach(file=paste(sep="","csv/",list.files(path="csv/")))%do%{plot_triple(file)}
