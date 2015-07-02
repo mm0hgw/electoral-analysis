@@ -54,8 +54,8 @@ custom_chisq <- function(d,...){
 }
 
 # cook a list of files using the normalised turnout technique
-cook_files <- function(files=list_csv_files()){
-        foreach(file=files,   
+cook_files <- function(files=list_csv_files(),breakdown=F){
+        out<-foreach(file=files,   
                 .combine=c,   
                 .inorder=F,   
                 .options.multicore=mcoptions,
@@ -63,9 +63,16 @@ cook_files <- function(files=list_csv_files()){
         ) %dopar% {
                 b<-read_ballot(file,do.cook=F)
                 a<-normalised_a(b)
-                names(a)<-paste(file,c("total","postal","non-postal"))
-                unlist(lapply(mclapply(a,density),custom_chisq))
+		if(breakdown==T){
+                	names(a)<-paste(file,c("total","postal","non-postal"))
+                	out<-unlist(lapply(mclapply(a,density),custom_chisq))
+		}else{
+			out<-custom_chisq(density(unlist(a)))
+			names(out)<-file
+		}
+		out
         }
+	out[order(out)]
 }
 
 main <- function(){
@@ -77,9 +84,28 @@ main <- function(){
 	dev.off()
 }
 
+plot_with_normal <- function(d,...){
+	plot(d,...)
+	lines(x=d$x,y=dnorm(d$x),col="magenta")
+}
+
+long_plot <- function(){
+	pdf(file="longplot.pdf")
+	file_list <- list_csv_files()
+	sample<-lapply(file_list,FUN=function(x){
+		out<-unlist(normalised_a(read_ballot(x,do.cook=F)))
+
+		out
+	})
+	densities<-lapply(sample,density)
+	names(densities)<-file_list
+	foreach(d=densities,n=file_list)%do%{
+		plot_with_normal(d,main=n)
+	}
+	dev.off()
+}
+
 # initialise cluster
 if(!exists("cl")){
 	cl <- makeCustomCluster()
 }
-
-	
