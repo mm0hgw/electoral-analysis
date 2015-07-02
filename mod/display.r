@@ -86,3 +86,23 @@ single_display<-function(sample){
         abline(v=pm,col="blue")
         abline(h=intercept,col="red")
 }
+
+
+#
+#	normalised a display functions
+#
+
+add_a_line <- function(a,...){
+	d<-density(a)
+	lines(x=d$x,y=d$y,...)
+}
+
+plot_with_normal <- function(d,...){
+	plot(d,...)
+	lines(x=d$x,y=dnorm(x=d$x))
+}
+
+custom_chisq <- function(d,...){
+	sum((d$y-dnorm(d$x))^2)
+}
+

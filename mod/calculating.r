@@ -40,6 +40,40 @@ calculate_np <- function(total,postal){
 	out
 }
 
+calculate_normalised_a <- function(V,N){
+	a<-calculate_a(V,N)
+	pop_mean <- calculate_a(sum(V),sum(N))
+	pop_sd <- custom_sd(a,pop_mean)
+	(a-pop_mean)/pop_sd
+}
+
+normalised_a <- function(b){
+	total<- calculate_normalised_a(b$V,b$N)
+	mask <- !is.na(b$NP)
+	postal<- calculate_normalised_a(b$VP[mask],b$NP[mask])
+	nonp <- calculate_normalised_a(
+		calculate_np(b$V[mask],b$VP[mask]),
+		calculate_np(b$N[mask],b$NP[mask]))
+	list(total,postal,nonp)
+}
+
+# cook a list of files using the normalised turnout technique
+cook_files <- function(files){
+	foreach(file=files,
+		.combine=c,
+		.inorder=F,
+		.options.multicore=mcoptions,
+		.export=c("normalised_a","custom_chisq")
+	) %dopar% {
+		b<-read_ballot(file,do.cook=F)
+		a<-normalised_a(b)
+		names(a)<-paste(file,c("total","postal","non-postal"))
+		unlist(lapply(lapply(a,density),custom_chisq))
+	}
+}
+
+
+
 # calculate cdf intercept  
 cdf_intercept <- function(sample,mean){
         if(length(sample)>0){
