@@ -1,0 +1,23 @@
+The theory behind this code is data normalisation. Elections, by their
+nature are known closed systems, which are known to be so. This means they
+have a population mean, which is used to normalise the dataset due to its
+insensitivity to ballot stuffing.
+
+The standard deviation used is calculated from the population mean.
+
+Individual turnout totals are calculated for each reporting centre.
+
+These totals have the population mean subtracted, then they are divided by
+the standard deviation.
+
+The sample is now measured in units of standard deviations from the population mean,
+and can be trivially compared to the model normal distribution.
+
+The chi squared test is used to measure the correspondence of each ballot to
+the normal distribution.
+
+Do:
+> source("chisq.r")
+> main()
+
+For sample output.
