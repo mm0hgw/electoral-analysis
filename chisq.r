@@ -76,7 +76,7 @@ cook_files <- function(files=list_csv_files(),breakdown=F){
 }
 
 main <- function(){
-	pdf(file="chisq.pdf")
+	pdf(file="chisq.pdf",paper="a4")
 	sample<-cook_files(list_csv_files())
 	write.csv(file="chisq.csv",sample)
 	plot(density(sample))
@@ -90,7 +90,7 @@ plot_with_normal <- function(d,...){
 }
 
 long_plot <- function(){
-	pdf(file="longplot.pdf")
+	pdf(file="longplot.pdf",paper="a4")
 	file_list <- list_csv_files()
 	sample<-lapply(file_list,FUN=function(x){
 		out<-unlist(normalised_a(read_ballot(x,do.cook=F)))

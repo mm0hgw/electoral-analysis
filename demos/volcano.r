@@ -33,13 +33,7 @@ require(akima)
 require(rgl)
 
 #
-build_points <- function(p,V,N,scale=1,...){
-	x<-p$Long
-	y<-p$Lat
-	a<-calculate_a(V,N)
-	pop_mean <- calculate_a(sum(V),sum(N))
-	pop_sd <- custom_sd(a,pop_mean)
-	z <- (a - pop_mean) * scale / pop_sd
+build_points <- function(x,y,z,...){
 	s<-interp(x,y,z,xo=dom(x),yo=dom(y),...)
 	s
 }
