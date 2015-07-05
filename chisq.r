@@ -94,13 +94,16 @@ long_plot <- function(){
 	file_list <- list_csv_files()
 	sample<-lapply(file_list,FUN=function(x){
 		out<-unlist(normalised_a(read_ballot(x,do.cook=F)))
-
 		out
 	})
 	densities<-lapply(sample,density)
-	names(densities)<-file_list
-	foreach(d=densities,n=file_list)%do%{
-		plot_with_normal(d,main=n)
+	sub_list<-paste("sample mean",lapply(sample,mean),
+		"density peak",
+		lapply(densities,FUN=function(d){
+			d$x[which.max(d$y)]
+		}))
+	foreach(d=densities,n=file_list,s=sub_list)%do%{
+		plot_with_normal(d,main=n,sub=s)
 	}
 	dev.off()
 }
