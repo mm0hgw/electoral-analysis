@@ -72,9 +72,17 @@ cook_files <- function(files){
 	}
 }
 
-#remove_ballot
-remove_ballot <- function(x,n=x$N==min(x$N[x$V!=0])){
+#remove single ballot
+remove_ballot <- function(x,n=x$N==min(x$N[calculate_a(x$V,x$N)>(calculate_a(sum(x$V),sum(x$N)))])){
 	x$V[n] <- x$V[n]-1
+	x
+}
+
+#remove multiple ballots
+remove_ballots <- function(x){
+	while(mean(calculate_a(x$V,x$N))>calculate_a(sum(x$V),sum(x$N))){
+		x<-remove_ballot(x)
+	}
 	x
 }
 
