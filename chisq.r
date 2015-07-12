@@ -4,6 +4,7 @@
 
 source("mod/cluster.r")
 source("mod/import.r")
+source("mod/calculating.r")
 
 #custom sd calculator based upon "Eq. S1" and "Eq. S2"
 #in Klimek et al. (2009)
@@ -92,18 +93,24 @@ plot_with_normal <- function(d,...){
 long_plot <- function(){
 	pdf(file="longplot.pdf",paper="a4")
 	file_list <- list_csv_files()
-	sample<-lapply(file_list,FUN=function(x){
-		out<-unlist(normalised_a(read_ballot(x,do.cook=F)))
-		out
+	ballots<-lapply(file_list,FUN=function(x){
+		read_ballot(x,do.cook=F)
 	})
+	clean_ballots <- lapply(ballots,remove_ballots)
+	sample <- lapply(ballots,FUN=function(x){calculate_normalised_a(x$V,x$N)})
+	c_sample <- lapply(clean_ballots,FUN=function(x){calculate_normalised_a(x$V,x$N)})
 	densities<-lapply(sample,density)
-	sub_list<-paste("sample mean",lapply(sample,mean),
-		"density peak",
-		lapply(densities,FUN=function(d){
-			d$x[which.max(d$y)]
-		}))
-	foreach(d=densities,n=file_list,s=sub_list)%do%{
+	c_densities<-lapply(c_sample,density)
+	
+	sub_list<-paste("ballots removed",foreach(c=clean_ballots,b=ballots)%dopar%{
+		sum(b$V-c$V)},
+		"percent of electorate cleaned",
+		foreach(c=clean_ballots,b=ballots)%dopar%{
+			sprintf("%.2f",(sum(b$V)-sum(c$V))/sum(b$N)*100)
+		})
+	foreach(d=densities,c=c_densities,n=file_list,s=sub_list)%do%{
 		plot_with_normal(d,main=n,sub=s)
+		lines(c,col="blue")
 	}
 	dev.off()
 }
