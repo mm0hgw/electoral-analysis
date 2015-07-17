@@ -13,7 +13,7 @@ sigma_to_probability <- function(x){
 sort_sample <- function(sample){
 	o<-as.numeric(sample)
 	p<-abs(o-mean(o))
-	sample[order(p,decreasing=T)]
+	sample[order(p,decreasing=TRUE)]
 }
 
 #custom sd calculator based upon "Eq. S1" and "Eq. S2"
@@ -61,11 +61,11 @@ normalised_a <- function(b){
 cook_files <- function(files){
 	foreach(file=files,
 		.combine=c,
-		.inorder=F,
+		.inorder=FALSE,
 		.options.multicore=mcoptions,
 		.export=c("normalised_a","custom_chisq")
 	) %dopar% {
-		b<-read_ballot(file,do.cook=F)
+		b<-read_ballot(file,do.cook=FALSE)
 		a<-normalised_a(b)
 		names(a)<-paste(file,c("total","postal","non-postal"))
 		unlist(lapply(lapply(a,density),custom_chisq))
@@ -82,7 +82,6 @@ remove_ballot <- function(x,n=x$N==min(x$N[calculate_a(x$V,x$N)>(calculate_a(sum
 remove_ballots <- function(x){
 	while(mean(calculate_a(x$V,x$N))>calculate_a(sum(x$V),sum(x$N))){
 		x<-remove_ballot(x)
-	}
 	x
 }
 
@@ -165,9 +164,9 @@ results_by_region <- function(bal,tag,title){
 	}
 	out_names<-paste(title,regions,tag)
 	out<-foreach(r=regions,
-		.inorder=F,
+		.inorder=FALSE,
 		.combine=c,
-		.multicombine=T,
+		.multicombine=TRUE,
 		.options.multicore=mcoptions
 	)%dopar%{
 		FUN(r)
