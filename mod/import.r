@@ -3,11 +3,11 @@
 #
 require(foreach)
 
-keys <- read.table("keys.tab",stringsAsFactors=F)
+keys <- read.table("keys.tab",stringsAsFactors=FALSE)
 
 # read headers
 read_headers <- function(filename){
-	p<-read.csv(filename,header=F,stringsAsFactors=F)[c(1,2),]
+	p<-read.csv(filename,header=FALSE,stringsAsFactors=FALSE)[c(1,2),]
 	return(p)
 }
 
@@ -20,8 +20,8 @@ key_build <- function(...){
 	}
 	out<-foreach(l=icount(l_len),
 		.combine=c,
-		.multicombine=T,
-		.inorder=T,
+		.multicombine=TRUE,
+		.inorder=TRUE,
 		.options.multicore=mcoptions
 	)%dopar%{
 		max(p[,l])
@@ -35,14 +35,14 @@ try_key <- function(filename,key){
 	l_len<-icount(length(p[,1]))
 	foreach(l=l_len,
 		.combine=key_build,
-		.multicombine=T,
-		.inorder=F,
+		.multicombine=TRUE,
+		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%:%
 	foreach(k=key,
 		.combine=c,
-		.multicombine=T,
-		.inorder=T,
+		.multicombine=TRUE,
+		.inorder=TRUE,
 		.options.multicore=mcoptions
 	)%dopar%{
 		match<-(grep(pattern=k,x=p[l,]))
@@ -76,8 +76,8 @@ key_collect<-function(...){
 	if(p_len>0){
 		mask<-foreach(p_id=icount(p_len),
 			.combine=c,
-			.multicombine=T,
-			.inorder=T,
+			.multicombine=TRUE,
+			.inorder=TRUE,
 			.options.multicore=mcoptions
 		)%dopar%{
 			valid_key(p[p_id,])
@@ -92,18 +92,18 @@ find_key <- function(filenames){
 	k_len<-length(keys[,1])
 	foreach(file=filenames,
 		.combine=list,
-		.multicombine=T,
-		.inorder=T,
+		.multicombine=TRUE,
+		.inorder=TRUE,
 		.options.multicore=mcoptions
 	)%:%
 	foreach(key_id=icount(k_len),
-		.inorder=F,
+		.inorder=FALSE,
 		.combine=key_collect,
-		.multicombine=T,
+		.multicombine=TRUE,
 		.options.multicore=mcoptions
 	)%dopar%{
 		k<-try_key(file,keys[key_id,])
-		if(valid_key(k)==T){
+		if(valid_key(k)==TRUE){
 			k
 		}else{
 			0
@@ -122,14 +122,14 @@ assemble_sample <- function(){
 	l_files<-length(files)
 	if(l_files>0){
 		sort_sample(foreach(id=icount(l_files),
-			.inorder=F,
+			.inorder=FALSE,
 			.combine=c,
-			.multicombine=T,
+			.multicombine=TRUE,
 			.options.multicore=mcoptions
 		)%dopar%{
 			key<-file_keys[[id]]
 			out<-vector()
-			if(valid_key(key)==T){
+			if(valid_key(key)==TRUE){
 				file<-files[[id]]
 				out<-read_ballot(file,key)
 			}
@@ -147,11 +147,11 @@ really_strip_whitespace<-function(x){
 }
 
 # import ballot file
-read_ballot <- function(file,key=find_key(file),do.cook=T){
+read_ballot <- function(file,key=find_key(file),do.cook=TRUE){
 	if(!valid_key(key)){
 		return()
 	}
-        p<-read.csv(file,strip.white=T,sep=",",stringsAsFactors=F,header=T)[,key]
+        p<-read.csv(file,strip.white=TRUE,sep=",",stringsAsFactors=FALSE,header=TRUE)[,key]
         p2<-p[p[,1]!=""&p[,3]!=""&p[,3]!="0",]
         ballot<-list(
                 name=p2[,1],
@@ -160,7 +160,7 @@ read_ballot <- function(file,key=find_key(file),do.cook=T){
                 V=really_strip_whitespace(p2[,4]),
                 NP=really_strip_whitespace(p2[,5]),
                 VP=really_strip_whitespace(p2[,6]))
-	if(do.cook==T){
+	if(do.cook==TRUE){
         	return(cook_ballot(ballot,file))
 	}else{
 		return(ballot)

@@ -55,14 +55,14 @@ custom_chisq <- function(d,...){
 }
 
 # cook a list of files using the normalised turnout technique
-cook_files <- function(files=list_csv_files(),breakdown=F){
+cook_files <- function(files=list_csv_files(),breakdown=FALSE){
         out<-foreach(file=files,   
                 .combine=c,   
-                .inorder=F,   
+                .inorder=FALSE,   
                 .options.multicore=mcoptions,
                 .export=c("normalised_a","custom_chisq")
         ) %dopar% {
-                b<-read_ballot(file,do.cook=F)
+                b<-read_ballot(file,do.cook=FALSE)
                 a<-normalised_a(b)
 		if(breakdown==T){
                 	names(a)<-paste(file,c("total","postal","non-postal"))
@@ -94,7 +94,7 @@ long_plot <- function(){
 	pdf(file="longplot.pdf",paper="a4")
 	file_list <- list_csv_files()
 	ballots<-lapply(file_list,FUN=function(x){
-		read_ballot(x,do.cook=F)
+		read_ballot(x,do.cook=FALSE)
 	})
 	clean_ballots <- lapply(ballots,remove_ballots)
 	sample <- lapply(ballots,FUN=function(x){calculate_normalised_a(x$V,x$N)})
