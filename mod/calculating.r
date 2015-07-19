@@ -82,6 +82,7 @@ remove_ballot <- function(x,n=x$N==min(x$N[calculate_a(x$V,x$N)>(calculate_a(sum
 remove_ballots <- function(x){
 	while(mean(calculate_a(x$V,x$N))>calculate_a(sum(x$V),sum(x$N))){
 		x<-remove_ballot(x)
+	}
 	x
 }
 
@@ -212,3 +213,4 @@ cook_ballot <- function(ballot,title){
 
         return(c(out,outp,outnp))
 }
+
