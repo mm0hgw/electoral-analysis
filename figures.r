@@ -191,52 +191,63 @@ ballot_p_remover <- function(b){
 }
 
 # while loop container, high sample mean variant
-ballot_unstuffer_s <- function(b){
-	while(sum(b$W)/sum(b$V)<mean(b$W/b$V)){
+ballot_unstuffer <- function(b_in){
+	b<-b_in
+	if(sum(b$V)/sum(b$N)<mean(b$V/b$N)){
+		condition<-function(W,V){sum(W)/sum(V)<mean(W/V)}
+		mask_fn<-function(x){max(x)+1}
+		select_fn<-which.min
+	}else{
+		condition<-function(W,V){sum(W)/sum(V)>mean(W/V)}
+		mask_fn<-function(x){min(x)-1}
+		select_fn<-which.max
+	}
+
+	while(condition(b$V,b$N)){
 		a_mask <- b$V/b$N<sum(b$V)/sum(b$N)
 		v_mask <- b$W/b$V<sum(b$W)/sum(b$V)
-		V<-b$V
+		N<-b$N
 		mask<-a_mask|v_mask
 		if(sum(mask)==length(mask)){
 			mask<-a_mask
 		}
-		if(sum(mask)==length(mask)){
-			mask<-!mask
-		}
-		V[mask]<-max(V)
-		i <- which.min(V)
+		N[mask]<-mask_fn(N)
+		i <- select_fn(N)
 		b$V[i] <- b$V[i]-1
 		b$W[i] <- b$W[i]-1
 	}
 	b$a<-b$V/b$N
 	b$v<-b$W/b$V
+	cat(paste(sum(b_in$V)-sum(b$V),"ballots removed ",
+		(sum(b_in$V)-sum(b$V))/sum(b$N),"turnout change",
+		(sum(b_in$W)-sum(b$W))/sum(b$V),"%W change\n"))
 	return(b)
 }
 
 # while loop container, high population mean variant
 ballot_unstuffer_p <- function(b){
-	pop_mean <- sum(b$V)/sum(b$N)
-	samp_mean <- mean(b$V/b$N)
+	pop_mean <- sum(b$W)/sum(b$V)
+	samp_mean <- mean(b$W/b$V)
 	while(samp_mean<pop_mean){
 		b <- ballot_p_remover(b)
-		pop_mean <- sum(b$V)/sum(b$N)
-		samp_mean <- mean(b$V/b$N)
+		pop_mean <- sum(b$W)/sum(b$N)
+		samp_mean <- mean(b$W/b$V)
 	}
 	return(b)
 }
 
 # grand unified ballot unstuffer
-ballot_unstuffer <- function(b){
-	pop_mean <- sum(b$V)/sum(b$N)
-	samp_mean <- mean(b$V/b$N)
-	if(pop_mean>samp_mean){
-		return(ballot_unstuffer_p(b))
-	}
-	if(samp_mean>pop_mean){
-		return(ballot_unstuffer_s(b))
-	}
-	return(b)
-}
+#ballot_unstuffer <- function(b){
+#	pop_mean <- sum(b$W)/sum(b$V)
+#	samp_mean <- mean(b$W/b$V)
+#	if(pop_mean>samp_mean){
+#		return(ballot_unstuffer_p(b))
+#	}
+#	if(samp_mean>pop_mean){
+#		return(ballot_unstuffer_s(b))
+#	}
+#	return(b)
+#}
 
 # list application of ballot unstuffer
 ballot_unstuffer_list <- function(b_list){
