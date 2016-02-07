@@ -63,7 +63,8 @@ contiguous_check  <- function(
 		}
 		p<-o
 	}
-	print(cbind(target,p))
+	print(p)
+	print (target)
 	return(sum(col_or(t[p,])&target!=target)==0)
 }
 
