@@ -63,7 +63,7 @@ contiguous_check  <- function(
 		}
 		p<-o
 	}
-	return(sum(xor(col_or(t[p,])&target,target))==0)
+	return(sum(col_or(t[p,])&target!=target)==0)
 }
 
 ballot_unstuffer_2 <- function(table){
