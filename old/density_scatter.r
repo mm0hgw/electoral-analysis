@@ -31,8 +31,29 @@ ballot_gen_fn <- function(n,mean,sd){
   }
 }
 
-klimek_check <- function(a_gen,v_gen,target){
-  
+pull_source <- function(){
+	system2("git","pull")
+	source("density_scatter.r")
+}
+
+col_or <- function(x){
+	foreach(i=ncol(x),.combine=c)%do%{
+		y<-x[,i]
+		while(length(y)>1){
+			y<-c(y[1]|y[2],y[c(-1,-2)])
+		}
+		y
+	}
+}
+
+contiguous_check  <- function(x,table_file="ScottishCouncilBorders.tab"){
+	t <- read.table(table_file)
+	target <- rep(FALSE,ncol(t))
+	target[x] <- TRUE
+	g <- t[x[1],]&target
+	while(g!=target){
+		
+	}
 }
 
 ballot_unstuffer_2 <- function(table){
