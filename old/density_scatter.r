@@ -42,6 +42,7 @@ col_or <- function(x){
 		while(length(y)>1){
 			y<-c(y[1]|y[2],y[c(-1,-2)])
 		}
+		print(y)
 		y
 	}
 }
