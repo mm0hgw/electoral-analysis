@@ -80,7 +80,7 @@ recursive_region_check <- function(
 		k=seq(kmin,kmax),
 		.combine=c,
 		.options.multicore=mcoptions
-	)%:%foreach(
+	)%do%{foreach(
 		i=combn(n,k),
 		.combine=c,
 		.options.multicore=mcoptions
@@ -89,7 +89,7 @@ recursive_region_check <- function(
 		N<-ballot[i,"N"]
 		V<-ballot[i,vname]
 		cdf_mean_intercept(V,N)
-	}
+	}}
 }
 
 # region set chisq
