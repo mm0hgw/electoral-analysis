@@ -37,7 +37,7 @@ pull_source <- function(){
 }
 
 col_or <- function(x){
-	foreach(i=ncol(x),.combine=c)%do%{
+	foreach(i=icount(ncol(x)),.combine=c)%do%{
 		y<-x[,i]
 		while(length(y)>1){
 			y<-c(y[1]|y[2],y[c(-1,-2)])
