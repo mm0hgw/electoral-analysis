@@ -54,7 +54,7 @@ contiguous_check  <- function(x,table_file="ScottishCouncilBorders.tab"){
 	g <- t[x[1],]&target
 	while(g!=target){
 		h<-target&t[g,]
-		if(sum(h xor g )== 0){
+		if(sum(xor (g ,h))== 0){
 			return(FALSE)
 		}
 	}
