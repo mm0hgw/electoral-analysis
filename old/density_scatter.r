@@ -57,13 +57,12 @@ contiguous_check  <- function(
 	p<-t[x[1],]&target
 	while(sum(xor(col_or(t[p,])&target,target))>0){
 		o<-(p|col_or(t[p,]))&target
-		print(rbind(o,p))
 		if(sum(xor(o,p))==0){
 			return(FALSE)
 		}
 		p<-o
 	}
-	return(TRUE)
+	return(sum(xor(col_or(t[p,])&target,target))==0)
 }
 
 ballot_unstuffer_2 <- function(table){
