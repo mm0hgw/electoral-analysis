@@ -47,7 +47,10 @@ col_or <- function(x){
 	}
 }
 
-contiguous_check  <- function(x,table_file="ScottishCouncilBorders.tab"){
+contiguous_check  <- function(
+	x,
+	table_file="ScottishCouncilBorders.tab"
+){
 	t <- read.table(table_file)
 	target <- rep(FALSE,ncol(t))
 	target[x] <- TRUE
@@ -55,7 +58,7 @@ contiguous_check  <- function(x,table_file="ScottishCouncilBorders.tab"){
 	print(g)
 	if(sum(xor(g,target))>0){
 		h<-target&col_or(t[g,])
-   print(h)
+   	print(h)
 		if(sum(xor (g ,h))== 0){
 			return(FALSE)
 		}
