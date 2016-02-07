@@ -67,7 +67,7 @@ contiguity_check  <- function(
 	if(sum(col_or(t[p,])&target!=target)==0){
 		return(x)
 	}else{
-		return(vector())
+		return(rep(0,length(x)))
 	}
 }
 
