@@ -72,15 +72,10 @@ recursive_region_check <- function(
 	ballot,
 	vname="W_No",
 	border_table=read.table("ScottishCouncilBorders.tab"),
-	kmin=kmax,
-	kmax=ncol(border_table)
+	k=ncol(border_table)
 ){
 	n<-ncol(border_table)
 	foreach(
-		k=seq(kmin,kmax),
-		.combine=c,
-		.options.multicore=mcoptions
-	)%do%{foreach(
 		i=combn(n,k),
 		.combine=rbind,
 		.inorder=FALSE,
@@ -90,7 +85,7 @@ recursive_region_check <- function(
 		N<-ballot[i,"N"]
 		V<-ballot[i,vname]
 		c(cdf_mean_intercept(V,N),i)
-	}}
+	}
 }
 
 # region set chisq
