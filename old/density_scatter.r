@@ -79,11 +79,11 @@ recursive_region_check <- function(
 	foreach(
 		k=seq(kmin,kmax),
 		.combine=c,
-		.option.multicore=mcoptions
+		.options.multicore=mcoptions
 	)%:%foreach(
 		i=combn(n,k),
 		.combine=c,
-		.option.multicore=mcoptions
+		.options.multicore=mcoptions
 	)%dopar%{
 		if(contiguity_check(i)==FALSE){return(vector())}
 		N<-ballot[i,"N"]
