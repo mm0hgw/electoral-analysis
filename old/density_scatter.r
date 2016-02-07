@@ -54,7 +54,7 @@ contiguous_check  <- function(
 	t <- read.table(table_file)
 	target <- rep(FALSE,ncol(t))
 	target[x] <- TRUE
-	col_or(t[x,])&target==target
+	(col_or(t[x,])&target)==target
 }
 
 ballot_unstuffer_2 <- function(table){
