@@ -82,7 +82,7 @@ recursive_region_check <- function(
 		.options.multicore=mcoptions
 	)%do%{foreach(
 		i=combn(n,k),
-		.combine=c,
+		.combine=rbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%dopar%{
