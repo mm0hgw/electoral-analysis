@@ -2,6 +2,7 @@ require(moments)
 require(foreach)
 require(rgl)
 require(beepr)
+require(iterators)
 
 # condition for switch functions
 # 1 if x has length 0
@@ -42,7 +43,6 @@ col_or <- function(x){
 		while(length(y)>1){
 			y<-c(y[1]|y[2],y[c(-1,-2)])
 		}
-		print(y)
 		y
 	}
 }
@@ -53,8 +53,12 @@ contiguous_check  <- function(x,table_file="ScottishCouncilBorders.tab"){
 	target[x] <- TRUE
 	g <- t[x[1],]&target
 	while(g!=target){
-		
+		h<-target&t[g,]
+		if(sum(h xor g )== 0){
+			return(FALSE)
+		}
 	}
+	return(TRUE)
 }
 
 ballot_unstuffer_2 <- function(table){
