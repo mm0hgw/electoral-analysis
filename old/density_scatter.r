@@ -37,6 +37,7 @@ pull_source <- function(){
 	source("density_scatter.r")
 }
 
+#logical or columns
 col_or <- function(x){
 	foreach(i=icount(ncol(x)),.combine=c)%do%{
 		y<-x[,i]
@@ -47,22 +48,48 @@ col_or <- function(x){
 	}
 }
 
-contiguous_check  <- function(
+# check region set for contiguity
+contiguity_check  <- function(
 	x,
 	table_file="ScottishCouncilBorders.tab"
 ){
 	t <- read.table(table_file)
 	target <- rep(FALSE,ncol(t))
 	target[x] <- TRUE
-	p<-t[x[1],]&target
+	p<-t[which.max(rowSums(t[x,target])),]&target
 	while(sum(xor(col_or(t[p,])&target,target))>0){
-		o<-(p|col_or(t[p,]))&target
+		o<-(col_or(t[p,]))&target
 		if(sum(xor(o,p))==0){
 			return(FALSE)
 		}
 		p<-o
 	}
-	return(sum(col_or(t[p,])&target!=target)==0)
+	if(sum(col_or(t[p,])&target!=target)==0){
+		return(x)
+	}else{
+		return(vector())
+	}
+}
+
+# recursive region check
+recursive_region_check <- function(
+	ballot,
+	border_table,
+	kmin,
+	kmax
+){
+	n<-ncol(border_table)
+	foreach(k=seq(kmin,kmax),.combine=c)%:%
+	foreach(
+		i=combn(n,k,FUN=contiguity_check),
+		.combine=c
+	)%dopar%{
+	}
+}
+
+# region set chisq
+region_set_chisq <- function(ballot){
+	
 }
 
 ballot_unstuffer_2 <- function(table){
