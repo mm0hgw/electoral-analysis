@@ -55,7 +55,7 @@ contiguous_check  <- function(
 	target <- rep(FALSE,ncol(t))
 	target[x] <- TRUE
 	p<-t[x[1],]&target
-	print(xor(col_or(t[p,])&target),target)
+	print(xor(col_or(t[p,])&target,target))
 if(0){
 		o<-col_or(t[p,])&target
 		if(sum(xor(o,p))==0){
