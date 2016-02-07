@@ -64,11 +64,7 @@ contiguity_check  <- function(
 		}
 		p<-o
 	}
-	if(sum(col_or(t[p,])&target!=target)==0){
-		return(x)
-	}else{
-		return(rep(0,length(x)))
-	}
+	return(sum(col_or(t[p,])&target!=target)==0)
 }
 
 # recursive region check
@@ -82,10 +78,10 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	foreach(k=seq(kmin,kmax),.combine=c)%:%
 	foreach(
-		i=combn(n,k,FUN=contiguity_check),
+		i=combn(n,k),
 		.combine=c
 	)%dopar%{
-		if(i[1]==0){return(vector())}
+		if(contiguity_check(i)==FALSE){return(vector())}
 		N<-ballot[i,"N"]
 		V<-ballot[i,vname]
 		cdf_mean_intercept(V,N)
