@@ -76,7 +76,7 @@ recursive_region_check <- function(
 	ballot,
 	vname="W_No",
 	border_table=read.table("ScottishCouncilBorders.tab"),
-	kmin=kmax-5,
+	kmin=kmax,
 	kmax=ncol(border_table)
 ){
 	n<-ncol(border_table)
