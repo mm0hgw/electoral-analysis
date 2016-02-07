@@ -52,11 +52,12 @@ contiguous_check  <- function(x,table_file="ScottishCouncilBorders.tab"){
 	target <- rep(FALSE,ncol(t))
 	target[x] <- TRUE
 	g <- t[x[1],]&target
-	while(g!=target){
+	while(sum(xor(g,target))>0){
 		h<-target&t[g,]
 		if(sum(xor (g ,h))== 0){
 			return(FALSE)
 		}
+		g<-h
 	}
 	return(TRUE)
 }
