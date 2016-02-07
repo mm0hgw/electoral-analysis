@@ -74,9 +74,10 @@ contiguity_check  <- function(
 # recursive region check
 recursive_region_check <- function(
 	ballot,
-	border_table,
-	kmin,
-	kmax
+	vname="W_No",
+	border_table=read.table("ScottishCouncilBorders.tab"),
+	kmin=kmax-5,
+	kmax=ncol(border_table)
 ){
 	n<-ncol(border_table)
 	foreach(k=seq(kmin,kmax),.combine=c)%:%
@@ -84,6 +85,10 @@ recursive_region_check <- function(
 		i=combn(n,k,FUN=contiguity_check),
 		.combine=c
 	)%dopar%{
+		if(i[1]==0){return(vector())}
+		N<-ballot[i,"N"]
+		V<-ballot[i,vname]
+		cdf_mean_intercept(V,N)
 	}
 }
 
