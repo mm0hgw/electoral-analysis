@@ -83,6 +83,7 @@ recursive_region_check <- function(
 	)%do%{foreach(
 		i=combn(n,k),
 		.combine=c,
+		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%dopar%{
 		if(contiguity_check(i)==FALSE){return(vector())}
