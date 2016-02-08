@@ -4,13 +4,6 @@ require(rgl)
 require(beepr)
 require(iterators)
 
-# condition for switch functions
-# 1 if x has length 0
-# 2 if x has length 1
-# 3 otherwise
-sw_cond <- function(x){
-  min(length(x)+1,3)
-}
 
 W2w<-function(x){gsub("W_","w_",x)}
 
@@ -156,20 +149,6 @@ ballot_cdfn<-function(ballot,tag=""){
   out
 }
 
-ballot_chisq_to_normal <- function(ballot,tag=""){
-  W_list <- quorate_names(ballot)
-  a_fn<-a_fn_fn(ballot[,"N"])
-  
-  c_fn <-function(n){
-    W<-ballot[,n]
-    w<-density(a_fn(W))
-    sum((w$y-dnorm(w$x))^2)
-  }
-  out<-c(a=c_fn("V"),ballot_sapply(ballot,W_list,c_fn))
-  names(out)<-paste(tag,names(out))
-  out
-}
-
 ballot_report <- function(ballot,tag=""){
   report_fn <- function(x){
     c(mean(x),sd(x),skewness(x),kurtosis(x))
@@ -195,17 +174,7 @@ ballot_report <- function(ballot,tag=""){
   })
 }
 
-ballot_sapply<-function(ballot,v_list,r_fn){
-  switch(sw_cond(v_list),{},{
-    out<-r_fn(v_list[1])
-    names(out)<-v_list
-    out
-  },{
-    out<-sapply(v_list,r_fn)
-    names(out)<-v_list
-    out
-  })
-}
+
 
 cook_matrix <- function(x,y,n=128){
   a<-density(x,n=n)
@@ -303,47 +272,7 @@ plot_scatter<-function(ballot,main="Sample data"){
   })
 }
 
-polled_names <- function(ballot){
-	all_n <- gsub("W_","",names(col_map_table))
-	find_fn <- function(n){
-	  i<-grep(n,colnames(ballot))
-	  switch(sw_cond(i),{FALSE},{
-	    if(sum(ballot[,i])!=0){TRUE}else{FALSE}
-	  },{
-	    if(sum(colSums(ballot[,i])!=0)>0){TRUE}else{FALSE}
-	  })
-	}
-	mask <- sapply(all_n,find_fn)
-	names(mask)[mask]
-}
 
-quorate_index <- function(ballot){
-  n <- paste("W_",polled_names(ballot),sep="")
-  i <- foreach(ni=n,.combine=c)%do%{grep(ni,colnames(ballot))}
-  switch(min(length(i)+1,3),{},{
-    if(sum(ballot[,i]!=0)>2){i}
-  },{
-    i[(colSums(ballot[,i]!=0)>(dim(ballot)[1])/2)]
-  })
-}
-
-quorate_names <- function(ballot){
-  colnames(ballot)[quorate_index(ballot)]
-}
-
-compute_W_single <- function(a_fn,W){
-  i <- min(3,1+length(unlist(W))%/%length(a_fn(0)))
-  switch(i,{},{
-    v <- a_fn(W)
-    out <- cbind(W,v)
-    out
-  },{
-    w<-rowSums(W)
-    v<-a_fn(w)
-    out<-cbind(w,v)
-    out
-  })
-}
 
 name_labels <- c("Ward","name")
 
@@ -353,49 +282,7 @@ name_column <- function(x){
   }
 }
 
-# https://stat.ethz.ch/pipermail/r-help/2006-March/101023.html
-interleave <- function(v1,v2){
-  ord1<-2*1:length(v1)-1
-  ord2<-2*1:length(v2)
-  c(v1,v2)[order(c(ord1,ord2))]
-}
 
-compute_W<-function(ballot){
-  cn <- colnames(ballot)
-  id <- ballot[,name_column(cn)]
-  if(length(id)==0|sum(cn=="V")==0|sum(cn=="N")==0){return()}
-  V <- ballot[,"V"]
-  if(sum(ballot[,"N"])==0){
-    t<-grep("Turnout",colnames(ballot))
-    N<-round(N<-V/ballot[,t])
-  }else{
-    N<-ballot[,"N"]
-  }
-  a_fn <- a_fn_fn(N)
-  a <-a_fn(V)
-  polled<-polled_names(ballot)
-  out<-cbind(N,V,a)
-  rownames(out)<-id
-  colnames(out)<-c("N","V","a")
-  switch(sw_cond(polled),{out},{
-    W <- compute_W_single(a_fn,ballot[,grep(polled,cn)])
-    if(length(dim(W))==2){
-      colnames(W) <- interleave(paste("W_",polled,sep=""),paste("w_",polled,sep=""))
-      out<-cbind(out,W)
-    }
-    out
-  },{
-    W <- foreach(p=polled,.combine=cbind)%do% {
-      x<-compute_W_single(a_fn,ballot[,grep(p,cn)])
-      if(length(dim(x))==2){
-	colnames(x)<-interleave(paste("W_",p,sep=""),paste("w_",p,sep=""))
-	x
-      }
-    }
-    out<-cbind(out,W)
-    out
-  })
-}
 
 clean_columns <- function(ballot){
 	ballot[,colSums(ballot)!=0]
@@ -427,9 +314,7 @@ hunt_outliers <- function(ballot){
 	 })
 }
 
-load_list <- function(list){
-  lapply(lapply(list,read.csv),compute_W)
-}
+
 display_list <- function(list){
   foreach(n=list,b=load_list(list))%do%{
     plot_both(b,n)
