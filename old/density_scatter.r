@@ -14,9 +14,7 @@ sw_cond <- function(x){
 
 W2w<-function(x){gsub("W_","w_",x)}
 
-a_fn_fn <- function(N){
-  function(W) calculate_normalised_a(W,N)
-}
+
 
 grep_fn_fn <- function(x){
   function(pattern){
