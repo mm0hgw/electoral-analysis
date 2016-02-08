@@ -224,7 +224,7 @@ quorate_index <- function(ballot){
   n <- paste("W_",polled_names(ballot),sep="")
   i <- foreach(ni=n,.combine=c)%do%{grep(ni,colnames(ballot))}
   switch(min(length(i)+1,3),{},{
-    if(sum(ballot[,i]!=0)>=(dim(ballot)[1])/2)){i}
+    if(sum(ballot[,i]!=0)>=(dim(ballot)[1])/2){i}
   },{
     i[(colSums(ballot[,i]!=0)>=(dim(ballot)[1])/2)]
   })
