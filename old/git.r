@@ -7,9 +7,7 @@ pull_source <- function(){
 	source("git.r")
 	source("contiguity.r")
 	
-	if(exists("cl")){
-		rm("cl")
-	}
-	cl<-makeCustomCluster()
+	
+	source("mod/cluster_launch.r")
 	
 }
