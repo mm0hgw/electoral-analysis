@@ -6,4 +6,10 @@ pull_source <- function(){
 	source("density_scatter.r")
 	source("git.r")
 	source("contiguity.r")
+	
+	if(exists("cl")){
+		rm("cl")
+	}
+	cl<-makeCustomCluster()
+	
 }

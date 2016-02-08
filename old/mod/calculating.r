@@ -53,6 +53,10 @@ calculate_normalised_a <- function(V,N){
 	(a-pop_mean)/pop_sd
 }
 
+# turnout function generator 
+a_fn_fn <- function(N){
+  function(V) calculate_normalised_a(V,N)
+}
 
 # cook a list of files using the normalised turnout technique
 cook_files <- function(files){
