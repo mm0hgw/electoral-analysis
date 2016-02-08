@@ -48,6 +48,6 @@ recursive_region_check <- function(
 		if(contiguity_check(i)==FALSE){return(vector())}
 		N<-ballot[i,"N"]
 		V<-ballot[i,vname]
-		c(cdf_mean_intercept(V,N),i)
+		c(ballot[i,c("N",vname)],i)
 	}
 }
