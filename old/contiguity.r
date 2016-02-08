@@ -1,5 +1,5 @@
 require(foreach)
-require(doparallel)
+require(doParallel)
 
 #logical or columns
 col_or <- function(x){
