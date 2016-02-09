@@ -30,12 +30,11 @@ contiguity_check  <- function(
 	table_file="ScottishCouncilBorders.tab"
 ){
 	t <- read.table(table_file)[x,x]
-	print(t)
 	n <- ncol(t)
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
 	r<-t[which.max(rt),]
-	cat(bin_str(r))
+	print(t[r,-r])
 }
 
 # recursive region check
