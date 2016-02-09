@@ -1,5 +1,6 @@
 require(foreach)
 require(doParallel)
+require(beepr)
 
 #logical or columns
 col_or <- function(x){
@@ -18,15 +19,19 @@ contiguity_check  <- function(
 	table_file="ScottishCouncilBorders.tab"
 ){
 	t <- read.table(table_file)
-	target <- rep(FALSE,ncol(t))
+	n <- ncol(t)
+	target <- rep(FALSE,n)
 	target[x] <- TRUE
 	p<-t[which.max(rowSums(t[x,target])),]&target
+	print(target)
+	print(p)
 	while(sum(col_or(t[p,])&target==target)>0){
 		o<-(col_or(t[p,]))&target
 		if(sum((o==p))==0){
 			return(FALSE)
 		}
 		p<-o
+		print(p)
 	}
 	return(sum(col_or(t[p,])&target!=target)==0)
 }
@@ -39,7 +44,7 @@ recursive_region_check <- function(
 	k=ncol(border_table)
 ){
 	n<-ncol(border_table)
-	foreach(
+	out<-foreach(
 		i=combn(n,k),
 		.combine=rbind,
 		.inorder=FALSE,
@@ -48,4 +53,6 @@ recursive_region_check <- function(
 		if(contiguity_check(i)==FALSE){return(vector())}
 		print(as.vector(i))
 	}
+	beep(9)
+	out
 }
