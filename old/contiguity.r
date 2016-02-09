@@ -45,8 +45,6 @@ contiguity_check  <- function(
 			if(sret==length(ret)){return(TRUE)}
 			cat(bin_str(r))
 			r[r==FALSE]<-ret
-			cat(bin_str(r))
-			break()
 		}
 	}
 }
