@@ -16,6 +16,7 @@ col_or <- function(x){
 	}
 	foreach(i=icount(ncol(x)),.combine=c)%do%{
 		y<-x[,i]
+		cat(bin_str(y))
 		while(length(y)>1){
 			y<-c(y[1]|y[2],y[c(-1,-2)])
 		}
