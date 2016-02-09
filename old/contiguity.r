@@ -40,7 +40,7 @@ contiguity_check  <- function(
 		p<-o
 		cat(bin_str(p))
 	}
-	print(bin_str(col_or(t[p,])&target))
+	print(bin_str(col_or(t[p,])))
 	return(sum(col_or(t[p,])&target==target)==n)
 }
 
