@@ -34,7 +34,7 @@ contiguity_check  <- function(
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
 	r<-t[which.max(rt),]
-	print(t[r,!r])
+	print(t[r==TRUE,r==FALSE])
 }
 
 # recursive region check
