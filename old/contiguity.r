@@ -35,7 +35,7 @@ contiguity_check  <- function(
 	if(max(rt)==n){return(TRUE)}
 	r<-as.vector(t[which.max(rt),])
 	while(TRUE){
-		cat(bin_str(r))
+		#cat(bin_str(r))
 		et<-(t[r==FALSE,r==TRUE])
 		if(length(dim(et))==0){
 			if(sum(et)==0){return(FALSE)}else{return(TRUE)}
