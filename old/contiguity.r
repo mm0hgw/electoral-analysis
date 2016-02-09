@@ -6,7 +6,7 @@ require(beepr)
 bin_str <- function(x){
 	out<-rep("0",length(x))
 	out[x==TRUE]<-"1"
-	paste(out,collapse="")
+	paste(out,"\n",collapse="")
 }
 
 #logical or columns
