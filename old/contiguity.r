@@ -2,6 +2,13 @@ require(foreach)
 require(doParallel)
 require(beepr)
 
+# convert a binary vector to a binary string
+bin_str <- function(x){
+	out<-rep("0",length(x))
+	out[x==TRUE]<-"1"
+	paste(out,collapse="")
+}
+
 #logical or columns
 col_or <- function(x){
 	foreach(i=icount(ncol(x)),.combine=c)%do%{
@@ -23,15 +30,15 @@ contiguity_check  <- function(
 	target <- rep(FALSE,n)
 	target[x] <- TRUE
 	p<-t[which.max(rowSums(t[x,target])),]&target
-	print(target)
-	print(p)
+	cat(bin_str(target))
+	cat(bin_str(p))
 	while(sum(col_or(t[p,])&target==target)>0){
 		o<-(col_or(t[p,]))&target
 		if(sum((o==p))==0){
 			return(FALSE)
 		}
 		p<-o
-		print(p)
+		cat(bin_str(p))
 	}
 	return(sum(col_or(t[p,])&target!=target)==0)
 }
