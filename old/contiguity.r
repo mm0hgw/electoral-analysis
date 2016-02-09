@@ -11,6 +11,9 @@ bin_str <- function(x){
 
 #logical or columns
 col_or <- function(x){
+	if(nrow(x)==NULL){
+		return(x)
+	}
 	foreach(i=icount(ncol(x)),.combine=c)%do%{
 		y<-x[,i]
 		while(length(y)>1){
@@ -40,7 +43,7 @@ contiguity_check  <- function(
 		p<-o
 		cat(bin_str(p))
 	}
-	print(bin_str(col_or(t[p,])))
+	cat(bin_str(col_or(t[p,])))
 	return(sum(col_or(t[p,])&target==target)==n)
 }
 
