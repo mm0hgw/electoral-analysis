@@ -32,9 +32,9 @@ contiguity_check  <- function(
 	p<-t[which.max(rowSums(t[x,target])),]&target
 	cat(bin_str(target))
 	cat(bin_str(p))
-	while(sum(col_or(t[p,])&target==target)>0){
+	while(sum(col_or(t[p,])&target==target)<n){
 		o<-(col_or(t[p,]))&target
-		if(sum((o==p))==0){
+		if(sum((o==p))==n){
 			return(FALSE)
 		}
 		p<-o
