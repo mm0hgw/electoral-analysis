@@ -34,7 +34,7 @@ contiguity_check  <- function(
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
 	r<-t[which.max(rt),]
-	while(sum(as.vector((t[r==TRUE,r==FALSE]))>0){
+	while(sum(as.vector(t[r==TRUE,r==FALSE]))>0){
 		print(t[r==TRUE,r==FALSE])
 		break()
 	}
