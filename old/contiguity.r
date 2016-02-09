@@ -34,16 +34,20 @@ contiguity_check  <- function(
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
 	r<-t[which.max(rt),]
-	et<-(t[r==TRUE,r==FALSE])
-	if(length(dim(et))==0){
-		print(et)
-	}else{
-		print(rowSums(et))
-		print(et)
+	while(TRUE){
+		et<-(t[r==TRUE,r==FALSE])
+		if(length(dim(et))==0){
+			if(sum(et)==0){return(FALSE)}else{return(TRUE)}
+		}else{
+			ret<-(rowSums(et)!=0)
+			print(ret)
+			sret<-sum(ret)
+			if(sret==0){return(FALSE)}
+			if(sret==length(ret)){return(TRUE)}
+			print(r)
+			print(r[r==FALSE]<-ret)
+		}
 	}
-		
-
-	return(FALSE)
 }
 
 # recursive region check
