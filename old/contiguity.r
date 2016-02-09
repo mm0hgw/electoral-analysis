@@ -21,9 +21,9 @@ contiguity_check  <- function(
 	target <- rep(FALSE,ncol(t))
 	target[x] <- TRUE
 	p<-t[which.max(rowSums(t[x,target])),]&target
-	while(sum(xor(col_or(t[p,])&target,target))>0){
+	while(sum(col_or(t[p,])&target==target)>0){
 		o<-(col_or(t[p,]))&target
-		if(sum(xor(o,p))==0){
+		if(sum((o==p))==0){
 			return(FALSE)
 		}
 		p<-o
