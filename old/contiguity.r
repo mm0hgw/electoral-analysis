@@ -40,12 +40,13 @@ contiguity_check  <- function(
 			if(sum(et)==0){return(FALSE)}else{return(TRUE)}
 		}else{
 			ret<-(rowSums(et)!=0)
-			print(ret)
 			sret<-sum(ret)
 			if(sret==0){return(FALSE)}
 			if(sret==length(ret)){return(TRUE)}
-			print(r)
-			print(r[r==FALSE]<-ret)
+			cat(bin_str(r))
+			r[r==FALSE]<-ret
+			cat(bin_str(r))
+			break()
 		}
 	}
 }
