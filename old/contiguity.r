@@ -29,7 +29,8 @@ contiguity_check  <- function(
 	x,
 	table_file="ScottishCouncilBorders.tab"
 ){
-	t <- read.table(table_file)
+	t <- read.table(table_file)[x,x]
+	print(t)
 	n <- ncol(t)
 	target <- rep(FALSE,n)
 	target[x] <- TRUE
