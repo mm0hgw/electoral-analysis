@@ -36,16 +36,7 @@ contiguity_check  <- function(
 	p<-t[which.max(rowSums(t)),]
 	cat(bin_str(target))
 	cat(bin_str(p))
-	while(sum(col_or(t[p,])&target==target)<n){
-		o<-(col_or(t[p,]))&target
-		if(sum((o==p))==n){
-			return(FALSE)
-		}
-		p<-o
-		cat(bin_str(p))
-	}
-	cat(bin_str(col_or(t[p,])))
-	return(sum(col_or(t[p,])&target==target)==n)
+	
 }
 
 # recursive region check
