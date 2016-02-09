@@ -44,10 +44,9 @@ recursive_region_check <- function(
 		.combine=rbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
-	)%dopar%{
+	)%do%{
 		if(contiguity_check(i)==FALSE){return(vector())}
-		N<-ballot[i,"N"]
-		V<-ballot[i,vname]
+		print(ballot)
 		c(ballot_chisq_to_normal(ballot[i,c("N",vname)]),i)
 	}
 }
