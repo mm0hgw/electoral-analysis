@@ -33,7 +33,7 @@ contiguity_check  <- function(
 	n <- ncol(t)
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
-	r<-t[which.max(rt),]
+	r<-as.vector(t[which.max(rt),])
 	while(TRUE){
 		et<-(t[r==TRUE,r==FALSE])
 		if(length(dim(et))==0){
