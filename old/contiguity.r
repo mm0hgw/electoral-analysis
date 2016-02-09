@@ -31,6 +31,7 @@ contiguity_check  <- function(
 ){
 	t <- read.table(table_file)[x,x]
 	n <- ncol(t)
+	print(n)
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
 	r<-t[which.max(rt),]
