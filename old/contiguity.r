@@ -46,7 +46,6 @@ recursive_region_check <- function(
 		.options.multicore=mcoptions
 	)%do%{
 		if(contiguity_check(i)==FALSE){return(vector())}
-		print(i)
-		c(ballot_chisq_to_normal(ballot[i,c("N",vname)]),i)
+		print(as.vector(i))
 	}
 }
