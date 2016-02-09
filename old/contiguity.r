@@ -34,8 +34,13 @@ contiguity_check  <- function(
 	rt<-rowSums(t)
 	if(max(rt)==n){return(TRUE)}
 	r<-t[which.max(rt),]
-	print(t[r==TRUE,r==FALSE])
-	print(colSums(t[r==TRUE,r==FALSE]))
+	et<-(t[r==TRUE,r==FALSE])
+	if(rowSums(et)==FALSE){
+		print(et)
+	}else{
+		print(rowSums(et))
+		print(et)
+	}
 		
 
 	return(FALSE)
