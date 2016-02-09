@@ -40,7 +40,7 @@ contiguity_check  <- function(
 		p<-o
 		cat(bin_str(p))
 	}
-	return(sum(col_or(t[p,])&target!=target)==0)
+	return(sum(col_or(t[p,])&target==target)==n)
 }
 
 # recursive region check
