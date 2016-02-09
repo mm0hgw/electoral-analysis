@@ -32,9 +32,8 @@ contiguity_check  <- function(
 	t <- read.table(table_file)[x,x]
 	print(t)
 	n <- ncol(t)
-	target <- rep(FALSE,n)
-	target[x] <- TRUE
-	p<-t[which.max(rowSums(t[x,target])),]&target
+	target <- rep(TRUE,n)
+	p<-t[which.max(rowSums(t)),]
 	cat(bin_str(target))
 	cat(bin_str(p))
 	while(sum(col_or(t[p,])&target==target)<n){
