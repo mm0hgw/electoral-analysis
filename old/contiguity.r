@@ -11,7 +11,7 @@ bin_str <- function(x){
 
 #logical or columns
 col_or <- function(x){
-	if(nrow(x)==NULL){
+	if(length(nrow(x))==0){
 		return(x)
 	}
 	foreach(i=icount(ncol(x)),.combine=c)%do%{
