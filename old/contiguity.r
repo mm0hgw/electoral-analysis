@@ -32,11 +32,10 @@ contiguity_check  <- function(
 	t <- read.table(table_file)[x,x]
 	print(t)
 	n <- ncol(t)
-	target <- rep(TRUE,n)
-	p<-t[which.max(rowSums(t)),]
-	cat(bin_str(target))
-	cat(bin_str(p))
-	
+	rt<-rowSums(t)
+	if(max(rt)==n){return(TRUE)}
+	r<-t[which.max(rt),]
+	cat(bin_str(r))
 }
 
 # recursive region check
