@@ -97,3 +97,17 @@ region_check <- function(
 	}
 }
 
+parallel_combn <- (
+	x,#the integer uid of this combination
+	n,#n choose k
+	k
+){
+	if(k=1){return(x)}
+	cnk<-choose(n-1,k-1)
+	if(x<cnk){
+		out<-c(1,parallel_combn(x,n-1,k-1)+1)
+	}else{
+		out<-parallel_combn(x-cnk,n-1,k)+1
+	}
+}
+
