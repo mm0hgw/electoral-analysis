@@ -61,6 +61,7 @@ recursive_region_check <- function(
 		j=icount(choose(n,k)),
 		.combine=cbind,
 		.inorder=FALSE,
+		.maxcombine=1e3,
 		.options.multicore=mcoptions
 	)%dopar%{
 		i<-parallel_combn(j,n,k)
