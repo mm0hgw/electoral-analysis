@@ -47,7 +47,7 @@ contiguty_check_wrapper <- function(
 	 b,#ballot border table
 	x#region vector
 ){
-	 contiguity_check(b[x,x])&contiguity_check(b[-x,-x])
+	 print(contiguity_check(b[x,x]))
 }
 
 # recursive region check
@@ -62,7 +62,7 @@ recursive_region_check <- function(
 		.combine=cbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
-	)%dopar%{
+	)%do%{
 		i<-parallel_combn(j,n,k)
 		if(contiguity_check_wrapper(border_table,i)){
 			c(j,ballot_chisq_to_normal(ballot[i,]))
@@ -73,6 +73,7 @@ recursive_region_check <- function(
 	out
 }
 
+# check region
 region_check <- function(
 	ballot=compute_W(read.csv("SIR2014.csv")),
 	border_table=read.table("ScottishCouncilBorders.tab")
@@ -97,6 +98,7 @@ region_check <- function(
 	}
 }
 
+# generate combinations
 parallel_combn <- function(
 	x,#the integer uid of this combination
 	n,#n choose k
@@ -113,6 +115,7 @@ parallel_combn <- function(
 	out
 }
 
+# unit test for combination generator
 test_parallel<-function(n,k){
 	tgt<-combn(n,k)
 	foreach(i=icount(ncol(tgt)),.combine=sum)%dopar%{
