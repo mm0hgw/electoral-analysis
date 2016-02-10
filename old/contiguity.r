@@ -70,7 +70,7 @@ region_check <- function(
 ){
 	n<-ncol(border_table)
 	a<-seq(5,n)
-	a<-a[choose(n,i)*i<1e9]
-	a<-a[order(choose(n,i)*i)]
+	a<-a[choose(n,a)*a<1e9]
+	a<-a[order(choose(n,a)*a)]
 	a
 }
