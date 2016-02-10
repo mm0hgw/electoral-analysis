@@ -32,18 +32,27 @@ contiguity_check  <- function(
 	t <- read.table(table_file)[x,x]
 	n <- ncol(t)
 	rt<-rowSums(t)
-	if(max(rt)==n){return(TRUE)}
+	if(max(rt)==n){
+		return(TRUE)
+	}
 	r<-as.vector(t[which.max(rt),])
 	while(TRUE){
-		#cat(bin_str(r))
 		et<-(t[r==FALSE,r==TRUE])
-		if(length(dim(et))==0){
-			if(sum(et)==0){return(FALSE)}else{return(TRUE)}
+		if(length(dim(et))==0){ 
+			if(sum(et)==0){
+				return(FALSE)
+			}else{
+				return(TRUE)
+			}
 		}else{
 			ret<-(rowSums(et)!=0)
 			sret<-sum(ret)
-			if(sret==0){return(FALSE)}
-			if(sret==length(ret)){return(TRUE)}
+			if(sret==0){
+				return(FALSE)
+			}
+			if(sret==length(ret)){
+				return(TRUE)
+			}
 			r[r==FALSE]<-ret
 		}
 	}
@@ -57,20 +66,17 @@ recursive_region_check <- function(
 ){
 	n<-ncol(border_table)
 	r<-combn(n,k)
-	cr<-foreach(
-		i=icount(ncol(r)),
-		.combine=c,
-		.options.multicore=mcoptions
-	)%dopar%{
-		contiguity_check(r[,i])
-	}
 	out<-foreach(
-		i=r[,cr],
+		i=icount(ncol(r)),
 		.combine=rbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%dopar%{
-		ballot_chisq_to_normal(ballot[i,])
+		if(contiguity_check(r[,i])){
+			ballot_chisq_to_normal(ballot[r[,i],])
+		}else{
+			vector()
+		}
 	}
 	beep(9)
 	out
