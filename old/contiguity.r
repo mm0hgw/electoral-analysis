@@ -97,7 +97,7 @@ region_check <- function(
 	}
 }
 
-parallel_combn <- (
+parallel_combn <- function(
 	x,#the integer uid of this combination
 	n,#n choose k
 	k
