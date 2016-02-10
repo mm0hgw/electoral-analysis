@@ -104,12 +104,12 @@ parallel_combn <- function(
 ){
 	if(k==1){return(x)}
 	cnk<-choose(n-1,k-1)
-	if(x<cnk){
+	if(x<=cnk){
 		out<-c(1,parallel_combn(x,n-1,k-1)+1)
 	}else{
 		out<-parallel_combn(x-cnk,n-1,k)+1
 	}
-	cat(paste(x,n,k,paste(out,collapse=" "),"\n"))
+	cat(paste(x,n,k,":",paste(out,collapse=" "),"\n"))
 	out
 }
 
