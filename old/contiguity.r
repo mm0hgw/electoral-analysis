@@ -51,7 +51,7 @@ recursive_region_check <- function(
 	r<-combn(n,k)
 	out<-foreach(
 		i=icount(ncol(r)),
-		.combine=rbind,
+		.combine=cbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%dopar%{
@@ -69,8 +69,13 @@ region_check <- function(
 	border_table=read.table("ScottishCouncilBorders.tab")
 ){
 	n<-ncol(border_table)
-	a<-seq(5,n)
+	a<-seq(5,n-1)
 	a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a)*a)]
-	a
+	foreach(i=a,.combine=cbind)%do%{
+		out<-rowMeans(recursive_region_check(ballot,border_table,k=i))
+		cat(file="contiguity.log",append=TRUE,
+			paste(i,paste(out,collapse=" "),"\n")
+		out
+	}
 }
