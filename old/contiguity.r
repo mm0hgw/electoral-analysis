@@ -75,21 +75,28 @@ recursive_region_check <- function(
 
 # check region
 region_check <- function(
-	ballot=compute_W(read.csv("SIR2014.csv")),
-	border_table=read.table("ScottishCouncilBorders.tab")
+	name="SIR2014",
+	ballot=compute_W(read.csv(paste(name,".csv",sep=""))),
+	border_table=read.table(paste(name,"_borders.tab",sep=""))
 ){
 	n<-ncol(border_table)
 	a<-seq(5,n-1)
 	#a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a)*a)]
 	foreach(i=a,.combine=cbind)%do%{
-		datafile<-paste("SIR2014_k",i,".tab",sep="")
+		datafile<-paste(name,"_k",i,".tab",sep="")
 		if(file.exists(datafile)){
 			vector()
 		}else{
 			data<-(recursive_region_check(ballot,border_table,k=i))
 			write.table(data,file=datafile)
-			out<-rowMeans(data)
+			out<-foreach(i=icount(nrow(data)),
+				.combine=c,
+				.options.multicore=mcoptions
+			)%dopar%{
+				mean(data[i,])
+			}
+			names(out)<-rownames(data)
 			cat(file="contiguity.log",append=TRUE,
 				paste(i,paste(out,collapse=" "),"\n"))
 			beep(9)
