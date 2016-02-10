@@ -102,7 +102,7 @@ parallel_combn <- function(
 	n,#n choose k
 	k
 ){
-	if(k=1){return(x)}
+	if(k==1){return(x)}
 	cnk<-choose(n-1,k-1)
 	if(x<cnk)}
 		out<-c(1,parallel_combn(x,n-1,k-1)+1)
