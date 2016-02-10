@@ -70,8 +70,7 @@ region_check <- function(
 ){
 	n<-ncol(border_table)
 	a<-seq(5,n)
-	a<-foreach(i=a,.combine=c)%do%{
-		if(choose(n,i)*i<1e9){i}else{vector()}
-	}
+	a<-a[choose(n,i)*i<1e9]
+	a<-a[order(choose(n,i)*i)]
 	a
 }
