@@ -109,6 +109,7 @@ parallel_combn <- function(
 	}else{
 		out<-parallel_combn(x-cnk,n-1,k)+1
 	}
+	out
 }
 
 
