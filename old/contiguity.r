@@ -109,7 +109,7 @@ parallel_combn <- function(
 	}else{
 		out<-parallel_combn(x-cnk,n-1,k)+1
 	}
-	cat(paste(x,n,k,":",paste(out,collapse=" "),"\n"))
+	#cat(paste(x,n,k,":",paste(out,collapse=" "),"\n"))
 	out
 }
 
