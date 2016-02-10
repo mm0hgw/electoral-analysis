@@ -76,6 +76,7 @@ region_check <- function(
 		out<-rowMeans(recursive_region_check(ballot,border_table,k=i))
 		cat(file="contiguity.log",append=TRUE,
 			paste(i,paste(out,collapse=" "),"\n"))
+		beep(9)
 		out
 	}
 }
