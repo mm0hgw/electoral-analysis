@@ -23,7 +23,7 @@ combnGenGen <- function(n,k){
 		}
 		out
 	}
-	combnGen
+	return(combnGen)
 }
 
 # unit test for combination generator
