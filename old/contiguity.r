@@ -84,6 +84,7 @@ region_check <- function(
 	a<-a[order(choose(n,a)*a)]
 	foreach(i=a,.combine=cbind)%do%{
 		datafile<-paste("SIR2014_k",i,".tab",sep="")
+		print(file.exists(datafile))
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
 		}else{
