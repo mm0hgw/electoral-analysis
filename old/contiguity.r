@@ -82,9 +82,13 @@ region_check <- function(
 	a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a)*a)]
 	foreach(i=a,.combine=cbind)%do%{
-		data<-(recursive_region_check(ballot,border_table,k=i))
-		datafile<-paste("SIR2014_k",i,".tab")
-		write.table(data,file=datafile)
+		datafile<-paste("SIR2014_k",i,".tab",sep="")
+		if(file.exists(datafile)){
+			data<-read.table(datafile)
+		}else{
+			data<-(recursive_region_check(ballot,border_table,k=i))
+			write.table(data,file=datafile)
+		}
 		out<-rowMeans(data)
 		cat(file="contiguity.log",append=TRUE,
 			paste(i,paste(out,collapse=" "),"\n"))
