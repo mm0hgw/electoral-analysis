@@ -58,7 +58,7 @@ recursive_region_check <- function(
 ){
 	n<-ncol(border_table)
 	combnGen<-combnGenGen(n,k)
-	maxcombine<-max(1e2,round(choose(n,k)/1e2))
+	maxcombine<-max(1e2,round(sqrt(choose(n,k))))
 	out<-foreach(
 		j=icount(choose(n,k)),
 		.combine=cbind,
@@ -85,7 +85,7 @@ region_check <- function(
 	n<-ncol(border_table)
 	a<-seq(5,n-1)
 	#a<-a[choose(n,a)*a<1e9]
-	a<-a[order(choose(n,a)*a)]
+	a<-a[order(choose(n,a))]
 	foreach(i=a,.combine=cbind)%do%{
 		datafile<-paste(name,"_k",i,".tab",sep="")
 		if(file.exists(datafile)){
