@@ -9,20 +9,6 @@ bin_str <- function(x){
 	paste(paste(out,collapse=""),"\n")
 }
 
-#logical or columns
-col_or <- function(x){
-	if(length(nrow(x))==0){
-		return(x)
-	}
-	foreach(i=icount(ncol(x)),.combine=c)%do%{
-		y<-x[,i]
-		while(length(y)>1){
-			y<-c(y[1]|y[2],y[c(-1,-2)])
-		}
-		y
-	}
-}
-
 # check region set for contiguity
 contiguity_check  <- function(
 	x,
@@ -30,7 +16,7 @@ contiguity_check  <- function(
 ){
 	t <- read.table(table_file)[x,x]
 	n <- ncol(t)
-	rt<-rowSums(t)
+	rt <- rowSums(t)
 	if(max(rt)==n){
 		return(TRUE)
 	}
