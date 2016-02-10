@@ -57,14 +57,16 @@ recursive_region_check <- function(
 	k=ncol(border_table)
 ){
 	n<-ncol(border_table)
+	combnGen<-combnGenGen(n,k)
+	maxcombine<-max(1e2,round(choose(n,k)/1e2))
 	out<-foreach(
 		j=icount(choose(n,k)),
 		.combine=cbind,
 		.inorder=FALSE,
-		.maxcombine=1e3,
+		.maxcombine=maxcombine,
 		.options.multicore=mcoptions
 	)%dopar%{
-		i<-parallel_combn(j,n,k)
+		i<-combnGen(j)
 		if(contiguity_check_wrapper(border_table,i)){
 			ballot_chisq_to_normal(ballot[i,])
 		}else{
@@ -105,30 +107,4 @@ region_check <- function(
 		}
 	}
 }
-
-# generate combinations
-parallel_combn <- function(
-	x,#the integer uid of this combination
-	n,#n choose k
-	k
-){
-	if(k==1){return(x)}
-	cnk<-choose(n-1,k-1)
-	if(x<=cnk){
-		out<-c(1,parallel_combn(x,n-1,k-1)+1)
-	}else{
-		out<-parallel_combn(x-cnk,n-1,k)+1
-	}
-	#cat(paste(x,n,k,":",paste(out,collapse=" "),"\n"))
-	out
-}
-
-# unit test for combination generator
-test_parallel<-function(n,k){
-	tgt<-combn(n,k)
-	foreach(i=icount(ncol(tgt)),.combine=sum)%dopar%{
-		tgt[,i]!=parallel_combn(i,n,k)
-	}
-}
-
 
