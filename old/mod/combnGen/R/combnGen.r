@@ -1,18 +1,6 @@
 require(foreach)
 require(iterators)
 
-# choose look up table gen
-chooseLutGen <- function(n,k){
-	chooseLut<-matrix(1,nrow=n,ncol=k)
-	foreach(i=icount(n))%:%
-	foreach(j=icount(k))%do%{
-		if(i>j){
-			chooseLut[i,j]<-choose(i,j)
-		}
-	}
-	return(chooseLut)
-}
-
 #combination generator generator
 combnGenGen <- function(n,k){
 	chooseLut <- chooseLutGen(n-1,k-1)
@@ -29,3 +17,14 @@ combnGenGen <- function(n,k){
 	return(combnGen)
 }
 
+# choose look up table generator
+chooseLutGen <- function(n,k){
+	chooseLut<-matrix(1,nrow=n,ncol=k)
+	foreach(i=icount(n))%:%
+	foreach(j=icount(k))%do%{
+		if(i>j){
+			chooseLut[i,j]<-choose(i,j)
+		}
+	}
+	return(chooseLut)
+}
