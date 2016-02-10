@@ -19,7 +19,7 @@ combnGenGen <- function(n,k){
 		if(x<=cnk){
 			out<-c(1,combnGen(x,n-1,k-1)+1)
 		}else{
-			out<-combn(x-cnk,n-1,k)+1
+			out<-combnGen(x-cnk,n-1,k)+1
 		}
 		out
 	}
