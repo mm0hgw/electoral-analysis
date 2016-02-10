@@ -64,8 +64,7 @@ recursive_region_check <- function(
 		.options.multicore=mcoptions
 	)%dopar%{
 		if(contiguity_check(i)==FALSE){return(vector())}
-		print(as.vector(i))
-		c(ballot_chisq_to_normal(ballot[i,]),i)
+		ballot_chisq_to_normal(ballot[i,])
 	}
 	beep(9)
 	out
