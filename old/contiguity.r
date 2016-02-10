@@ -65,7 +65,7 @@ recursive_region_check <- function(
 	)%dopar%{
 		i<-parallel_combn(j,n,k)
 		if(contiguity_check_wrapper(border_table,i)){
-			c(j,ballot_chisq_to_normal(ballot[i,]))
+			ballot_chisq_to_normal(ballot[i,])
 		}else{
 			vector()
 		}
