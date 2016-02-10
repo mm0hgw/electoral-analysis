@@ -117,16 +117,16 @@ deviation_in_SDs <- function(x,x_mean=mean(x),x_sd=sd(x)){
 }
 
 # chisq test function
-ballot_chisq_to_normal <- function(ballot,tag=""){
-  W_list <- quorate_names(ballot)
+ballot_chisq_to_normal <- function(ballot,tag="",
+  W_list <- c("V", quorate_names(ballot))
+){
   a_fn<-a_fn_fn(ballot[,"N"])
-  
   c_fn <-function(n){
     W<-ballot[,n]
     w<-density(a_fn(W))
     sum((w$y-dnorm(w$x))^2)
   }
-  out<-c(a=c_fn("V"),ballot_sapply(ballot,W_list,c_fn))
+  out<-ballot_sapply(ballot,W_list,c_fn)
   names(out)<-paste(tag,names(out))
   out
 }
