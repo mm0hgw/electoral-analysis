@@ -64,7 +64,7 @@ recursive_region_check <- function(
 	out
 }
 
-ballot_check <- function(
+region_check <- function(
 	ballot=compute_W(read.csv("SIR2014.csv")),
 	border_table=read.table("ScottishCouncilBorders.tab")
 ){
