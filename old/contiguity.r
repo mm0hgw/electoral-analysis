@@ -57,15 +57,15 @@ recursive_region_check <- function(
 	k=ncol(border_table)
 ){
 	n<-ncol(border_table)
-	r<-combn(n,k)
 	out<-foreach(
-		i=icount(ncol(r)),
+		j=icount(choose(n,k)),
 		.combine=cbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%dopar%{
-		if(contiguity_check(border_table[r[,i],r[,i]])){
-			ballot_chisq_to_normal(ballot[r[,i],])
+		i<-parallel_combn(j,n,k)
+		if(contiguity_check_wrapper(border_table,i)){
+			c(j,ballot_chisq_to_normal(ballot[i,]))
 		}else{
 			vector()
 		}
