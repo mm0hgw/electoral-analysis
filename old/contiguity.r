@@ -57,13 +57,12 @@ recursive_region_check <- function(
 ){
 	n<-ncol(border_table)
 	r<-combn(n,k)
-	print(r)
 	cr<-foreach(
 		i=icount(ncol(r)),
 		.combine=c,
 		.options.multicore=mcoptions
 	)%dopar%{
-		contiguity_check(i)
+		contiguity_check(r[,i])
 	}
 	out<-foreach(
 		i=r[,cr],
