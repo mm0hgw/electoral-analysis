@@ -47,7 +47,7 @@ contiguity_check_wrapper <- function(
 	 b,#ballot border table
 	x#region vector
 ){
-	 print(contiguity_check(b[x,x]))
+	 contiguity_check(b[x,x])
 }
 
 # recursive region check
@@ -62,7 +62,7 @@ recursive_region_check <- function(
 		.combine=cbind,
 		.inorder=FALSE,
 		.options.multicore=mcoptions
-	)%do%{
+	)%dopar%{
 		i<-parallel_combn(j,n,k)
 		if(contiguity_check_wrapper(border_table,i)){
 			c(j,ballot_chisq_to_normal(ballot[i,]))
@@ -80,22 +80,21 @@ region_check <- function(
 ){
 	n<-ncol(border_table)
 	a<-seq(5,n-1)
-	a<-a[choose(n,a)*a<1e9]
+	#a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a)*a)]
 	foreach(i=a,.combine=cbind)%do%{
 		datafile<-paste("SIR2014_k",i,".tab",sep="")
-		print(file.exists(datafile))
 		if(file.exists(datafile)){
-			data<-read.table(datafile)
+			vector()
 		}else{
 			data<-(recursive_region_check(ballot,border_table,k=i))
 			write.table(data,file=datafile)
+			out<-rowMeans(data)
+			cat(file="contiguity.log",append=TRUE,
+				paste(i,paste(out,collapse=" "),"\n"))
+			beep(9)
+			out
 		}
-		out<-rowMeans(data)
-		cat(file="contiguity.log",append=TRUE,
-			paste(i,paste(out,collapse=" "),"\n"))
-		beep(9)
-		out
 	}
 }
 
