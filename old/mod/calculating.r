@@ -118,7 +118,7 @@ deviation_in_SDs <- function(x,x_mean=mean(x),x_sd=sd(x)){
 
 # chisq test function
 ballot_chisq_to_normal <- function(ballot,tag="",
-  W_list <- c("V", quorate_names(ballot))
+  W_list=c("V", quorate_names(ballot))
 ){
   a_fn<-a_fn_fn(ballot[,"N"])
   c_fn <-function(n){
