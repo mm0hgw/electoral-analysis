@@ -11,10 +11,8 @@ bin_str <- function(x){
 
 # check region set for contiguity
 contiguity_check  <- function(
-	x,
-	table_file="ScottishCouncilBorders.tab"
+	t#a square table of logical values
 ){
-	t <- read.table(table_file)[x,x]
 	n <- ncol(t)
 	rt <- rowSums(t)
 	if(max(rt)==n){
@@ -57,12 +55,23 @@ recursive_region_check <- function(
 		.inorder=FALSE,
 		.options.multicore=mcoptions
 	)%dopar%{
-		if(contiguity_check(r[,i])){
+		if(contiguity_check(border_table[r[,i],r[,i]])){
 			ballot_chisq_to_normal(ballot[r[,i],])
 		}else{
 			vector()
 		}
 	}
-	beep(9)
 	out
+}
+
+ballot_check <- function(
+	ballot=compute_W(read.csv("SIR2014.csv")),
+	border_table=read.table("ScottishCouncilBorders.tab")
+){
+	n<-ncol(border_table)
+	a<-seq(5,n)
+	a<-foreach(i=a,.combine=c)%do%{
+		if(choose(n,i)*i<1e9){i}else{vector()}
+	}
+	a
 }
