@@ -43,7 +43,7 @@ contiguity_check  <- function(
 
 #wrapper to check contiguity both of
 #a region and its inverse
-contiguty_check_wrapper <- function(
+contiguity_check_wrapper <- function(
 	 b,#ballot border table
 	x#region vector
 ){
