@@ -95,5 +95,6 @@ rrc2 <- function(
 			0
 		}
 	}
-	combn(n,k,c_fn)
+	out<-combn(n,k,c_fn)
+	out[colSums(out)!=0]
 }
