@@ -51,8 +51,7 @@ contiguity_check  <- function(
 
 # recursive region check
 recursive_region_check <- function(
-	ballot,
-	vname="W_No",
+	ballot=compute_W(read.csv("SIR2014.csv")),
 	border_table=read.table("ScottishCouncilBorders.tab"),
 	k=ncol(border_table)
 ){
