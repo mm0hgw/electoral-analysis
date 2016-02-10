@@ -81,3 +81,19 @@ recursive_region_check <- function(
 	beep(9)
 	out
 }
+
+rrc2 <- function(
+	ballot=compute_W(read.csv("SIR2014.csv")),
+	border_table=read.table("ScottishCouncilBorders.tab"),
+	k=ncol(border_table)
+){
+	n<-ncol(border_table)
+	c_fn <- function(x){
+		if(contiguity_check(x)){
+			ballot_chisq_to_normal(ballot[x,])
+		}else{
+			0
+		}
+	}
+	combn(n,k,c_fn)
+}
