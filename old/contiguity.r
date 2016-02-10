@@ -57,6 +57,7 @@ recursive_region_check <- function(
 ){
 	n<-ncol(border_table)
 	r<-combn(n,k)
+	print(r)
 	cr<-foreach(
 		i=icount(ncol(r)),
 		.combine=c,
