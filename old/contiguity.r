@@ -10,7 +10,7 @@ bin_str <- function(x){
 }
 
 # check region set for contiguity
-contiguity_check  <- function(
+  <- function(
 	t#a square table of logical values
 ){
 	n <- ncol(t)
@@ -39,6 +39,15 @@ contiguity_check  <- function(
 			r[r==FALSE]<-ret
 		}
 	}
+}
+
+#wrapper to check contiguity both of
+#a region and its inverse
+contiguty_check_wrapper <- function(
+	 b,#ballot border table
+	x#region vector
+){
+	 contiguity_check(b[x,x])&contiguity_check(b[-x,-x])
 }
 
 # recursive region check
@@ -73,10 +82,14 @@ region_check <- function(
 	a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a)*a)]
 	foreach(i=a,.combine=cbind)%do%{
-		out<-rowMeans(recursive_region_check(ballot,border_table,k=i))
+		data<-(recursive_region_check(ballot,border_table,k=i))
+		datafile<-paste("SIR2014_k",i,".tab")
+		write.table(data,file=datafile)
+		out<-rowMeans(data)
 		cat(file="contiguity.log",append=TRUE,
 			paste(i,paste(out,collapse=" "),"\n"))
 		beep(9)
 		out
 	}
 }
+
