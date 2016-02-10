@@ -1,14 +1,14 @@
 
 # choose look up table gen
 chooseLutGen <- function(n,k){
-	out<-rep(1,n*k)
-	dim(out)<-c(k,n)
+	out<-matrix(rep(1,n*k),nrow=n,ncol=k)
 	foreach(i=icount(n))%:%
 	foreach(j=icount(k))%do%{
 		if(i>j){
 			out[i,j]<-choose(i,j)
 		}
 	}
+	out
 }
 
 #combination generator generator
