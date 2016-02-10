@@ -1,7 +1,8 @@
 
 # choose look up table gen
 chooseLutGen <- function(n,k){
-	out<-matrix(1,nrow=n,ncol=k)
+	out<-rep(1,n*k)
+	dim(out)<-c(k,n)
 	foreach(i=icount(n))%:%
 	foreach(j=icount(k))%do%{
 		if(i>j){
