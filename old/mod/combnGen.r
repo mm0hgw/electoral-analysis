@@ -3,14 +3,14 @@ require(iterators)
 
 # choose look up table gen
 chooseLutGen <- function(n,k){
-	out<-matrix(1,nrow=n,ncol=k)
+	chooseLut<-matrix(1,nrow=n,ncol=k)
 	foreach(i=icount(n))%:%
 	foreach(j=icount(k))%do%{
 		if(i>j){
-			out[i,j]<-choose(i,j)
+			chooseLut[i,j]<-choose(i,j)
 		}
 	}
-	return(out)
+	return(chooseLut)
 }
 
 #combination generator generator
