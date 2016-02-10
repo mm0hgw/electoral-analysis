@@ -117,7 +117,7 @@ parallel_combn <- function(
 
 test_parallel<-function(n,k){
 	tgt<-combn(n,k)
-	foreach(i=icount(ncol(tgt)),.combine=sum)%do%{
+	foreach(i=icount(ncol(tgt)),.combine=sum)%dopar%{
 		tgt[,i]!=parallel_combn(i,n,k)
 	}
 }
