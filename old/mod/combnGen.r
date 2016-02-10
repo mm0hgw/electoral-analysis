@@ -13,13 +13,13 @@ chooseLutGen <- function(n,k){
 #combination generator generator
 combnGenGen <- function(n,k){
 	chooseLut <- chooseLutGen(n-1,k-1)
-	combnGen <- function(x,n=n,k=k){
-		if(k==1){return(x)}
-		cnk<-chooseLut[n-1,k-1]
+	combnGen <- function(x,ng=n,kg=k){
+		if(kg==1){return(x)}
+		cnk<-chooseLut[ng-1,kg-1]
 		if(x<=cnk){
-			out<-c(1,combnGen(x,n-1,k-1)+1)
+			out<-c(1,combnGen(x,ng-1,kg-1)+1)
 		}else{
-			out<-combnGen(x-cnk,n-1,k)+1
+			out<-combnGen(x-cnk,ng-1,kg)+1
 		}
 		out
 	}
