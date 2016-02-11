@@ -3,12 +3,11 @@
 \alias{combnGen}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+combnGen -- The Combination Generator Package
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Provides a method to access combinations by 
+use of an index in the range 1:choose(n,k)
 }
 \details{
 \tabular{ll}{
@@ -18,25 +17,36 @@ Version: \tab 1.0\cr
 Date: \tab 2016-02-10\cr
 License: \tab What license is it under?\cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+The combnGenGen function initialises and returns
+a combnGen function. The generator generator takes
+the n and k arguments to produce a generator that will
+return a unique combination for every integer in the
+range 1:choose(n,k)
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Dale Potter <dale@piratepress.org>
 }
 \references{
-~~ Literature or other references for background information ~~
+
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
+combnGenGen
 \keyword{ package }
 \seealso{
 ~~ Optional links to other man pages, e.g. ~~
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-~~ simple examples of the most important functions ~~
+> combnGen<-combnGenGen(20,5)
+> combnGen(ceiling(runif(1)*choose(20,5)))
+[1]  3  4  5 12 19
+> combnGen(ceiling(runif(1)*choose(20,5)))
+[1]  3  5  6 11 20
+> combnGen(ceiling(runif(1)*choose(20,5)))
+[1]  2  5  6  7 19
+> combnGen(ceiling(runif(1)*choose(20,5)))
+[1]  2  8 15 16 18
+> combnGen(1)
+[1] 1 2 3 4 5
+> combnGen(choose(20,5))
+[1] 16 17 18 19 20
 }
