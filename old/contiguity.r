@@ -1,6 +1,7 @@
 require(foreach)
 require(doParallel)
 require(beepr)
+require(combnGen)
 
 # convert a binary vector to a binary string
 bin_str <- function(x){
