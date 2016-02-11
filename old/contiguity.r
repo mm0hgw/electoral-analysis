@@ -71,7 +71,7 @@ recursive_region_check <- function(
 			chunk_size,
 			ballot,
 			border_table
-		)
+		))
 		from<-from+chunk_size
 	}
 	out<-cbind(out,recursive_region_check_loop_fn(
