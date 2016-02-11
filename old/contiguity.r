@@ -51,7 +51,7 @@ contiguity_check_wrapper <- function(
 	 contiguity_check(b[x,x])
 }
 
-chunk_size <-1e9
+chunk_size <-1e8
 
 # recursive region check
 recursive_region_check <- function(
