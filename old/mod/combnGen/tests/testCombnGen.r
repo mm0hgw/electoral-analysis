@@ -1,5 +1,6 @@
 require(foreach)
 require(iterators)
+require(combnGen)
 
 # unit test for combination generator
 testCombnGen<-function(n,k){
