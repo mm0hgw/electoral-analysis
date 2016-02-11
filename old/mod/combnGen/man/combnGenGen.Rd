@@ -43,14 +43,14 @@ Dale Potter <dale@piratepress.org>
 }
 \examples{
 > combnGen<-combnGenGen(100,5)
-> combnGen(ceiling(runif(1)*choose(100,5)))
-[1] 17 56 59 61 99
 > combnGen(1)
 [1] 1 2 3 4 5
 > combnGen(2)
 [1] 1 2 3 4 6
 > combnGen(choose(100,5))
 [1]  96  97  98  99 100
+> combnGen(ceiling(runif(1)*choose(100,5)))
+[1] 17 56 59 61 99
 }
 
 \keyword{ ~combn }
