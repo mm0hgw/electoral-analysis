@@ -20,7 +20,7 @@ License: \tab What license is it under?\cr
 The combnGenGen function initialises and returns
 a combnGen function. The generator generator takes
 the n and k arguments to produce a generator that will
-return a unique combination for every integer in the
+return a unique combination for a single integer in the
 range 1:choose(n,k)
 }
 \author{
@@ -37,16 +37,10 @@ combnGenGen
 }
 \examples{
 > combnGen<-combnGenGen(20,5)
-> combnGen(ceiling(runif(1)*choose(20,5)))
-[1]  3  4  5 12 19
-> combnGen(ceiling(runif(1)*choose(20,5)))
-[1]  3  5  6 11 20
-> combnGen(ceiling(runif(1)*choose(20,5)))
-[1]  2  5  6  7 19
-> combnGen(ceiling(runif(1)*choose(20,5)))
-[1]  2  8 15 16 18
 > combnGen(1)
 [1] 1 2 3 4 5
 > combnGen(choose(20,5))
 [1] 16 17 18 19 20
+> combnGen(ceiling(runif(1)*choose(20,5)))
+[1]  3  4  5 12 19
 }
