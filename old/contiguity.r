@@ -62,26 +62,13 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGenGen(n,k)
 	cnk<-choose(n,k)
-	from<-0
-	out<-vector()
-	while(cnk-from>chunk_size){
-		cat(paste(from,cnk,chunk_size,"\n"))
-		out<-cbind(out,recursive_region_check_loop_fn(
-			combnGen,
-			from,
-			chunk_size,
-			ballot,
-			border_table
-		))
-		from<-from+chunk_size
-	}
-	out<-cbind(out,recursive_region_check_loop_fn(
+	out<-recursive_region_check_loop_fn(
 		combnGen,
-		from,
-		cnk-from,
+		0,
+		cnk,
 		ballot,
 		border_table
-	))
+	)
 	out
 }
 
