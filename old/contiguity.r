@@ -65,6 +65,7 @@ recursive_region_check <- function(
 	from<-0
 	out<-vector()
 	while(cnk-from>chunk_size){
+		cat(paste(from,cnk,chunk_size,"\n"))
 		out<-cbind(out,recursive_region_check_loop_fn(
 			combnGen,
 			from,
