@@ -7,9 +7,9 @@ require(doParallel)
 
 # setup parallelisation parameters
 no_cores <- detectCores()-1
-mcoptions <- list(preschedule=F,
-	set.seed=F,
-	silent=T,
+mcoptions <- list(preschedule=TRUE,
+	set.seed=FALSE,
+	silent=TRUE,
 	cores=no_cores)
 
 # make custom fork cluster
