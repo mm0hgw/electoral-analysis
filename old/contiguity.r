@@ -51,6 +51,8 @@ contiguity_check_wrapper <- function(
 	 contiguity_check(b[x,x])
 }
 
+chunk_size <-1e9
+
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("SIR2014.csv")),
@@ -59,14 +61,44 @@ recursive_region_check <- function(
 ){
 	n<-ncol(border_table)
 	combnGen<-combnGenGen(n,k)
+	cnk<-choose(n,k)
+	from<-0
+	out<-vector()
+	while(cnk-from>chunk_size){
+		out<-cbind(out,recursive_region_check_loop_fn(
+			combnGen,
+			from,
+			chunk_size,
+			ballot,
+			border_table
+		)
+		from<-from+chunk_size
+	}
+	out<-cbind(out,recursive_region_check_loop_fn(
+		combnGen,
+		from,
+		cnk-from,
+		ballot,
+		border_table
+	)
+	out
+}
+
+recursive_region_check_loop_fn <- function(
+	combnGen,
+	from,
+	length.out,
+	ballot,
+	border_table
+){
 	out<-foreach(
-		j=icount(choose(n,k)),
+		j=icount(length.out),
 		.combine=cbind,
 		.inorder=FALSE,
 		.maxcombine=500,
 		.options.multicore=mcoptions
 	)%dopar%{
-		i<-combnGen(j)
+		i<-combnGen(j+from)
 		if(contiguity_check_wrapper(border_table,i)){
 			ballot_chisq_to_normal(ballot[i,])
 		}else{
