@@ -1,6 +1,7 @@
 require(foreach)
 require(doParallel)
 require(beepr)
+require(combnGen)
 
 # convert a binary vector to a binary string
 bin_str <- function(x){
@@ -58,12 +59,11 @@ recursive_region_check <- function(
 ){
 	n<-ncol(border_table)
 	combnGen<-combnGenGen(n,k)
-	maxcombine<-max(1e2,round(sqrt(choose(n,k))))
 	out<-foreach(
 		j=icount(choose(n,k)),
 		.combine=cbind,
 		.inorder=FALSE,
-		.maxcombine=maxcombine,
+		.maxcombine=500,
 		.options.multicore=mcoptions
 	)%dopar%{
 		i<-combnGen(j)
