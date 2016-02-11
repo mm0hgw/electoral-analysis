@@ -3,7 +3,7 @@ pull_source <- function(){
 
 	source("mod/cluster.r")
 	source("mod/calculating.r")
-	source("mod/combnGen/R/combnGen.r")
+	source("mod/combnGen/R/combnGen.R")
 	source("density_scatter.r")
 	source("git.r")
 	source("contiguity.r")
