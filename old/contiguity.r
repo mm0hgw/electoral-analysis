@@ -80,7 +80,7 @@ recursive_region_check <- function(
 		cnk-from,
 		ballot,
 		border_table
-	)
+	))
 	out
 }
 
