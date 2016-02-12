@@ -79,6 +79,7 @@ recursive_region_check <- function(
 			write.table(out,datafile)
 			cat(file="contiguity.log",append=TRUE,
 				paste(datafile,"added to cache"))
+			beep(9)
 			out
 		}
 	}
