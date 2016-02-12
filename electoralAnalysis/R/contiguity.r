@@ -65,7 +65,7 @@ recursive_region_check <- function(
 	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
 	out<-foreach(W=W_list,.combine=rbind)%do%{
-		datafile<-paste("data/",name,"_k",i,"_",W,".tab",sep="")
+		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
 			read.table(datafile)
 		}else{
