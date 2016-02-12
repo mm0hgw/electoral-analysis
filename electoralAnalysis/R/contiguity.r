@@ -58,7 +58,8 @@ recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
 	border_table=read.table("data/SIR2014_borders.tab"),
 	k=ncol(border_table),
-	W_list=c("V",quorate_names(ballot))
+	W_list=c("V",quorate_names(ballot)),
+	name="SIR2014"
 ){
 	n<-ncol(border_table)
 	combnLutGen<-combnLutGenGen(n,k)
@@ -124,7 +125,7 @@ region_check <- function(
 	#a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a))]
 	foreach(i=a,.combine=c)%do%{
-		data<-(recursive_region_check(ballot,border_table,k=i,W_list))
+		data<-(recursive_region_check(ballot,border_table,k=i,W_list,name))
 		out<-foreach(i=icount(ncol(data)),
 			.combine=c
 		)%do%{
