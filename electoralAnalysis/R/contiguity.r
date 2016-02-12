@@ -98,14 +98,14 @@ recursive_region_check_loop_fn <- function(
 ){
 	out<-foreach(
 		j=icount(length.out),
-		.combine=c,
+		.combine=rbind,
 		.inorder=FALSE,
 		.maxcombine=500,
 		.options.multicore=mcoptions
 	)%dopar%{
 		i<-combnLutGen(j+from)
 		if(contiguity_check_wrapper(border_table,i)){
-			ballot_chisq_to_normal(ballot[i,],W)
+			c(j+from,ballot_chisq_to_normal(ballot[i,],W))
 		}else{
 			vector()
 		}
