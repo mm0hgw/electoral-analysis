@@ -3,7 +3,7 @@
 #
 require(foreach)
 
-keys <- read.table("keys.tab",stringsAsFactors=FALSE)
+keys <- read.table("data/keys.tab",stringsAsFactors=FALSE)
 
 # read headers
 read_headers <- function(filename){
@@ -113,7 +113,7 @@ find_key <- function(filenames){
 
 # list all csv files
 list_csv_files <- function(){
-	paste(sep="","csv/",list.files(path="csv/",pattern=".csv$"))
+	paste(sep="","data/",list.files(path="data/",pattern=".csv$"))
 }
 
 assemble_sample <- function(){

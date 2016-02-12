@@ -3,10 +3,10 @@
 #
 
 # import components
-source("mod/cluster.r")
-source("mod/calculating.r")
-source("mod/display.r")
-source("mod/import.r")
+source("R/cluster.r")
+source("R/calculating.r")
+source("R/display.r")
+source("R/import.r")
 
 if(!exists("cl")){
 	cl<-makeCustomCluster()
