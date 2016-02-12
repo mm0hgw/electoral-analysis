@@ -7,4 +7,4 @@ if(exists("cl")){
 	}
 }
 
-cl<-makeCustomCluster()
+cl<<-makeCustomCluster()

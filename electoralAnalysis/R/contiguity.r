@@ -107,7 +107,7 @@ region_check <- function(
 	#a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a))]
 	foreach(i=a,.combine=cbind)%do%{
-		datafile<-paste(name,"_k",i,".tab",sep="")
+		datafile<-paste("data/",name,"_k",i,".tab",sep="")
 		if(file.exists(datafile)){
 			vector()
 		}else{
