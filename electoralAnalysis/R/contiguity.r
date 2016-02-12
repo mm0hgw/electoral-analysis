@@ -57,38 +57,53 @@ chunk_size <-5e5
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
 	border_table=read.table("data/SIR2014_borders.tab"),
-	k=ncol(border_table)
+	k=ncol(border_table),
+	W_list=c("V",quorate_names(ballot))
 ){
 	n<-ncol(border_table)
-	combnGen<-combnGenGen(n,k)
+	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
-	out<-recursive_region_check_loop_fn(
-		combnGen,
-		0,
-		cnk,
-		ballot,
-		border_table
-	)
+	out<-foreach(W=W_list,.combine=rbind)%do%{
+		datafile<-paste("data/",name,"_k",i,"_",W,".tab",sep="")
+		if(file.exists(datafile)){
+			read.table(datafile)
+		}else{
+			out<-recursive_region_check_loop_fn(
+				combnLutGen,
+				0,
+				cnk,
+				ballot,
+				border_table,
+				W
+			)
+			write.table(out,datafile)
+			cat(file="contiguity.log",append=TRUE,
+				paste(datafile,"added to cache"))
+			out
+		}
+	}
+	names(out)<-W_list
 	out
 }
 
 recursive_region_check_loop_fn <- function(
-	combnGen,
+	combnLutGen,
 	from,
 	length.out,
 	ballot,
-	border_table
+	border_table,
+	W
 ){
 	out<-foreach(
 		j=icount(length.out),
-		.combine=cbind,
+		.combine=c,
 		.inorder=FALSE,
 		.maxcombine=500,
 		.options.multicore=mcoptions
 	)%dopar%{
-		i<-combnGen(j+from)
+		i<-combnLutGen(j+from)
 		if(contiguity_check_wrapper(border_table,i)){
-			ballot_chisq_to_normal(ballot[i,])
+			ballot_chisq_to_normal(ballot[i,],W)
 		}else{
 			vector()
 		}
@@ -100,31 +115,22 @@ recursive_region_check_loop_fn <- function(
 region_check <- function(
 	name="SIR2014",
 	ballot=compute_W(read.csv(paste("data/",name,".csv",sep=""))),
-	border_table=read.table(paste("data/",name,"_borders.tab",sep=""))
+	border_table=read.table(paste("data/",name,"_borders.tab",sep="")),
+	W_list=c("V",quorate_names(ballot))
 ){
 	n<-ncol(border_table)
 	a<-seq(5,n-1)
 	#a<-a[choose(n,a)*a<1e9]
 	a<-a[order(choose(n,a))]
-	foreach(i=a,.combine=cbind)%do%{
-		datafile<-paste("data/",name,"_k",i,".tab",sep="")
-		if(file.exists(datafile)){
-			vector()
-		}else{
-			data<-(recursive_region_check(ballot,border_table,k=i))
-			write.table(data,file=datafile)
-			out<-foreach(i=icount(nrow(data)),
-				.combine=c,
-				.options.multicore=mcoptions
-			)%dopar%{
-				mean(data[i,])
-			}
-			names(out)<-rownames(data)
-			cat(file="contiguity.log",append=TRUE,
-				paste(i,paste(out,collapse=" "),"\n"))
-			beep(9)
-			out
+	foreach(i=a,.combine=c)%do%{
+		data<-(recursive_region_check(ballot,border_table,k=i,W_list))
+		out<-foreach(i=icount(ncol(data)),
+			.combine=c
+		)%do%{
+			mean(data[i,])
 		}
+		names(out)<-rownames(data)
+		out
 	}
 }
 
