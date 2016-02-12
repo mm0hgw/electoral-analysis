@@ -69,7 +69,7 @@ recursive_region_check <- function(
 		if(file.exists(datafile)){
 			read.table(datafile)
 		}else{
-			out<-recursive_region_check_loop_fn(
+			data<-recursive_region_check_loop_fn(
 				combnLutGen,
 				0,
 				cnk,
@@ -77,6 +77,8 @@ recursive_region_check <- function(
 				border_table,
 				W
 			)
+			out<-data[,2]
+			names(out)<-as.character(data[,1])
 			write.table(out,datafile)
 			cat(file="contiguity.log",append=TRUE,
 				paste(datafile,"added to cache\n"))
