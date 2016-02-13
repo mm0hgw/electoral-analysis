@@ -69,7 +69,7 @@ recursive_region_check <- function(
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
-			mean(data[,2])
+			mean(data)
 		}else{
 			data<-recursive_region_check_loop_fn(
 				combnLutGen,
@@ -83,7 +83,7 @@ recursive_region_check <- function(
 			cat(file="contiguity.log",append=TRUE,
 				paste(datafile,"added to cache\n"))
 			beep(9)
-			mean(data[,2])
+			mean(data)
 		}
 	}
 	names(out)<-W_list
@@ -100,17 +100,19 @@ recursive_region_check_loop_fn <- function(
 ){
 	out<-foreach(
 		j=icount(length.out),
-		.combine=rbind,
-		.inorder=FALSE,
+		.combine=c,
+		.inorder=TRUE,
 		.maxcombine=500,
 		.options.multicore=mcoptions
+	)%:% 
+	when(
+		contiguity_check_wrapper(
+			border_table,
+			combnLutGen(j+from)
+		)==TRUE
 	)%dopar%{
 		i<-combnLutGen(j+from)
-		if(contiguity_check_wrapper(border_table,i)){
-			c(j+from,ballot_chisq_to_normal(ballot[i,],W))
-		}else{
-			vector()
-		}
+		ballot_chisq_to_normal(ballot[i,],W)
 	}
 	out
 }
