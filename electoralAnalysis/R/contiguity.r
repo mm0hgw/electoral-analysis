@@ -64,12 +64,14 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
-	out<-foreach(W=W_list,.combine=rbind)%do%{
+	out<-foreach(W=W_list,.combine=c)%do%{
 		gc()
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
-			mean(data)
+			out<-mean(data)
+			rm(data)
+			out
 		}else{
 			data<-recursive_region_check_loop_fn(
 				combnLutGen,
@@ -80,10 +82,12 @@ recursive_region_check <- function(
 				W
 			)
 			write.table(data,datafile)
+			out<-mean(data)
+			rm(data)
 			cat(file="contiguity.log",append=TRUE,
 				paste(datafile,"added to cache\n"))
 			beep(9)
-			mean(data)
+			out
 		}
 	}
 	names(out)<-W_list
@@ -111,8 +115,8 @@ recursive_region_check_loop_fn <- function(
 			combnLutGen(j+from)
 		)==TRUE
 	)%dopar%{
-		i<-combnLutGen(j+from)
-		ballot_chisq_to_normal(ballot[i,],W)
+		ballot_chisq_to_normal(
+			ballot[combnLutGen(j+from),],W)
 	}
 	out
 }
@@ -129,15 +133,7 @@ region_check <- function(
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
 	a<-a[order(choose(n,a))]
 	foreach(i=a,.combine=c)%do%{
-		data<-(recursive_region_check(ballot,border_table,k=i,W_list,name))
-		out<-foreach(i=icount(ncol(data)),
-			.combine=c
-		)%do%{
-			mean(data[i,])
-		}
-		names(out)<-rownames(data)
-		rm(data)
-		out
+		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
 
