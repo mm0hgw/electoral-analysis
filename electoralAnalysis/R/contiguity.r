@@ -65,9 +65,11 @@ recursive_region_check <- function(
 	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
 	out<-foreach(W=W_list,.combine=rbind)%do%{
+		gc()
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
-			read.table(datafile)
+			data<-read.table(datafile)
+			mean(data[,2])
 		}else{
 			data<-recursive_region_check_loop_fn(
 				combnLutGen,
@@ -77,13 +79,11 @@ recursive_region_check <- function(
 				border_table,
 				W
 			)
-			out<-data[,2]
-			names(out)<-as.character(data[,1])
-			write.table(out,datafile)
+			write.table(data,datafile)
 			cat(file="contiguity.log",append=TRUE,
 				paste(datafile,"added to cache\n"))
 			beep(9)
-			out
+			mean(data[,2])
 		}
 	}
 	names(out)<-W_list
@@ -134,6 +134,7 @@ region_check <- function(
 			mean(data[i,])
 		}
 		names(out)<-rownames(data)
+		rm(data)
 		out
 	}
 }
