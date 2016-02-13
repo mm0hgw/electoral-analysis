@@ -118,7 +118,7 @@ recursive_region_check_loop_fn <- function(
 		)==TRUE
 	)%dopar%{
 		ballot_chisq_to_normal(
-			ballot[combnLutGen(j+from),],W)
+			ballot[combnLutGen(j+from),],W_list=W)
 	}
 	out
 }
