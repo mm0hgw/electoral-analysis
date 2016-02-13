@@ -69,9 +69,9 @@ recursive_region_check <- function(
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
-			out<-mean(data)
+			out<-mean(unlist(data))
 			rm(data)
-			cat(paste(datafile,": mean",out))
+			cat(paste(datafile,": mean",out,"\n"))
 			out
 		}else{
 			data<-recursive_region_check_loop_fn(
@@ -85,7 +85,7 @@ recursive_region_check <- function(
 			write.table(data,datafile)
 			out<-mean(data)
 			rm(data)
-			cat(paste(datafile,": mean",out))
+			cat(paste(datafile,": mean",out,"\n"))
 			cat(file="contiguity.log",append=TRUE,
 				paste(datafile,"added to cache\n"))
 			beep(9)
