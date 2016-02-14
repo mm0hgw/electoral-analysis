@@ -68,6 +68,7 @@ csv_table <- function(border_table){
 	out<-matrix(0,nrow=n,ncol=ncol)
 	foreach(i=icount(n))%do%{
 		j<-seq(n)[border_table[i,]==TRUE]
+		j<-j[j!=i]
 		out[i,seq(length(j))]<-j
 	}
 	out
