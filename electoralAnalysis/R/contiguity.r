@@ -64,7 +64,7 @@ border_table <- function(csv_table){
 
 csv_table <- function(border_table){
 	n<-nrow(border_table)
-	ncol<-max(rowSums(border_table))
+	ncol<-max(rowSums(border_table))-1
 	out<-matrix(0,nrow=n,ncol=ncol)
 	foreach(i=icount(n))%do%{
 		j<-seq(n)[border_table[i,]==TRUE]
