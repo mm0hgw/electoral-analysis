@@ -12,7 +12,7 @@ bin_str <- function(x){
 
 # check region set for contiguity
 contiguity_check  <- function(
-	t#a square table of logical values
+	t #a square table of logical values
 ){
 	n <- ncol(t)
 	rt <- rowSums(t)
