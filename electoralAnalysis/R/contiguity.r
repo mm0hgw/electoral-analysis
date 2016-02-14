@@ -55,9 +55,11 @@ border_table <- function(csv_table){
 	n<-nrow(csv_table)
 	out<-matrix(FALSE,nrow=n,ncol=n)
 	foreach(i=icount(n))%do%{
+		j<-csv_table[i,]
+		j<-j[j!=0]
 		out[i,i]<-TRUE
-		out[csv_table[i,]==TRUE,i]<-TRUE
-		out[i,csv_table[i,]==TRUE]<-TRUE
+		out[j,i]<-TRUE
+		out[i,j]<-TRUE
 	}
 	out
 }
