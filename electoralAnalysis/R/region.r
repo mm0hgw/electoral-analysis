@@ -2,80 +2,13 @@ require(foreach)
 require(doParallel)
 require(beepr)
 require(combnGen)
+require(contiguity)
 
 # convert a binary vector to a binary string
 bin_str <- function(x){
 	out<-rep("0",length(x))
 	out[x==TRUE]<-"1"
 	paste(paste(out,collapse=""),"\n")
-}
-
-# check region set for contiguity
-contiguity_check  <- function(
-	t #a square table of logical values
-){
-	n <- ncol(t)
-	rt <- rowSums(t)
-	if(max(rt)==n){
-		return(TRUE)
-	}
-	r<-t[which.max(rt),]==TRUE
-	while(TRUE){
-		et<-t[r==FALSE,r==TRUE]
-		if(length(dim(et))==0){ 
-			if(sum(et)==0){
-				return(FALSE)
-			}else{
-				return(TRUE)
-			}
-		}else{
-			ret<-rowSums(et)!=0
-			sret<-sum(ret)
-			if(sret==0){
-				return(FALSE)
-			}
-			if(sret==length(ret)){
-				return(TRUE)
-			}
-			r[r==FALSE]<-ret
-		}
-	}
-}
-
-#wrapper to check contiguity both of
-#a region and its inverse
-contiguity_check_wrapper <- function(
-	 b,#ballot border table
-	x#region vector
-){
-	 contiguity_check(b[x,x])
-}
-
-border_table <- function(csv_table){
-	n<-nrow(csv_table)
-	out<-matrix(FALSE,nrow=n,ncol=n)
-	foreach(i=icount(n))%do%{
-		j<-csv_table[i,]
-		j<-j[j!=0]
-		out[i,i]<-TRUE
-		out[j,i]<-TRUE
-		out[i,j]<-TRUE
-	}
-	rownames(out)<-rownames(csv_table)
-	out
-}
-
-csv_table <- function(border_table){
-	n<-nrow(border_table)
-	ncol<-max(rowSums(border_table))-1
-	out<-matrix(0,nrow=n,ncol=ncol)
-	foreach(i=icount(n))%do%{
-		j<-seq(n)[border_table[i,]==TRUE]
-		j<-j[j!=i]
-		out[i,seq(length(j))]<-j
-	}
-	rownames(out)<-rownames(border_table)
-	out
 }
 
 chunk_size <-5e5
@@ -135,7 +68,7 @@ recursive_region_check_loop_fn <- function(
 		.maxcombine=500,
 		.options.multicore=mcoptions
 	)%dopar%{
-		if(contiguity_check_wrapper(
+		if(contiguityCheck(
 			border_table,
 			combnLutGen(j+from)
 		)==TRUE){
