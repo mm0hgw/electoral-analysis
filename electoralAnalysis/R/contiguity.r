@@ -19,9 +19,9 @@ contiguity_check  <- function(
 	if(max(rt)==n){
 		return(TRUE)
 	}
-	r<-as.vector(t[which.max(rt),])
+	r<-t[which.max(rt),]==TRUE
 	while(TRUE){
-		et<-(t[r==FALSE,r==TRUE])
+		et<-t[r==FALSE,r==TRUE]
 		if(length(dim(et))==0){ 
 			if(sum(et)==0){
 				return(FALSE)
@@ -29,7 +29,7 @@ contiguity_check  <- function(
 				return(TRUE)
 			}
 		}else{
-			ret<-(rowSums(et)!=0)
+			ret<-rowSums(et)!=0
 			sret<-sum(ret)
 			if(sret==0){
 				return(FALSE)
@@ -61,6 +61,7 @@ border_table <- function(csv_table){
 		out[j,i]<-TRUE
 		out[i,j]<-TRUE
 	}
+	rownames(out)<-rownames(csv_table)
 	out
 }
 
@@ -73,6 +74,7 @@ csv_table <- function(border_table){
 		j<-j[j!=i]
 		out[i,seq(length(j))]<-j
 	}
+	rownames(out)<-rownames(border_table)
 	out
 }
 
