@@ -6,6 +6,7 @@ gitPull<- function(){
 
 findPackages <- function(path="."){
 	l<-gsub("./","",list.dirs(path=path))
+	print(l)
 	l<-l[lapply(paste(l,"/NAMESPACE"),file.exists)==TRUE]
 }
 
