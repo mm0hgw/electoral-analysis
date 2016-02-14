@@ -64,9 +64,8 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
-	out<-foreach(W=W_list,.combine=c)%do%{
+	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		gc()
-		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
 			out<-mean(unlist(data))
@@ -85,9 +84,6 @@ recursive_region_check <- function(
 			write.table(data,datafile)
 			out<-mean(data)
 			rm(data)
-			cat(paste(datafile,": mean",out,"\n"))
-			cat(file="contiguity.log",append=TRUE,
-				paste(datafile,"added to cache\n"))
 			beep(9)
 			out
 		}
@@ -133,7 +129,7 @@ region_check <- function(
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
 	a<-a[order(choose(n,a))]
-	foreach(i=a,.combine=c)%do%{
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
