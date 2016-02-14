@@ -19,6 +19,7 @@ buildPackage <- function(package){
 	install.packages(paste(package,"_1.0.tar.gz",sep=""))
 }
 
+#'@import devtools
 #'@export
 buildPackages<-function(packages=findPackages()){
 	lapply(packages,buildPackage)
