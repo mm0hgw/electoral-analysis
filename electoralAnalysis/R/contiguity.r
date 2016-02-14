@@ -70,6 +70,7 @@ csv_table <- function(border_table){
 		j<-seq(n)[border_table[i,]==TRUE]
 		out[i,seq(length(j))]<-j
 	}
+	out
 }
 
 chunk_size <-5e5
