@@ -110,15 +110,14 @@ recursive_region_check_loop_fn <- function(
 		.inorder=TRUE,
 		.maxcombine=500,
 		.options.multicore=mcoptions
-	)%:% 
-	when(
-		contiguity_check_wrapper(
+	)%dopar%{
+		if(contiguity_check_wrapper(
 			border_table,
 			combnLutGen(j+from)
-		)==TRUE
-	)%dopar%{
-		ballot_chisq_to_normal(
-			ballot[combnLutGen(j+from),],W_list=W)
+		)==TRUE){
+			ballot_chisq_to_normal(
+				ballot[combnLutGen(j+from),],W_list=W)
+		}else{vector()}
 	}
 	out
 }
