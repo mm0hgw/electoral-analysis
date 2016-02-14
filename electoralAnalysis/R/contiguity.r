@@ -66,7 +66,7 @@ recursive_region_check <- function(
 	cnk<-choose(n,k)
 	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		gc()
-		datafile<-paste(name,"_k",k,"_",W,".tab",sep="")
+		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
 			out<-mean(unlist(data))
