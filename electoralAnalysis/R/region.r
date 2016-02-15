@@ -33,7 +33,7 @@ recursive_region_check <- function(
 			rm(data)
 			gc()
 		}else{
-			cat(paste("\"",W,"\"\n"),file=datafile)
+			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
 		while(i<=cnk){
 			if(contiguityCheck(
@@ -44,7 +44,8 @@ recursive_region_check <- function(
 					paste("\"",i,"\" ",
 						ballot_chisq_to_normal(
 							ballot[combnLutGen(i),],W_list=W
-						)
+						),
+						"\n",sep=""
 					)
 				)
 			}
