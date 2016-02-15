@@ -40,14 +40,13 @@ recursive_region_check <- function(
 				border_table,
 				combnLutGen(i)
 			)==TRUE){
-				cat(file=datafile,append=TRUE,
-					print(paste("\"",i,"\" ",
-						ballot_chisq_to_normal(
-							ballot[combnLutGen(i),],W_list=W
-						)),
-						"\n",sep=""
-					)
+				l<-paste("\"",i,"\" ",
+					ballot_chisq_to_normal(
+						ballot[combnLutGen(i),],W_list=W
+					),"\n",sep=""
 				)
+				print(l)
+				cat(file=datafile,append=TRUE,l)
 			}
 			i<-i+1
 		}
