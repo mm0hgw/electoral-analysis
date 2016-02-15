@@ -45,7 +45,7 @@ recursive_region_check <- function(
 						ballot[combnLutGen(i),],W_list=W
 					),"\n",sep=""
 				)
-				print(l)
+				cat(l)
 				cat(file=datafile,append=TRUE,l)
 			}
 			i<-i+1
