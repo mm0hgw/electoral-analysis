@@ -4,6 +4,6 @@ pull_source <- function(){
 	source("R/calculating.r")
 	source("R/density_scatter.r")
 	source("R/git.r")
-	source("R/contiguity.r")
+	source("R/region.r")
 	source("R/cluster_launch.r")
 }
