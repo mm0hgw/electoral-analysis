@@ -24,58 +24,35 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
-	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%do%{
-		gc()
+	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
+		i<-1
 		if(file.exists(datafile)){
 			data<-read.table(datafile)
-			out<-mean(unlist(data))
+			i<-as.numeric(rownames(data)[nrow(data)])+1
 			rm(data)
-			cat(paste(datafile,": mean",out,"\n"))
-			out
+			gc()
 		}else{
-			data<-recursive_region_check_loop_fn(
-				combnLutGen,
-				0,
-				cnk,
-				ballot,
-				border_table,
-				W
-			)
-			write.table(data,datafile)
-			out<-mean(data)
-			rm(data)
-			beep(9)
-			out
+			cat(paste("\"",W,"\"\n"),file=datafile)
 		}
+		while(i<=cnk){
+			if(contiguityCheck(
+				border_table,
+				combnLutGen(i)
+			)==TRUE){
+				cat(file=datafile,append=TRUE,
+					paste("\"",i,"\" ",
+						ballot_chisq_to_normal(
+							ballot[combnLutGen(i),],W_list=W
+						)
+					)
+				)
+			}
+			i<-i+1
+		}
+		mean(unlist(read.table(datafile)))
 	}
 	names(out)<-W_list
-	out
-}
-
-recursive_region_check_loop_fn <- function(
-	combnLutGen,
-	from,
-	length.out,
-	ballot,
-	border_table,
-	W
-){
-	out<-foreach(
-		j=icount(length.out),
-		.combine=c,
-		.inorder=TRUE,
-		.maxcombine=500,
-		.options.multicore=mcoptions
-	)%dopar%{
-		if(contiguityCheck(
-			border_table,
-			combnLutGen(j+from)
-		)==TRUE){
-			ballot_chisq_to_normal(
-				ballot[combnLutGen(j+from),],W_list=W)
-		}else{vector()}
-	}
 	out
 }
 
@@ -90,7 +67,7 @@ region_check <- function(
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
 	a<-a[order(choose(n,a))]
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
