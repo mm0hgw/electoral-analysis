@@ -24,7 +24,7 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnLutGen<-combnLutGenGen(n,k)
 	cnk<-choose(n,k)
-	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
+	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%do%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
 		if(file.exists(datafile)){
@@ -41,10 +41,10 @@ recursive_region_check <- function(
 				combnLutGen(i)
 			)==TRUE){
 				cat(file=datafile,append=TRUE,
-					paste("\"",i,"\" ",
+					print(paste("\"",i,"\" ",
 						ballot_chisq_to_normal(
 							ballot[combnLutGen(i),],W_list=W
-						),
+						)),
 						"\n",sep=""
 					)
 				)
@@ -68,7 +68,7 @@ region_check <- function(
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
 	a<-a[order(choose(n,a))]
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
