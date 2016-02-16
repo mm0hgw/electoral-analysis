@@ -13,6 +13,20 @@ bin_str <- function(x){
 
 chunk_size <-5e5
 
+#http://stackoverflow.com/questions/5596107/reading-the-last-n-lines-from-a-huge-text-file
+ReadLastLines <- function(x,n,...){    
+  con <- file(x)
+  open(con)
+  out <- scan(con,n,what="char(0)",sep="\n",quiet=TRUE,...)
+
+  while(TRUE){
+    tmp <- scan(con,1,what="char(0)",sep="\n",quiet=TRUE)
+    if(length(tmp)==0) {close(con) ; break }
+    out <- c(out[-1],tmp)
+  }
+  out
+}
+
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
