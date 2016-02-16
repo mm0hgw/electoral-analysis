@@ -40,7 +40,7 @@ list.tableFiles<-function(name="SIR2014"){
 	list.files(path="data/",pattern=paste(name,"_k",sep=""))
 }
 
-mean_table<-function(fileList=paste("data/",list.tableFiles(),sep="")){
+mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		colMeans(read.table(l))
 	}
