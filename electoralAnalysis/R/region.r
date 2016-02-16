@@ -62,10 +62,10 @@ recursive_region_check <- function(
 			j
 		)==TRUE){
 			l<-paste("\"",i,"\" ",
-				toString(
+				gsub(",","",toString(
 					ballot_chisq_to_normal(
 						ballot[j,]
-					)
+					))
 				),"\n",sep=""
 			)
 			cat(file=datafile,append=TRUE,l)
