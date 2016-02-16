@@ -44,8 +44,6 @@ recursive_region_check <- function(
 		if(file.exists(datafile)){
 			d<-strsplit(ReadLastLines(datafile,1)," ")
 			i<- as.numeric(gsub("\"","",d[[1]][1]))+1
-			rm(data)
-			gc()
 		}else{
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
@@ -80,7 +78,7 @@ region_check <- function(
 	n<-ncol(border_table)
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
-	a<-a[order(choose(n,a))]
+	a<-a[order(choose(n,a),descending=TRUE)]
 	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
