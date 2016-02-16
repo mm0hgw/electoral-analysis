@@ -6,11 +6,13 @@ gitPull<- function(){
 
 findPackages <- function(path="."){
 	l<-gsub("./","",list.dirs(path=path))
-	l[unlist(lapply(paste(l,"/NAMESPACE",sep=""),file.exists))]
+	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
 #'@import devtools
 buildPackage <- function(package){
+	system2("rm",paste(package,"/NAMESPACE"))
+	system2("rm",c("-r",paste(package,"/man/")))
 	document(package)
 	system2("git",c("add", paste(package,"/man/*",sep="")))
 	system2("git",c("add", paste(package,".Rcheck/*.pdf",sep="")))
