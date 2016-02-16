@@ -11,8 +11,8 @@ findPackages <- function(path="."){
 
 #'@import devtools
 buildPackage <- function(package){
-	system2("rm",paste(package,"/NAMESPACE"))
-	system2("rm",c("-r",paste(package,"/man/")))
+	system2("rm",paste(package,"/NAMESPACE",sep=""))
+	system2("rm",c("-r",paste(package,"/man/",sep="")))
 	document(package)
 	system2("git",c("add", paste(package,"/man/*",sep="")))
 	system2("git",c("add", paste(package,".Rcheck/*.pdf",sep="")))
