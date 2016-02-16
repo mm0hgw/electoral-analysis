@@ -37,7 +37,7 @@ getTime <- function(){
 }
 
 list.tableFiles<-function(name="SIR2014"){
-	list.files(path="data/",pattern=paste(name,"_k*.tab",sep=""))
+	list.files(path="data/",pattern=paste(name,"_k",sep=""))
 }
 
 mean_table<-function(fileList=paste("data/",list.tableFiles(),sep="")){
