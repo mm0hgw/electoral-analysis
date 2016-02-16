@@ -48,7 +48,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		kn<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(i/choose(kn,k)*100000)/1000
-		c(p=p,k=k,n=n,colMeans(d))
+		c(p=p,k=k,n=n,i=i,colMeans(d))
 	}
 	p<-out[,1]
 	out<-out[,-1]
@@ -59,16 +59,16 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 plot_trend <- function(m=mean_table()){
 	phone_png()
 	x<-m[,1]
-	ylim<-range(m[,c(-1,-2)])
-	plot(type="b",pch=3,x=x,y=m[,3],ylim=ylim,
+	ylim<-range(m[,c(-1,-2,-3)])
+	plot(type="b",pch=4,x=x,y=m[,4],ylim=ylim,
 		xlab="k",ylab="mean chisq to Gaussian")
-	counter<-4
+	counter<-5
 	while(counter<=ncol(m)){
 		lines(type="b",pch=counter,x=x,y=m[,counter])
 		counter<-counter+1
 	}
-	l<-colnames(m)[c(-1,-2)]
-	legend("topright",legend=l,pch=seq(3,length.out=length(l)))
+	l<-colnames(m)[c(-1,-2,-3)]
+	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
 	dev.off()
 }
 
