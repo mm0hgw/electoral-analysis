@@ -44,12 +44,17 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		d<-read.table(l)
 		n<-nrow(d)
-		c(n=n,max=as.numeric(rownames(d)[n]),colMeans(d))
+		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l))
+		n<-32
+		i<-as.numeric(rownames(d)[n])
+		p<-round(i/choose(n,k)*10000)/100
+		c(p=p,n=n,i=i,colMeans(d))
 	}
-	rownames(out)<-gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",fileList))
+	p<-out[,1]
+	out<-out[,-1]
+	rownames(out)<-p
 	out
 }
-
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
