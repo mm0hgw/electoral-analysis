@@ -42,8 +42,8 @@ recursive_region_check <- function(
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
 		if(file.exists(datafile)){
-			data<-strsplit(ReadLastLines(datafile,1)," ")
-			i<-as.numeric(data[[1]][1])
+			d<-strsplit(ReadLastLines(datafile,1)," ")
+			i<- as.numeric(gsub("\"","",d[[1]][1]))
 			rm(data)
 			gc()
 		}else{
