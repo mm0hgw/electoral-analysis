@@ -61,21 +61,20 @@ recursive_region_check <- function(
 		}else{
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
-		from<-i-1
 		while(i<=cnk){
-			j<-combnGen(i+from)
+			j<-combnGen(i)
 			if(contiguityCheck(
 				border_table,
 				j
 			)==TRUE){
-				l<-paste("\"",i+from,"\" ",
+				l<-paste("\"",i,"\" ",
 					ballot_chisq_to_normal(
 						ballot[j,],W_list=W
 					),"\n",sep=""
 				)
 				cat(file=datafile,append=TRUE,l)
 			}
-			vector()
+			i<-i-1
 		}
 		mean(unlist(read.table(datafile)))
 	}
