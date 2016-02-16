@@ -72,8 +72,8 @@ recursive_region_check <- function(
 				),"\n",sep=""
 			)
 			cat(file=datafile,append=TRUE,l)
-			i<-i+1
 		}
+		i<-i+1
 	}
 	vector()
 }
