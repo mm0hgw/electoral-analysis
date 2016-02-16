@@ -44,7 +44,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		d<-read.table(l)
 		n<-nrow(d)
-		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l))
+		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
 		n<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(i/choose(n,k)*10000)/100
