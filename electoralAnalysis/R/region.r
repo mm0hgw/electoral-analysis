@@ -52,7 +52,7 @@ recursive_region_check <- function(
 			#reporting trigger
 			if(i%%trim==0){
 				cat(paste(date(),W,k,i%/%trim,cnk%/%trim,
-					sprintf("%.2f",i/cnk*100)
+					sprintf("%.4f",i/cnk*100)
 					,"\n"),file="region.log",
 					append=TRUE
 				)
