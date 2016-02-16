@@ -43,7 +43,7 @@ recursive_region_check <- function(
 		i<-1
 		if(file.exists(datafile)){
 			d<-strsplit(ReadLastLines(datafile,1)," ")
-			i<- as.numeric(gsub("\"","",d[[1]][1]))
+			i<- as.numeric(gsub("\"","",d[[1]][1]))+1
 			rm(data)
 			gc()
 		}else{
