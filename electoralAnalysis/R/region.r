@@ -51,7 +51,9 @@ recursive_region_check <- function(
 	i<-1
 	if(file.exists(datafile)){
 		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
+		print(d)
 		i<-max(as.numeric(gsub("\"","",d[,1])))+1
+		print(i)
 	}else{
 		cat(paste(toString(W_list),"\n",sep=""),file=datafile)
 	}
