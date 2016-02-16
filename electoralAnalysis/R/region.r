@@ -70,6 +70,7 @@ plot_trend <- function(m=mean_table()){
 	l<-colnames(m)[c(-1,-2,-3)]
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
 	dev.off()
+	m
 }
 
 # recursive region check
