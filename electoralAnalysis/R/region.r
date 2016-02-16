@@ -86,7 +86,7 @@ region_check <- function(
 	n<-ncol(border_table)
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
-	a<-a[order(choose(n,a),decreasing=TRUE)]
+	a<-a[order(choose(n,a),decreasing=FALSE)]
 	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
