@@ -55,6 +55,19 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	rownames(out)<-p
 	out
 }
+
+plot_trend <- function(m=mean_table()){
+	x<-m[,1]
+	m<-m[,c(-1,-2)]
+	ylim<-range(m)
+	plot(type="b",pch=1,x=x,y=m[,1])
+	counter<-2
+	while(counter<=ncol(m)){
+		lines(type="b",pch=counter,x=x,y=m[,counter]
+		counter<-counter+1
+	}
+}
+
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
