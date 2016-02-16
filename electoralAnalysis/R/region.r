@@ -36,6 +36,18 @@ getTime <- function(){
 	((H*60)+M)*60+S
 }
 
+list.tableFiles<-function(name="SIR2014"){
+	list.files(path="data/",pattern=paste(name,"_k*.tab",sep=""))
+}
+
+mean_table<-function(fileList=paste("data/",list.tableFiles(),sep="")){
+	out<-foreach(l=fileList,.combine=rbind)%do%{
+		colMeans(read.table(l))
+	}
+	rownames(out)<-gsub(".tab","",gsub(paste(name,"_k",sep=""),"",fileList))
+	out
+}
+
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
