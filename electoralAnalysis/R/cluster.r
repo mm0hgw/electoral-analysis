@@ -9,7 +9,7 @@ require(doParallel)
 no_cores <- max(1,detectCores()-1)
 mcoptions <- list(preschedule=TRUE,
 	set.seed=FALSE,
-	silent=FALSE,
+	silent=TRUE,
 	cores=no_cores)
 
 # make custom fork cluster
