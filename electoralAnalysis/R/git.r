@@ -5,5 +5,4 @@ pull_source <- function(){
 	source("R/density_scatter.r")
 	source("R/git.r")
 	source("R/region.r")
-	source("R/cluster_launch.r")
 }
