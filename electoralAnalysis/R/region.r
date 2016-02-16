@@ -55,6 +55,7 @@ recursive_region_check <- function(
 	}else{
 		cat(paste(toString(W_list),"\n",sep=""),file=datafile)
 	}
+	print(i)
 	while(i<=cnk){
 		j<-combnGen(i)
 		if(contiguityCheck(
