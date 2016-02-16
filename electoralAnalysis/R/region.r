@@ -22,7 +22,7 @@ recursive_region_check <- function(
 	name="SIR2014"
 ){
 	n<-ncol(border_table)
-	combnLutGen<-combnLutGenGen(n,k)
+	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
 	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
@@ -36,13 +36,14 @@ recursive_region_check <- function(
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
 		while(i<=cnk){
+			j<-combnGen(i)
 			if(contiguityCheck(
 				border_table,
-				combnLutGen(i)
+				j
 			)==TRUE){
 				l<-paste("\"",i,"\" ",
 					ballot_chisq_to_normal(
-						ballot[combnLutGen(i),],W_list=W
+						ballot[j,],W_list=W
 					),"\n",sep=""
 				)
 				cat(file=datafile,append=TRUE,l)
