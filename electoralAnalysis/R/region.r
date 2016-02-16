@@ -47,46 +47,34 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
-	trim<-100000
-	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
+	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%do%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
 		if(file.exists(datafile)){
-			d<-strsplit(ReadLastLines(datafile,1)," ")
-			i<- as.numeric(gsub("\"","",d[[1]][1]))+1
+			d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
+			i<-max(as.numeric(gsub("\"","",d[,1])))
 		}else{
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
-		tOld<-getTime()
-		iOld<-i
-		while(i<=cnk){
-			#reporting trigger
-			if(i%%trim==0){
-				tNew<-getTime()
-				dT<-tNew-tOld
-				dI<-i-iOld
-				target<-cnk-i
-				d<-Sys.time()
-				ETA<-d+target/dI*dT
-				cat(paste(d,W,k,i%/%trim,cnk%/%trim,
-					sprintf("%.4f",i/cnk*100),
-					"ETA",ETA,"\n"),file="region.log",
-					append=TRUE
-				)
-			}
-			j<-combnGen(i)
+		from<-i-1
+		foreach(
+			i=icount(cnk-from),
+			.combine=c,
+			.options.multicore=mcoptions
+		)%dopar%{
+			j<-combnGen(i+from)
 			if(contiguityCheck(
 				border_table,
 				j
 			)==TRUE){
-				l<-paste("\"",i,"\" ",
+				l<-paste("\"",i+from,"\" ",
 					ballot_chisq_to_normal(
 						ballot[j,],W_list=W
 					),"\n",sep=""
 				)
 				cat(file=datafile,append=TRUE,l)
 			}
-			i<-i+1
+			vector()
 		}
 		mean(unlist(read.table(datafile)))
 	}
@@ -105,7 +93,7 @@ region_check <- function(
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
 	a<-a[order(choose(n,a),decreasing=TRUE)]
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
