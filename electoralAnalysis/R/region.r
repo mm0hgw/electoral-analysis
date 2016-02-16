@@ -49,8 +49,8 @@ recursive_region_check <- function(
 		}
 		while(i<=cnk){
 			#reporting trigger
-			if(i%%1000==0){
-				cat(paste(W,k,i,cnk),file="region.log",append=TRUE)
+			if(i%%10000==0){
+				cat(paste(W,k,i,cnk,"\n"),file="region.log",append=TRUE)
 			}
 			j<-combnGen(i)
 			if(contiguityCheck(
