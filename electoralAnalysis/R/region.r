@@ -50,7 +50,7 @@ recursive_region_check <- function(
 		while(i<=cnk){
 			#reporting trigger
 			if(i%%100000==0){
-				cat(paste(date(),W,k,i,cnk,
+				cat(paste(date(),W,k,i%/%100000,cnk%/%100000,
 					sprintf("%.2f",i/cnk*100)
 					,"\n"),file="region.log",
 					append=TRUE
