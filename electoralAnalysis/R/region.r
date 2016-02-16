@@ -50,14 +50,11 @@ recursive_region_check <- function(
 	datafile<-paste("data/",name,"_k",k,".tab",sep="")
 	i<-1
 	if(file.exists(datafile)){
-		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
-		print(d)
+		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,1)," ")))
 		i<-max(as.numeric(gsub("\"","",d[,1])))+1
-		print(i)
 	}else{
 		cat(paste(toString(W_list),"\n",sep=""),file=datafile)
 	}
-	print(i)
 	while(i<=cnk){
 		j<-combnGen(i)
 		if(contiguityCheck(
@@ -94,7 +91,7 @@ region_check <- function(
 		silent=TRUE,
 		cores=no_cores
 	)
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
