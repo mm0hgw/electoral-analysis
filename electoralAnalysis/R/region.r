@@ -27,6 +27,15 @@ ReadLastLines <- function(x,n,...){
   out
 }
 
+getTime <- function(){
+	s <- Sys.time()
+	H <- as.numeric(format(s,"%H"))
+	M <- as.numeric(format(s,"%M"))
+	S <- as.numeric(format(s,"%S"))
+
+	((H*60)+M)*60+S
+}
+
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
@@ -48,12 +57,20 @@ recursive_region_check <- function(
 		}else{
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
+		tOld<-getTime()
+		iOld<-i
 		while(i<=cnk){
 			#reporting trigger
 			if(i%%trim==0){
-				cat(paste(date(),W,k,i%/%trim,cnk%/%trim,
-					sprintf("%.4f",i/cnk*100)
-					,"\n"),file="region.log",
+				tNew<-getTime()
+				dT<-tNew-tOld
+				dI<-i-iOld
+				target<-cnk-i
+				d<-Sys.time()
+				ETA<-d+target/dI*dT
+				cat(paste(d,W,k,i%/%trim,cnk%/%trim,
+					sprintf("%.4f",i/cnk*100),
+					"ETA",ETA,"\n"),file="region.log",
 					append=TRUE
 				)
 			}
