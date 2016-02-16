@@ -1,3 +1,6 @@
+#'@name buildPackage
+#'@import devtools
+
 require(devtools)
 
 gitPull<- function(){
@@ -9,7 +12,6 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
-#'@import devtools
 buildPackage <- function(package){
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
 	system2("rm",c("-r",paste(package,"/man/",sep="")))
