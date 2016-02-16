@@ -58,10 +58,9 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 
 plot_trend <- function(m=mean_table()){
 	x<-m[,1]
-	m<-m[,c(-1,-2)]
 	ylim<-range(m)
-	plot(type="b",pch=1,x=x,y=m[,1])
-	counter<-2
+	plot(type="b",pch=3,x=x,y=m[,3])
+	counter<-4
 	while(counter<=ncol(m)){
 		lines(type="b",pch=counter,x=x,y=m[,counter])
 		counter<-counter+1
