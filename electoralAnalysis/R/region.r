@@ -74,7 +74,7 @@ recursive_region_check <- function(
 				)
 				cat(file=datafile,append=TRUE,l)
 			}
-			i<-i-1
+			i<-i+1
 		}
 		mean(unlist(read.table(datafile)))
 	}
