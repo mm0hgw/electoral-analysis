@@ -47,39 +47,32 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
-	mcoptions <- list(preschedule=FALSE,
-		set.seed=FALSE,
-		silent=TRUE,
-		cores=min(no_cores,length(W_list))
-	)
-	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
-		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
-		i<-1
-		if(file.exists(datafile)){
-			d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
-			i<-max(as.numeric(gsub("\"","",d[,1])))+1
-		}else{
-			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
-		}
-		while(i<=cnk){
-			j<-combnGen(i)
-			if(contiguityCheck(
-				border_table,
-				j
-			)==TRUE){
-				l<-paste("\"",i,"\" ",
+	datafile<-paste("data/",name,"_k",k,".tab",sep="")
+	i<-1
+	if(file.exists(datafile)){
+		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
+		i<-max(as.numeric(gsub("\"","",d[,1])))+1
+	}else{
+		cat(paste("\"",W,"\"\n",sep=""),file=datafile)
+	}
+	while(i<=cnk){
+		j<-combnGen(i)
+		if(contiguityCheck(
+			border_table,
+			j
+		)==TRUE){
+			l<-paste("\"",i,"\" ",
+				toString(
 					ballot_chisq_to_normal(
-						ballot[j,],W_list=W
-					),"\n",sep=""
-				)
-				cat(file=datafile,append=TRUE,l)
-			}
+						ballot[j,]
+					)
+				),"\n",sep=""
+			)
+			cat(file=datafile,append=TRUE,l)
 			i<-i+1
 		}
-		mean(unlist(read.table(datafile)))
 	}
-	names(out)<-W_list
-	out
+	vector()
 }
 
 # check region
@@ -96,7 +89,7 @@ region_check <- function(
 	mcoptions <- list(preschedule=TRUE,
 		set.seed=FALSE,
 		silent=TRUE,
-		cores=min(max(no_cores%/%length(W_list)+1,1),no_cores)
+		cores=no_cores
 	)
 	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
