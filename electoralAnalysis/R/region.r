@@ -47,6 +47,11 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
+	mcoptions <- list(preschedule=FALSE,
+		set.seed=FALSE,
+		silent=TRUE,
+		cores=min(no_cores,length(W_list))
+	)
 	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
@@ -57,11 +62,7 @@ recursive_region_check <- function(
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
 		from<-i-1
-		foreach(
-			i=icount(cnk-from),
-			.combine=c,
-			.options.multicore=mcoptions
-		)%dopar%{
+		while(i<=cnk){
 			j<-combnGen(i+from)
 			if(contiguityCheck(
 				border_table,
@@ -93,6 +94,11 @@ region_check <- function(
 	a<-seq(2,n-1)
 	a<-a[choose(n,a)*a<2^.Machine$double.digits-1]
 	a<-a[order(choose(n,a),decreasing=TRUE)]
+	mcoptions <- list(preschedule=TRUE,
+		set.seed=FALSE,
+		silent=TRUE,
+		cores=min(max(no_cores%/%length(W_list)+1,1),no_cores)
+	)
 	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
