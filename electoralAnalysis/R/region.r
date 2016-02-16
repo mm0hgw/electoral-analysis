@@ -38,7 +38,7 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
-	trim<-10000
+	trim<-100000
 	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
