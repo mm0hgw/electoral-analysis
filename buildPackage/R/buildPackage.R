@@ -9,6 +9,7 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/NAMESPACE",sep=""),file.exists))]
 }
 
+#'@import devtools
 buildPackage <- function(package){
 	document(package)
 	system2("git",c("add", paste(package,"/man/*",sep="")))
@@ -19,7 +20,6 @@ buildPackage <- function(package){
 	install.packages(paste(package,"_1.0.tar.gz",sep=""))
 }
 
-#'@import devtools
 #'@export
 buildPackages<-function(packages=findPackages()){
 	lapply(packages,buildPackage)
