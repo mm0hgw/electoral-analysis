@@ -68,7 +68,7 @@ plot_trend <- function(m=mean_table()){
 		counter<-counter+1
 	}
 	l<-colnames(m)[c(-1,-2)]
-	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
+	legend("topright",legend=l,pch=seq(3,length.out=length(l)))
 	dev.off()
 }
 
