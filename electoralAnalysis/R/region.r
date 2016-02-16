@@ -44,7 +44,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		colMeans(read.table(l))
 	}
-	rownames(out)<-gsub(".tab","",gsub(paste(name,"_k",sep=""),"",fileList))
+	rownames(out)<-gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",fileList))
 	out
 }
 
