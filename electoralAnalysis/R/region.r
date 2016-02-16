@@ -47,12 +47,12 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
-	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%do%{
+	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
 		if(file.exists(datafile)){
 			d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
-			i<-max(as.numeric(gsub("\"","",d[,1])))
+			i<-max(as.numeric(gsub("\"","",d[,1])))+1
 		}else{
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
