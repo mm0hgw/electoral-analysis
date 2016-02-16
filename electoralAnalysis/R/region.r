@@ -92,7 +92,7 @@ region_check <- function(
 		silent=TRUE,
 		cores=no_cores
 	)
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 }
