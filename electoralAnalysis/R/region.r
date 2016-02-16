@@ -69,6 +69,9 @@ plot_trend <- function(m=mean_table()){
 	}
 	l<-colnames(m)[c(-1,-2,-3)]
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
+	system2("git",c("add","Rplot001.png"))
+	system2("git",c("commit","-m","plot"))
+	system2("git","push")
 	dev.off()
 	m
 }
