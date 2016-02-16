@@ -53,7 +53,7 @@ recursive_region_check <- function(
 		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,2*no_cores)," ")))
 		i<-max(as.numeric(gsub("\"","",d[,1])))+1
 	}else{
-		cat(paste("\"",W,"\"\n",sep=""),file=datafile)
+		cat(paste(toString(W_list),"\n",sep=""),file=datafile)
 	}
 	while(i<=cnk){
 		j<-combnGen(i)
