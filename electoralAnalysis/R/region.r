@@ -38,6 +38,7 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
+	trim<-10000
 	out<-foreach(W=W_list,.combine=c,.options.multicore=mcoptions)%dopar%{
 		datafile<-paste("data/",name,"_k",k,"_",W,".tab",sep="")
 		i<-1
@@ -49,8 +50,8 @@ recursive_region_check <- function(
 		}
 		while(i<=cnk){
 			#reporting trigger
-			if(i%%100000==0){
-				cat(paste(date(),W,k,i%/%100000,cnk%/%100000,
+			if(i%%trim==0){
+				cat(paste(date(),W,k,i%/%trim,cnk%/%trim,
 					sprintf("%.2f",i/cnk*100)
 					,"\n"),file="region.log",
 					append=TRUE
