@@ -48,6 +48,10 @@ recursive_region_check <- function(
 			cat(paste("\"",W,"\"\n",sep=""),file=datafile)
 		}
 		while(i<=cnk){
+			#reporting trigger
+			if(i%%1000==0){
+				cat(paste(W,k,i,cnk))
+			}
 			j<-combnGen(i)
 			if(contiguityCheck(
 				border_table,
