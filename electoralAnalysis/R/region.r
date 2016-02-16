@@ -63,7 +63,7 @@ plot_trend <- function(m=mean_table()){
 	plot(type="b",pch=1,x=x,y=m[,1])
 	counter<-2
 	while(counter<=ncol(m)){
-		lines(type="b",pch=counter,x=x,y=m[,counter]
+		lines(type="b",pch=counter,x=x,y=m[,counter])
 		counter<-counter+1
 	}
 }
