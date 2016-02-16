@@ -57,6 +57,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 }
 
 plot_trend <- function(m=mean_table()){
+	phone_png()
 	x<-m[,1]
 	ylim<-range(m[,c(-1,-2)])
 	plot(type="b",pch=3,x=x,y=m[,3],ylim=ylim,
@@ -66,6 +67,9 @@ plot_trend <- function(m=mean_table()){
 		lines(type="b",pch=counter,x=x,y=m[,counter])
 		counter<-counter+1
 	}
+	l<-colnames(m)[c(-1,-2)]
+	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
+	dev.off()
 }
 
 # recursive region check
