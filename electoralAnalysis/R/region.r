@@ -73,7 +73,7 @@ plot_trend <- function(m=mean_table()){
 	print(foreach(k=m[,1],x=m[,3])%do%{
 		combnG(x,n,k)
 	})
-	print(as.vector(m[,2]/as.vector(m[,2])/as.vector(m[,3])*choose(32,m[,1]))
+	print(as.vector(m[,2])/as.vector(m[,3])*choose(32,m[,1]))
 	dev.off()
 	system2("git",c("add","Rplot001.png"))
 	system2("git",c("commit","-m","plot"))
