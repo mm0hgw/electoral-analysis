@@ -60,11 +60,11 @@ plot_trend <- function(m=mean_table()){
 	phone_png()
 	x<-m[,1]
 	ylim<-range(m[,c(-1,-2,-3)])
-	plot(type="b",pch=4,x=x,y=m[,4],ylim=ylim,
+	plot(type="b",pch=4,x=x,y=log(m[,4]),ylim=ylim,
 		xlab="k",ylab="mean chisq to Gaussian")
 	counter<-5
 	while(counter<=ncol(m)){
-		lines(type="b",pch=counter,x=x,y=m[,counter])
+		lines(type="b",pch=counter,x=x,y=log(m[,counter]))
 		counter<-counter+1
 	}
 	l<-colnames(m)[c(-1,-2,-3)]
