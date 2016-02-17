@@ -59,7 +59,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 plot_trend <- function(m=mean_table()){
 	phone_png()
 	x<-m[,1]
-	ylim<-range(m[,c(-1,-2,-3)])
+	ylim<-log(range(m[,c(-1,-2,-3)]))
 	plot(type="b",pch=4,x=x,y=log(m[,4]),ylim=ylim,
 		xlab="k",ylab="mean chisq to Gaussian")
 	counter<-5
