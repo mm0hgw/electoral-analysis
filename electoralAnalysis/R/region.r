@@ -41,7 +41,7 @@ list.tableFiles<-function(name="SIR2014"){
 }
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
-	out<-foreach(l=fileList,.combine=rbind)%dopar%{
+	out<-foreach(l=fileList,.combine=rbind)%do%{
 		d<-read.table(l)
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
@@ -117,6 +117,7 @@ recursive_region_check <- function(
 		}
 		i<-i+1
 	}
+	beep(9)
 	vector()
 }
 
