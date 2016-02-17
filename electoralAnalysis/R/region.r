@@ -81,6 +81,15 @@ plot_trend <- function(m=mean_table()){
 	m
 }
 
+plot_trend_repeat <- function(){
+	m<-mean_table()
+	print(m)
+	while(nrow(n<-mean_table())==nrow(m)){
+		print(n)
+		print(n-m)
+	}
+	beep(9)
+}
 # recursive region check
 recursive_region_check <- function(
 	ballot=compute_W(read.csv("data/SIR2014.csv")),
