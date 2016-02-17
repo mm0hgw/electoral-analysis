@@ -289,7 +289,7 @@ clean_columns <- function(ballot){
 }
 
 phone_png<-function(...){
-  png(...,width=720,height=1280)
+  png(...,width=1280,height=720)
 }
 
 pdf_a4 <- function(...){
