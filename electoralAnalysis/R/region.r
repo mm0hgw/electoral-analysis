@@ -87,6 +87,7 @@ plot_trend_repeat <- function(){
 	while(nrow(n<-mean_table())==nrow(m)){
 		print(n)
 		print(n-m)
+		system2("sleep","60")
 	}
 	beep(9)
 }
