@@ -76,9 +76,9 @@ plot_trend <- function(m=mean_table()){
 	l<-colnames(m)[c(-1,-2,-3)]
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
 	n<-32
-	print(foreach(k=m[,1],x=m[,3])%do%{
-		combnG(x,n,k)
-	})
+	foreach(k=m[,1],x=m[,3])%do%{
+		cat(paste(paste(combnG(x,n,k),collapse=" "),"\n"))
+	}
 	print(as.vector(m[,2])/as.vector(m[,3]))
 	dev.off()
 	system2("git",c("add","Rplot001.png"))
