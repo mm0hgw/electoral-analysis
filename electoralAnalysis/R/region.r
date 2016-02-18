@@ -41,7 +41,9 @@ list.tableFiles<-function(name="SIR2014"){
 }
 
 fastColMeans<- function(t){
-	do.call(c,lapply(seq(ncol(t)),function(i)mean(t[,i])))
+	out<-do.call(c,lapply(seq(ncol(t)),function(i)mean(t[,i])))
+	names(out)<-colnames(t)
+	out
 }
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
