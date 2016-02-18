@@ -90,9 +90,10 @@ plot_trend <- function(m=mean_table()){
 	}
 	print(as.vector(m[,2])/as.vector(m[,3]))
 	dev.off()
-	system2("git",c("add","Rplot001.png"))
-	system2("git",c("commit","-m","plot"))
-	system2("git","push")
+	system2(stdout=NULL,"git","pull")
+	system2(stdout=NULL,"git",c("add","Rplot001.png"))
+	system2(stdout=NULL,"git",c("commit","-m","plot"))
+	system2(stdout=NULL,"git","push")
 	m
 }
 
@@ -105,7 +106,7 @@ plot_trend_repeat <- function(){
 			plot_trend(n)
 			print(n)
 			print(n-m)
-			system2("sleep","1800")
+			system2(stdout=NULL,"sleep","1800")
 		}
 		beep(9)
 	}
