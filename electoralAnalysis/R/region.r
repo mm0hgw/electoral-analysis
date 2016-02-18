@@ -88,16 +88,18 @@ plot_trend <- function(m=mean_table()){
 }
 
 plot_trend_repeat <- function(){
-	m<-mean_table()
-	plot_trend(m)
-	print(m)
-	while(nrow(n<-mean_table())==nrow(m)){
-		plot_trend(n)
-		print(n)
-		print(n-m)
-		system2("sleep","1800")
+	while(TRUE){
+		m<-mean_table()
+		plot_trend(m)
+		print(m)
+		while(nrow(n<-mean_table())==nrow(m)){
+			plot_trend(n)
+			print(n)
+			print(n-m)
+			system2("sleep","1800")
+		}
+		beep(9)
 	}
-	beep(9)
 }
 # recursive region check
 recursive_region_check <- function(
