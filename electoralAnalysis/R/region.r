@@ -40,8 +40,14 @@ list.tableFiles<-function(name="SIR2014"){
 	list.files(path="data/",pattern=paste(name,"_k",sep=""))
 }
 
-fastColMeans<- function(t){
-	out<-do.call(c,lapply(seq(ncol(t)),function(i)mean(t[,i])))
+fastColFoo<- function(t,foo){
+	out<-do.call(c,lapply(seq(ncol(t)),function(i)foo(t[,i])))
+	names(out)<-colnames(t)
+	out
+}
+
+fastRowFoo<- function(t,foo,.combine=c){
+	out<-do.call(.combine,lapply(seq(nrow(t)),function(i)foo(t[,i])))
 	names(out)<-colnames(t)
 	out
 }
@@ -54,7 +60,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		kn<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(i/choose(kn,k)*100000)/1000
-		o<-c(p=p,k=k,n=n,i=i,fastColMeans(d))
+		o<-c(p=p,k=k,n=n,i=i,fastColFoo(d,mean),fastColFoo(d,sd))
 		rm(d)
 		gc()
 		o
