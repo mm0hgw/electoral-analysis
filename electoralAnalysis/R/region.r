@@ -95,7 +95,7 @@ plot_trend_repeat <- function(){
 		plot_trend(n)
 		print(n)
 		print(n-m)
-		system2("sleep","300")
+		system2("sleep","1800")
 	}
 	beep(9)
 }
