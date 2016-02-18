@@ -54,9 +54,10 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		kn<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(i/choose(kn,k)*100000)/1000
-		c(p=p,k=k,n=n,i=i,fastColMeans(d))
+		o<-c(p=p,k=k,n=n,i=i,fastColMeans(d))
 		rm(d)
 		gc()
+		o
 	}
 	p<-out[,1]
 	out<-out[,-1]
