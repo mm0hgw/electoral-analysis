@@ -71,6 +71,14 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	out
 }
 
+logfile<-"contiguity.log"
+
+logcat<-function(logfile=logfile,obj){
+	objstr<-paste(obj,collapse=" ")
+	objstrn<-paste(objstr,"\n")
+	cat(file=logfile,append=TRUE,objstrn)
+}
+
 plot_trend <- function(m=mean_table()){
 	phone_png()
 	x<-m[,1]
@@ -86,14 +94,14 @@ plot_trend <- function(m=mean_table()){
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
 	n<-32
 	foreach(k=m[,1],x=m[,3])%do%{
-		cat(paste(paste(combnG(x,n,k),collapse=" "),"\n"))
+		logcat(combnG(x,n,k))
 	}
-	print(as.vector(m[,2])/as.vector(m[,3]))
+	logcat(as.vector(m[,2])/as.vector(m[,3]))
 	dev.off()
 	system2(stdout=NULL,"git","pull")
 	system2(stdout=NULL,"git",c("add","Rplot001.png"))
 	system2(stdout=NULL,"git",c("commit","-m","plot"))
-	system2(stdout=NULL,"git","push")
+	system2(stdout=NULL,wait=FALSE,"git","push")
 	m
 }
 
@@ -101,11 +109,11 @@ plot_trend_repeat <- function(){
 	while(TRUE){
 		m<-mean_table()
 		plot_trend(m)
-		print(m)
+		logcat(m)
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
-			print(n)
-			print(n-m)
+			logcat(n)
+			logcat(n-m)
 			system2(stdout=NULL,"sleep","1800")
 		}
 		beep(9)
