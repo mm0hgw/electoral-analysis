@@ -245,6 +245,8 @@ fn002 <- function(name="SIR2014"){
 		indices<-seq(n)
 	}else{
 		foo<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k"),"",l)))
+		print(foo)
+		stop()
 		i<-max(foo)+1
 		indices<-read.table(l[which.max(foo)])
 	}
