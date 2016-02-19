@@ -7,7 +7,7 @@ require(doParallel)
 
 # setup parallelisation parameters
 no_cores <- max(1,detectCores()-1)
-mcoptions <- list(preschedule=TRUE,
+mcoptions <- list(preschedule=FALSE,
 	set.seed=FALSE,
 	silent=TRUE,
 	cores=no_cores)
