@@ -195,7 +195,16 @@ region_check <- function(
 
 fn001 <- function(b,x,k){
 	if(length(x)>1){
-		out<-do.call(c,lapply(x,function(y)fn001(b,y,k)))
+		out<-do.call(
+			c,
+			mclapply(
+				x,
+				function(y)fn001(b,y,k),
+				mc.set.seed=FALSE,
+				mc.silent=TRUE,
+				mc.preschedule=FALSE
+			)
+		)
 		out<-as.vector(out[!duplicated(out)])
 		out<-out[order(out)]
 		names(out)<-NULL
