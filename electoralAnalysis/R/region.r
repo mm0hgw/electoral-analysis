@@ -78,7 +78,7 @@ logfile<-"contiguity.log"
 logcat<-function(obj,logfile=logfile){
 	objstr<-paste(obj,collapse=" ")
 	objstrn<-paste(objstr,"\n")
-	cat(file=logfile,append=TRUE,objstrn)
+	cat(objstrn,file=logfile,append=TRUE)
 }
 
 plot_trend <- function(m=mean_table()){
