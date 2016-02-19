@@ -68,6 +68,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		o
 	}
 	p<-out[,1]
+	out<-out[,-1]
 	rownames(out)<-p
 	out
 }
