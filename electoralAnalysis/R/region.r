@@ -309,8 +309,8 @@ write_k_index<-function(name,k){
 	tmpfile<-gsub("data","/tmp",outfile)
 	lastfile<-paste("data/",name,"_k",k-1,"_index.tab",sep="")
 	if(file.exists(outfile))return()
-	while(!file.exists(lastfile)){
-		system2("sleep",60)
+	if(!file.exists(lastfile)){
+		return()
 	}
 	ii<-read.table(lastfile)[,1]
 	cat("\"x\"\n",file=tmpfile)
