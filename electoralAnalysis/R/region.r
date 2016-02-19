@@ -72,9 +72,9 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	out
 }
 
-logfile<-"contiguity.log"
 
-logcat<-function(obj,file=logfile){
+
+logcat<-function(obj,file){
 	if(length(dim(obj))>1){
 		lapply(seq(nrow(obj)),logcat,file=file)
 	}else{
@@ -99,9 +99,9 @@ plot_trend <- function(m=mean_table()){
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
 	n<-32
 	foreach(k=m[,1],x=m[,3])%do%{
-		logcat(combnG(x,n,k))
+		logcat(combnG(x,n,k),file="region.log")
 	}
-	logcat(as.vector(m[,2])/as.vector(m[,3]))
+	logcat(as.vector(m[,2])/as.vector(m[,3]),file="region.log")
 	dev.off()
 	system2(stdout=NULL,"git","pull")
 	system2(stdout=NULL,"git",c("add","Rplot001.png"))
@@ -116,16 +116,16 @@ plot_trend_repeat <- function(){
 	
 	while(TRUE){
 		plot_trend(m)
-		logcat(m)
+		logcat(m,file="region.log")
 		lasttime<-getTime()
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
 			newtime<-getTime()
 			duration <- oldtime -newtime
 			oldtime<-newtime
-			logcat(gsub(",","",toString(n)))
-			logcat(gsub(",","",toString(n-m)))
-			logcat(paste(duration,"seconds"))
+			logcat(gsub(",","",toString(n)),file="region.log")
+			logcat(gsub(",","",toString(n-m)),file="region.log")
+			logcat(paste(duration,"seconds"),file="region.log")
 			system2(stdout=NULL,"sleep",paste(duration*10))
 		}
 		m<-n
