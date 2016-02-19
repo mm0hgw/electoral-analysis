@@ -54,9 +54,9 @@ fastRowFoo<- function(t,foo,.combine=c){
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
 	out<-foreach(l=fileList,.combine=rbind)%do%{
-		logcat(paste("Reading",l),"io.log")
+		logcat(paste("Reading",l),file="io.log")
 		d<-read.table(l)
-		logcat(paste("Read",l),"io.log")
+		logcat(paste("Read",l),file="io.log")
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
 		kn<-32
