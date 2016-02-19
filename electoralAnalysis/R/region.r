@@ -368,22 +368,21 @@ write_chisq<-function(name,k){
 			out
 		)
 	}
-}
-
-handle_k <- function(name,k){
-	indexfile <- paste("data/",name,"_k",k,"_index.tab",sep="")
-	if(!file.exists(indexfile)){
-		write_k_index(name,k)
-	}
-	mcparallel(write_chisq(name,k))
+	return(TRUE)
 }
 
 handle_ballot <- function(name){
 	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
 	indexfile <- paste("data/",name,"_k1_index.tab",sep="")
 	write.table(seq(n),file=indexfile)
+	joblist<-vector()
 	for(k in seq(n)){
-		handle_k(name,k)
+		indexfile <- paste("data/",name,"_k",k,"_index.tab",sep="")
+		if(!file.exists(indexfile)){
+			write_k_index(name,k)
+		}
+		joblist<-c(joblist,mcparallel(write_chisq(name,k)))
 	}
+	lapply(joblist,mccollect)
 }
 	
