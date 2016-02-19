@@ -232,7 +232,7 @@ index_files <- function(name="SIR2014"){
 	foo<-list.files(path="data/",pattern=name)
 	foo<-foo[grep(name,foo)]
 	foo<-foo[grep("index",foo)]
-	paste("data/",foo)
+	paste("data/",foo,sep="")
 }
 
 fn002 <- function(name="SIR2014"){
