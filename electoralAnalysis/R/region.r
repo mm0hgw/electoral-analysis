@@ -333,3 +333,57 @@ write_k_index<-function(name,k){
 	foo<-foo[!duplicated(foo)]
 	write.table(foo,file=outfile)
 }
+
+write_chisq<-function(name,k){
+	ballot<-read.csv(paste("data/",name,".csv",sep=""))
+	n<-nrow()
+	combnGen<-combnGG(n,k)
+	indexfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
+	outfile<-gsub("_index","",indexfile)
+	i<-read.table(indexfile)[,1]
+	if(file.exists(outfile)){
+		j<-as.numeric(rownames(read.table(outfile))
+		i<-i[!(i %in% j)]
+	}
+	for(x in i){
+		y<-combnGen(x)
+		out<-paste(
+			y,
+			" ",
+			gsub(
+				",",
+				"",
+				toString(
+					ballot_chisq_to_normal(
+						ballot[y,]
+					)
+				)
+			),
+			"\n",
+			sep=""
+		)
+		cat(
+			file=outfile,
+			append=TRUE,
+			out
+		)
+	}
+}
+
+handle_k <- function(name,k){
+	indexfile <- paste("data/",name,"_k",k,"_index.tab",sep="")
+	if(!file.exists(indexfile)){
+		write_k_index(name,k)
+	}
+	mcparallel(write_chisq(name,k))
+}
+
+handle_ballot <- function(name){
+	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
+	indexfile <- paste("data/",name,"_k1_index.tab",sep="")
+	write.table(seq(n),file=indexfile)
+	for(k in seq(n)){
+		handle_k(name,k)
+	}
+}
+	
