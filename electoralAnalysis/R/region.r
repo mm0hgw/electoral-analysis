@@ -122,7 +122,7 @@ plot_trend_repeat <- function(){
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
 			newtime<-getTime()
-			duration <- oldtime -newtime
+			duration <- newtime - oldtime
 			oldtime<-newtime
 			logcat(gsub(",","",toString(n)),file="region.log")
 			logcat(gsub(",","",toString(n-m)),file="region.log")
