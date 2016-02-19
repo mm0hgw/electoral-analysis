@@ -120,12 +120,12 @@ plot_trend_repeat <- function(){
 	while(TRUE){
 		plot_trend(m)
 		logcat(m,file="region.log")
-		oldtime<-Sys.time()
+		oldtime<-getTime()
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
 			logcat(n,file="region.log")
 			logcat(n-m,file="region.log")
-			newtime<-Sys.time()
+			newtime<-getTime()
 			duration <- round( newtime - oldtime )
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
