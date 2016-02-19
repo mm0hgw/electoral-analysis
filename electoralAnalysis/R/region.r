@@ -214,6 +214,8 @@ fn001 <- function(b,x,k){
 			newElem<-setdiff(seq(n)[b[x,]==TRUE],x)
 		}else{
 			invcom<-setdiff(seq(n),com)
+			print(com)
+			print(invcom)
 			newElem<-seq(n)[invcom][rowSums(b[invcom,com])!=0]
 		}
 		out<-do.call(rbind,lapply(seq(length(newElem)),function(x)com))
