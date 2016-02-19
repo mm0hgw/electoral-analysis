@@ -323,7 +323,7 @@ write_k_index<-function(name,k){
 			newElem<-seq(n)[-j][rowSums(b[-j,j])!=0]
 		}
 		for(elem in newElem){
-			out<-revCombnG(c(j,elem),n,k)
+			out<-revCombnG(c(j,elem),n)
 			cat(paste("\"\" ",out,"\n",sep=""),file=tmpfile,append=TRUE)
 		}
 	}
