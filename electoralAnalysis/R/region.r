@@ -75,10 +75,10 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 
 logfile<-"contiguity.log"
 
-logcat<-function(obj,logfile=logfile){
+logcat<-function(obj,file=logfile){
 	objstr<-paste(obj,collapse=" ")
 	objstrn<-paste(objstr,"\n")
-	cat(objstrn,file=logfile,append=TRUE)
+	cat(objstrn,file=file,append=TRUE)
 }
 
 plot_trend <- function(m=mean_table()){
