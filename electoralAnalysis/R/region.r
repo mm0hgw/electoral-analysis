@@ -82,7 +82,7 @@ logcat<-function(obj,file){
 		lapply(seq(nrow(obj)),function(x)logcat(obj[x,],file=file))
 	}else{
 		objstr<-paste(obj,collapse=" ")
-		objstrn<-paste(objstr,"\n")
+		objstrn<-paste(Sys.time(),objstr,"\n")
 		cat(objstrn,file=file,append=TRUE)
 	}
 }
