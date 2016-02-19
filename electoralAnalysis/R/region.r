@@ -239,15 +239,16 @@ fn002 <- function(name="SIR2014"){
 	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
 	n<-ncol(b)
 	l<-index_files(name)
-	if((length(l)==1)&(l=="")){
+	print(l)
+	if((length(l)==1)&sum(l=="")==1){
 		i<-2
 		indices<-seq(n)
 	}else{
 		foo<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k"),"",l)))
-		i<-max(foo)
+		i<-max(foo)+1
 		indices<-read.table(l[which.max(foo)])
 	}
-	for(k in seq(2,n)){
+	for(k in seq(i,n)){
 		indices<-fn001(b,indices,k-1)
 		indexfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
 		write.table(indices,file=indexfile)
