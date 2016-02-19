@@ -202,7 +202,8 @@ fn001 <- function(b,x,k){
 				function(y)fn001(b,y,k),
 				mc.set.seed=FALSE,
 				mc.silent=TRUE,
-				mc.preschedule=FALSE
+				mc.preschedule=FALSE,
+				mc.cores=no_cores
 			)
 		)
 		out<-as.vector(out[!duplicated(out)])
