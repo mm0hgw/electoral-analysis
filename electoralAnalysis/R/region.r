@@ -242,7 +242,6 @@ fn002 <- function(name="SIR2014"){
 	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
 	n<-ncol(b)
 	l<-index_files(name)
-	print(l)
 	if((length(l)==1)&sum(l=="")==1){
 		i<-2
 		indices<-seq(n)
@@ -251,6 +250,7 @@ fn002 <- function(name="SIR2014"){
 		i<-max(foo)+1
 		indices<-read.table(l[which.max(foo)])
 	}
+	if(i==n)return()
 	for(k in seq(i,n)){
 		indices<-fn001(b,indices,k-1)
 		indexfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
