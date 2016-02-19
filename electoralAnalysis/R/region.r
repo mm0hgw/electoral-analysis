@@ -54,7 +54,9 @@ fastRowFoo<- function(t,foo,.combine=c){
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
 	out<-foreach(l=fileList,.combine=rbind)%do%{
+		logcat(paste("Reading",l)
 		d<-read.table(l)
+		logcat(paste("Read",l)
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
 		kn<-32
@@ -73,7 +75,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 
 logfile<-"contiguity.log"
 
-logcat<-function(logfile=logfile,obj){
+logcat<-function(obj,logfile=logfile){
 	objstr<-paste(obj,collapse=" ")
 	objstrn<-paste(objstr,"\n")
 	cat(file=logfile,append=TRUE,objstrn)
