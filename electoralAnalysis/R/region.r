@@ -54,9 +54,9 @@ fastRowFoo<- function(t,foo,.combine=c){
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
 	out<-foreach(l=fileList,.combine=rbind)%do%{
-		logcat(paste("Reading",l))
+		logcat(paste("Reading",l),"io.log")
 		d<-read.table(l)
-		logcat(paste("Read",l))
+		logcat(paste("Read",l),"io.log")
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
 		kn<-32
@@ -68,7 +68,6 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		o
 	}
 	p<-out[,1]
-	out<-out[,-1]
 	rownames(out)<-p
 	out
 }
@@ -76,9 +75,13 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 logfile<-"contiguity.log"
 
 logcat<-function(obj,file=logfile){
-	objstr<-paste(obj,collapse=" ")
-	objstrn<-paste(objstr,"\n")
-	cat(objstrn,file=file,append=TRUE)
+	if(length(dim(obj))>1){
+		lapply(seq(nrow(obj)),logcat,file=file)
+	}else{
+		objstr<-paste(obj,collapse=" ")
+		objstrn<-paste(objstr,"\n")
+		cat(objstrn,file=file,append=TRUE)
+	}
 }
 
 plot_trend <- function(m=mean_table()){
