@@ -103,7 +103,7 @@ plot_trend <- function(m=mean_table()){
 		logcat(combnG(x,n,k),file="region.log")
 	}
 	logcat(as.vector(m[,2])/as.vector(m[,3]),file="region.log")
-	logcat(colnames(m))
+	logcat(colnames(m),file="region.log")
 	dev.off()
 	system2(stdout=NULL,"git","pull")
 	system2(stdout=NULL,"git",c("add","Rplot001.png"))
@@ -120,11 +120,11 @@ plot_trend_repeat <- function(){
 		oldtime<-Sys.time()
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
-			newtime<-Sys.time()
-			duration <- newtime - oldtime
-			oldtime<-newtime
 			logcat(n,file="region.log")
 			logcat(n-m,file="region.log")
+			newtime<-Sys.time()
+			duration <- round( newtime - oldtime )
+			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			system2(stdout=NULL,"sleep",paste(duration*10))
 		}
