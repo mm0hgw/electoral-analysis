@@ -239,7 +239,7 @@ fn002 <- function(name="SIR2014"){
 	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
 	n<-ncol(b)
 	l<-index_files(name)
-	if(length(l)==1&l==""){
+	if((length(l)==1)&(l=="")){
 		i<-2
 		indices<-seq(n)
 	}else{
