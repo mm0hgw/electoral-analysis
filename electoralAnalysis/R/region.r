@@ -62,7 +62,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		kn<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(i/choose(kn,k)*100000)/1000
-		o<-c(p=p,k=k,n=n,i=i,fastColFoo(d,mean),fastColFoo(d,sd))
+		o<-c(p=p,k=k,n=n,i=i,fastColFoo(d,mean))#,fastColFoo(d,sd))
 		rm(d)
 		gc()
 		o
@@ -120,8 +120,8 @@ plot_trend_repeat <- function(){
 			newtime<-getTime()
 			duration <- oldtime -newtime
 			oldtime<-newtime
-			logcat(n)
-			logcat(n-m)
+			logcat(gsub(",","",toString(n))
+			logcat(gsub(",","",toString(n-m))
 			logcat(paste(duration,"seconds"))
 			system2(stdout=NULL,"sleep",paste(duration*10))
 		}
