@@ -193,3 +193,35 @@ region_check <- function(
 	}
 }
 
+fn001 <- function(b,x,k){
+	if(length(x)>1){
+		out<-do.call(c,lapply(x,function(y)fn001(b,y,k)))
+		out<-as.vector(out[!duplicated(out)])
+		names(out)<-NULL
+		out
+	}else{
+		n<-dim(b)[1]
+		com<-combnG(x,n,k)
+		if(k==1){
+			newElem<-setdiff(seq(n)[b[x,]==TRUE],x)
+		}else{
+			newElem<-seq(n)[-com][rowSums(b[-com,com])!=0]
+		}
+		out<-do.call(rbind,lapply(seq(length(newElem)),function(x)com))
+		out<-cbind(out,newElem)
+		out<-revCombnG(out,n)
+		names(out)<-NULL
+		out
+	}
+}
+
+fn002 <- function(name="SIR2014"){
+	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
+	n<-ncol(b)
+	indices<-seq(n)
+	for(k in seq(2,n)){
+		indices<-fn001(b,indices,k-1)
+		indexfile<-paste("data/",name,"_k",k,"_index.tab")
+		write.table(indices,file=indexfile)
+	}
+}
