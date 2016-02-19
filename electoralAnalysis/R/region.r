@@ -221,7 +221,7 @@ fn002 <- function(name="SIR2014"){
 	indices<-seq(n)
 	for(k in seq(2,n)){
 		indices<-fn001(b,indices,k-1)
-		indexfile<-paste("data/",name,"_k",k,"_index.tab")
+		indexfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
 		write.table(indices,file=indexfile)
 	}
 }
