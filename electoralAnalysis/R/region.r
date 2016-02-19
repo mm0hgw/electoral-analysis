@@ -315,6 +315,7 @@ write_k_index<-function(name,k){
 	}
 	ii<-read.table(lastfile)[,1]
 	cat("\"x\"\n",file=tmpfile)
+	p<-1
 	for(i in ii){
 		j<-combnGen(i)
 		if(k==1){
@@ -324,7 +325,8 @@ write_k_index<-function(name,k){
 		}
 		for(elem in newElem){
 			out<-revCombnG(c(j,elem),n)
-			cat(paste("\"\" ",out,"\n",sep=""),file=tmpfile,append=TRUE)
+			cat(paste("\"",p,"\" ",out,"\n",sep=""),file=tmpfile,append=TRUE)
+			p<-p+1
 		}
 	}
 	foo<-read.table(tmpfile)[,1]
