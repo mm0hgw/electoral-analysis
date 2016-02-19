@@ -260,7 +260,7 @@ fn002 <- function(name="SIR2014"){
 
 fn003 <- function(name="SIR2014"){
 	l<-index_files(name)
-	z<-compute_W(read.csv(paste("data/",name,".csv",sep="")
+	z<-compute_W(read.csv(paste("data/",name,".csv",sep="")))
 	W_list<-quorate_index(z)
 	n<-nrow(z)
 	foreach(kfile=l)%dopar%{
