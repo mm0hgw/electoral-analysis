@@ -103,7 +103,7 @@ plot_trend <- function(m=mean_table()){
 	foreach(k=m[,1],x=m[,3])%do%{
 		logcat(combnG(x,n,k),file="region.log")
 	}
-	logcat(as.vector(m[,2])/as.vector(m[,3]),file="region.log")
+	logcat(round(digits=3,as.vector(m[,2])/as.vector(m[,3])),file="region.log")
 	logcat(rownames(m),file="region.log")
 	dev.off()
 	system2(stdout=NULL,"git","pull")
@@ -121,8 +121,8 @@ plot_trend_repeat <- function(){
 		oldtime<-getTime()
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
-			logcat(n,file="region.log")
-			logcat(n-m,file="region.log")
+			logcat(round(digits=3,n),file="region.log")
+			logcat(round(digits=3,n-m),file="region.log")
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
 			oldtime<-newtime
