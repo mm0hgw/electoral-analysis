@@ -213,7 +213,8 @@ fn001 <- function(b,x,k){
 		if(k==1){
 			newElem<-setdiff(seq(n)[b[x,]==TRUE],x)
 		}else{
-			newElem<-seq(n)[-com][rowSums(b[-com,com])!=0]
+			invcom<-setdiff(seq(n),com)
+			newElem<-seq(n)[invcom][rowSums(b[invcom,com])!=0]
 		}
 		out<-do.call(rbind,lapply(seq(length(newElem)),function(x)com))
 		out<-cbind(out,newElem)
