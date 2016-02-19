@@ -106,16 +106,24 @@ plot_trend <- function(m=mean_table()){
 }
 
 plot_trend_repeat <- function(){
+	lasttime <- getTime()
+	m<-mean_table()
+	
 	while(TRUE){
-		m<-mean_table()
 		plot_trend(m)
 		logcat(m)
+		lasttime<-getTime()
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
+			newtime<-getTime()
+			duration <- oldtime -newtime
+			oldtime<-newtime
 			logcat(n)
 			logcat(n-m)
-			system2(stdout=NULL,"sleep","1800")
+			logcat(paste(duration,"seconds"))
+			system2(stdout=NULL,"sleep",paste(duration*10))
 		}
+		m<-n
 		beep(9)
 	}
 }
