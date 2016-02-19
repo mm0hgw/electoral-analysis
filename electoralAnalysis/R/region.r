@@ -54,10 +54,8 @@ fastRowFoo<- function(t,foo,.combine=c){
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
 	out<-foreach(l=fileList,.combine=rbind)%do%{
-		logcat(Sys.time(),file="io.log")
 		logcat(paste("Reading",l),file="io.log")
 		d<-read.table(l)
-		logcat(Sys.time(),file="io.log")
 		logcat(paste("Read",l),file="io.log")
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
@@ -101,7 +99,6 @@ plot_trend <- function(m=mean_table()){
 	l<-colnames(m)[c(-1,-2,-3)]
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
 	n<-32
-	logcat(Sys.time(),file="region.log")
 	foreach(k=m[,1],x=m[,3])%do%{
 		logcat(combnG(x,n,k),file="region.log")
 	}
