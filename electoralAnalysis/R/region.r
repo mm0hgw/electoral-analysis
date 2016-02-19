@@ -195,6 +195,7 @@ region_check <- function(
 
 fn001 <- function(b,x,k){
 	if(length(x)>1){
+		cl<-makeCustomCluster()
 		out<-foreach(
 			y=x,
 			.combine=multi_union,
@@ -203,6 +204,7 @@ fn001 <- function(b,x,k){
 		)%dopar%{
 			fn001(b,y,k)
 		}
+		stopCluster(cl)
 		out<-as.vector(out[!duplicated(out)])
 		out<-out[order(out)]
 		names(out)<-NULL
