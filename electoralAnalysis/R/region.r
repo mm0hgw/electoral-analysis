@@ -195,17 +195,14 @@ region_check <- function(
 
 fn001 <- function(b,x,k){
 	if(length(x)>1){
-		out<-do.call(
-			c,
-			mclapply(
-				x,
-				function(y)fn001(b,y,k),
-				mc.set.seed=FALSE,
-				mc.silent=TRUE,
-				mc.preschedule=FALSE,
-				mc.cores=no_cores
-			)
-		)
+		out<-foreach(
+			y=x,
+			.combine=c,
+			.inorder=FALSE,
+			.options.multicore=mcoptions
+		)%dopar%{
+			fn001(b,y,k)
+		}
 		out<-as.vector(out[!duplicated(out)])
 		out<-out[order(out)]
 		names(out)<-NULL
