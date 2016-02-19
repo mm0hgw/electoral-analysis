@@ -342,7 +342,7 @@ write_chisq<-function(name,k){
 	outfile<-gsub("_index","",indexfile)
 	i<-read.table(indexfile)[,1]
 	if(file.exists(outfile)){
-		j<-as.numeric(rownames(read.table(outfile))
+		j<-as.numeric(rownames(read.table(outfile)))
 		i<-i[!(i %in% j)]
 	}
 	for(x in i){
