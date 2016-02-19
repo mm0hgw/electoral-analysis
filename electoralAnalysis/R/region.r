@@ -303,7 +303,7 @@ fn003 <- function(name="SIR2014"){
 }
 
 write_k_index<-function(name,k){
-	n<-nrow(read.table(paste("data/",name,".csv",sep="")))
+	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
 	combnGen<-combnGG(n,k)
 	outfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
 	tmpfile<-gsub("data","/tmp",outfile)
