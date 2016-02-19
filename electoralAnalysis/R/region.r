@@ -257,3 +257,76 @@ fn002 <- function(name="SIR2014"){
 		write.table(indices,file=indexfile)
 	}
 }
+
+fn003 <- function(name="SIR2014"){
+	l<-index_files(name)
+	z<-compute_W(read.csv(paste("data/",name,".csv",sep="")
+	W_list<-quorate_index(z)
+	n<-nrow(z)
+	foreach(kfile=l)%dopar%{
+		outfile<-gsub("_index","",ifile)
+		k<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k",sep=""),"",kfile)))
+		combnGen<-combnGG(n,k)
+		if(file.exists(outfile)){
+			foo<-as.numeric(colnames(read.table(outfile)))
+			bar<-read.table(ifile)[,1]
+			x<-setdiff(bar,foo)
+			rm(foo)
+			rm(bar)
+		}else{
+			cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
+			x<-read.table(ifile)[,1]
+		}
+		foreach(i=x)%do%{
+			j<-
+			out<-paste(
+				i,
+				" ",
+				gsub(
+					",",
+					"",
+					toString(
+						ballot_chisq_to_normal(
+							ballot[j,]
+						)
+					)
+				),
+				"\n",
+				sep=""
+			)
+			cat(
+				file=outfile,
+				append=TRUE,
+				out)
+		}
+	}
+}
+
+write_k_index<-function(name,k){
+	n<-nrow(read.table(paste("data/",name,".csv",sep="")))
+	combnGen<-combnGG(n,k)
+	outfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
+	tmpfile<-gsub("data","/tmp",outfile)
+	lastfile<-paste("data/",name,"_k",k-1,"_index.tab",sep="")
+	if(file.exists(outfile))return()
+	while(!file.exists(lastfile)){
+		system2("sleep",60)
+	}
+	ii<-read.table(lastfile)[,1]
+	cat("\"x\"\n",file=tmpfile)
+	for(i in ii){
+		j<-combnGen(i)
+		if(k==1){
+			newElem<-setdiff(seq(n)[b[j,]==TRUE],j)
+		}else{
+			newElem<-seq(n)[-j][rowSums(b[-j,j])!=0]
+		}
+		for(elem in newElem){
+			out<-revCombnG(c(j,elem),n,k)
+			cat(paste("\"\" ",out,"\n",sep=""),file=tmpfile,append=TRUE)
+		}
+	}
+	foo<-read.table(tmpfile)[,1]
+	foo<-foo[!duplicated(foo)]
+	write.table(foo,file=outfile)
+}
