@@ -197,6 +197,7 @@ fn001 <- function(b,x,k){
 	if(length(x)>1){
 		out<-do.call(c,lapply(x,function(y)fn001(b,y,k)))
 		out<-as.vector(out[!duplicated(out)])
+		out<-out[order(out)]
 		names(out)<-NULL
 		out
 	}else{
