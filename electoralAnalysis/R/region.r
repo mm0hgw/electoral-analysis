@@ -214,8 +214,6 @@ fn001 <- function(b,x,k){
 			newElem<-setdiff(seq(n)[b[x,]==TRUE],x)
 		}else{
 			invcom<-setdiff(seq(n),com)
-			print(com)
-			print(invcom)
 			newElem<-seq(n)[invcom][rowSums(b[invcom,com])!=0]
 		}
 		out<-do.call(rbind,lapply(seq(length(newElem)),function(x)com))
@@ -248,7 +246,7 @@ fn002 <- function(name="SIR2014"){
 	}else{
 		foo<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
 		i<-max(foo)+1
-		indices<-read.table(l[which.max(foo)])
+		indices<-as.vector(read.table(l[which.max(foo)]))
 	}
 	if(i==n)return()
 	for(k in seq(i,n)){
