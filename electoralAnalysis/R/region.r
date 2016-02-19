@@ -103,7 +103,7 @@ plot_trend <- function(m=mean_table()){
 		logcat(combnG(x,n,k),file="region.log")
 	}
 	logcat(as.vector(m[,2])/as.vector(m[,3]),file="region.log")
-	logcat(colnames(m),file="region.log")
+	logcat(rownames(m),file="region.log")
 	dev.off()
 	system2(stdout=NULL,"git","pull")
 	system2(stdout=NULL,"git",c("add","Rplot001.png"))
