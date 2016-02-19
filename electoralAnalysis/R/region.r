@@ -197,7 +197,7 @@ fn001 <- function(b,x,k){
 	if(length(x)>1){
 		out<-foreach(
 			y=x,
-			.combine=c,
+			.combine=multi_union,
 			.inorder=FALSE,
 			.options.multicore=mcoptions
 		)%dopar%{
@@ -223,10 +223,30 @@ fn001 <- function(b,x,k){
 	}
 }
 
+multi_union<-function(...){
+	out<-c(...)
+	out[!duplicated(out)]
+}
+
+index_files <- function(name="SIR2014"){
+	foo<-list.files(path="data/",pattern=name)
+	foo<-foo[grep(name,foo)]
+	foo<-foo[grep("index",foo)]
+	paste("data/",foo)
+}
+
 fn002 <- function(name="SIR2014"){
 	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
 	n<-ncol(b)
-	indices<-seq(n)
+	l<-index_files(name)
+	if(length(l)==1&l==""){
+		i<-2
+		indices<-seq(n)
+	}else{
+		foo<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k"),"",l)))
+		i<-max(foo)
+		indices<-read.table(l[which.max(foo)])
+	}
 	for(k in seq(2,n)){
 		indices<-fn001(b,indices,k-1)
 		indexfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
