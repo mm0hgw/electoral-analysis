@@ -63,7 +63,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		kn<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(i/choose(kn,k)*100000)/1000
-		o<-c(p=p,k=k,n=n,i=i,round(digits=3,fastColFoo(d,mean)))#,fastColFoo(d,sd))
+		o<-c(p=p,k=k,n=n,i=i,fastColFoo(d,mean))#,fastColFoo(d,sd))
 		rm(d)
 		gc()
 		o
@@ -79,7 +79,7 @@ logcat<-function(obj,file){
 		lapply(seq(nrow(obj)),function(x)logcat(obj[x,],file=file))
 	}else{
 		if(is.numeric(obj)){
-			obj<-signif(digits=3,obj)
+			obj<-signif(digits=5,obj)
 		}
 		objstr<-paste(obj,collapse=" ")
 		objstrn<-paste(Sys.time(),objstr,"\n")
@@ -104,7 +104,7 @@ plot_trend <- function(m=mean_table()){
 	foreach(k=m[,1],x=m[,3])%do%{
 		logcat(combnG(x,n,k),file="region.log")
 	}
-	logcat(round(digits=3,as.vector(m[,2])/as.vector(m[,3])),file="region.log")
+	logcat(as.vector(m[,2])/as.vector(m[,3]),file="region.log")
 	logcat(rownames(m),file="region.log")
 	dev.off()
 	system2(stdout=NULL,"git","pull")
