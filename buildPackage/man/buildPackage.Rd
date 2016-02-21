@@ -5,7 +5,12 @@
 \alias{buildPackage}
 \alias{buildPackage-package}
 \title{What the package does (short line)}
+\usage{
+buildPackage(package)
+}
 \description{
 More about what it does (maybe more than one line)
+
+Build a package.
 }
 
