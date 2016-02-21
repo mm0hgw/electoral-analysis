@@ -23,12 +23,12 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
-#'	@imports devtools
+#'	@import devtools
 #'	@export
 buildPackage <- function(package){
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
 	system2("rm",c("-r",paste(package,"/man/",sep="")))
-	devtools::document(package)
+	document(package)
 	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
 	gitPush(list.files(pattern=package,include.dirs=TRUE),"build")
