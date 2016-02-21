@@ -23,6 +23,7 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
+#'	@imports devtools
 #'	@export
 buildPackage <- function(package){
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
