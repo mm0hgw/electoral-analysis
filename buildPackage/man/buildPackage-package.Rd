@@ -4,7 +4,7 @@
 \name{buildPackage-package}
 \alias{buildPackage}
 \alias{buildPackage-package}
-\title{What the package does (short line)}
+\title{buildPackage-package}
 \description{
 More about what it does (maybe more than one line)
 }
