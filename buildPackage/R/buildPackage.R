@@ -1,4 +1,5 @@
 #'@name buildPackage-package
+#'@title buildPackage-package
 #'@import devtools
 "_PACKAGE"
 
