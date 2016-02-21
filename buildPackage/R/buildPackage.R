@@ -1,12 +1,15 @@
 #'@name buildPackage
 #'@import devtools
+"_PACKAGE"
 
 require(devtools)
 
+#'	@export
 gitPull<- function(){
 	system2("git",c("pull"))
 }
 
+#'	@export
 gitPush<-function(filelist,comment){
 	system2("git",c("pull"))
 	system2("git",c("add", filelist))
@@ -14,11 +17,13 @@ gitPush<-function(filelist,comment){
 	system2("git",c("push"))
 }
 
+#'	@export
 findPackages <- function(path="."){
 	l<-gsub("./","",list.dirs(path=path))
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
+#'	@export
 buildPackage <- function(package){
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
 	system2("rm",c("-r",paste(package,"/man/",sep="")))
