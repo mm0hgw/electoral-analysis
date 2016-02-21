@@ -26,6 +26,7 @@ findPackages <- function(path="."){
 #'	@import devtools
 #'	@export
 buildPackage <- function(package){
+	gitPull()
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
 	system2("rm",c("-r",paste(package,"/man/",sep="")))
 	document(package)
