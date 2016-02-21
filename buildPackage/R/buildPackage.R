@@ -4,11 +4,15 @@
 
 require(devtools)
 
+#'	@name gitPull
+#'	@description Execute a git pull
 #'	@export
 gitPull<- function(){
 	system2("git",c("pull"))
 }
 
+#'	@name gitPush
+#'	@description Git add, commit and push
 #'	@export
 gitPush<-function(filelist,comment){
 	system2("git",c("pull"))
@@ -33,7 +37,10 @@ buildPackage <- function(package){
 	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
 	gitPush(list.files(pattern=package,include.dirs=TRUE),"build")
-	install.packages(paste(package,"*.tar.gz",sep=""))
+	p<-list.files(pattern=".tar.gz")
+	p<-p[grep(package,p)]
+	
+	install.packages(p)
 }
 
 #'@export
