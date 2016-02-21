@@ -166,7 +166,7 @@ recursive_region_check <- function(
 		cores=no_cores
 	)
 	cl<-makeCustomCluster()
-	foreach(i=icount(cnk-offset)),
+	foreach(i=icount(cnk-offset),
 		.combine=write_to_file,
 		.multicombine=1e5,
 		.options.multicore=mcoptions
