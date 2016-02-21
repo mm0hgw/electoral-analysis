@@ -148,30 +148,14 @@ recursive_region_check <- function(
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
 	datafile<-paste("data/",name,"_k",k,".tab",sep="")
-	offset<-0
+	i<-1
 	if(file.exists(datafile)){
 		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,1)," ")))
-		offset<-max(as.numeric(gsub("\"","",d[,1])))
+		i<-max(as.numeric(gsub("\"","",d[,1])))+1
 	}else{
 		cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
 	}
-	write_to_file <- function(...){
-		cat(file=datafile,append=TRUE,paste(sep="",...))
-		gc()
-		return(vector())
-	}
-	mcoptions <- list(preschedule=TRUE,
-		set.seed=FALSE,
-		silent=TRUE,
-		cores=no_cores
-	)
-	cl<-makeCustomCluster()
-	foreach(i=icount(cnk-offset),
-		.combine=write_to_file,
-		.multicombine=1e5,
-		.options.multicore=mcoptions
-	)%dopar%{
-		i<-i+offset
+	while(i<=cnk){
 		j<-combnGen(i)
 		if(contiguityCheck(
 			border_table,
@@ -188,8 +172,6 @@ recursive_region_check <- function(
 		}
 		i<-i+1
 	}
-	stopCluster(cl)
-	gc()
 	beep(9)
 	vector()
 }
@@ -210,11 +192,11 @@ region_check <- function(
 		silent=TRUE,
 		cores=no_cores
 	)
-	#cl<-makeCustomCluster()
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
+	cl<-makeCustomCluster()
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
-	#stopCluster(cl)
+	stopCluster(cl)
 }
 
 fn001 <- function(b,x,k){
