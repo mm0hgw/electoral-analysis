@@ -7,6 +7,13 @@ gitPull<- function(){
 	system2("git",c("pull"))
 }
 
+gitPush<-function(filelist,comment){
+	system2("git",c("pull"))
+	system2("git",c("add", filelist))
+	system2("git",c("commit","-m",comment))
+	system2("git",c("push"))
+}
+
 findPackages <- function(path="."){
 	l<-gsub("./","",list.dirs(path=path))
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
@@ -16,12 +23,10 @@ buildPackage <- function(package){
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
 	system2("rm",c("-r",paste(package,"/man/",sep="")))
 	document(package)
-	system2("git",c("add", paste(package,"/man/*",sep="")))
-	system2("git",c("add", paste(package,".Rcheck/*.pdf",sep="")))
-	system2("git",c("add", paste(package,".Rcheck/*.log",sep="")))
 	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
-	install.packages(paste(package,"_1.0.tar.gz",sep=""))
+	gitPush(list.files(pattern=name,include.dirs=TRUE),"build")
+	install.packages(paste(package,"*.tar.gz",sep=""))
 }
 
 #'@export
