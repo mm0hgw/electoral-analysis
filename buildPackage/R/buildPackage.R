@@ -21,18 +21,25 @@ gitPush<-function(filelist,comment){
 	system2("git",c("push"))
 }
 
+#'	@name findPackages
+#'	@description Provide package directories
 #'	@export
 findPackages <- function(path="."){
-	l<-gsub("./","",list.dirs(path=path))
+	l<-list.dirs(path=path)
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
+#'	@name buildPackage
+#'	@description Build a package.
 #'	@import devtools
 #'	@export
 buildPackage <- function(package){
 	gitPull()
 	system2("rm",paste(package,"/NAMESPACE",sep=""))
 	system2("rm",c("-r",paste(package,"/man/",sep="")))
+	p<-list.files(pattern=".tar.gz")
+	p<-p[grep(package,p)]
+	system2("git",c("rm",p))
 	document(package)
 	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
@@ -43,7 +50,10 @@ buildPackage <- function(package){
 	install.packages(p)
 }
 
-#'@export
+#'	@name buildPackages
+#'	@description Build a list of packages.
+#'	@import devtools
+#'	@export
 buildPackages<-function(packages=findPackages()){
 	lapply(packages,buildPackage)
 }
