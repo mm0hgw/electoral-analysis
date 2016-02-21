@@ -79,7 +79,7 @@ logcat<-function(obj,file){
 		lapply(seq(nrow(obj)),function(x)logcat(obj[x,],file=file))
 	}else{
 		if(is.numeric(obj)){
-			obj<-signif(digits=5,obj)
+			obj<-round(digits=3,obj)
 		}
 		objstr<-paste(obj,collapse=" ")
 		objstrn<-paste(Sys.time(),objstr,"\n")
@@ -191,9 +191,11 @@ region_check <- function(
 		silent=TRUE,
 		cores=no_cores
 	)
+	cl<-makeCustomCluster()
 	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
+	stopCluster(cl)
 }
 
 fn001 <- function(b,x,k){
