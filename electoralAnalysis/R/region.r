@@ -70,7 +70,23 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	}
 	p<-out[,1]
 	out<-out[,-1]
-	rownames(out)<-p
+	out<-rbind(out,
+		"100"=c(32,
+			1,
+			1,
+			ballot_chisq_to_normal(
+				compute_W(
+					read.csv(
+						paste("data/",
+						name,
+						".csv",
+						sep=""
+					)
+				)
+			)
+		)
+	)
+	rownames(out)<-out[,1]
 	out
 }
 
@@ -114,19 +130,20 @@ plot_trend <- function(m=mean_table()){
 	m
 }
 
-plot_trend_repeat <- function(){
-	m<-mean_table()
+plot_trend_repeat <- function(name="SIR2014"){
+	m<-mean_table(name)
 	while(TRUE){
 		plot_trend(m)
 		logcat(m,file="region.log")
 		oldtime<-getTime()
-		while(nrow(n<-mean_table())==nrow(m)){
+		while(nrow(n<-mean_table(name))==nrow(m)){
 			plot_trend(n)
 			write.table(n,file="readout.tab")
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
 			o<-((n-m)/duration)[,c(2,3)]
 			p<-cbind(n,o,o[,1]/o[,2])
+			
 			logcat(p,file="region.log")
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
