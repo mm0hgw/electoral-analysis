@@ -124,12 +124,14 @@ plot_trend_repeat <- function(){
 			plot_trend(n)
 			write.table(n,file="readout.tab")
 			logcat(n,file="region.log")
-			logcat(n-m,file="region.log")
+			
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
+			logcat(((n-m)/duration)[,c(2,3)],file="region.log")
+			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			Sys.sleep(3600-getTime()%%3600)
-			oldtime<-getTime()
+			
 		}
 		m<-n
 		beep(9)
