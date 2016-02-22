@@ -129,6 +129,7 @@ plot_trend_repeat <- function(){
 			logcat(((n-m)/duration)[,c(2,3)],file="region.log")
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
+			m<-n
 			Sys.sleep(3600-getTime()%%3600)
 		}
 		m<-n
