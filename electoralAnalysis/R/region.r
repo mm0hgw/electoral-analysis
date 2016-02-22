@@ -123,10 +123,11 @@ plot_trend_repeat <- function(){
 		while(nrow(n<-mean_table())==nrow(m)){
 			plot_trend(n)
 			write.table(n,file="readout.tab")
-			logcat(n,file="region.log")
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
-			logcat(((n-m)/duration)[,c(2,3)],file="region.log")
+			o<-((n-m)/duration)[,c(2,3)]
+			p<-cbind(n,o,o[,1]/o[,2])
+			logcat(p,file="region.log")
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			m<-n
