@@ -171,9 +171,8 @@ recursive_region_check <- function(
 	}else{
 		cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
 	}
-	buffer_limit=1e4
+	buffer_limit<-1e4
 	buffer<-vector()
-	buffer_size<-0
 	while(i<=cnk){
 		j<-combnGen(i)
 		if(contiguityCheck(
@@ -187,15 +186,16 @@ recursive_region_check <- function(
 					))
 				),"\n",sep=""
 			)
-			buffer<-paste(buffer,l,sep="")
-			buffer_size<-buffer_size+1
-			if(buffer_size>=buffer_limit){
-				cat(buffer,file=datafile,append=TRUE)
+			buffer<-c(buffer,l)
+			if(length(buffer)>=buffer_limit){
+				cat(paste(buffer,collapse=""),file=datafile,append=TRUE)
 				buffer<-vector()
-				buffer_size<-0
 			}
 		}
 		i<-i+1
+	}
+	if(length(buffer)>0){
+		cat(paste(buffer,collapse=""),file=datafile,append=TRUE)
 	}
 	beep(9)
 	vector()
