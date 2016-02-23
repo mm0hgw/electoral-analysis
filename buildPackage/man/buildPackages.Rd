@@ -2,6 +2,7 @@
 % Please edit documentation in R/buildPackage.R
 \name{buildPackages}
 \alias{buildPackages}
+\title{buildPackages}
 \usage{
 buildPackages(packages = findPackages())
 }

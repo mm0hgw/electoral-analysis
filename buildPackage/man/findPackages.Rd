@@ -2,6 +2,7 @@
 % Please edit documentation in R/buildPackage.R
 \name{findPackages}
 \alias{findPackages}
+\title{findPackages}
 \usage{
 findPackages(path = ".")
 }
