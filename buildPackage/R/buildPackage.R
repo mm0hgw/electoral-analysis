@@ -35,11 +35,6 @@ findPackages <- function(path="."){
 #'	@export
 buildPackage <- function(package){
 	gitPull()
-	system2("rm",paste(package,"/NAMESPACE",sep=""))
-	system2("rm",c("-r",paste(package,"/man/",sep="")))
-	p<-list.files(pattern=".tar.gz")
-	p<-p[grep(package,p)]
-	system2("git",c("rm",p))
 	document(package)
 	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
