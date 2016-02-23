@@ -2,6 +2,7 @@
 % Please edit documentation in R/buildPackage.R
 \name{gitPush}
 \alias{gitPush}
+\title{gitPush}
 \usage{
 gitPush(filelist, comment)
 }
