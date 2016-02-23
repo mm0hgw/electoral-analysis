@@ -1,5 +1,5 @@
-#'@name buildPackage-package
-#'@title buildPackage-package
+#'@name buildStupidPackage
+#'@title buildStupidPackage
 #'@import devtools
 "_PACKAGE"
 
