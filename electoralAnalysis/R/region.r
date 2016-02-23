@@ -78,14 +78,10 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 				compute_W(
 					read.csv(
 						paste("data/",
-						name,
-						".csv",
-						sep=""
-					)
-				)
-			)
-		)
-	)
+							name,
+							".csv",
+							sep=""
+	)	)	)	)	)
 	rownames(out)<-out[,1]
 	out
 }
