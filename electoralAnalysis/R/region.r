@@ -54,13 +54,20 @@ fastRowFoo<- function(t,foo,.combine=c){
 }
 
 mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
+	ballot<-compute_W(
+		read.csv(
+			paste("data/",
+				name,
+				".csv",
+				sep=""
+	)	)	)
+	kn<-nrow(ballot)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
 		d<-read.table(l)
 		logcat(paste("Read",l),file="io.log")
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
-		kn<-32
 		i<-as.numeric(rownames(d)[n])
 		p<-round(100*i/choose(kn,k),digits=3)
 		o<-c(p=p,k=k,n=n,i=i,fastColFoo(d,mean))#,fastColFoo(d,sd))
@@ -71,17 +78,11 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	p<-out[,1]
 	out<-out[,-1]
 	out<-rbind(out,
-		"100"=c(32,
+		c(nrow(ballot),
 			1,
 			1,
-			ballot_chisq_to_normal(
-				compute_W(
-					read.csv(
-						paste("data/",
-							name,
-							".csv",
-							sep=""
-	)	)	)	)	)	)
+			ballot_chisq_to_normal(ballot)
+	)	)	)
 	rownames(out)<-out[,1]
 	out
 }
