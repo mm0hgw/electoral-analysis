@@ -171,7 +171,7 @@ recursive_region_check <- function(
 	}else{
 		cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
 	}
-	buffer_limit<-1e3
+	buffer_limit<-160
 	buffer<-vector()
 	while(i<=cnk){
 		j<-combnGen(i)
