@@ -2,8 +2,8 @@
 % Please edit documentation in R/buildPackage.R
 \docType{package}
 \name{buildPackage-package}
-\alias{buildPackage}
 \alias{buildPackage-package}
+\alias{buildPackage-package-package}
 \title{buildPackage-package}
 \description{
 More about what it does (maybe more than one line)
