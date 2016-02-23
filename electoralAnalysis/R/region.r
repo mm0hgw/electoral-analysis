@@ -128,7 +128,8 @@ plot_trend <- function(m=mean_table()){
 }
 
 plot_trend_repeat <- function(name="SIR2014"){
-	m<-mean_table(name)
+	report_period<-60*60*3
+	m<-read.table("readout.tab")
 	while(TRUE){
 		plot_trend(m)
 		logcat(m,file="region.log")
@@ -145,7 +146,7 @@ plot_trend_repeat <- function(name="SIR2014"){
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			m<-n
-			Sys.sleep(3600-getTime()%%3600)
+			Sys.sleep(report_period-getTime()%%report_period)
 		}
 		m<-n
 		beep(9)
