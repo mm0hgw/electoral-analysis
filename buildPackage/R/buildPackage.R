@@ -1,4 +1,4 @@
-#'buildStupidPackage
+#'buildPackage
 #'@import devtools
 "_PACKAGE"
 
