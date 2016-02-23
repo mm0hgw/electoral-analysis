@@ -76,6 +76,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		o
 	}
 	p<-out[,1]
+	print(p)
 	out<-out[,-1]
 	out<-rbind(out,
 		c(nrow(ballot),
@@ -123,7 +124,7 @@ plot_trend <- function(m=mean_table()){
 }
 
 plot_trend_repeat <- function(name="SIR2014"){
-	report_period<-60*60*3
+	report_period<-3600
 	m<-read.table("readout.tab")
 	while(TRUE){
 		plot_trend(m)
