@@ -119,10 +119,6 @@ plot_trend <- function(m=mean_table()){
 	}
 	logcat(100*as.vector(m[,2])/as.vector(m[,3]),file="region.log")
 	dev.off()
-	system2(stdout=NULL,"git","pull")
-	system2(stdout=NULL,"git",c("add","Rplot001.png"))
-	system2(stdout=NULL,"git",c("commit","-m","plot"))
-	system2(stdout=NULL,wait=FALSE,"git","push")
 	m
 }
 
