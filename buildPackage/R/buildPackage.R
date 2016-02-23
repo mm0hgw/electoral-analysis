@@ -1,18 +1,17 @@
-#'@name buildStupidPackage
-#'@title buildStupidPackage
+#'buildStupidPackage
 #'@import devtools
 "_PACKAGE"
 
 require(devtools)
 
-#'	@name gitPull
+#'	 gitPull
 #'	@description Execute a git pull
 #'	@export
 gitPull<- function(){
 	system2("git",c("pull"))
 }
 
-#'	@name gitPush
+#'	 gitPush
 #'	@description Git add, commit and push
 #'	@export
 gitPush<-function(filelist,comment){
@@ -22,7 +21,7 @@ gitPush<-function(filelist,comment){
 	system2("git",c("push"))
 }
 
-#'	@name findPackages
+#'	 findPackages
 #'	@description Provide package directories
 #'	@export
 findPackages <- function(path="."){
@@ -30,7 +29,7 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
-#'	@name buildPackage
+#'	 buildPackage
 #'	@description Build a package.
 #'	@import devtools
 #'	@export
@@ -51,7 +50,7 @@ buildPackage <- function(package){
 	install.packages(p)
 }
 
-#'	@name buildPackages
+#'	 buildPackages
 #'	@description Build a list of packages.
 #'	@import devtools
 #'	@export
