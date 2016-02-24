@@ -162,8 +162,8 @@ recursive_region_check <- function(
 	datafile<-paste("data/",name,"_k",k,".tab",sep="")
 	i<-1
 	if(file.exists(datafile)){
-		d<-do.call(rbind,(strsplit(ReadLastLines(datafile,1)," ")))
-		i<-max(as.numeric(gsub("\"","",d[,1])))+1
+		d<-system2("tail",c("-n1",datafile),stdout=TRUE)
+		i<-max(as.numeric(sub("\".*","",sub("\"","",d))))+1
 	}else{
 		cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
 	}
