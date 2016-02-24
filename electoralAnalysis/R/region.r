@@ -220,37 +220,9 @@ region_check <- function(
 	stopCluster(cl)
 }
 
-fn001 <- function(b,x,k){
-	if(length(x)>1){
-		cl<-makeCustomCluster()
-		out<-foreach(
-			y=x,
-			.combine=multi_union,
-			.inorder=FALSE,
-			.options.multicore=mcoptions
-		)%dopar%{
-			fn001(b,y,k)
-		}
-		stopCluster(cl)
-		out<-as.vector(out[!duplicated(out)])
-		out<-out[order(out)]
-		names(out)<-NULL
-		out
-	}else{
-		n<-dim(b)[1]
-		com<-combnG(x,n,k)
-		if(k==1){
-			newElem<-setdiff(seq(n)[b[x,]==TRUE],x)
-		}else{
-			invcom<-setdiff(seq(n),com)
-			newElem<-seq(n)[invcom][rowSums(b[invcom,com])!=0]
-		}
-		out<-do.call(rbind,lapply(seq(length(newElem)),function(x)com))
-		out<-cbind(out,newElem)
-		out<-revCombnG(out,n)
-		names(out)<-NULL
-		out
-	}
+fn001 <- function(datafile){
+	d<-system2("tail",c("-n1",datafile),stdout=TRUE)
+	max(as.numeric(sub("\".*","",sub("\"","",d))))
 }
 
 multi_union<-function(...){
@@ -266,67 +238,19 @@ index_files <- function(name="SIR2014"){
 }
 
 fn002 <- function(name="SIR2014"){
-	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
-	n<-ncol(b)
-	l<-index_files(name)
-	if((length(l)==1)&sum(l=="")==1){
-		i<-2
-		indices<-seq(n)
-	}else{
-		foo<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
-		i<-max(foo)+1
-		indices<-read.table(l[which.max(foo)])[,1]
-	}
-	if(i==n)return()
-	for(k in seq(i,n)){
-		indices<-fn001(b,indices,k-1)
-		indexfile<-paste("data/",name,"_k",k,"_index.tab",sep="")
-		write.table(indices,file=indexfile)
-	}
+	l<-list.tablefiles(name)
+	p<-do.call(c,lapply(l,
+		function(x)fn003(x,name)
+	))
+	i<-do.call(c,lapply(l,fn001))
+	out<-cbind(i,p,i/p)
+	rownames(out)<- l
+	out
 }
 
-fn003 <- function(name="SIR2014"){
-	l<-index_files(name)
-	z<-compute_W(read.csv(paste("data/",name,".csv",sep="")))
-	W_list<-quorate_index(z)
-	n<-nrow(z)
-	foreach(kfile=l)%dopar%{
-		outfile<-gsub("_index","",ifile)
-		k<-as.numeric(gsub("_index.tab","",gsub(paste("data/",name,"_k",sep=""),"",kfile)))
-		combnGen<-combnGG(n,k)
-		if(file.exists(outfile)){
-			foo<-as.numeric(colnames(read.table(outfile)))
-			bar<-read.table(ifile)[,1]
-			x<-setdiff(bar,foo)
-			rm(foo)
-			rm(bar)
-		}else{
-			cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
-			x<-read.table(ifile)[,1]
-		}
-		foreach(i=x)%do%{
-			j<-
-			out<-paste(
-				i,
-				" ",
-				gsub(
-					",",
-					"",
-					toString(
-						ballot_chisq_to_normal(
-							ballot[j,]
-						)
-					)
-				),
-				"\n",
-				sep=""
-			)
-			cat(
-				file=outfile,
-				append=TRUE,
-				out)
-		}
-	}
+fn003 <- function(datafile,name){
+	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
+	choose(n,as.numeric(sub(".tab","",sub(paste("data/",name,"_k",sep=""),"",datafile))))
 }
 
 write_k_index<-function(name,k){
