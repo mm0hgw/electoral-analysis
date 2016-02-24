@@ -238,7 +238,7 @@ index_files <- function(name="SIR2014"){
 }
 
 fn002 <- function(name="SIR2014"){
-	l<-list.tablefiles(name)
+	l<-list.tableFiles(name)
 	p<-do.call(c,lapply(l,
 		function(x)fn003(x,name)
 	))
