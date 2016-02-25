@@ -260,11 +260,12 @@ fn004 <- function(name="SIR2014"){
 	while(TRUE){
 		Sys.sleep(period_time-getTime()%%period_time)
 		n<-fn002(name)
+		mask<-m[,1]!=n[,1]
 		endTime<-getTime()
 		duration<-endTime-startTime
 		out<-(duration*(1-n)/(n-m))[,4]
 		names(out)<-list.tableFiles(name)
-		print(Sys.time()+out[!is.na(out)])
+		print(Sys.time()+out[mask])
 	}
 }
 
