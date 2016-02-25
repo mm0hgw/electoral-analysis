@@ -256,7 +256,7 @@ fn003 <- function(datafile,name){
 fn004 <- function(name="SIR2014"){
 	m<-fn002(name)
 	startTime <- getTime()
-	period_time <- 5
+	period_time <- 1
 	while(TRUE){
 		Sys.sleep(period_time-getTime()%%period_time)
 		n<-fn002(name)
