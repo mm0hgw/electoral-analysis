@@ -253,6 +253,21 @@ fn003 <- function(datafile,name){
 	choose(n,as.numeric(sub(".tab","",sub(paste("data/",name,"_k",sep=""),"",datafile))))
 }
 
+fn004 <- function(name="SIR2014"){
+	m<-fn002(name)
+	startTime <- getTime()
+	period_time <- 60
+	while(TRUE){
+		Sys.sleep(period_time-getTime()%%period_time)
+		n<-fn002(name)
+		endTime<-getTime()
+		duration<-endTime-startTime
+		out<-Sys.time()+duration*(1-n)/(n-m)
+		names(out)<-list.tableFiles
+		print(out)
+	}
+}
+
 write_k_index<-function(name,k){
 	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
 	b<-read.table(paste("data/",name,"_borders.tab",sep=""))
