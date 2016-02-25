@@ -206,7 +206,7 @@ region_check <- function(
 ){
 	n<-ncol(border_table)
 	a<-seq(2,n-1)
-	a<-a[order(choose(n,a))]
+	a<-a[order(choose(n,a),descending=TRUE)]
 	mcoptions <- list(preschedule=TRUE,
 		set.seed=FALSE,
 		silent=TRUE,
