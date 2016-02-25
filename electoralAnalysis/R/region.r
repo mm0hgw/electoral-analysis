@@ -255,9 +255,9 @@ fn003 <- function(datafile,name){
 fn004 <- function(name="SIR2014"){
 	m<-fn002(name)
 	startTime <- getTime()
-	period_time <- 60
+	period_time <- 15
 	while(TRUE){
-		browser()
+		Sys.sleep(period_time-getTime()%%period_time)
 		n<-fn002(name)
 		mask<-m[,1]!=n[,1]
 		endTime<-getTime()
