@@ -243,7 +243,7 @@ fn002 <- function(name="SIR2014"){
 		function(x)fn003(x,name)
 	))
 	i<-do.call(c,lapply(l,fn001))
-	out<-cbind(i,p,i/p)
+	out<-cbind(i,p,p-i,i/p)
 	rownames(out)<- l
 	out
 }
