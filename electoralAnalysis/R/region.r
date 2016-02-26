@@ -396,7 +396,7 @@ read.table.smart<-function(file){
 	}
 	o<-read.table(file,
 		skip=offset,
-		nrow=n-offset,
+		nrow=n-offset+1,
 		colClasses=cc
 	)
 	rownames(o)<-o[,1]
