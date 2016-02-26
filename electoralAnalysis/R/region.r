@@ -64,7 +64,8 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	kn<-nrow(ballot)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
-		d<-read.table(l)
+		len<-as.numeric(sub(" .*","",system2("wc",c("-l",l),stdout=TRUE)))
+		d<-read.table(l,colClasses="numeric",nrows=len)
 		logcat(paste("Read",l),file="io.log")
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
@@ -159,7 +160,7 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
-	datafile<-paste("data/",name,"_k",k,".tab",sep="")
+	datafile<-paste("data/",name,"_k",sprintf("%2.0f",k),".tab",sep="")
 	i<-1
 	if(file.exists(datafile)){
 		d<-system2("tail",c("-n1",datafile),stdout=TRUE)
