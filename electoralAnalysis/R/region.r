@@ -133,19 +133,22 @@ plot_trend_repeat <- function(name="SIR2014"){
 		logcat(m,file="region.log")
 		oldtime<-getTime()
 		while(nrow(n<-mean_table(name))==nrow(m)){
+			starttime<-getTime()
 			plot_trend(n)
 			write.table(n,file="readout.tab")
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
+			readtime <- round( starttime - oldtime )
 			o<-((n-m)/duration)[,c(2,3)]
 			p<-cbind(n[,1],round(n[,3]*100/choose(32,n[,1]),digits=3),n[,c(-1,-2,-3)],o,o[,1]/o[,2])
 			logcat(p,file="region.log")
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			m<-n
-			Sys.sleep(report_period-getTime()%%report_period)
+			Sys.sleep(report_period-(getTime()-readtime)%%report_period)
 		}
 		m<-n
+		oldtime<-getTime()
 		beep(9)
 	}
 }
