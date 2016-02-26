@@ -138,7 +138,7 @@ plot_trend_repeat <- function(name="SIR2014"){
 			write.table(n,file="readout.tab")
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
-			readtime <- round( starttime - oldtime )
+			readtime <- round( newtime - starttime )
 			o<-((n-m)/duration)[,c(2,3)]
 			p<-cbind(n[,1],round(n[,3]*100/choose(32,n[,1]),digits=3),n[,c(-1,-2,-3)],o,o[,1]/o[,2])
 			logcat(p,file="region.log")
