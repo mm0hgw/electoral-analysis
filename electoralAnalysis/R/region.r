@@ -47,7 +47,7 @@ fastColFoo<- function(t,foo){
 }
 
 fastRowFoo<- function(t,foo,.combine=c){
-	out<-do.call(.combine,lapply(seq(nrow(t)),function(i)foo(t[,i])))
+	out<-do.call(.combine,lapply(seq(nrow(t)),function(i)foo(t[i,])))
 	names(out)<-colnames(t)
 	out
 }
@@ -354,4 +354,12 @@ handle_ballot <- function(name){
 	}
 	lapply(joblist,mccollect)
 }
-	
+
+nRecords <- function(file){
+	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
+}
+
+read.table.smart<-function(file){
+		
+		# read headers
+}
