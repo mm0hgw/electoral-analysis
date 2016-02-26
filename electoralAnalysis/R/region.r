@@ -396,5 +396,5 @@ read.table.smart<-function(file){
 	)
 	rownames(o)<-o[,1]
 	out<-list(out,list(o[,-1]))
-	do.call(rbind,out)
+	out
 }
