@@ -365,7 +365,7 @@ max_job_size<-max_thread_size*no_cores
 read.table.smart<-function(file){
 	n<-nRecords(file)
 	sample<-read.table(file,nrow=2)
-	cc<-sapply(sample,class)
+	cc<-c("character",sapply(sample,class))
 	offset<-3
 	out<-list(sample)
 	while(n-offset>max_job_size){
