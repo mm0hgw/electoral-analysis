@@ -384,6 +384,7 @@ read.table.smart<-function(file){
 				rownames(o)<-o[,1]
 				o[,-1]
 			}
+			out<-c(out,list(o))
 			gc()
 			offset<-offset+max_job_size
 		}
@@ -395,6 +396,6 @@ read.table.smart<-function(file){
 		colClasses=cc
 	)
 	rownames(o)<-o[,1]
-	out<-list(out,list(o[,-1]))
+	out<-c(out,list(o[,-1]))
 	out
 }
