@@ -368,23 +368,26 @@ read.table.smart<-function(file){
 	cc<-c("character",sapply(sample,class))
 	offset<-3
 	out<-list(sample)
-	while(n-offset>max_job_size){
+	if(n-offset>max_job_size){
 		cl<-makeCustomCluster()
-		out<-c(out,foreach(threadID=icount(no_cores),
-			.options.multicore=mcoptions
-		)%dopar%{
-			s<-offset+(threadID-1)*max_thread_size
-			o<-read.table(file,
-				skip=s,
-				nrow=max_thread_size,
-				colClasses=cc
-			)
-			rownames(o)<-o[,1]
-			o[,-1]
-		})
+		while(n-offset>max_job_size){
+		
+			o<-foreach(threadID=icount(no_cores),
+				.options.multicore=mcoptions
+			)%dopar%{
+				s<-offset+(threadID-1)*max_thread_size
+				o<-read.table(file,
+					skip=s,
+					nrow=max_thread_size,
+					colClasses=cc
+				)
+				rownames(o)<-o[,1]
+				o[,-1]
+			}
+			gc()
+			offset<-offset+max_job_size
+		}
 		stopCluster(cl)
-		gc()
-		offset<-offset+max_job_size
 	}
 	o<-read.table(file,
 		skip=offset,
@@ -392,6 +395,6 @@ read.table.smart<-function(file){
 		colClasses=cc
 	)
 	rownames(o)<-o[,1]
-	out<-c(out,o[,-1])
+	out<-list(out,list(o[,-1]))
 	do.call(rbind,out)
 }
