@@ -369,7 +369,7 @@ read.table.smart<-function(file){
 	cn<-colnames(sample)
 	offset<-3
 	out<-sample
-	if(n-offset>max_job_size){
+	if(n-offset>max_thread_size){
 		cl<-makeCustomCluster()
 		while(n-offset>max_job_size){
 		
@@ -388,20 +388,45 @@ read.table.smart<-function(file){
 				colnames(o)<-cn
 				o
 			}
-			out<-c(out,list(o))
+			out<-rbind(out,o)
 			gc()
 			offset<-offset+max_job_size
 		}
+		rnl<-rep((n-offset+1)%/%no_cores,no_cores)
+		rnl[1]<-rnl[1]+(n-offset+1)%%no_cores
+		rsl<-sapply(seq(no_cores)-1,
+			function(x)sum(offset,head(rnl,n=x))
+		)
+		o<-foreach(rn=rnl,
+			rs=rsl,
+			.combine=rbind,
+			.options.multicore=mcoptions
+		)%dopar%{
+			o<-read.table(file,
+				skip=rs,
+				nrow=rn,
+				colClasses=cc
+			)
+			rownames(o)<-o[,1]
+			o<-o[,-1]
+			colnames(o)<-cn
+			o
+		}
+		out<-rbind(out,o)
 		stopCluster(cl)
+		gc()
+		out
+	}else{
+		o<-read.table(file,
+			skip=offset,
+			nrow=n-offset+1,
+			colClasses=cc
+		)
+		rownames(o)<-o[,1]
+		o<-o[,-1]
+		colnames(o)<-cn
+		out<-rbind(out,o)
+		gc()
+		out
 	}
-	o<-read.table(file,
-		skip=offset,
-		nrow=n-offset+1,
-		colClasses=cc
-	)
-	rownames(o)<-o[,1]
-	o<-o[,-1]
-	colnames(o)<-cn
-	out<-rbind(out,o)
-	out
 }
