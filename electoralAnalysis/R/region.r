@@ -127,7 +127,7 @@ plot_trend <- function(m=mean_table()){
 
 plot_trend_repeat <- function(name="SIR2014"){
 	report_period<-3600
-	m<-mean_table(name)
+	m<-plot_trend(name)
 	while(TRUE){
 		plot_trend(m)
 		logcat(m,file="region.log")
