@@ -359,7 +359,7 @@ nRecords <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))-1
 }
 
-max_thread_size<-1e3
+max_thread_size<-1e6
 max_job_size<-max_thread_size*no_cores
 
 read.table.smart<-function(file){
