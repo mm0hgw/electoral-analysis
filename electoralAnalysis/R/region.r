@@ -38,7 +38,6 @@ getTime <- function(){
 
 list.tableFiles<-function(name="SIR2014"){
 	out<-list.files(path="data/",pattern=paste(name,"_k",sep=""))
-	out[-grep("_index",out)]
 }
 
 fastColFoo<- function(t,foo){
