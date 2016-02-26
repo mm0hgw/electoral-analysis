@@ -77,6 +77,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 		o
 	}
 	p<-out[,1]
+	names(p)<-sapply(l,fn003)
 	print(p)
 	out<-out[,-1]
 	out<-rbind(out,
@@ -238,19 +239,17 @@ index_files <- function(name="SIR2014"){
 }
 
 fn002 <- function(name="SIR2014"){
+	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
 	l<-paste("data/",list.tableFiles(name),sep="")
-	p<-do.call(c,lapply(l,
-		function(x)fn003(x,name)
-	))
-	i<-do.call(c,lapply(l,fn001))
+	p<-sapply(l,function(x)choose(n,fn003(l)))
+	i<-sapply(l,fn001)
 	out<-cbind(i,p,p-i,i/p)
 	rownames(out)<- l
 	out
 }
 
-fn003 <- function(datafile,name){
-	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
-	choose(n,as.numeric(sub(".tab","",sub(paste("data/",name,"_k",sep=""),"",datafile))))
+fn003 <- function(datafile){
+	as.numeric(sub(".tab","",sub(paste("data/",name,"_k",sep=""),"",datafile)))
 }
 
 fn004 <- function(name="SIR2014"){
