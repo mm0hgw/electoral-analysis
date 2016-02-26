@@ -78,7 +78,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	}
 	p<-out[,1]
 	names(p)<-sapply(l,fn003)
-	print(p)
+	print(p[p!=100.000])
 	out<-out[,-1]
 	out<-rbind(out,
 		c(nrow(ballot),
