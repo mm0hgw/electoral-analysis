@@ -241,7 +241,7 @@ index_files <- function(name="SIR2014"){
 fn002 <- function(name="SIR2014"){
 	n<-nrow(read.csv(paste("data/",name,".csv",sep="")))
 	l<-paste("data/",list.tableFiles(name),sep="")
-	p<-sapply(l,function(x)choose(n,fn003(l)))
+	p<-sapply(l,function(x)choose(n,fn003(x)))
 	i<-sapply(l,fn001)
 	out<-cbind(i,p,p-i,i/p)
 	rownames(out)<- l
