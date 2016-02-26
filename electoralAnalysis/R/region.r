@@ -356,10 +356,42 @@ handle_ballot <- function(name){
 }
 
 nRecords <- function(file){
-	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
+	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))-1
 }
 
+max_thread_size<-1e3
+max_job_size<-max_thread_size*no_cores
+
 read.table.smart<-function(file){
-		
-		# read headers
+	n<-nRecords(file)
+	sample<-read.table(file,nrow=2)
+	cc<-sapply(sample,class)
+	offset<-3
+	out<-list(sample)
+	while(n-offset>max_job_size){
+		cl<-makeCustomCluster()
+		out<-c(out,foreach(threadID=icount(no_cores),
+			.options.multicore=mcoptions
+		)%dopar%{
+			s<-offset+(threadID-1)*max_thread_size
+			o<-read.table(file,
+				skip=s,
+				nrow=max_thread_size,
+				colClasses=cc
+			)
+			rownames(o)<-o[,1]
+			o[,-1]
+		})
+		stopCluster(cl)
+		gc()
+		offset<-offset+max_job_size
+	}
+	o<-read.table(file,
+		skip=offset,
+		nrow=n-offset,
+		colClasses=cc
+	)
+	rownames(o)<-o[,1]
+	out<-c(out,o[,-1])
+	do.call(rbind,out)
 }
