@@ -366,6 +366,7 @@ read.table.smart<-function(file){
 	n<-nRecords(file)
 	sample<-read.table(file,nrow=2)
 	cc<-c("character",sapply(sample,class))
+	cn<-colnames(sample)
 	offset<-3
 	out<-sample
 	if(n-offset>max_job_size){
@@ -383,7 +384,9 @@ read.table.smart<-function(file){
 					colClasses=cc
 				)
 				rownames(o)<-o[,1]
-				o[,-1]
+				o<-o[,-1]
+				colnames(o)<-cn
+				o
 			}
 			out<-c(out,list(o))
 			gc()
@@ -397,6 +400,8 @@ read.table.smart<-function(file){
 		colClasses=cc
 	)
 	rownames(o)<-o[,1]
-	out<-rbind(out,o[,-1])
+	o<-o[,-1]
+	colnames(o)<-cn
+	out<-rbind(out,o)
 	out
 }
