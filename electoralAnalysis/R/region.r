@@ -249,7 +249,7 @@ fn002 <- function(name="SIR2014"){
 }
 
 fn003 <- function(datafile){
-	as.numeric(sub(".tab","",sub(paste("data/",name,"_k",sep=""),"",datafile)))
+	as.numeric(sub(".tab","",sub(paste("data/.*_k",sep=""),"",datafile)))
 }
 
 fn004 <- function(name="SIR2014"){
