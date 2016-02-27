@@ -357,7 +357,7 @@ nlines <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
 }
 
-max_thread_size<-1e6
+max_thread_size<-1e4
 
 read.table.smart<-function(file,nrow=nlines(file)){
 	sample<-read.table(file,nrow=5)
@@ -367,7 +367,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 	out<-sample
 	if(nrow-offset>max_thread_size){
 		cl<-makeCustomCluster()
-		nthreads<-(nrow-offset)%/%max_thread_size
+		nthreads<-no_cores*3
 		rnl<-rep((nrow-offset)%/%nthreads,nthreads)
 		rnl[1]<-rnl[1]+(nrow-offset)%%nthreads
 		rsl<-sapply(seq(nthreads)-1,
