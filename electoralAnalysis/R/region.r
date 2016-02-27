@@ -377,7 +377,6 @@ read.table.smart<-function(file,nrow=nlines(file)){
 			rs=rsl,
 			.combine=function(...){
 				out<-rbind(...)
-				rm(...)
 				gc()
 				out
 			},
