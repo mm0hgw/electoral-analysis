@@ -357,10 +357,9 @@ nlines <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
 }
 
-max_thread_size<-1e6
+max_thread_size<-1e5
 
 read.table.smart<-function(file,nrow=nlines(file)){
-	n<-nRecords(file)
 	sample<-read.table(file,nrow=5)
 	cc<-c("character",sapply(sample,class))
 	cn<-colnames(sample)
@@ -382,6 +381,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 				gc()
 				out
 			},
+			.multicombine=TRUE,
 			.options.multicore=mcoptions
 		)%dopar%{
 			o<-read.table(file,
