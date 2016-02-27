@@ -365,7 +365,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 	cn<-colnames(sample)
 	offset<-6
 	out<-sample
-	if(nrow-offset>max_thread_size){
+	if(FALSE){
 		cl<-makeCustomCluster()
 		nthreads<-no_cores
 		rnl<-rep((nrow-offset)%/%nthreads,nthreads)
