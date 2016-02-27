@@ -375,7 +375,13 @@ read.table.smart<-function(file,nrow=nlines(file)){
 		)
 		o<-foreach(rn=rnl,
 			rs=rsl,
-			.combine=rbind,
+			.combine=function(...){
+				out<-rbind(...)
+				rm(...)
+				gc()
+				out
+			},
+			.multicombine=TRUE,
 			.options.multicore=mcoptions
 		)%dopar%{
 			o<-read.table(file,
