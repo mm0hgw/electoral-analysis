@@ -391,6 +391,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 		}
 		out<-rbind(out,o)
 		stopCluster(cl)
+		rm(o)
 		gc()
 		out
 	}else{
@@ -404,6 +405,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 		o<-o[,-1]
 		colnames(o)<-cn
 		out<-rbind(out,o)
+		rm(o)
 		gc()
 		out
 	}
