@@ -390,9 +390,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 				colClasses=cc
 			)
 			rownames(o)<-o[,1]
-			o<-o[,-1]
-			colnames(o)<-cn
-			o
+			o[,-1]
 		}
 		out<-rbind(out,o)
 		stopCluster(cl)
@@ -402,14 +400,12 @@ read.table.smart<-function(file,nrow=nlines(file)){
 	}else{
 		o<-read.table(file,
 			skip=offset,
-			nrow=n-offset+1,
+			nrow=nrow-offset+1,
 			comment.char="",
 			colClasses=cc
 		)
 		rownames(o)<-o[,1]
-		o<-o[,-1]
-		colnames(o)<-cn
-		out<-rbind(out,o)
+		out<-rbind(out,o[,-1])
 		rm(o)
 		gc()
 		out
