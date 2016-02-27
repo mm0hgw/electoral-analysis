@@ -124,7 +124,7 @@ plot_trend <- function(m=mean_table()){
 }
 
 plot_trend_repeat <- function(name="SIR2014"){
-	report_period<-3600
+	report_period<-900
 	m<-mean_table(name)
 	while(TRUE){
 		plot_trend(m)
