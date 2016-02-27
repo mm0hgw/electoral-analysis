@@ -63,9 +63,7 @@ mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name)
 	kn<-nrow(ballot)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
-		len<-as.numeric(sub(" .*","",system2("wc",c("-l",l),stdout=TRUE)))
-		d<-read.table(l,nrows=2)
-		d<-read.table(l,colClasses=sapply(d,class),nrows=len)
+		d<-read.table.smart(l)
 		logcat(paste("Read",l),file="io.log")
 		n<-nrow(d)
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
@@ -355,24 +353,24 @@ handle_ballot <- function(name){
 	lapply(joblist,mccollect)
 }
 
-nRecords <- function(file){
-	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))-1
+nlines <- function(file){
+	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
 }
 
 max_thread_size<-1e6
 max_job_size<-max_thread_size*no_cores
 
-read.table.smart<-function(file){
+read.table.smart<-function(file,nrow=nlines(file)){
 	n<-nRecords(file)
-	sample<-read.table(file,nrow=2)
+	sample<-read.table(file,nrow=5)
 	cc<-c("character",sapply(sample,class))
 	cn<-colnames(sample)
-	offset<-3
+	offset<-6
 	out<-sample
-	if(n-offset>max_thread_size){
+	if(nrow-offset>max_thread_size){
 		cl<-makeCustomCluster()
-		while(n-offset>max_job_size){
-		
+		while(nrow-offset>max_job_size){
+			print(offset)
 			o<-foreach(threadID=icount(no_cores),
 				.combine=rbind,
 				.options.multicore=mcoptions
@@ -381,6 +379,7 @@ read.table.smart<-function(file){
 				o<-read.table(file,
 					skip=s,
 					nrow=max_thread_size,
+					comment.char="",
 					colClasses=cc
 				)
 				rownames(o)<-o[,1]
@@ -392,8 +391,8 @@ read.table.smart<-function(file){
 			gc()
 			offset<-offset+max_job_size
 		}
-		rnl<-rep((n-offset+1)%/%no_cores,no_cores)
-		rnl[1]<-rnl[1]+(n-offset+1)%%no_cores
+		rnl<-rep((nrow-offset)%/%no_cores,no_cores)
+		rnl[1]<-rnl[1]+(nrow-offset)%%no_cores
 		rsl<-sapply(seq(no_cores)-1,
 			function(x)sum(offset,head(rnl,n=x))
 		)
@@ -405,6 +404,7 @@ read.table.smart<-function(file){
 			o<-read.table(file,
 				skip=rs,
 				nrow=rn,
+				comment.char="",
 				colClasses=cc
 			)
 			rownames(o)<-o[,1]
@@ -420,6 +420,7 @@ read.table.smart<-function(file){
 		o<-read.table(file,
 			skip=offset,
 			nrow=n-offset+1,
+			comment.char="",
 			colClasses=cc
 		)
 		rownames(o)<-o[,1]
