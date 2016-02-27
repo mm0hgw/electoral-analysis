@@ -358,7 +358,6 @@ nlines <- function(file){
 }
 
 max_thread_size<-1e6
-max_job_size<-max_thread_size*no_cores
 
 read.table.smart<-function(file,nrow=nlines(file)){
 	n<-nRecords(file)
@@ -369,28 +368,6 @@ read.table.smart<-function(file,nrow=nlines(file)){
 	out<-sample
 	if(nrow-offset>max_thread_size){
 		cl<-makeCustomCluster()
-		while(nrow-offset>max_job_size){
-			print(offset)
-			o<-foreach(threadID=icount(no_cores),
-				.combine=rbind,
-				.options.multicore=mcoptions
-			)%dopar%{
-				s<-offset+(threadID-1)*max_thread_size
-				o<-read.table(file,
-					skip=s,
-					nrow=max_thread_size,
-					comment.char="",
-					colClasses=cc
-				)
-				rownames(o)<-o[,1]
-				o<-o[,-1]
-				colnames(o)<-cn
-				o
-			}
-			out<-rbind(out,o)
-			gc()
-			offset<-offset+max_job_size
-		}
 		rnl<-rep((nrow-offset)%/%no_cores,no_cores)
 		rnl[1]<-rnl[1]+(nrow-offset)%%no_cores
 		rsl<-sapply(seq(no_cores)-1,
