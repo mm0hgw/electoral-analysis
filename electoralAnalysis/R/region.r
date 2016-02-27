@@ -381,7 +381,6 @@ read.table.smart<-function(file,nrow=nlines(file)){
 				gc()
 				out
 			},
-			.multicombine=TRUE,
 			.options.multicore=mcoptions
 		)%dopar%{
 			o<-read.table(file,
