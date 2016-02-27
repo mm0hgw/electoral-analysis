@@ -370,7 +370,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 		nthreads<-(nrow-offset)%/%max_thread_size
 		rnl<-rep((nrow-offset)%/%nthreads,nthreads)
 		rnl[1]<-rnl[1]+(nrow-offset)%%nthreads
-		rsl<-sapply(seq(no_cores)-1,
+		rsl<-sapply(seq(nthreads)-1,
 			function(x)sum(offset,head(rnl,n=x))
 		)
 		o<-foreach(rn=rnl,
