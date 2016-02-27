@@ -400,7 +400,7 @@ read.table.smart<-function(file,nrow=nlines(file)){
 	}else{
 		o<-read.table(file,
 			skip=offset,
-			nrow=nrow-offset+1,
+			nrow=nrow-offset,
 			comment.char="",
 			colClasses=cc
 		)
