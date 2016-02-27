@@ -357,7 +357,7 @@ nlines <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
 }
 
-max_thread_size<-1e5
+max_thread_size<-1e6
 
 read.table.smart<-function(file,nrow=nlines(file)){
 	sample<-read.table(file,nrow=5)
