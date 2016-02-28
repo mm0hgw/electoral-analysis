@@ -163,39 +163,79 @@ recursive_region_check <- function(
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
 	datafile<-paste("data/",name,"_k",sprintf("%2.0f",k),".tab",sep="")
-	i<-1
+	offset<-0
 	if(file.exists(datafile)){
 		d<-system2("tail",c("-n1",datafile),stdout=TRUE)
-		i<-max(as.numeric(sub("\".*","",sub("\"","",d))))+1
+		offset<-max(as.numeric(sub("\".*","",sub("\"","",d))))
 	}else{
 		cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
 	}
-	buffer_limit<-160
-	buffer<-vector()
-	while(i<=cnk){
-		j<-combnGen(i)
-		if(contiguityCheck(
-			border_table,
-			j
-		)==TRUE){
-			l<-paste("\"",i,"\" ",
-				gsub(",","",toString(
-					ballot_chisq_to_normal(
-						ballot[j,]
-					))
-				),"\n",sep=""
+	tlim<-1e4
+	jlim<-tlim*no_cores
+	cl<-makeCustomCluster()
+	while(cnk-offset<jlim){
+		td <- thread_divider(offset,jlim)
+		mcoptions <- list(preschedule=FALSE,
+			set.seed=FALSE,
+			silent=TRUE,
+			cores=no_cores
+		)
+		out<-foreach(ts=td[1,],
+			tn=td[2,],
+			.combine=c,
+			.options.multicore=mcoptions
+		)%dopar%{
+			sapply(icount(tn),
+				function(i){
+					j<-combnGen(i+ts)
+					if(contiguityCheck(
+						border_table,
+						j
+					)==TRUE){
+						l<-paste("\"",i+ts,"\" ",
+							gsub(",","",toString(
+								ballot_chisq_to_normal(
+									ballot[j,]
+								))
+							),"\n",sep=""
+						)
+					}
+				}
 			)
-			buffer<-c(buffer,l)
-			if(length(buffer)>=buffer_limit){
-				cat(paste(buffer,collapse=""),file=datafile,append=TRUE)
-				buffer<-vector()
-			}
 		}
-		i<-i+1
+		if(length(out)>0){
+			cat(paste(out,collapse=""),file=datafile,append=TRUE)
+		}
+		offset<-offset+jlim
 	}
-	if(length(buffer)>0){
-		cat(paste(buffer,collapse=""),file=datafile,append=TRUE)
+	td <- thread_divider(offset,cnk-offset)
+	out<-foreach(ts=td[1,],
+		tn=td[2,],
+		.combine=c,
+		.options.multicore=mcoptions
+	)%dopar%{
+		sapply(icount(tn),
+			function(i){
+				j<-combnGen(i+ts)
+				if(contiguityCheck(
+					border_table,
+					j
+				)==TRUE){
+					l<-paste("\"",i+ts,"\" ",
+						gsub(",","",toString(
+							ballot_chisq_to_normal(
+								ballot[j,]
+							))
+						),"\n",sep=""
+					)
+				}
+			}
+		)
 	}
+	if(length(out)>0){
+		cat(paste(out,collapse=""),file=datafile,append=TRUE)
+	}
+	stopCluster(cl)
 	beep(9)
 	vector()
 }
@@ -215,11 +255,11 @@ region_check <- function(
 		silent=TRUE,
 		cores=no_cores
 	)
-	cl<-makeCustomCluster()
-	foreach(i=a,.combine=c,.options.multicore=mcoptions)%dopar%{
+	#cl<-makeCustomCluster()
+	foreach(i=a,.combine=c,.options.multicore=mcoptions)%do%{
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
-	stopCluster(cl)
+	#stopCluster(cl)
 }
 
 fn001 <- function(datafile){
@@ -357,57 +397,32 @@ nlines <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
 }
 
-max_thread_size<-1e4
-
 read.table.smart<-function(file,nrow=nlines(file)){
 	sample<-read.table(file,nrow=5)
 	cc<-c("character",sapply(sample,class))
 	cn<-colnames(sample)
 	offset<-6
 	out<-sample
-	if(FALSE){
-		cl<-makeCustomCluster()
-		nthreads<-no_cores
-		rnl<-rep((nrow-offset)%/%nthreads,nthreads)
-		rnl[1]<-rnl[1]+(nrow-offset)%%nthreads
-		rsl<-sapply(seq(nthreads)-1,
-			function(x)sum(offset,head(rnl,n=x))
-		)
-		o<-foreach(rn=rnl,
-			rs=rsl,
-			.combine=rbind,
-			.multicombine=TRUE,
-			.options.multicore=mcoptions
-		)%dopar%{
-			o<-read.table(file,
-				skip=rs,
-				nrow=rn,
-				comment.char="",
-				colClasses=cc
-			)
-			rownames(o)<-o[,1]
-			o<-o[,-1]
-			colnames(o)<-cn
-			o
-		}
-		out<-rbind(out,o)
-		stopCluster(cl)
-		rm(o)
-		gc()
-		out
-	}else{
-		o<-read.table(file,
-			skip=offset,
-			nrow=nrow-offset,
-			comment.char="",
-			colClasses=cc
-		)
-		rownames(o)<-o[,1]
-		o<-o[,-1]
-		colnames(o)<-cn
-		out<-rbind(out,o)
-		rm(o)
-		gc()
-		out
-	}
+	o<-read.table(file,
+		skip=offset,
+		nrow=nrow-offset,
+		comment.char="",
+		colClasses=cc
+	)
+	rownames(o)<-o[,1]
+	o<-o[,-1]
+	colnames(o)<-cn
+	out<-rbind(out,o)
+	rm(o)
+	gc()
+	out
+}
+
+thread_divider <- function(n,offset=0,threads=no_cores){
+	thN <- rep((n-offset)%/%threads,threads)
+	thN[1] <- thN[1]+(n-offset)%%threads
+	thS <- sapply(seq(threads)-1,
+		function(x)sum(offset,head(thN,n=x))
+	)
+	rbind(skip=thS,n=thN)
 }
