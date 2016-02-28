@@ -175,6 +175,7 @@ recursive_region_check <- function(
 	cl<-makeCustomCluster()
 	while(cnk-offset<jlim){
 		td <- thread_divider(offset,jlim)
+		print(td)
 		mcoptions <- list(preschedule=FALSE,
 			set.seed=FALSE,
 			silent=TRUE,
@@ -184,10 +185,12 @@ recursive_region_check <- function(
 			tn=td[2,],
 			.combine=c,
 			.options.multicore=mcoptions
-		)%dopar%{
+		)%do%{
 			sapply(icount(tn),
 				function(i){
+					print(i+ts)
 					j<-combnGen(i+ts)
+					print(j)
 					if(contiguityCheck(
 						border_table,
 						j
@@ -199,10 +202,13 @@ recursive_region_check <- function(
 								))
 							),"\n",sep=""
 						)
+					}else{
+						vector()
 					}
 				}
 			)
 		}
+		print(out)
 		if(length(out)>0){
 			cat(paste(out,collapse=""),file=datafile,append=TRUE)
 		}
