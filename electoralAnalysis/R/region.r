@@ -266,6 +266,7 @@ fn004 <- function(name="SIR2014"){
 		duration<-endTime-startTime
 		out<-(duration*(1-n)/(n-m))[,4]
 		names(out)<-list.tableFiles(name)
+		print(fn002())
 		print(Sys.time()+out[mask])
 	}
 }
@@ -282,49 +283,17 @@ read.table.smart<-function(file,nrow=nlines(file)){
 	cn<-colnames(sample)
 	offset<-6
 	out<-sample
-	if(FALSE){
-		cl<-makeCustomCluster()
-		nthreads<-no_cores
-		rnl<-rep((nrow-offset)%/%nthreads,nthreads)
-		rnl[1]<-rnl[1]+(nrow-offset)%%nthreads
-		rsl<-sapply(seq(nthreads)-1,
-			function(x)sum(offset,head(rnl,n=x))
-		)
-		o<-foreach(rn=rnl,
-			rs=rsl,
-			.combine=rbind,
-			.multicombine=TRUE,
-			.options.multicore=mcoptions
-		)%dopar%{
-			o<-read.table(file,
-				skip=rs,
-				nrow=rn,
-				comment.char="",
-				colClasses=cc
-			)
-			rownames(o)<-o[,1]
-			o<-o[,-1]
-			colnames(o)<-cn
-			o
-		}
-		out<-rbind(out,o)
-		stopCluster(cl)
-		rm(o)
-		gc()
-		out
-	}else{
-		o<-read.table(file,
-			skip=offset,
-			nrow=nrow-offset,
-			comment.char="",
-			colClasses=cc
-		)
-		rownames(o)<-o[,1]
-		o<-o[,-1]
-		colnames(o)<-cn
-		out<-rbind(out,o)
-		rm(o)
-		gc()
-		out
-	}
+	o<-read.table(file,
+		skip=offset,
+		nrow=nrow-offset,
+		comment.char="",
+		colClasses=cc
+	)
+	rownames(o)<-o[,1]
+	o<-o[,-1]
+	colnames(o)<-cn
+	out<-rbind(out,o)
+	rm(o)
+	gc()
+	out
 }
