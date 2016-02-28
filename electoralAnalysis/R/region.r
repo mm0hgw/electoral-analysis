@@ -143,7 +143,7 @@ plot_trend_repeat <- function(name="SIR2014"){
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			m<-n
-			system2("pushplot.sh",wait=FALSE)
+			system2("./pushplot.sh",wait=FALSE)
 			Sys.sleep(report_period-(getTime()-readtime)%%report_period)
 		}
 		m<-n
