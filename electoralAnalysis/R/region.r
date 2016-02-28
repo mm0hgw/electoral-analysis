@@ -143,6 +143,7 @@ plot_trend_repeat <- function(name="SIR2014"){
 			oldtime<-newtime
 			logcat(paste(duration,"seconds"),file="region.log")
 			m<-n
+			system2("pushplot.sh",wait=FALSE)
 			Sys.sleep(report_period-(getTime()-readtime)%%report_period)
 		}
 		m<-n
@@ -170,7 +171,7 @@ recursive_region_check <- function(
 	}else{
 		cat(paste(gsub(",","",toString(W_list)),"\n",sep=""),file=datafile)
 	}
-	buffer_limit<-160
+	buffer_limit<-1e4
 	buffer<-vector()
 	while(i<=cnk){
 		j<-combnGen(i)
