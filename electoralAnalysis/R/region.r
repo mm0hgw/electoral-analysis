@@ -266,7 +266,7 @@ fn004 <- function(name="SIR2014"){
 		duration<-endTime-startTime
 		out<-(duration*(1-n)/(n-m))[,4]
 		names(out)<-list.tableFiles(name)
-		print(Sys.time()+out[mask])
+		print(cbind(fn002(),Sys.time()+out[mask]))
 	}
 }
 
