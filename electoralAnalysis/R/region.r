@@ -106,7 +106,7 @@ plot_trend <- function(m=mean_table()){
 	x<-m[,1]
 	ylim<-log(range(m[,c(-1,-2,-3)]))
 	plot(type="b",pch=4,x=x,y=log(m[,4]),ylim=ylim,
-		xlab="k",ylab="mean chisq to Gaussian")
+		xlab="k",ylab="log mean chisq to Gaussian")
 	counter<-5
 	while(counter<=ncol(m)){
 		lines(type="b",pch=counter,x=x,y=log(m[,counter]))
