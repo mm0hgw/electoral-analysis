@@ -163,7 +163,7 @@ recursive_region_check <- function(
 	n<-ncol(border_table)
 	combnGen<-combnGG(n,k)
 	cnk<-choose(n,k)
-	datafile<-paste("data/",name,"_k",sprintf("%2.0f",k),".tab",sep="")
+	datafile<-paste("data/",name,"_k",sprintf("%02.0f",k),".tab",sep="")
 	i<-1
 	if(file.exists(datafile)){
 		d<-system2("tail",c("-n1",datafile),stdout=TRUE)
