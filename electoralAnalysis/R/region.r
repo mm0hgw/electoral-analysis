@@ -52,7 +52,18 @@ fastRowFoo<- function(t,foo,.combine=c){
 	out
 }
 
-mean_table<-function(name="SIR2014",fileList=paste("data/",list.tableFiles(name),sep="")){
+mean_table<-function(
+	name="SIR2014",
+	fileList=system2(
+		"ls",
+		c("-S",
+			paste("data/",
+				name,
+				"_k*"
+			)
+		)
+	)
+){
 	ballot<-compute_W(
 		read.csv(
 			paste("data/",
