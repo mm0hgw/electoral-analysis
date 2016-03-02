@@ -59,9 +59,10 @@ mean_table<-function(
 		c("-S",
 			paste("data/",
 				name,
-				"_k*"
+				"_k*.tab"
 			)
-		)
+		),
+		stdout=TRUE
 	)
 ){
 	ballot<-compute_W(
