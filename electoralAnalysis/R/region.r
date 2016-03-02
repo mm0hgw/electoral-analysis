@@ -59,7 +59,8 @@ mean_table<-function(
 		c("-S",
 			paste("data/",
 				name,
-				"_k*.tab"
+				"_k*.tab",
+				sep=""
 			)
 		),
 		stdout=TRUE
