@@ -139,14 +139,13 @@ plot_trend <- function(name="SIR2014",m=mean_table(name)){
 
 plot_trend_repeat <- function(name="SIR2014"){
 	report_period<-3600
-	m<-mean_table(name)
 	while(TRUE){
-		plot_trend(m)
+		plot_trend(name)
 		logcat(m,file="region.log")
 		oldtime<-getTime()
 		while(nrow(n<-mean_table(name))==nrow(m)){
 			starttime<-getTime()
-			plot_trend(n)
+			plot_trend(name)
 			write.table(n,file="readout.tab")
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
