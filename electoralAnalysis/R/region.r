@@ -98,7 +98,7 @@ mean_table<-function(
 			ballot_chisq_to_normal(ballot)
 	)	)
 	rownames(out)<-out[,1]
-	out
+	out[order(out[,1]),]
 }
 
 logcat<-function(obj,file){
