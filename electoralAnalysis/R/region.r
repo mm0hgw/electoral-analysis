@@ -213,7 +213,7 @@ recursive_region_check <- function(
 	if(length(buffer)>0){
 		cat(paste(buffer,collapse=""),file=datafile,append=TRUE)
 	}
-	beep(9)
+	beep(11)
 	vector()
 }
 
@@ -237,6 +237,7 @@ region_check <- function(
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 	stopCluster(cl)
+	beep(3)
 }
 
 fn001 <- function(datafile){
