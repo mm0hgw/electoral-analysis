@@ -133,6 +133,8 @@ plot_trend <- function(name="SIR2014",m=mean_table(name)){
 		logcat(combnG(x,n,k),file="region.log")
 	}
 	logcat(100*as.vector(m[,2])/as.vector(m[,3]),file="region.log")
+	require(buildPackage)
+	gitPush(file,paste(name,plot))
 	dev.off()
 	m
 }
