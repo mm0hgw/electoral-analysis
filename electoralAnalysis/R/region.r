@@ -148,7 +148,7 @@ plot_trend_repeat <- function(name="SIR2014"){
 		while(nrow(n<-mean_table(name))==nrow(m)){
 			starttime<-getTime()
 			plot_trend(name)
-			write.table(n,file="readout.tab")
+			write.table(n,file=paste(name,"_mean_table.tab",sep=""))
 			newtime<-getTime()
 			duration <- round( newtime - oldtime )
 			readtime <- round( newtime - starttime )
