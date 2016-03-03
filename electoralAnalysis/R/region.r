@@ -128,7 +128,7 @@ plot_trend <- function(name="SIR2014",m=mean_table(name)){
 	}
 	l<-colnames(m)[c(-1,-2,-3)]
 	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
-	n<-32
+	n<-nlines(paste("data/",name,".csv",sep=""))-1
 	foreach(k=m[,1],x=m[,3])%do%{
 		logcat(combnG(x,n,k),file="region.log")
 	}
