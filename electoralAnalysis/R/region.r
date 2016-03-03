@@ -197,7 +197,8 @@ recursive_region_check <- function(
 			l<-paste("\"",i,"\" ",
 				gsub(",","",toString(
 					ballot_chisq_to_normal(
-						ballot[j,]
+						ballot[j,],
+						W_list=W_list
 					))
 				),"\n",sep=""
 			)
