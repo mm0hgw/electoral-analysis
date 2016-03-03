@@ -221,7 +221,7 @@ recursive_region_check <- function(
 region_check <- function(
 	name="SIR2014",
 	ballot=compute_W(read.csv(paste("data/",name,".csv",sep=""))),
-	border_table=read.table(paste("data/",name,"_borders.tab",sep="")),
+	border_table=borderTable(read.csv(paste("data/",name,"_borders.csv",sep=""))),
 	W_list=c("V",quorate_names(ballot))
 ){
 	n<-ncol(border_table)
@@ -237,6 +237,7 @@ region_check <- function(
 		recursive_region_check(ballot,border_table,k=i,W_list,name)
 	}
 	stopCluster(cl)
+	plot_trend(name)
 	beep(3)
 }
 
