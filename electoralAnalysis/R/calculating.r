@@ -123,8 +123,12 @@ ballot_chisq_to_normal <- function(ballot,tag="",
   a_fn<-a_fn_fn(ballot[,"N"])
   c_fn <-function(n){
     W<-ballot[,n]
-    w<-density(a_fn(W))
-    sum((w$y-dnorm(w$x))^2)
+    if(sum(W)==0){
+    	100
+    }else{
+    	w<-density(a_fn(W))
+   	 sum((w$y-dnorm(w$x))^2)
+  	}
   }
   out<-ballot_sapply(ballot,W_list,c_fn)
   names(out)<-paste(tag,names(out))
@@ -234,4 +238,3 @@ quorate_index <- function(ballot){
 quorate_names <- function(ballot){
   colnames(ballot)[quorate_index(ballot)]
 }
-
