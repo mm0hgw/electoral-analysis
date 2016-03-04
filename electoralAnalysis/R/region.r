@@ -76,7 +76,7 @@ mean_table<-function(
 	)
 ){
 	cl<-makeCustomCluster()
-	out<-foreach(l=fileList,.combine=rbind)%do%{
+	out<-foreach(l=fileList,.combine=rbind)%dopar%{
 		logcat(paste("Reading",l),file="io.log")
 		n<-nlines(l)
 		mcoptions <- list(preschedule=FALSE,
@@ -90,7 +90,7 @@ mean_table<-function(
 			},
 			.multicombine=TRUE,
 			.options.multicore=mcoptions
-		)%dopar%{
+		)%do%{
 			if(n==1){
 				vector()
 			}else{
