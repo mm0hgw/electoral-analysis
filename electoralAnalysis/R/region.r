@@ -305,7 +305,19 @@ nlines <- function(file){
 }
 
 readline<-function(file,n){
-	system2("head",c(paste("-n",n,sep=""),file,"|","tail","-n1"))
+	system2("head",
+		c(
+			paste("-n",
+				n,
+				sep=""
+			),
+			file,
+			"|",
+			"tail",
+			"-n1"
+		),
+		stdout=TRUE
+	)
 }
 
 max_thread_size<-1e4
