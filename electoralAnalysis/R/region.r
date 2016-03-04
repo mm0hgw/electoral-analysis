@@ -41,13 +41,13 @@ list.tableFiles<-function(name="SIR2014"){
 }
 
 fastColFoo<- function(t,foo){
-	out<-do.call(c,lapply(seq(ncol(t)),function(i)foo(t[,i])))
+	out<-do.call(c,lapply(seq(ncol(t)),function(i)foo(t[!is.na(t[,i]),i])))
 	names(out)<-colnames(t)
 	out
 }
 
 fastRowFoo<- function(t,foo,.combine=c){
-	out<-do.call(.combine,lapply(seq(nrow(t)),function(i)foo(t[i,])))
+	out<-do.call(.combine,lapply(seq(nrow(t)),function(i)foo(t[i,!is.na(t[i,])])))
 	names(out)<-colnames(t)
 	out
 }
@@ -64,15 +64,17 @@ mean_table<-function(
 			)
 		),
 		stdout=TRUE
-	)
-){
-	ballot<-compute_W(
+	),
+	ballot=compute_W(
 		read.csv(
 			paste("data/",
 				name,
 				".csv",
 				sep=""
-	)	)	)
+			)
+		)
+	)
+){
 	kn<-nrow(ballot)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
