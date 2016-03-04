@@ -77,6 +77,7 @@ mean_table<-function(
 ){
 	kn<-nrow(ballot)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
+		gc()
 		logcat(paste("Reading",l),file="io.log")
 		d<-read.table.smart(l)
 		logcat(paste("Read",l),file="io.log")
