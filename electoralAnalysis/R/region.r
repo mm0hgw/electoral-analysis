@@ -139,7 +139,7 @@ logcat<-function(obj,file){
 plot_trend <- function(name="SIR2014",m=mean_table(name)){
 	file<-paste(name,".png",sep="")
 	phone_png(file)
-	x<-as.numeric(rownames(l))
+	x<-as.numeric(rownames(m))
 	ylim<-(range(m))
 	plot(type="b",pch=1,x=x,y=(m[,1]),ylim=ylim,
 		xlab="k",ylab="mean log chisq to Gaussian")
