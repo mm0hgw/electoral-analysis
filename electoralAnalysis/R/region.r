@@ -224,6 +224,7 @@ region_check <- function(
 	border_table=borderTable(read.csv(paste("data/",name,"_borders.csv",sep=""))),
 	W_list=c("V",quorate_names(ballot))
 ){
+	browser()
 	n<-ncol(border_table)
 	a<-seq(2,n-1)
 	a<-a[order(choose(n,a),decreasing=TRUE)]
