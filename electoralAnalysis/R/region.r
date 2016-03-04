@@ -75,41 +75,47 @@ mean_table<-function(
 		)
 	)
 ){
-	kn<-nrow(ballot)
 	out<-foreach(l=fileList,.combine=rbind)%do%{
-		gc()
 		logcat(paste("Reading",l),file="io.log")
-		d<-read.table.smart(l)
-		logcat(paste("Read",l),file="io.log")
-		n<-nrow(d)
-		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
-		i<-as.numeric(rownames(d)[n])
-		p<-round(100*i/choose(kn,k),digits=3)
-		o<-c(p=p,
-			k=k,
-			n=n,
-			i=i,
-			fastColFoo(d,
-				function(x)mean(log(x))
-			)
+		n<-nlines(file)
+		mcoptions <- list(preschedule=FALSE,
+			set.seed=FALSE,
+			silent=TRUE,
+			cores=no_cores
 		)
-		rm(d)
-		gc()
+		o<-foreach(i=icount(n),
+			.combine=function(...){
+				fastColFoo(rbind(...),sum)
+			},
+			.multicombine=TRUE,
+			.options.multicore=mcoptions
+		)%dopar%{
+			if(n==1){
+				vector()
+			}else{
+				log(
+					as.numeric(
+						strsplit(
+							readline(
+								l,
+								i
+							),
+							" "
+						)[[1]][-1]
+					)
+				)
+			}
+		}/(n-1)
+		logcat(paste("Read",l),file="io.log")
 		beep(11)
 		o
 	}
-	p<-out[,1]
-	names(p)<-sapply(l,fn003)
-	print(p[p!=100.000])
-	out<-out[,-1]
 	out<-rbind(out,
-		c(nrow(ballot),
-			1,
-			1,
-			log(ballot_chisq_to_normal(ballot))
-	)	)
-	rownames(out)<-out[,1]
-	out[order(out[,1]),]
+		log(ballot_chisq_to_normal(ballot))
+	)
+	k<-fn003(l)
+	rownames(out)<-k
+	out[order(k),]
 }
 
 logcat<-function(obj,file){
@@ -280,7 +286,7 @@ fn002 <- function(name="SIR2014"){
 }
 
 fn003 <- function(datafile){
-	as.numeric(sub(".tab","",sub(paste("data/.*_k",sep=""),"",datafile)))
+	as.numeric(gsub(".tab","",gsub(paste("data/.*_k",sep=""),"",datafile)))
 }
 
 fn004 <- function(name="SIR2014"){
