@@ -76,7 +76,7 @@ mean_table<-function(
 	)
 ){
 	cl<-makeCustomCluster()
-	cn<-strsplit(gsub("\"","",readline(fileList[1],1)))[[1]]
+	cn<-strsplit(gsub("\"","",readline(fileList[1],1))," ")[[1]]
 	out<-foreach(l=fileList,.combine=rbind)%dopar%{
 		logcat(paste("Reading",l),file="io.log")
 		n<-nlines(l)
