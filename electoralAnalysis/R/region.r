@@ -76,6 +76,7 @@ mean_table<-function(
 	)
 ){
 	cl<-makeCustomCluster()
+	cn<-strsplit(gsub("\"","",readline(fileList[1],1)))[[1]]
 	out<-foreach(l=fileList,.combine=rbind)%dopar%{
 		logcat(paste("Reading",l),file="io.log")
 		n<-nlines(l)
@@ -116,6 +117,7 @@ mean_table<-function(
 	)
 	k<-fn003(fileList)
 	rownames(out)<-c(k,nrow(ballot))
+	colnames(out)<-cn
 	stopCluster(cl)
 	beep(3)
 	out[order(k),]
@@ -137,22 +139,17 @@ logcat<-function(obj,file){
 plot_trend <- function(name="SIR2014",m=mean_table(name)){
 	file<-paste(name,".png",sep="")
 	phone_png(file)
-	x<-m[,1]
-	ylim<-(range(m[,c(-1,-2,-3)]))
-	plot(type="b",pch=4,x=x,y=(m[,4]),ylim=ylim,
+	x<-as.numeric(rownames(l))
+	ylim<-(range(m))
+	plot(type="b",pch=1,x=x,y=(m[,1]),ylim=ylim,
 		xlab="k",ylab="mean log chisq to Gaussian")
-	counter<-5
+	counter<-2
 	while(counter<=ncol(m)){
 		lines(type="b",pch=counter,x=x,y=(m[,counter]))
 		counter<-counter+1
 	}
-	l<-colnames(m)[c(-1,-2,-3)]
-	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
-	n<-nlines(paste("data/",name,".csv",sep=""))-1
-	foreach(k=m[,1],x=m[,3])%do%{
-		logcat(combnG(x,n,k),file="region.log")
-	}
-	logcat(100*as.vector(m[,2])/as.vector(m[,3]),file="region.log")
+	l<-colnames(m)
+	legend("topright",legend=l,pch=seq(from=1,length.out=length(l)))
 	require(buildPackage)
 	dev.off()
 	gitPush(file,paste(name,"plot",sep="_"))
