@@ -114,7 +114,7 @@ mean_table<-function(
 	out<-rbind(out,
 		log(ballot_chisq_to_normal(ballot))
 	)
-	k<-fn003(l)
+	k<-fn003(fileList)
 	rownames(out)<-k
 	stopCluster(cl)
 	beep(3)
