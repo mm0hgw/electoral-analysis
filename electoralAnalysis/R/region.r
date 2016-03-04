@@ -94,6 +94,7 @@ mean_table<-function(
 		)
 		rm(d)
 		gc()
+		beep(11)
 		o
 	}
 	p<-out[,1]
