@@ -77,7 +77,7 @@ mean_table<-function(
 ){
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
-		n<-nlines(file)
+		n<-nlines(l)
 		mcoptions <- list(preschedule=FALSE,
 			set.seed=FALSE,
 			silent=TRUE,
