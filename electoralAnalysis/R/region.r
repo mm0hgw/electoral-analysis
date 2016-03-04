@@ -105,7 +105,7 @@ mean_table<-function(
 		c(nrow(ballot),
 			1,
 			1,
-			ballot_chisq_to_normal(ballot)
+			log(ballot_chisq_to_normal(ballot))
 	)	)
 	rownames(out)<-out[,1]
 	out[order(out[,1]),]
