@@ -84,7 +84,14 @@ mean_table<-function(
 		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
 		i<-as.numeric(rownames(d)[n])
 		p<-round(100*i/choose(kn,k),digits=3)
-		o<-c(p=p,k=k,n=n,i=i,fastColFoo(d,mean))#,fastColFoo(d,sd))
+		o<-c(p=p,
+			k=k,
+			n=n,
+			i=i,
+			fastColFoo(d,
+				function(x)mean(log(x))
+			)
+		)
 		rm(d)
 		gc()
 		o
@@ -122,7 +129,7 @@ plot_trend <- function(name="SIR2014",m=mean_table(name)){
 	x<-m[,1]
 	ylim<-(range(m[,c(-1,-2,-3)]))
 	plot(type="b",pch=4,x=x,y=(m[,4]),ylim=ylim,
-		xlab="k",ylab="mean chisq to Gaussian")
+		xlab="k",ylab="mean log chisq to Gaussian")
 	counter<-5
 	while(counter<=ncol(m)){
 		lines(type="b",pch=counter,x=x,y=(m[,counter]))
