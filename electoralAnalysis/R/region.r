@@ -75,6 +75,7 @@ mean_table<-function(
 		)
 	)
 ){
+	cl<-makeCustomCluster()
 	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
 		n<-nlines(l)
@@ -115,6 +116,8 @@ mean_table<-function(
 	)
 	k<-fn003(l)
 	rownames(out)<-k
+	stopCluster(cl)
+	beep(3)
 	out[order(k),]
 }
 
