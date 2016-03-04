@@ -304,6 +304,10 @@ nlines <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
 }
 
+readline<-function(file,n){
+	system2("head",c(paste("-n",n,sep=""),file,"|","tail","-n1"))
+}
+
 max_thread_size<-1e4
 
 read.table.smart<-function(file,nrow=nlines(file)){
