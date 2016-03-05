@@ -124,7 +124,7 @@ ballot_chisq_to_normal <- function(ballot,tag="",
   c_fn <-function(n){
     W<-ballot[,n]
     if(sum(W)==0){
-    	100
+    	NA
     }else{
     	w<-density(a_fn(W))
    	 sum((w$y-dnorm(w$x))^2)
