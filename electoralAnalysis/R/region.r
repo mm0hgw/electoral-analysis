@@ -81,7 +81,7 @@ mean_table<-function(
 		logcat(paste("Reading",l),file="io.log")
 		con<-file(l,open="r")
 		readLines(con,1)
-		o<-as.numeric(do.call(rbind,readLines(con))[,-1])
+		o<-as.numeric(do.call(rbind,strsplit(readLines(con)," "))[,-1])
 		o<-fastColFoo(o,function(x)mean(x[!is.na(x)]))
 		close(con)
 		logcat(paste("Read",l),file="io.log")
