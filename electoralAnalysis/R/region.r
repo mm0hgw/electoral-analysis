@@ -80,18 +80,12 @@ mean_table<-function(
 	out<-foreach(l=fileList,.combine=rbind)%dopar%{
 		logcat(paste("Reading",l),file="io.log")
 		con<-file(l)
-		scan(con,1,what="char(0)",sep="\n",quiet=TRUE)
+		readLines(con,1)
 		o<-0
 		counter<-0
 		while(
 			length(
-				line<-scan(con,
-					1,
-					what="char(0)",
-					sep="\n",
-					skip=counter+1,
-					quiet=TRUE
-				)
+				line<-readLines(con,1)
 			)>0
 		){
 			counter<-counter+1
