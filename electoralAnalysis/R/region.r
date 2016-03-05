@@ -79,38 +79,33 @@ mean_table<-function(
 	cn<-strsplit(gsub("\"","",readline(fileList[1],1))," ")[[1]]
 	out<-foreach(l=fileList,.combine=rbind)%dopar%{
 		logcat(paste("Reading",l),file="io.log")
-		n<-nlines(l)
-		mcoptions <- list(preschedule=FALSE,
-			set.seed=FALSE,
-			silent=TRUE,
-			cores=no_cores
-		)
-		o<-foreach(i=icount(n),
-			.combine=function(...){
-				fastColFoo(rbind(...),sum)
-			},
-			.multicombine=TRUE,
-			.options.multicore=mcoptions
-		)%do%{
-			if(n==1){
-				vector()
-			}else{
-				log(
-					as.numeric(
-						strsplit(
-							readline(
-								l,
-								i
-							),
-							" "
-						)[[1]][-1]
-					)
+		con<-file(l)
+		scan(con,1,what="char(0)",quiet=TRUE)
+		o<-0
+		counter<-0
+		while(
+			length(
+				line<-scan(con,
+					1,
+					what="char(0)",
+					quiet=TRUE
 				)
-			}
-		}/(n-1)
+			)>0
+		){
+			counter<-counter+1
+			o<-o+log(
+				as.numeric(
+					strsplit(
+						line,
+						" "
+					)[[1]][-1]
+				)
+			)
+		}
+		close(con)
 		logcat(paste("Read",l),file="io.log")
 		beep(11)
-		o
+		o/counter
 	}
 	out<-rbind(out,
 		log(ballot_chisq_to_normal(ballot))
