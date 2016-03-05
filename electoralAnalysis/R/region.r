@@ -75,43 +75,40 @@ mean_table<-function(
 		)
 	)
 ){
-	cl<-makeCustomCluster()
-	cn<-strsplit(gsub("\"","",readline(fileList[1],1))," ")[[1]]
-	out<-foreach(l=fileList,.combine=rbind)%dopar%{
+	kn<-nrow(ballot)
+	out<-foreach(l=fileList,.combine=rbind)%do%{
 		logcat(paste("Reading",l),file="io.log")
-		con<-file(l,open="r")
-		readLines(con,1)
-		o<-0
-		counter<-0
-		while(
-			length(
-				line<-readLines(con,1)
-			)>0
-		){
-			counter<-counter+1
-			o<-o+log(
-				as.numeric(
-					strsplit(
-						line,
-						" "
-					)[[1]][-1]
-				)
-			)
-		}
-		close(con)
+		d<-read.table.smart(l)
 		logcat(paste("Read",l),file="io.log")
+		n<-nrow(d)
+		k<-as.numeric(gsub(".tab","",gsub(paste("data/",name,"_k",sep=""),"",l)))
+		i<-as.numeric(rownames(d)[n])
+		p<-round(100*i/choose(kn,k),digits=3)
+		o<-c(p=p,
+			k=k,
+			n=n,
+			i=i,
+			fastColFoo(d,
+				function(x)mean(log(x))
+			)
+		)
+		rm(d)
+		gc()
 		beep(11)
-		o/counter
+		o
 	}
+	p<-out[,1]
+	names(p)<-sapply(l,fn003)
+	print(p[p!=100.000])
+	out<-out[,-1]
 	out<-rbind(out,
-		log(ballot_chisq_to_normal(ballot))
-	)
-	k<-fn003(fileList)
-	rownames(out)<-c(k,nrow(ballot))
-	colnames(out)<-cn
-	stopCluster(cl)
-	beep(3)
-	out[order(k),]
+		c(nrow(ballot),
+			1,
+			1,
+			log(ballot_chisq_to_normal(ballot))
+	)	)
+	rownames(out)<-out[,1]
+	out[order(out[,1]),]
 }
 
 logcat<-function(obj,file){
@@ -130,17 +127,22 @@ logcat<-function(obj,file){
 plot_trend <- function(name="SIR2014",m=mean_table(name)){
 	file<-paste(name,".png",sep="")
 	phone_png(file)
-	x<-as.numeric(rownames(m))
-	ylim<-(range(m))
-	plot(type="b",pch=1,x=x,y=(m[,1]),ylim=ylim,
+	x<-m[,1]
+	ylim<-(range(m[,c(-1,-2,-3)]))
+	plot(type="b",pch=4,x=x,y=(m[,4]),ylim=ylim,
 		xlab="k",ylab="mean log chisq to Gaussian")
-	counter<-2
+	counter<-5
 	while(counter<=ncol(m)){
 		lines(type="b",pch=counter,x=x,y=(m[,counter]))
 		counter<-counter+1
 	}
-	l<-colnames(m)
-	legend("topright",legend=l,pch=seq(from=1,length.out=length(l)))
+	l<-colnames(m)[c(-1,-2,-3)]
+	legend("topright",legend=l,pch=seq(4,length.out=length(l)))
+	n<-nlines(paste("data/",name,".csv",sep=""))-1
+	foreach(k=m[,1],x=m[,3])%do%{
+		logcat(combnG(x,n,k),file="region.log")
+	}
+	logcat(100*as.vector(m[,2])/as.vector(m[,3]),file="region.log")
 	require(buildPackage)
 	dev.off()
 	gitPush(file,paste(name,"plot",sep="_"))
@@ -277,7 +279,7 @@ fn002 <- function(name="SIR2014"){
 }
 
 fn003 <- function(datafile){
-	as.numeric(gsub(".tab","",gsub(paste("data/.*_k",sep=""),"",datafile)))
+	as.numeric(sub(".tab","",sub(paste("data/.*_k",sep=""),"",datafile)))
 }
 
 fn004 <- function(name="SIR2014"){
@@ -299,22 +301,6 @@ fn004 <- function(name="SIR2014"){
 
 nlines <- function(file){
 	as.numeric(sub(" .*","",system2("wc",c("-l",file),stdout=TRUE)))
-}
-
-readline<-function(file,n){
-	system2("head",
-		c(
-			paste("-n",
-				n,
-				sep=""
-			),
-			file,
-			"|",
-			"tail",
-			"-n1"
-		),
-		stdout=TRUE
-	)
 }
 
 max_thread_size<-1e4
