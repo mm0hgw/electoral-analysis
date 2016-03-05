@@ -79,7 +79,7 @@ mean_table<-function(
 	cn<-strsplit(gsub("\"","",readline(fileList[1],1))," ")[[1]]
 	out<-foreach(l=fileList,.combine=rbind)%dopar%{
 		logcat(paste("Reading",l),file="io.log")
-		con<-file(l)
+		con<-file(l,open="r")
 		readLines(con,1)
 		o<-0
 		counter<-0
