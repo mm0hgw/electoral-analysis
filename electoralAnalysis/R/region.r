@@ -81,27 +81,12 @@ mean_table<-function(
 		logcat(paste("Reading",l),file="io.log")
 		con<-file(l,open="r")
 		readLines(con,1)
-		o<-0
-		counter<-0
-		while(
-			length(
-				line<-readLines(con,1)
-			)>0
-		){
-			counter<-counter+1
-			o<-o+log(
-				as.numeric(
-					strsplit(
-						line,
-						" "
-					)[[1]][-1]
-				)
-			)
-		}
+		o<-as.numeric(do.call(rbind,readLines(con))[,-1])
+		o<-fastColFoo(o,function(x)mean(x[!is.na(x)]))
 		close(con)
 		logcat(paste("Read",l),file="io.log")
 		beep(11)
-		o/counter
+		o
 	}
 	out<-rbind(out,
 		log(ballot_chisq_to_normal(ballot))
