@@ -61,6 +61,21 @@ calculate_normalised_a <- function(V,N){
 	(a-pop_mean)/pop_sd
 }
 
+# convert sample to colour
+sample_to_color <- function(sample){
+        a<-sample/max(abs(sample))
+        z<-rep(0,length(a))
+        lo<-hi<-z
+        lo[a>0]<-a[a>0]
+        hi[a<0]<- -a[a<0]
+        r<-1-hi-hi
+        r[r<0]<-0
+        g<-1-hi-lo
+        b<-hi
+        rgb(r,g,b)
+
+}
+
 # turnout function generator 
 a_fn_fn <- function(N){
   function(V) calculate_normalised_a(V,N)
