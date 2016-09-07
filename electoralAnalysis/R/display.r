@@ -10,6 +10,20 @@ pdf_target<-function(name="turnout_analysis"){
         pdf(file=paste(name,".pdf",sep=""),paper="a4",width=7,height=10)
 }
 
+png_iphone6 <- function(name="turnout_analysis"){
+	png(	file=paste(name,".png",sep=""),
+		height=1334,
+		width=750
+	)
+}
+
+svg_iphone6 <- function(name="turnout_analysis"){
+	svg(	file=paste(name,".svg",sep=""),
+		height=1334,
+		width=750
+	)
+}
+
 #
 #	display component functions
 #
@@ -102,7 +116,62 @@ plot_with_normal <- function(d,...){
 	lines(x=d$x,y=dnorm(x=d$x))
 }
 
+plot_two_part_sample <- function(V,N,...){
+	sample <- V/N
+	d<-density(sample)
+	plot(d,...)
+	pmean<-sum(V)/sum(N)
+	psd<-sqrt(mean((sample-pmean)^2))
+	lines(x=d$x,y=dnorm(d$x,mean=pmean,sd=psd),col="blue")
+}
+
 custom_chisq <- function(d,...){
 	sum((d$y-dnorm(d$x))^2)
 }
 
+# plot a set of shpaefile object regions
+# polygon_list is a 
+region_plot <- function(shape_obj,sample,...){
+	require(rgdal)
+	require(foreach)
+	color_vector <- sample_to_color(sample)
+	lim<-max(abs(sample))
+	leg<-seq(-lim,lim,length.out=256)
+	
+	layout(t(1:2),widths=c(6,1))
+	par(mar=c(.5,.5,.5,.5),oma=rep(3,4),las=1)
+	plot(shape_obj,...)
+	foreach(p=shape_obj@polygons,
+		q=color_vector
+	)%do%{
+		lapply(p@Polygons,
+			function(r){
+				polygon(r@coords,col=q)
+			}
+		)
+	}	
+	image(1,
+		leg,
+		t(seq_along(leg)),
+		col=sample_to_color(leg),
+		axes=FALSE,
+		ylab="standard deviations from mean"
+	)
+	axis(4)
+}
+
+cdf_display<-function(V,N,...){
+p_mean<-sum(V)/sum(N)
+sample<-V/N
+p_sd<-custom_sd(sample,center=p_mean)
+l<-limits(sample)
+hw<-(l[2]-l[1])/2
+x<-seq(l[1]-hw,l[2]+hw,length.out=200)
+plot(ecdf(sample),do.points=FALSE,verticals=TRUE,...)
+lines(x,pnorm(x,mean=p_mean,sd=p_sd),col="blue")
+lines(x=c(rep(p_mean,2),-1),y=c(0.5,rep(cdf_mean_intercept(V,N),2)),col="red")
+}
+
+density_display<-function(V=0,N=0,d_obj=density(calculate_normalised_a(V,N)),...){
+plot_with_normal(d_obj,...)
+}
