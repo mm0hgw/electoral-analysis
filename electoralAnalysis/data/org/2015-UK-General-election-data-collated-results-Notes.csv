@@ -1,0 +1,17 @@
+Notes
+"These 2015 UK Parliamentary General Election results data have been supplied by Professors Colin Rallings and Michael Thrasher at the Elections Centre, Plymouth University. "
+"The results are based on those collected separately by the BBC, ITV, Sky News, and the Press Association and should be treated as provisional. "
+"The Commission will publish a fully verified final results file, based on declaration of results statements, in July 2015."
+file 'Results'
+Forename: The candidate's forename as it is on the Statement of Persons Nominated (SoPN)
+Surname: The candidate's surname as it is on the SoPN
+Description on ballot paper: The party name or description used by the candidate on the ballot paper. 
+Constituency Name: The name of the constituency being contested
+PANo: Press association number of the constituency
+Votes: The number of valid votes cast for the candidate
+file 'Constituency'
+Constituency Name: The name of the constituency being contested
+Constituency ID: The ONS GSS code attributed to the constituency
+Constituency Type: The type of constituency (Borough/Burgh or County)
+Electorate: The number of eligible electors who could have voted on polling day
+Valid Votes: The number of valid votes cast for all candidates standing in that constituency
