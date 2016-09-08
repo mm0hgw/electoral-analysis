@@ -160,18 +160,57 @@ region_plot <- function(shape_obj,sample,...){
 	axis(4)
 }
 
-cdf_display<-function(V,N,...){
-p_mean<-sum(V)/sum(N)
-sample<-V/N
-p_sd<-custom_sd(sample,center=p_mean)
-l<-limits(sample)
-hw<-(l[2]-l[1])/2
-x<-seq(l[1]-hw,l[2]+hw,length.out=200)
-plot(ecdf(sample),do.points=FALSE,verticals=TRUE,...)
-lines(x,pnorm(x,mean=p_mean,sd=p_sd),col="blue")
-lines(x=c(rep(p_mean,2),-1),y=c(0.5,rep(cdf_mean_intercept(V,N),2)),col="red")
+cdf_display<-function(
+	V,
+	N,
+	normalise=FALSE,
+	do.plot=TRUE,
+	...
+){
+	if(normalise==FALSE){
+		p_mean<-sum(V)/sum(N)
+		sample<-V/N
+		p_sd<-custom_sd(sample,center=p_mean)
+	}else{
+		sample<-calculate_normalised_a(V,N)
+		p_mean<-0
+		p_sd<-1
+	}
+	l<-limits(sample)
+	hw<-(l[2]-l[1])/5
+	x<-seq(l[1]-hw,l[2]+hw,length.out=200)
+	cdf_obj<-ecdf(sample)
+	if(do.plot==TRUE){
+		plot(cdf_obj,do.points=FALSE,verticals=TRUE,...)
+		lines(x,pnorm(x,mean=p_mean,sd=p_sd),col="blue")
+		lines(x=c(rep(p_mean,2),min(x)),y=c(0.5,rep(cdf_mean_intercept(V,N),2)),col="red")
+	}
+	return(cdf_obj)
 }
 
-density_display<-function(V=0,N=0,d_obj=density(calculate_normalised_a(V,N)),...){
-plot_with_normal(d_obj,...)
+density_display<-function(
+	V=0,
+	N=0,
+	normalise=FALSE,
+	do.plot=TRUE,
+	...
+){
+	if(normalise==FALSE){
+		p_mean<-sum(V)/sum(N)
+		sample<-V/N
+		p_sd<-custom_sd(sample,center=p_mean)
+	}else{
+		sample<-calculate_normalised_a(V,N)
+		p_mean<-0
+		p_sd<-1
+	}
+	l<-limits(sample)
+	hw<-(l[2]-l[1])/5
+	x<-seq(l[1]-hw,l[2]+hw,length.out=200)
+	d_obj<-density(sample)
+	if(do.plot==TRUE){
+		plot(d_obj,...)
+		lines(x,dnorm(x,mean=p_mean,sd=p_sd),col="blue")
+	}
+	return(d_obj)
 }
