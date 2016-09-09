@@ -1,3 +1,10 @@
+require(gdata)
+GE2010R<-read.xls("data/org/GE2010-results-flatfile-website.xls")
+GE2010RS<-GE2010R[GE2010R$Region=="Scotland",]
+GE2010<-read.csv("data/GE2010.csv")
+SIR2014<-read.csv("data/SIR2014.csv")
+GE2015<-read.csv("data/GE2015.csv")
+RU2011<-read.csv("data/org/Russia2011.csv")
 png_iphone6("Scotland2010_0")
 cdf_display(GE2010RS$Votes,GE2010RS$Electorate,main="Scotland 2010 overall turnout")
 dev.off()
