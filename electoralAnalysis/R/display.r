@@ -210,7 +210,11 @@ density_display<-function(
 	d_obj<-density(sample)
 	if(do.plot==TRUE){
 		plot(d_obj,...)
-		lines(x,dnorm(x,mean=p_mean,sd=p_sd),col="blue")
+		lines(
+			x,
+			dnorm(x,mean=p_mean,sd=p_sd),
+			col="blue"
+		)
 	}
 	return(d_obj)
 }
