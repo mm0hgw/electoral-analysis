@@ -77,8 +77,12 @@ sample_to_color <- function(sample){
 }
 
 # turnout function generator 
-a_fn_fn <- function(N){
-  function(V) calculate_normalised_a(V,N)
+a_fn_fn <- function(N,normalise=TRUE){
+	if(normalise==TRUE){
+		function(V) calculate_normalised_a(V,N)
+	}else{
+		function(V) calculate_a(V,N)
+	}
 }
 
 # cook a list of files using the normalised turnout technique
