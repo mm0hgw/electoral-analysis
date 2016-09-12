@@ -12,6 +12,8 @@ sw_cond <- function(x){
   min(length(x)+1,3)
 }
 
+noop<-function(...){invisible(NULL)}
+
 # Real number only probability computation
 sigma_to_probability <- function(x){
         Re(erfc(x/sqrt(2)))
