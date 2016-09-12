@@ -157,12 +157,27 @@ vr_SP_line <- list(x=c(2007,2011,2016),
 
 # define line groups
 
-vr<-list(GE.turnout=vr_GE_line,SIR.turnout=vr_SIR_line,SP.turnout=vr_SP_line)
-ur<-list(GE.unionist=ur_GE_line,SIR.unionist=ur_SIR_line,SP.unionist=ur_SP_line)
-nr<-list(GE.nationalist=nr_GE_line,SIR.nationalist=nr_SIR_line,SP.nationalist=nr_SP_line)
-vf<-list(GE.turnout=vf_GE_line,SIR.turnout=vf_SIR_line,SP.turnout=vf_SP_line)
-uf<-list(GE.unionist=uf_GE_line,SIR.unionist=uf_SIR_line,SP.unionist=uf_SP_line)
-nf<-list(GE.nationalist=nf_GE_line,SIR.nationalist=nf_SIR_line,SP.nationalist=nf_SP_line)
+r_list<-list(GE.turnout=vr_GE_line,
+	SIR.turnout=vr_SIR_line,
+	SP.turnout=vr_SP_line,
+	GE.unionist=ur_GE_line,
+	SIR.unionist=ur_SIR_line,
+	SP.unionist=ur_SP_line,
+	GE.nationalist=nr_GE_line,
+	SIR.nationalist=nr_SIR_line,
+	SP.nationalist=nr_SP_line
+)
+
+f_list<-list(GE.turnout=vf_GE_line,
+	SIR.turnout=vf_SIR_line,
+	SP.turnout=vf_SP_line,
+	GE.unionist=uf_GE_line,
+	SIR.unionist=uf_SIR_line,
+	SP.unionist=uf_SP_line,
+	GE.nationalist=nf_GE_line,
+	SIR.nationalist=nf_SIR_line,
+	SP.nationalist=nf_SP_line
+)
 
 GE_fn <- function(b){
 	list(overall.turnout=b$V,
@@ -275,9 +290,13 @@ chart <- function(line_list,...){
 	legend("topleft",legend=names(line_list),col=seq(n),pch=seq(n))
 }
 
-r_chart<-function(){chart(c(nr,vr,ur),type="b",lwd=5)}
+r_chart<-function(){
+	chart(r_list,type="b",lwd=5)
+}
 
-f_chart<-function(){chart(c(nf,vf,uf),type="b",lwd=5)}
+f_chart<-function(){
+	chart(f_list,type="b",lwd=5)
+}
 
 chisq_chart <- function(n=6,decreasing=TRUE){
 	chart(d_list[head(order(d_chisq,decreasing=decreasing),n)],lwd=5)
@@ -290,3 +309,9 @@ EU_GE_line <- list(
 		sum(GE2015$V)/sum(GE2015$N)
 	)
 )
+
+EU_R_line <- list(
+	x=2016,
+	y=sum(EUR2016$V)/sum(EUR2016$N)
+)
+

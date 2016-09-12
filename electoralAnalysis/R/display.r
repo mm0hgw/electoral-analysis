@@ -218,3 +218,20 @@ density_display<-function(
 	}
 	return(d_obj)
 }
+
+# plot chart
+chart <- function(line_list,...){
+	n<-length(line_list)
+	if(n==0){return()}
+	yl<-foreach(l=line_list,.combine=limits)%do%{limits(l$y)}
+	xl<-foreach(l=line_list,.combine=limits)%do%{limits(l$x)}
+	plot(line_list[[1]],xlim=xl,ylim=yl,type="n",...)
+	foreach(l=line_list,i=seq(n))%do%{
+		switch(min(length(l$x),2)+1,
+			noop(),
+			points(l,col=i,pch=i,...),
+			lines(l,col=i,pch=i,...)
+		)
+	}
+	legend("topleft",legend=names(line_list),col=seq(n),pch=seq(n))
+}
