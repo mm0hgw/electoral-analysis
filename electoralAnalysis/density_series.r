@@ -84,11 +84,15 @@ metadata_b <- function(
 		FUN=return,
 		SAMPLE_FUN=function(V,N)sum(V)/sum(N)
 	))
+
+	out_loga<-log(out_a)	
+
 	cbind(
 		logchisq=out_logchisq,
 		skewness=out_skewness,
 		sum=out_sum,
-		a=out_a
+		a=out_a,
+		loga=out_loga
 	)
 }
 
