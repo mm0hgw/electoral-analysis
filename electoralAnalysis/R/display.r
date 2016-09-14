@@ -19,8 +19,8 @@ png_iphone6 <- function(name="turnout_analysis"){
 
 svg_iphone6 <- function(name="turnout_analysis"){
 	svg(	file=paste(name,".svg",sep=""),
-		height=1334,
-		width=750
+		width=1334,
+		height=750
 	)
 }
 
