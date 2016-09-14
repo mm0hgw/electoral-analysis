@@ -12,7 +12,7 @@ sw_cond <- function(x){
   min(length(x)+1,3)
 }
 
-noop<-function(...){invisible(NULL)}
+noop<-function(...){invisible(...)}
 
 # Real number only probability computation
 sigma_to_probability <- function(x){
