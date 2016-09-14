@@ -273,23 +273,72 @@ read_VSR2011<-function(){
 	VSR2011
 }
 
+read_Q80 <- function(){
+	fix<-function(x)trim_number(gsub("\302\240","",x))
+	Q80R<-read.csv("data/Quebec 1980.csv")
+	Q80<-data.frame(
+		Name=Q80R$Name,
+		N=fix(Q80R$N),
+		V=fix(Q80R$V),
+		Non=fix(Q80R$Non),
+		Oui=fix(Q80R$Oui)
+	)
+	Q80
+}
 
-UK_list <- list(GE2005=read_GE2005(),
-	GE2010=read_GE2010(),
-	GE2015=read_GE2015(),
-	VSR2011=read_VSR2011(),
-	EUR2016=read_EUR2016()
-)
+read_Q92 <- function(){
+	fix<-function(x)trim_number(gsub("\302\240","",x))
+	Q92R<-read.csv("data/Quebec 1992.csv")
+	Q92<-data.frame(
+		Name=Q92R$Name,
+		N=fix(Q92R$N),
+		V=fix(Q92R$V),
+		Non=fix(Q92R$Non),
+		Oui=fix(Q92R$Oui)
+	)
+	Q92
+}
 
+read_Q95 <- function(){
+	fix<-function(x)trim_number(gsub("\302\240","",x))
+	Q95R<-read.csv("data/Quebec 1995.csv")
+	Q95<-data.frame(
+		Name=Q95R$Name,
+		N=fix(Q95R$N),
+		V=fix(Q95R$V),
+		Non=fix(Q95R$Non),
+		Oui=fix(Q95R$Oui)
+	)
+	Q95
+}
 
-SC_list <- list(
-	GE2005S=trim_ballot(UK_list$GE2005[UK_list$GE2005$Region=="Scotland",]),
-	GE2010S=trim_ballot(UK_list$GE2010[UK_list$GE2010$Region=="Scotland",]),
-	GE2015S=trim_ballot(UK_list$GE2015[grep("S",UK_list$GE2015$ID),]),
-	SP2007=read_SP2007(),
-	SP2011=read_SP2011(),
-	SP2016=read_SP2016(),
-	VSR2011S=trim_ballot(UK_list$VSR2011[UK_list$VSR2011$Region=="Scotland",]),
-	SIR2014=read_SIR2014(),
-	EUR2016S=trim_ballot(UK_list$EUR2016[UK_list$EUR2016$Region=="Scotland",])
-)
+if(!exists("UK_list")){
+	UK_list <- list(GE2005=read_GE2005(),
+		GE2010=read_GE2010(),
+		GE2015=read_GE2015(),
+		VSR2011=read_VSR2011(),
+		EUR2016=read_EUR2016()
+	)
+}
+
+if(!exists("SC_list")){
+	SC_list <- list(
+		GE2005S=trim_ballot(UK_list$GE2005[UK_list$GE2005$Region=="Scotland",]),
+		GE2010S=trim_ballot(UK_list$GE2010[UK_list$GE2010$Region=="Scotland",]),
+		GE2015S=trim_ballot(UK_list$GE2015[grep("S",UK_list$GE2015$ID),]),
+		SP2007=read_SP2007(),
+		SP2011=read_SP2011(),
+		SP2016=read_SP2016(),
+		VSR2011S=trim_ballot(UK_list$VSR2011[UK_list$VSR2011$Region=="Scotland",]),
+		SIR2014=read_SIR2014(),
+		EUR2016S=trim_ballot(UK_list$EUR2016[UK_list$EUR2016$Region=="Scotland",])
+	)
+}
+
+if(!exists("Q_list")){
+	Q_list <- list(
+		Q1980=read_Q80(),
+		Q1992=read_Q92(),
+		Q1995=read_Q95()
+	)
+}
