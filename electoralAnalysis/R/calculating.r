@@ -14,6 +14,7 @@ sw_cond <- function(x){
 
 noop<-function(...){invisible(...)}
 
+
 # Real number only probability computation
 sigma_to_probability <- function(x){
         Re(erfc(x/sqrt(2)))
@@ -168,7 +169,8 @@ ballot_sapply<-function(ballot,v_list,r_fn){
     out
   })
 }
-# https://stat.ethz.ch/pipermail/r-help/2006-March/101023.html
+
+	# https://stat.ethz.ch/pipermail/r-help/2006-March/101023.html
 interleave <- function(v1,v2){
   ord1<-2*1:length(v1)-1
   ord2<-2*1:length(v2)

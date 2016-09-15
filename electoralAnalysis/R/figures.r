@@ -1,3 +1,4 @@
+library(limit)
 #	Figures for paper
 
 # Figure one
