@@ -190,10 +190,6 @@ plot_both<-function(ballot,main="Sample Data"){
 	plot_scatter(ballot,main)
 }
 
-limits<-function(...){
-	c(min(c(...)),max(c(...)))
-}
-
 col_map_table <- c(
 	W_Lab="red",
 	W_SNP="green",

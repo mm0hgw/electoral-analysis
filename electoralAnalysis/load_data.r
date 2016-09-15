@@ -1,9 +1,18 @@
-# setup data read options
+		# imports
+	# for read.xls
 require(gdata)
+	# for count
 require(plyr)
+	# foreach
 require(foreach)
-options(stringsAsFactors=FALSE)
 
+	# setup import environment 
+import_init <- function(){
+		# set factors manually
+	options(stringsAsFactors=FALSE)
+		# nerf locale import errors
+	Sys.setlocale('LC_ALL','C')
+}
 banned_parties = "(^Ind|^$|^Speaker$|^no description$)"
 
 ban_parties <- function(x){
@@ -32,6 +41,7 @@ trim_number <- function(s){
 
 # (b) ballot needs counting areas as rownames
 # (r) result needs format [,c("PANo","party","votes")] 
+# r[,1] is row index for b
 result_sorter <- function(b,r){
 	k<-factor(r[,2])
 	parties<-ban_parties(levels(k)[count(k)[,2]>5])
@@ -49,9 +59,26 @@ result_sorter <- function(b,r){
 	as.data.frame(out)
 }
 
-# Load data
+split_ballot <- function(x)split(x,x$Region)
 
+split_ballot_list <- function(l){
+	l<-l[sapply(l,function(x)"Region"%in%colnames(x))]
+	l<-l[sapply(l,function(x)nrow(count(x$Region))>1)]
+	out<-do.call(
+		c,
+		lapply(	lapply(	l,
+				split_ballot),
+			function(x)lapply(x,trim_ballot)
+		)
+	)
+	out[sapply(out,nrow)>5]
+}
+
+
+	# Load data
 read_GE2005 <- function(){
+		# setup environment
+	import_init()
 		# Load region data
 	GE2005_reg<-read.xls(sheet=3,
 		"data/org/General-election-2005---postal-voting,-proxies-and-spoilts.xls"
@@ -96,13 +123,12 @@ read_GE2005 <- function(){
 		# correct indices
 	index<-grep("\\[\\d*\\]",GE2005R[,1])
 	key<-function(i)sum(i>=index)
-	GE2005R[,1]<-sapply(seq(nrow(GE2005R)),key)
+	GE2005R[,1]<-sapply( seq( nrow( GE2005R ) ), key )
 
 		# read turnout data
-	GE2005_V <- as.vector(unlist(lapply(split(GE2005R[,3],
-				sapply(seq(nrow(GE2005R)),
-					key)
-				),
+	GE2005_V <- as.vector(
+		unlist(	lapply(	split(	GE2005R[,3],
+					GE2005R[,1]),
 				sum
 			)
 		)
@@ -117,62 +143,63 @@ read_GE2005 <- function(){
 	trim_ballot(cbind(GE2005C,result_sorter(GE2005C,GE2005R)))
 }
 
-#GE2005S<-GE2005[
-#	GE2005$Region=="Scotland",
-#	colSums(GE2005[GE2005$Region=="Scotland",]!=0)>5
-#]
-
 read_GE2010 <- function(){
+		# setup environment
+	import_init()
 		# Load GE2010 data
 	GE2010<-read.xls(
 		"data/org/GE2010-results-flatfile-website.xls"
 	)[-651,-c(1,4)]
 	GE2010[is.na(GE2010)]<-0
 	rownames(GE2010)<-trim_white_space(GE2010[,1])
+	GE2010[,2]<-factor(GE2010[,2])
 	colnames(GE2010)[c(3,4)]<-c("N","V")
 	trim_ballot(GE2010[,-1])
 }
 
-GE2015_fix<-list(
-	SDLP="SDLP",
-	Socialist="Socialist Labour",
-	UKIP="(UK *I *P|UK Independence Party)",
-	Conservative="Conservative",
-	Labour="Labour",
-	SNP="SNP",
-	Lib.Dem="Liberal Democrat",
-	Green="Green Party",
-	Pirate="Pirate"
-)
-
-
-# Load GE2015 data
-read_GE2015C <- function(){
-	GE2015C<-read.csv(
-		"data/org/2015-UK-General-election-data-collated-results-Constituency.csv"
-	)[seq(1,650),c(2,3,5,6)]
-	colnames(GE2015C)<-c("Name","ID","N","V")
-	rownames(GE2015C)<-trim_white_space(GE2015C$Name)
-	GE2015C$V<-trim_number(GE2015C$V)
-	GE2015C$N<-trim_number(GE2015C$N)
-	return(GE2015C[,-c(1)])
-}
-
-read_GE2015R <- function(){
-	Sys.setlocale('LC_ALL','C')
-	GE2015R<-read.csv(
-		"data/org/2015-UK-General-election-data-collated-results-Results.csv"
-	)[-3972,c(5,3,6)]
-	GE2015R[,2]<-trim_white_space(GE2015R[,2])
-	foreach(p=GE2015_fix,
-		n=names(GE2015_fix)
-	)%do%{
-		GE2015R[grep(p,GE2015R[,2]),2]<-n
-	}
-	return(GE2015R)
-}
-
+	# Load GE2015 data
 read_GE2015 <- function(){
+		# setup environment
+	import_init()
+	read_GE2015C <- function(){
+		GE2015C<-read.csv(
+			"data/org/2015-UK-General-election-data-collated-results-Constituency.csv"
+		)[seq(1,650),c(2,5,6)]
+		rownames(GE2015C)<-trim_white_space(GE2015C[,1])
+		GE2010_reg<-factor(read.xls(
+			"data/org/GE2010-results-flatfile-website.xls"
+		)[-651,3])
+		colnames(GE2015C)<-c("Region","N","V")
+		GE2015C$Region<-GE2010_reg
+		GE2015C$V<-trim_number(GE2015C$V)
+		GE2015C$N<-trim_number(GE2015C$N)
+		return(GE2015C)
+	}
+
+	read_GE2015R <- function(){
+		GE2015R<-read.csv(
+			"data/org/2015-UK-General-election-data-collated-results-Results.csv"
+		)[-3972,c(5,3,6)]
+		GE2015R[,2]<-trim_white_space(GE2015R[,2])
+		GE2015_fix<-list(
+			SDLP="SDLP",
+			Socialist="Socialist Labour",
+			UKIP="(UK *I *P|UK Independence Party)",
+			Conservative="Conservative",
+			Labour="Labour",
+			SNP="SNP",
+			Lib.Dem="Liberal Democrat",
+			Green="Green Party",
+			Pirate="Pirate"
+		)
+		foreach(p=GE2015_fix,
+			n=names(GE2015_fix)
+		)%do%{
+			GE2015R[grep(p,GE2015R[,2]),2]<-n
+		}
+		return(GE2015R)
+	}
+
 	GE2015C<-read_GE2015C()
 	GE2015R<-read_GE2015R()
 	GE2015R2<-trim_ballot(result_sorter(GE2015C,GE2015R))
@@ -180,17 +207,24 @@ read_GE2015 <- function(){
 	return(GE2015R3)
 }
 	# Load SIR2014 data
-read_SIR2014<-function()read.csv("data/SIR2014.csv")[,-c(1,2,6,7,seq(9,15))]
+read_SIR2014<-function(){
+		# setup environment
+	import_init()
+	read.csv("data/SIR2014.csv")[,-c(1,2,6,7,seq(9,15))]
+}
 
 	# Load SP2007 data
 read_SP2007<-function(){
+		# setup environment
+	import_init()
 	read_SP2007C<-function(){
 		SP2007C<-read.xls(
 			"data/org/Scotland-Parl-Elec-2007-Turnout-Electorate-Constituency.xls"
 		)[seq(2,74),c(2,3,5)]
 		rownames(SP2007C)<-trim_white_space(SP2007C[,1])
-		SP2007C<-SP2007C[,-1]
-		colnames(SP2007C)<-c("N","V")
+		SP2007C[,1]<-factor(0)
+
+		colnames(SP2007C)<-c("Zero","N","V")
 		SP2007C$N<-trim_number(SP2007C$N)
 		SP2007C$V<-trim_number(SP2007C$V)
 		return(SP2007C)
@@ -225,26 +259,35 @@ read_SP2007<-function(){
 
 	#Load SP2011 data
 read_SP2011<-function(){
+		# setup environment
+	import_init()
 	SP2011<-read.xls(
 		"data/org/SP-2011-results-flat-file-WEB.xlsx"
 	)[,-c(3,5,6,11,12)]
-	rownames(SP2011)<-SP2011[,1]
-	SP2011<-SP2011[,-1]
-	colnames(SP2011)[c(1,2)]<-c("N","V")
-	for(i in seq(ncol(SP2011))){
+	rownames(SP2011)<-trim_white_space(SP2011[,1])
+	colnames(SP2011)[c(1,2,3)]<-c("Region","N","V")
+	for(i in seq(2,ncol(SP2011))){
 		SP2011[,i]<-trim_number(SP2011[,i])
 	}
+	SP2011[,1]<-factor(
+		read.csv(
+			"data/org/RESULTS Constituency - Electoral Data and Results - Scottish Parliament elections - May 2016.csv"
+		)[seq(2,74),3]
+	)
 	return(SP2011)
 }
 
 	# Load SP2016 data
 read_SP2016<-function(){
+		# setup environment
+	import_init()
 	SP2016<-read.csv(
 		"data/org/RESULTS Constituency - Electoral Data and Results - Scottish Parliament elections - May 2016.csv"
 	)[seq(2,74),c(2,3,4,6,10,11,12,13)]
 	colnames(SP2016)<-c("Name","Region","N","V","CON","LAB","LIB","SNP")
 	rownames(SP2016)<-SP2016[,1]
 	SP2016<-SP2016[,-1]
+	SP2016[,1]<-factor(SP2016[,1])
 	for(i in seq(2,ncol(SP2016))){
 		SP2016[,i]<-trim_number(SP2016[,i])
 	}
@@ -253,6 +296,8 @@ read_SP2016<-function(){
 
 	# Load EUR2016 data
 read_EUR2016<-function(){
+		# setup environment
+	import_init()
 	EUR2016<-read.csv(
 		"data/org/EU-referendum-result-data.csv"
 	)[,c(3,5,6,11,12,13)]
@@ -262,6 +307,8 @@ read_EUR2016<-function(){
 
 	# Load VSR2011 data
 read_VSR2011<-function(){
+		# setup environment
+	import_init()
 	VSR2011<-read.csv(
 		"data/org/Voting-System-Referendum-results.csv"
 	)[,c(2,4,5,12,7,9)]
@@ -274,6 +321,8 @@ read_VSR2011<-function(){
 }
 
 read_Q80 <- function(){
+		# setup environment
+	import_init()
 	fix<-function(x)trim_number(gsub("\302\240","",x))
 	Q80R<-read.csv("data/Quebec 1980.csv")
 	Q80<-data.frame(
@@ -287,6 +336,8 @@ read_Q80 <- function(){
 }
 
 read_Q92 <- function(){
+		# setup environment
+	import_init()
 	fix<-function(x)trim_number(gsub("\302\240","",x))
 	Q92R<-read.csv("data/Quebec 1992.csv")
 	Q92<-data.frame(
@@ -300,6 +351,8 @@ read_Q92 <- function(){
 }
 
 read_Q95 <- function(){
+		# setup environment
+	import_init()
 	fix<-function(x)trim_number(gsub("\302\240","",x))
 	Q95R<-read.csv("data/Quebec 1995.csv")
 	Q95<-data.frame(
@@ -312,6 +365,14 @@ read_Q95 <- function(){
 	Q95
 }
 
+read_RU2011 <- function(){
+		# setup environment
+	import_init()
+	RU2011<-read.csv("data/org/Russia2011.csv")
+	rownames(RU2011)<-RU2011[,1]
+	RU2011[,1]
+}
+
 if(!exists("UK_list")){
 	UK_list <- list(GE2005=read_GE2005(),
 		GE2010=read_GE2010(),
@@ -321,17 +382,12 @@ if(!exists("UK_list")){
 	)
 }
 
-if(!exists("SC_list")){
-	SC_list <- list(
-		GE2005S=trim_ballot(UK_list$GE2005[UK_list$GE2005$Region=="Scotland",]),
-		GE2010S=trim_ballot(UK_list$GE2010[UK_list$GE2010$Region=="Scotland",]),
-		GE2015S=trim_ballot(UK_list$GE2015[grep("S",UK_list$GE2015$ID),]),
+if(!exists("SP_list")){
+	SP_list <- list(
 		SP2007=read_SP2007(),
 		SP2011=read_SP2011(),
 		SP2016=read_SP2016(),
-		VSR2011S=trim_ballot(UK_list$VSR2011[UK_list$VSR2011$Region=="Scotland",]),
-		SIR2014=read_SIR2014(),
-		EUR2016S=trim_ballot(UK_list$EUR2016[UK_list$EUR2016$Region=="Scotland",])
+		SIR2014=read_SIR2014()
 	)
 }
 
@@ -341,4 +397,12 @@ if(!exists("Q_list")){
 		Q1992=read_Q92(),
 		Q1995=read_Q95()
 	)
+}
+
+if(!exists("big_list")){
+	big_list <- c(UK_list,SP_list)
+}
+
+if(!exists("big_sub_list")){
+	big_sub_list <- split_ballot_list(big_list)
 }

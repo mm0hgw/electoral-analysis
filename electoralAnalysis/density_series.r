@@ -1,6 +1,7 @@
 # setup data read options
-require(moments)
-require(foreach)
+library(moments)
+library(foreach)
+library(limit)
 
 	# takes a single ballot
 	# returns a list of FUN(SAMPLE_FUN()) results applied to the ballot
@@ -106,9 +107,9 @@ chisq_chart <- function(d=ballot_list_funk(SC_list),n=6,decreasing=TRUE){
 	lines(x,dnorm(x),lwd=2,col=8,lty=2)
 }
 
-scatter_chart <- function(m,...){
-	a<-m[,"a"]
-	lc<-m[,"logchisq"]
+scatter_chart <- function(m,lut=c("a","logchisq"),...){
+	a<-m[,lut[1]]
+	lc<-m[,lut[2]]
 	na<-(a-mean(a))/sd(a)
 	nlc<-(lc-mean(lc))/sd(lc)
 	k<-head(order(na+nlc,decreasing=TRUE))
