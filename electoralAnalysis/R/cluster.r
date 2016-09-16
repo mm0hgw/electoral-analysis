@@ -2,8 +2,8 @@
 #	Cluster setup
 #
 
-require(parallel)
-require(doParallel)
+library(parallel)
+library(doParallel)
 
 # setup parallelisation parameters
 no_cores <- max(1,detectCores()-1)
