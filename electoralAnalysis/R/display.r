@@ -162,6 +162,23 @@ region_plot <- function(shape_obj,sample,...){
 	axis(4)
 }
 
+point_limits<-function(V,N){
+	a<-calculate_a(V,N)
+	pm<-sum(V)/sum(N)
+	psd<-custom_sd(a,pm)
+	x<-a[order(a)]
+	y<-seq(length(a))/length(a)
+	y2<-pnorm(x,pm,psd)
+	y3<-y2-y
+	i<-which.limits(y3)
+	l<-abs(y3[i])
+	print(c(l[2]/l[1],l[2]-l[1]))
+	list(
+		x=rep(x[i],2),
+		y=c(y[i],y2[i])
+	)
+}
+
 cdf_display<-function(
 	V,
 	N,
@@ -185,7 +202,8 @@ cdf_display<-function(
 	if(do.plot==TRUE){
 		plot(cdf_obj,do.points=FALSE,verticals=TRUE,...)
 		lines(x,pnorm(x,mean=p_mean,sd=p_sd),col="blue")
-		lines(x=c(rep(p_mean,2),min(x)),y=c(0.5,rep(cdf_mean_intercept(V,N),2)),col="red")
+		lines(x=c(rep(p_mean,2),min(x)),y=c(0.5,rep(cdf_mean_intercept(V,N),2)),col="green")
+		points(point_limits(V,N),lwd=5,col="red")
 	}
 	return(cdf_obj)
 }
