@@ -107,7 +107,12 @@ chisq_chart <- function(d=ballot_list_funk(SC_list),n=6,decreasing=TRUE){
 	lines(x,dnorm(x),lwd=2,col=8,lty=2)
 }
 
-scatter_chart <- function(m,lut=c("a","logchisq"),...){
+scatter_chart <- function(
+	m,
+	lut=c("a","logchisq"),
+	lwd=5,
+	...
+){
 	a<-m[,lut[1]]
 	lc<-m[,lut[2]]
 	na<-(a-mean(a))/sd(a)
@@ -121,17 +126,20 @@ scatter_chart <- function(m,lut=c("a","logchisq"),...){
 		ylim=limits(a),
 		col=8,
 		pch=8,
+		lwd=lwd,
 		...
 	)
 	points(	x=lc[k],
 		y=a[k],
 		col=seq(length(k)),
 		pch=seq(length(k)),
+		lwd=lwd,
 		...
 	)
 	legend(	"bottomleft",
 		legend=rownames(m)[k],
 		col=seq(length(k)),
-		pch=seq(length(k))
+		pch=seq(length(k)),
+		lwd=lwd
 	)
 }

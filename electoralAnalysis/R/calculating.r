@@ -261,3 +261,16 @@ quorate_index <- function(ballot){
 quorate_names <- function(ballot){
   colnames(ballot)[quorate_index(ballot)]
 }
+
+ballot_totals <- function(b){
+	i<-grep("(^numeric$|^integer$)",
+		sapply(b[1,],class)
+	)
+	colSums(b[,i])
+}
+
+ballot_turnouts <- function(b){
+	b2<-ballot_totals(b)
+	i<-grep("^N$",names(b2))
+	b2[-i]/b[i]
+}
