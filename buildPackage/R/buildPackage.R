@@ -43,6 +43,7 @@ buildPackage <- function(package){
 	print(p)
 	p<-p[grep(package,p)]
 	print(p)
+	system2("R",c("CMD","check",p))
 	install.packages(p)
 }
 
