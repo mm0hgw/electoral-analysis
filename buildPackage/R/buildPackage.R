@@ -38,12 +38,12 @@ buildPackage <- function(package){
 	document(package)
 	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
-	gitPush(list.files(pattern=package,include.dirs=TRUE),"build")
-	p<-list.files(pattern=".tar.gz")
+		p<-list.files(pattern=".tar.gz")
 	print(p)
 	p<-p[grep(package,p)]
 	print(p)
 	system2("R",c("CMD","check",p))
+	gitPush(list.files(pattern=package,include.dirs=TRUE),"build")
 	install.packages(p)
 }
 
