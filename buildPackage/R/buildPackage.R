@@ -36,7 +36,6 @@ findPackages <- function(path="."){
 buildPackage <- function(package){
 	gitPull()
 	document(package)
-	system2("R",c("CMD","check",package))
 	system2("R",c("CMD","build",package))
 		p<-list.files(pattern=".tar.gz")
 	print(p)
