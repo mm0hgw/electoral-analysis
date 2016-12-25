@@ -53,3 +53,11 @@ buildPackage <- function(package){
 buildPackages<-function(packages=findPackages()){
 	lapply(packages,buildPackage)
 }
+
+#' rebuild
+#' @export
+rebuild<-function(p){
+	detach(paste("package:",p,sep=""),character.only=TRUE)
+	buildPackage(p)
+	require(p)
+}
