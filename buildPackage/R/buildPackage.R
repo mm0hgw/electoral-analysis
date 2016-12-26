@@ -59,5 +59,5 @@ buildPackages<-function(packages=findPackages()){
 rebuild<-function(p){
 	detach(paste("package:",p,sep=""),character.only=TRUE)
 	buildPackage(p)
-	require(p)
+	require(p,character.only=TRUE)
 }
