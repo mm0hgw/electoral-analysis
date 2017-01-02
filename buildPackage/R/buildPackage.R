@@ -42,7 +42,10 @@ buildPackage <- function(package){
 	p<-p[grep(package,p)]
 	print(p)
 	system2("R",c("CMD","check",p))
-	gitPush(list.files(pattern=package,include.dirs=TRUE),"build")
+	gitPush(
+		list.files(pattern=package,include.dirs=TRUE),
+		paste("build",p,sep="")
+	)
 	install.packages(p)
 }
 
