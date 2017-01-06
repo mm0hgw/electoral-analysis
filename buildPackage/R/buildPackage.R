@@ -44,7 +44,7 @@ buildPackage <- function(package){
 	system2("R",c("CMD","check",p))
 	gitPush(
 		list.files(pattern=package,include.dirs=TRUE),
-		paste("build",p,sep="")
+		paste("build",p,sep=":")
 	)
 	install.packages(p)
 }
