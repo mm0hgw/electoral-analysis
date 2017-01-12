@@ -38,15 +38,9 @@ buildPackage <- function(package){
 	devtools::document(package)
 	system2("R",c("CMD","build",package))
 		p<-list.files(pattern=".tar.gz")
-	print(p)
-	p<-p[grep(paste(package,"_",sep=""),p)]
-	print(p)
 	
-	gitPush(
-		list.files(pattern=package,include.dirs=TRUE),
-		paste("build",p,sep=":")
-	)
-	install.packages(p)
+	p[tail(n=1,grep(paste(package,"_",sep=""),p))]
+
 }
 
 
@@ -65,7 +59,6 @@ buildPackages<-function(packages=findPackages()){
 #' rebuild
 #' @export
 rebuild<-function(p){
-	detach(paste("package:",p,sep=""),character.only=TRUE)
-	buildPackage(p)
+		buildPackage(p)
 	require(p,character.only=TRUE)
 }
