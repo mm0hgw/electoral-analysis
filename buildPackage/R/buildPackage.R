@@ -38,7 +38,8 @@ buildPackage <- function(package){
 	devtools::document(package)
 	system2("R",c("CMD","build",package))
 }
-
+#' checkPackage
+#' @export
 checkPackage<-function(package,as.cran=FALSE){
 	p<-list.files(pattern=".tar.gz")
 	p<-p[tail(n=1,grep(paste(package,"_",sep=""),p))]
