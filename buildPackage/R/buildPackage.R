@@ -37,15 +37,16 @@ buildPackage <- function(package){
 	gitPull()
 	devtools::document(package)
 	system2("R",c("CMD","build",package))
-		p<-list.files(pattern=".tar.gz")
-	
-	p[tail(n=1,grep(paste(package,"_",sep=""),p))]
-
 }
 
-
-checkPackage<-function(p){
-	system2("R",c("CMD","check","--as-cran",p))
+checkPackage<-function(package,as.cran=FALSE){
+	p<-list.files(pattern=".tar.gz")
+	p<-p[tail(n=1,grep(paste(package,"_",sep=""),p))]
+	if(as.cran==TRUE){
+		system2("R",c("CMD","check","--as-cran",p))
+	}else{
+		system2("R",c("CMD","check",p))
+	}
 }
 
 #'	 buildPackages
