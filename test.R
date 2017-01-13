@@ -58,7 +58,7 @@ analyse_sample<-function (s, k = 7)
     ) %do% {
         si <- s[combnGen(i)]
         sn <- (si - mean(si))/sd(si)
-        d <- density(sn)
+        d <- density(sn,n=64)
         c(chisq = chisq_table[i], 
         	mean = mean(sn), 
         	sd = sd(sn), 
