@@ -37,7 +37,8 @@ buildPackage <- function(package,
 	pull=TRUE,
 	check=TRUE,
 	as.cran=FALSE,
-	push=FALSE
+	push=FALSE,
+	install=TRUE
 ){
 	if(pull)gitPull()
 	devtools::document(package)
