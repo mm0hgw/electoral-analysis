@@ -44,6 +44,13 @@ buildPackage <- function(package,
 	system2("R",c("CMD","build",package))
 	if(check)checkPackage(package,as.cran)
 	if(push)gitPushBuild(package)
+	if(install)install.packages(
+			tail(n=1,
+				list.files(
+					pattern=paste(sep="",package,"_*.tar.gz")
+				)
+			)
+		)
 }
 
 gitPushBuild<-function(package){
