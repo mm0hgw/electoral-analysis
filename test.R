@@ -3,7 +3,7 @@ require(iterators)
 require(foreach)
 require(combnGen)
 require(doParallel)
-
+require(plyr)
 # setup parallelisation parameters
 no_cores <- max(1,detectCores()-1)
 mcoptions <- list(preschedule=FALSE,
@@ -81,8 +81,11 @@ analyse_sample<-function (s, k = 7)
     rownames(out3) <- indices
     out4 <- combnGen(indices)
     rownames(out4) <- indices
+    out5<-count(as.vector(out2))
+    out5<-out5[order(out5$freq,decreasimg=TRUE)]
     list(sample = s, 
-    	raw_combinations = out4, 
+    	raw_combinations = out4,
+    	raw_count = out5,
     	combinations = out3, 
     	report = out2
     )
