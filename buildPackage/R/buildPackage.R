@@ -33,11 +33,36 @@ findPackages <- function(path="."){
 #'	@description Build a package.
 #'	@import devtools
 #'	@export
-buildPackage <- function(package){
-	gitPull()
+buildPackage <- function(package,
+	pull=TRUE,
+	check=TRUE,
+	as.cran=FALSE,
+	push=FALSE
+){
+	if(pull)gitPull()
 	devtools::document(package)
 	system2("R",c("CMD","build",package))
+	if(check)checkPackage(package,as.cran)
+	if(push)gitPushBuild(package)
 }
+
+gitPushBuild<-function(package){
+	files<-paste(collapse=" ",
+		paste(sep="",
+			package,
+			c(
+				"*.tar.gz",
+				"/NAMESPACE",
+				"/man/*",
+				".Rcheck/"
+			)
+		)
+	)
+	system(paste("git add",files))
+	system(paste(sep="","git commit -m build:",	package))
+	system("git push")
+}
+
 #' checkPackage
 #' @export
 checkPackage<-function(package,as.cran=FALSE){
