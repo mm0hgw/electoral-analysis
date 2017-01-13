@@ -73,6 +73,7 @@ analyse_sample<-function (s, k = 7)
     	lapply(indices, 
     		function(i) {
       	si <- s[combnGen(i)]
+      	si<-si[order(si)]
        (si - mean(si))/sd(si)
     		}
     	)
