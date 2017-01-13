@@ -1,17 +1,27 @@
-function (s, k = 7) 
+require(moments)
+require(iterators)
+require(foreach)
+
+analyse_sample<-function (s, k = 7) 
 {
     n <- length(s)
     combnGen <- combnGG(n, k)
     chunks <- chunker(0, choose(n, k))
     lo <- chunks[1, ]
     ln <- chunks[2, ]
-    chisq_table <- foreach(offset = lo, n = ln, .inorder = TRUE, 
-        .packages = "stats", .combine = c) %do% {
+    chisq_table <- foreach(offset = lo, 
+    	n = ln, 
+    	.inorder = TRUE, 
+    	.packages = "stats",
+    	.combine = c
+    ) %do% {
         if (n == 0) {
             return(vector())
         }
         print(c(offset, n))
-        out <- foreach(x = icount(n), .combine = c) %do% {
+        out <- foreach(x = icount(n),
+        	.combine = c
+        ) %do% {
             si <- s[combnGen(offset + x)]
             sn <- (si - mean(si))/sd(si)
             d <- density(sn)
@@ -20,9 +30,7 @@ function (s, k = 7)
         }
         out
     }
-    print(order(chisq_table))
     indices <- head(n = 20, order(chisq_table, decreasing = TRUE))
-    print(indices)
     out2 <- foreach(i = indices, .combine = rbind) %do% {
         si <- s[combnGen(i)]
         sn <- (si - mean(si))/sd(si)
@@ -32,27 +40,36 @@ function (s, k = 7)
             peak_y = max(d$y))
     }
     rownames(out2) <- indices
-    print(out2)
-    out3 <- do.call(rbind, lapply(indices, function(i) {
-        si <- s[combnGen(i)]
-        (si - mean(si))/sd(si)
-    }))
+    out3 <- do.call(rbind, 
+    	lapply(indices, 
+    		function(i) {
+      	si <- s[combnGen(i)]
+       (si - mean(si))/sd(si)
+    		}
+    	)
+    )
     rownames(out3) <- indices
-    print(out3)
     out4 <- combnGen(indices)
     rownames(out4) <- indices
-    print(out4)
-    list(sample = s, raw_combinations = out4, combinations = out3, 
-        report = out2)
+    list(sample = s, 
+    	raw_combinations = out4, 
+    	combinations = out3, 
+    	report = out2
+    )
 }
-function (from, to) 
+chunker<-function (from, to, chunkSize=1e5) 
 {
-    if (no_cores == 1) {
+    d<-to-from
+    if (d<3*chunkSize) {
         return(rbind(from, to))
     }
-    n <- ((to - from)/no_cores)
-    f1 <- round(c(from + n * seq(0, no_cores - 1)))
-    t1 <- round(c(from + n * seq(1, no_cores - 1), to))
-    out <- matrix(data = c(f1, t1 - f1), nrow = 2, byrow = TRUE)
+    
+    n <- d%/%chunkSize
+    if(d%%chunkSize==0){
+    	n<-n-1
+    }
+    f1 <- round(c(from + chunkSize * seq(0, n)))
+    t1 <- round(c(from + chunkSize * seq(1, n), to))
+    out <- list(offset = f1, n=t1 - f1)
     out
 }
