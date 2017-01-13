@@ -91,7 +91,7 @@ chunker<-function (from, to, chunkSize=1e5)
 {
     d<-to-from
     if (d<3*chunkSize) {
-        return(rbind(from, to))
+        return(list(offset=from, n=d))
     }
     
     n <- d%/%chunkSize
