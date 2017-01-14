@@ -82,7 +82,7 @@ analyse_sample<-function (s = rnorm(15), k = 7)
     rownames(out3) <- indices
     out4 <- combnGen(indices)
     rownames(out4) <- indices
-    out5<-count(as.vector(out2))
+    out5<-count(as.vector(out4))
     out5<-out5[order(out5$freq,decreasing=TRUE),]
     list(sample = s, 
     	raw_combinations = out4,
