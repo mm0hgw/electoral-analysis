@@ -2,6 +2,7 @@
 
 export(buildPackage)
 export(buildPackages)
+export(checkPackage)
 export(findPackages)
 export(gitPull)
 export(gitPush)
