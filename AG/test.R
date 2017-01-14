@@ -4,6 +4,7 @@ require(foreach)
 require(combnGen)
 require(doParallel)
 require(plyr)
+
 # setup parallelisation parameters
 no_cores <- max(1,detectCores()-1)
 mcoptions <- list(preschedule=FALSE,
@@ -19,7 +20,7 @@ makeCustomCluster <- function(){
 }
 
 
-analyse_sample<-function (s, k = 7) 
+analyse_sample<-function (s = rnorm(15), k = 7) 
 {
     n <- length(s)
     combnGen <- combnGG(n, k)
