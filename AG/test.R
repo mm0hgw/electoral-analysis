@@ -32,7 +32,7 @@ analyse_sample<-function (s = rnorm(15), k = 7)
     	.inorder = TRUE, 
     	.packages = "stats",
     	.combine = c,
-    	mcoptions = mcoptions
+    	.options.multicore = mcoptions
     ) %dopar% {
         if (n == 0) {
             return(vector())
