@@ -46,12 +46,13 @@ buildPackage <- function(package,
 	if(check)checkPackage(package,as.cran)
 	if(push)gitPushBuild(package)
 	if(install)install.packages(
-			tail(n=1,
-				list.files(
-					pattern=paste(sep="",package,"_*.tar.gz")
-				)
+		repos=NULL,
+		tail(n=1,
+			list.files(
+				pattern=paste(sep="",package,"_*.tar.gz")
 			)
 		)
+	)
 }
 
 gitPushBuild<-function(package){
@@ -64,7 +65,8 @@ gitPushBuild<-function(package){
 				"/man/*",
 				paste(sep="",
 					".Rcheck/",
-					c("00*",
+					c("00check.log",
+					"00install.out",
 						paste(sep="",
 							package,
 							c("-manual.pdf",
