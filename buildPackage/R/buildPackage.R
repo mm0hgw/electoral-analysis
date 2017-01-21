@@ -29,6 +29,11 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
+cleanPackage <- function(package){
+	system(paste(sep="","rm -r ",package,".Rcheck/"))
+	system(paste(sep="","git rm ",package,".Rcheck/"))
+}
+
 #'	 buildPackage
 #'	@description Build a package.
 #'	@import devtools
@@ -36,6 +41,7 @@ findPackages <- function(path="."){
 buildPackage <- function(package,
 	pull=TRUE,
 	check=TRUE,
+	clean=TRUE,
 	as.cran=FALSE,
 	push=FALSE,
 	install=TRUE
