@@ -62,7 +62,18 @@ gitPushBuild<-function(package){
 				"*.tar.gz",
 				"/NAMESPACE",
 				"/man/*",
-				".Rcheck/"
+				paste(sep="",
+					".Rcheck/",
+					c("00*",
+						paste(sep="",
+							package.
+							c("-manual.pdf",
+								"-Ex.Rout",
+								"-Ex.timings"
+							)
+						)
+					)
+				)
 			)
 		)
 	)
