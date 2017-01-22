@@ -35,6 +35,20 @@ cleanPackage <- function(package){
 	system(paste(sep="","git rm -r ",package,".Rcheck/ ",package,"_*.tar.gz"))
 }
 
+installPackage<-function(package){
+	files<-grep(paste(sep="",package,"_"),
+		list.files(),
+		value=TRUE
+	)
+	print(files)
+	if(length(files)>0){
+		install.packages(
+			repos=NULL,
+			pkgs=
+		)
+	}
+}
+
 #'	 buildPackage
 #'	@description Build a package.
 #'	@import devtools
@@ -53,16 +67,7 @@ buildPackage <- function(package,
 	system2("R",c("CMD","build",package))
 	if(check)checkPackage(package,as.cran)
 	if(push)gitPushBuild(package)
-	if(install&&0<length(p<-tail(n=1,
-				print(list.files(
-					pattern=paste(sep="",package,"_*.tar.gz")
-				))
-			)
-		)
-	)install.packages(
-		repos=NULL,
-		pkgs=print(p)
-	)
+	if(install)installPackage(package)
 }
 
 gitPushBuild<-function(package){
