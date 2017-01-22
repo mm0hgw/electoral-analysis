@@ -65,32 +65,31 @@ buildPackage <- function(package,
 }
 
 gitPushBuild<-function(package){
-	files<-paste(collapse=" ",
-		paste(sep="",
-			package,
-			c(
-				"*.tar.gz",
-				"/NAMESPACE",
-				"/man/*",
-				paste(sep="",
-					".Rcheck/",
-					c("00check.log",
-					"00install.out",
-						paste(sep="",
-							package,
-							c("-manual.pdf",
-								"-Ex.Rout",
-								"-Ex.timings"
-							)
+	files<-
+		paste(sep="",package,
+		c(
+			"*.tar.gz",
+			"/NAMESPACE",
+			"/man/*",
+			paste(sep="",
+				".Rcheck/",
+				c("00check.log",
+				"00install.out",
+					paste(sep="",
+						package,
+						c("-manual.pdf",
+							"-Ex.Rout",
+							"-Ex.timings"
 						)
 					)
 				)
 			)
 		)
 	)
+	
 	files<-files[sapply(files,file.exists)]
 	print(files)
-	system(paste("git add",files))
+	system(paste("git add",files,collapse=" "))
 	system(paste(sep="","git commit -m build:",	package))
 	system("git push")
 }
