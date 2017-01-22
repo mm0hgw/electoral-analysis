@@ -60,15 +60,15 @@ buildPackage <- function(package,
 		)
 	)install.packages(
 		repos=NULL,
-		pkgs=p
+		pkgs=print(p)
 	)
 }
 
 gitPushBuild<-function(package){
-	files<-
-		paste(sep="",package,
+	files<-paste(sep="",
+		package,
 		c(
-			"*.tar.gz",
+			"_*.tar.gz",
 			"/NAMESPACE",
 			"/man/*",
 			paste(sep="",
@@ -88,7 +88,7 @@ gitPushBuild<-function(package){
 	)
 	#print(files)
 	files<-files[sapply(files,file.exists)]
-	#print(files)
+	print(files)
 	system(paste(c("git add",files),collapse=" "))
 	system(paste(sep="","git commit -m build:",	package))
 	system("git push")
