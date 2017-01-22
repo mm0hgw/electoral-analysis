@@ -69,7 +69,6 @@ gitPushBuild<-function(package){
 	files<-paste(sep="",
 		package,
 		c(
-			"_*.tar.gz",
 			"/NAMESPACE",
 			"/man/*",
 			paste(sep="",
@@ -88,7 +87,9 @@ gitPushBuild<-function(package){
 		)
 	)
 	#print(files)
-	files<-files[sapply(files,file.exists)]
+	files<-c(files[sapply(files,file.exists)],
+		paste(sep="",package,"_*.tar.gz")
+	)
 	print(files)
 	system(paste(c("git add",files),collapse=" "))
 	system(paste(sep="","git commit -m build:",	package))
