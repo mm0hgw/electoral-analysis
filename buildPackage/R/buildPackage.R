@@ -40,11 +40,11 @@ installPackage<-function(package){
 		list.files(),
 		value=TRUE
 	)
-	print(files)
+	#print(files)
 	if(length(files)>0){
 		install.packages(
 			repos=NULL,
-			pkgs=
+			pkgs=files
 		)
 	}
 }
