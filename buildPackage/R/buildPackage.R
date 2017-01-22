@@ -54,9 +54,9 @@ buildPackage <- function(package,
 	if(check)checkPackage(package,as.cran)
 	if(push)gitPushBuild(package)
 	if(install&&0<length(p<-tail(n=1,
-				list.files(
+				print(list.files(
 					pattern=paste(sep="",package,"_*.tar.gz")
-				)
+				))
 			)
 		)
 	)install.packages(
