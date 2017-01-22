@@ -31,7 +31,7 @@ findPackages <- function(path="."){
 
 cleanPackage <- function(package){
 	system(paste(sep="","rm -r ",package,".Rcheck/ ",package,"_*.tar.gz"))
-	system(paste(sep="","git rm ",package,".Rcheck/ ",package,"_*.tar.gz"))
+	system(paste(sep="","git rm -r ",package,".Rcheck/ ",package,"_*.tar.gz"))
 }
 
 #'	 buildPackage
