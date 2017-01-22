@@ -1,4 +1,4 @@
-#'buildPackage
+#'build-package
 #'@importFrom utils install.packages tail
 #'@import devtools
 "_PACKAGE"
