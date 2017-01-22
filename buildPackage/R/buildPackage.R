@@ -88,6 +88,7 @@ gitPushBuild<-function(package){
 			)
 		)
 	)
+	files<-files[sapply(files,file.exists)]
 	print(files)
 	system(paste("git add",files))
 	system(paste(sep="","git commit -m build:",	package))
