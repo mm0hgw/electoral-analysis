@@ -96,9 +96,9 @@ gitPushBuild<-function(package){
 		paste(sep="",package,"_*.tar.gz")
 	)
 	print(files)
-	system(paste(c("git add",files),collapse=" "))
-	system(paste(sep="","git commit -m build:",	package))
-	system("git push")
+	gitPush(files,
+		paste(sep="","build:",	package)
+	)
 }
 
 #' checkPackage
