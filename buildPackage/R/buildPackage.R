@@ -15,10 +15,10 @@ gitPull<- function(){
 #'	 gitPush
 #'	@description Git add, commit and push
 #'	@export
-gitPush<-function(filelist,comment){
+gitPush<-function(filelist,comment=""){
 	system2("git",c("pull"))
 	system2("git",c("add", filelist))
-	system2("git",c("commit","-m",comment))
+	system2("git",c("commit","-m",paste(comment,paste(filelist,collapse=" ")))
 	system2("git",c("push"))
 }
 
@@ -75,7 +75,9 @@ gitPushBuild<-function(package){
 		package,
 		c(
 			"/NAMESPACE",
-			"/man/*",
+			paste("/man/",
+				list.files(paste(sep="",package,"/man/"))
+			)
 			paste(sep="",
 				".Rcheck/",
 				c("00check.log",
