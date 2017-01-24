@@ -18,7 +18,7 @@ gitPull<- function(){
 gitPush<-function(filelist,comment=""){
 	system2("git",c("pull"))
 	system2("git",c("add", filelist))
-	system2("git",c("commit","-m",paste(sep="","\"",paste(c(comment,filelist),collapse=" "),"\"")))
+	system2("git",c("commit","-m",paste(sep="","\"",comment,"\"")))
 	system2("git",c("push"))
 }
 
