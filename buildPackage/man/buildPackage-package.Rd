@@ -4,8 +4,8 @@
 \name{buildPackage-package}
 \alias{buildPackage}
 \alias{buildPackage-package}
-\title{buildPackage}
+\title{build-package}
 \description{
-buildPackage
+build-package
 }
 
