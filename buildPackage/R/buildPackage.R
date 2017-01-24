@@ -18,7 +18,7 @@ gitPull<- function(){
 gitPush<-function(filelist,comment=""){
 	system2("git",c("pull"))
 	system2("git",c("add", filelist))
-	system2("git",c("commit","-m",paste(comment,paste(filelist,collapse=" "))))
+	system2("git",c("commit","-m",paste(sep="","\"",paste(c(comment,filelist),collapse=" "),"\"")))
 	system2("git",c("push"))
 }
 
@@ -71,33 +71,48 @@ buildPackage <- function(package,
 }
 
 gitPushBuild<-function(package){
-	files<-paste(sep="",
+		# list roxygen generated files
+	roxygenfiles<-paste(sep="",
 		package,
 		c(
 			"/NAMESPACE",
 			paste(sep="",
 				"/man/",
 				list.files(paste(sep="",package,"/man/"))
-			),
-			paste(sep="",
-				".Rcheck/",
-				c("00check.log",
-				"00install.out",
-					paste(sep="",
-						package,
-						c("-manual.pdf",
-							"-Ex.Rout",
-							"-Ex.timings"
-						)
-					)
-				)
 			)
 		)
 	)
-	#print(files)
-	files<-c(files[sapply(files,file.exists)],
-		paste(sep="",package,"_*.tar.gz")
+		# pull check log
+	system2("mv",
+		c(
+			paste(sep="",
+				package,
+				".Rcheck/00check.log"
+			),
+			paste(sep="",
+				package,
+				"-00Rcheck.log"
+			)
+		)
 	)
+		# pull manual, examples and example timings
+	system2("mv",
+		c(
+			paste(sep="",
+				package,
+				c("-manual.pdf",
+					"-Ex.Rout",
+					"-Ex.timings"
+				)
+			),
+			"."
+		)
+	)
+		# list build feedback
+	Rcheckfiles<-list.files(pattern=paste(sep="",package,"-"))
+	files<-c(roxygenfiles,Rcheckfiles)
+	#print(files)
+	files<-c(files[sapply(files,file.exists)]	)
 	print(files)
 	gitPush(files,
 		paste(sep="","build:",	package)
