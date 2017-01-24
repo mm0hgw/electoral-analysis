@@ -77,7 +77,7 @@ gitPushBuild<-function(package){
 			"/NAMESPACE",
 			paste("/man/",
 				list.files(paste(sep="",package,"/man/"))
-			)
+			),
 			paste(sep="",
 				".Rcheck/",
 				c("00check.log",
