@@ -100,6 +100,8 @@ gitPushBuild<-function(package){
 		c(
 			paste(sep="",
 				package,
+				".Rcheck/",
+				package,
 				c("-manual.pdf",
 					"-Ex.Rout",
 					"-Ex.timings"
