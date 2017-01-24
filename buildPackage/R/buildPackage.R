@@ -62,8 +62,8 @@ buildPackage <- function(package,
 	install=TRUE
 ){
 	if(pull)gitPull()
-	devtools::document(package)
 	if(clean)cleanPackage(package)
+	devtools::document(package)
 	system2("R",c("CMD","build",package))
 	if(check)checkPackage(package,as.cran)
 	if(push)gitPushBuild(package)
