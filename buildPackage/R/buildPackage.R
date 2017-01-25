@@ -34,7 +34,7 @@ cleanPackage <- function(package){
 	system(paste(sep="","rm -r ",package,".Rcheck/ ",package,"_*.tar.gz ",package,"/man/* ",package,"/NAMESPACE"))
 	system(paste(sep="","git rm -r ",package,".Rcheck/ ",package,"_*.tar.gz ",package,"/man/* ",package,"/NAMESPACE"))
 	system(paste(sep="","mkdir /dev/shm/",package,".Rcheck"))
-	system(paste("ln -s /dev/shm/",package,".Rcheck ."))
+	system(paste(sep="","ln -s /dev/shm/",package,".Rcheck ."))
 }
 
 installPackage<-function(package){
