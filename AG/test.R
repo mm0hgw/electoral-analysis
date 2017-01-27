@@ -5,6 +5,7 @@ require(combnGen)
 require(doParallel)
 require(plyr)
 require(bit)
+require(superChoose)
 
 # setup parallelisation parameters
 no_cores <- max(1,detectCores()-1)
