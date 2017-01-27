@@ -31,8 +31,8 @@ findPackages <- function(path="."){
 }
 
 cleanPackage <- function(package){
-	system(paste(sep="","rm -r ",package,".Rcheck/ ",package,"_*.tar.gz ",package,"/man/* ",package,"/NAMESPACE"))
-	system(paste(sep="","git rm -r ",package,".Rcheck/ ",package,"_*.tar.gz ",package,"/man/* ",package,"/NAMESPACE"))
+	system(paste(sep="","rm -r ",package,".Rcheck/ ",package,"/man/*"))
+	system(paste(sep="","git rm -r ",package,"/man/* "))
 	system(paste(sep="","mkdir /dev/shm/",package,".Rcheck"))
 	system(paste(sep="","ln -s /dev/shm/",package,".Rcheck ."))
 }
@@ -66,6 +66,7 @@ buildPackage <- function(package,
 	if(pull)gitPull()
 	if(clean)cleanPackage(package)
 	devtools::document(package)
+	Rcpp::compileAttributes(package)
 	system2("R",c("CMD","build",package))
 	if(check)checkPackage(package,as.cran)
 	if(push)gitPushBuild(package)
