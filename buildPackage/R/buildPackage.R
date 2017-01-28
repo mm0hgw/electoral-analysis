@@ -69,11 +69,11 @@ buildPackage <- function(package,
 	Rcpp::compileAttributes(package)
 	system2("R",c("CMD","build",package))
 	if(check)checkPackage(package,as.cran)
-	if(push)gitPushBuild(package)
+	if(push)pushPackage(package)
 	if(install)installPackage(package)
 }
 
-gitPushBuild<-function(package){
+pushPackage<-function(package){
 		# list roxygen generated files
 	roxygenfiles<-paste(sep="",
 		package,
