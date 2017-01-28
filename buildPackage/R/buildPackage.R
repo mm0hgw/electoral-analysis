@@ -79,9 +79,25 @@ gitPushBuild<-function(package){
 		package,
 		c(
 			"/NAMESPACE",
+			"/R/RcppExports.R",
+			"/src/RcppExports.cpp",
+			paste(sep="",
+				"/R/",
+				list.files(paste(sep="",package,"/man/"),
+					pattern="*.R"
+				)
+			),
 			paste(sep="",
 				"/man/",
-				list.files(paste(sep="",package,"/man/"))
+				list.files(paste(sep="",package,"/man/"),
+					pattern="*.Rd"
+				)
+			),
+			paste(sep="",
+				"/src/",
+				list.files(paste(sep="",package,"/man/"),
+					pattern="(*.c)|(*.cpp)|(*.h)|(*.hpp)|"
+				)
 			)
 		)
 	)
