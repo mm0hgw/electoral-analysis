@@ -1,10 +1,10 @@
 Package: mclapplyFunGen
-Title: What the Package Does (one line, title case)
+Title: An mclapply function generator
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Dale",  email = "dale@piratepress.org", role = c("aut", "cre", "cph"))
+Description: Generates an mclapply function.
 Depends:
     R (>= 3.3.2)
-License: What license is it under?
+License: GPL-2
 LazyData: true
 RoxygenNote: 5.0.1
