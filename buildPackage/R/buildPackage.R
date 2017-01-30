@@ -80,6 +80,7 @@ pushPackage<-function(package){
 	roxygenfiles<-paste(sep="",
 		package,
 		c(
+			"/DESCRIPTION",
 			"/NAMESPACE",
 			"/R/RcppExports.R",
 			"/src/RcppExports.cpp",
