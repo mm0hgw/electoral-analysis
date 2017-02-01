@@ -1,0 +1,9 @@
+	Client side simple csv "editor"
+	
+	Specification:
+	
+Must run client-side, no laggy bullshit.
+The user is expected to provide a .csv for editing.
+The user is then expected to identify columns from a display of the first ~10-15 rows of a local .csv
+The user is then expected to identify any, or no, header and footer rows of the selected columns.
+The selected data is then organised as a ballot matrix as described in the ballot package manual, and uploaded to server-side.
