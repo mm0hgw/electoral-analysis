@@ -2,7 +2,7 @@
 #'@importFrom parallel detectCores mclapply
 #'@export
 mclapplyFunGen <- function(
-	mc.preschedule=FALSE,
+	mc.preschedule=TRUE,
 	mc.set.seed=FALSE,
 	mc.silent=TRUE,
 	mc.cores=max(1,detectCores()-1)
