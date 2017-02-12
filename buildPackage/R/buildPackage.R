@@ -61,7 +61,7 @@ buildPackage <- function(package,
 	pull=build,
 	build=check,
 	check=as.cran,
-	clean=check,
+	clean=push,
 	as.cran=FALSE,
 	push=check,
 	install=build
