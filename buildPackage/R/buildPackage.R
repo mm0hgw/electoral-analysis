@@ -60,11 +60,11 @@ installPackage<-function(package){
 buildPackage <- function(package,
 	pull=build,
 	build=check,
-	check=push,
-	clean=push,
+	check=as.cran,
+	clean=check,
 	as.cran=FALSE,
-	push=as.cran,
-	install=TRUE
+	push=check,
+	install=build
 ){
 	if(pull)gitPull()
 	if(clean)cleanPackage(package)
