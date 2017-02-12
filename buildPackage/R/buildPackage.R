@@ -58,18 +58,21 @@ installPackage<-function(package){
 #'	@import devtools
 #'	@export
 buildPackage <- function(package,
-	pull=TRUE,
-	check=TRUE,
-	clean=TRUE,
+	pull=build,
+	build=check,
+	check=push,
+	clean=push,
 	as.cran=FALSE,
-	push=FALSE,
+	push=as.cran,
 	install=TRUE
 ){
 	if(pull)gitPull()
 	if(clean)cleanPackage(package)
-	devtools::document(package)
-	Rcpp::compileAttributes(package)
-	system2("R",c("CMD","build",package))
+	if(build){
+		devtools::document(package)
+		Rcpp::compileAttributes(package)
+		devtools::build(package)
+	}
 	if(check)checkPackage(package,as.cran)
 	if(push)pushPackage(package)
 	if(install)installPackage(package)
