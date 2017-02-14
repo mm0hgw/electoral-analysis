@@ -69,11 +69,10 @@ buildPackage <- function(package,
 	if(pull)gitPull()
 	if(clean)cleanPackage(package)
 	if(build){
-		devtools::document(package)
 		Rcpp::compileAttributes(package)
 		devtools::build(package)
 	}
-	if(check)checkPackage(package,as.cran)
+	if(check)devtools::check(package,cran=as.cran)
 	if(push)pushPackage(package)
 	if(install)installPackage(package)
 }
