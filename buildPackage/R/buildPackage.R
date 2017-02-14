@@ -75,7 +75,7 @@ buildPackage <- function(package,
 	}
 	if(check)checkPackage(package,as.cran)
 	if(push)pushPackage(package)
-	if(install)installPackage(package)
+	if(install)devtools::install_local(".",package)
 }
 
 pushPackage<-function(package){
