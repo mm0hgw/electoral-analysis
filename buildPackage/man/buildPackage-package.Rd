@@ -8,3 +8,7 @@
 \description{
 build-package
 }
+\author{
+\strong{Maintainer}: Dale \email{dale@piratepress.org} [copyright holder]
+
+}
