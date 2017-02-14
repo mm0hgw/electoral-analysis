@@ -75,7 +75,13 @@ buildPackage <- function(package,
 	}
 	if(check)checkPackage(package,as.cran)
 	if(push)pushPackage(package)
-	if(install)devtools::install_local(".",package)
+	if(install)installPackage(package)
+}
+
+installPackage <- function(package){
+	fileList <- list.files(pattern=package)
+	fileList <-grep(".tar.gz",fileList,value=TRUE)
+	install.packages(fileList[length(fileList)])
 }
 
 pushPackage<-function(package){
