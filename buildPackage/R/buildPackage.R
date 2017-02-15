@@ -24,7 +24,6 @@ gitPush<-function(comment){
 #'	@description Git add, commit and push
 #'	@export
 gitAdd<-function(filelist){
-	system2("git",c("pull"))
 	system2("git",c("add", filelist))
 }
 
@@ -93,7 +92,6 @@ installPackage <- function(package){
 	fileList <-grep(".tar.gz",fileList,value=TRUE)
 	install.packages(fileList[length(fileList)])
 }
-
 
 addPackage<-function(package){
 			# list roxygen generated files
