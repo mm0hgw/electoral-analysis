@@ -46,7 +46,9 @@ cleanPackage <- function(package){
 }
 
 installPackage<-function(package){
-	files<-grep(paste(sep="",package,"_"),
+	x<-read.xcf(paste(sep="",package,"/DESCRIPTION"))
+	
+	files<-grep(paste(sep="",package,"_",x[1,"Version"],".tar.gz"),
 		list.files(),
 		value=TRUE
 	)
