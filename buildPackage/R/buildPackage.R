@@ -17,7 +17,7 @@ gitPull<- function(){
 #'	@export
 gitPush<-function(comment){
 	system2("git",c("pull"))
-	system2("git",c("commit","-m",paste(sep="","\"",comment,"\"")))
+	system2("git",c("commit","-a","-m",paste(sep="","\"",comment,"\"")))
 	system2("git",c("push"))
 }
 
