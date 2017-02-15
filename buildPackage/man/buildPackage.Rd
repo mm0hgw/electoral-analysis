@@ -4,8 +4,9 @@
 \alias{buildPackage}
 \title{buildPackage}
 \usage{
-buildPackage(package, pull = build, build = check, check = as.cran,
-  clean = push, as.cran = FALSE, push = check, install = build)
+buildPackage(package, pull = build, build = check, check = cran,
+  clean = push, cran = FALSE, add = build, push = cran,
+  install = build)
 }
 \description{
 Build a package.
