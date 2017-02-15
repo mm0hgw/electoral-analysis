@@ -15,11 +15,17 @@ gitPull<- function(){
 #'	 gitPush
 #'	@description Git add, commit and push
 #'	@export
-gitPush<-function(filelist,comment=""){
-	system2("git",c("pull"))
-	system2("git",c("add", filelist))
+gitPush<-function(comment){
 	system2("git",c("commit","-m",paste(sep="","\"",comment,"\"")))
 	system2("git",c("push"))
+}
+
+#'	 gitAdd
+#'	@description Git add, commit and push
+#'	@export
+gitAdd<-function(filelist){
+	system2("git",c("pull"))
+	system2("git",c("add", filelist))
 }
 
 #'	 findPackages
@@ -56,14 +62,16 @@ installPackage<-function(package){
 #'	 buildPackage
 #'	@description Build a package.
 #'	@import devtools
+#'	@import Rcpp
 #'	@export
 buildPackage <- function(package,
 	pull=build,
 	build=check,
-	check=as.cran,
+	check=cran,
 	clean=push,
-	as.cran=FALSE,
-	push=check,
+	cran=FALSE,
+	add=build,
+	push=cran,
 	install=build
 ){
 	if(pull)gitPull()
@@ -72,7 +80,8 @@ buildPackage <- function(package,
 		Rcpp::compileAttributes(package)
 		devtools::build(package)
 	}
-	if(check)devtools::check(package,cran=as.cran)
+	if(check)devtools::check(package,cran=cran)
+	if(add)addPackage(package)
 	if(push)pushPackage(package)
 	if(install)installPackage(package)
 }
@@ -83,8 +92,9 @@ installPackage <- function(package){
 	install.packages(fileList[length(fileList)])
 }
 
-pushPackage<-function(package){
-		# list roxygen generated files
+
+addPackage<-function(package){
+			# list roxygen generated files
 	roxygenfiles<-paste(sep="",
 		package,
 		c(
@@ -145,10 +155,11 @@ pushPackage<-function(package){
 	files<-c(roxygenfiles,Rcheckfiles)
 	#print(files)
 	files<-c(files[sapply(files,file.exists)]	)
-	print(files)
-	gitPush(files,
-		paste(sep="","build:",	package)
-	)
+	gitAdd(files)
+}
+
+pushPackage<-function(package){
+	gitPush(paste(sep="","build:", package))
 }
 
 #' checkPackage
