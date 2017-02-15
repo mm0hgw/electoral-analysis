@@ -89,9 +89,19 @@ buildPackage <- function(package,
 }
 
 installPackage <- function(package){
-	fileList <- list.files(pattern=package)
-	fileList <-grep(".tar.gz",fileList,value=TRUE)
-	install.packages(fileList[length(fileList)])
+	DFile <- 	paste(sep="",
+		package,
+		"/DESCRIPTION"
+	)
+	x <- read.dcf(DFile)
+	pkgGz <- paste(sep="",
+		package,
+		"_",
+		x[1,"Version"],
+		".tar.gz"
+	)
+	if(file.exists(pkgGz))
+		install.packages(pkgGz)
 }
 
 addPackage<-function(package){
