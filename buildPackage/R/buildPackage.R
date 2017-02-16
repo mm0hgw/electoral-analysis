@@ -41,7 +41,7 @@ cleanPackage <- function(package){
 		package,"/man/* ",package,"*.tar.gz")
 	)
 	system(paste(sep="","git rm -r ",package,"/man/*"))
-	system(paste(sep="","mkdir /dev/shm/",package,".Rcheck"))
+	system(paste(sep="","mkdir -p /dev/shm/",package,".Rcheck"))
 	system(paste(sep="","ln -s /dev/shm/",package,".Rcheck ."))
 }
 
@@ -70,7 +70,7 @@ buildPackage <- function(package,
 	pull=build,
 	build=check,
 	check=cran,
-	clean=build,
+	clean=push,
 	cran=FALSE,
 	add=build,
 	push=cran,
