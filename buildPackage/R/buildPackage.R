@@ -5,6 +5,20 @@
 
 require(devtools)
 
+#'detachapckage
+#'@param package a 'character' describing a package to unload.
+#'@param character.only a 'logical' flag, whether to skip deparsing/
+#'@export
+detachPackage <- function(package, character.only = FALSE){
+	if(!character.only){
+    package <- deparse(substitute(package))
+  }
+  x <- paste("package",package,sep=":")
+  while(x %in% search()){
+    detach(x, unload=TRUE, character.only=TRUE)
+  }
+}
+
 #'	 gitPull
 #'	@description Execute a git pull
 #'	@export
@@ -194,23 +208,6 @@ checkPackage<-function(package,as.cran=FALSE){
 #'	@export
 buildPackages<-function(packages=findPackages()){
 	lapply(packages,buildPackage)
-}
-
-#'detach_package
-#'@param pkg a 'character' describing a package to unload.
-#'@param character.only a 'logical' flag, whether to skip deparsing/
-#'@export
-detach_package <- function(pkg, character.only = FALSE)
-{
-  if(!character.only)
-  {
-    pkg <- deparse(substitute(pkg))
-  }
-  search_item <- paste("package", pkg, sep = ":")
-  while(search_item %in% search())
-  {
-    detach(search_item, unload = TRUE, character.only = TRUE)
-  }
 }
 
 #' rebuild
