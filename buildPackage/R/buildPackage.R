@@ -118,7 +118,8 @@ installPackage <- function(package){
 	)
 	if(file.exists(pkgGz)){
 		install.packages(pkgGz)
-		requireNamespace(package)
+		pkg <- strsplit(package,"/")[[1]]
+		requireNamespace(pkg[length(pkg)])
 	}
 }
 
