@@ -103,7 +103,7 @@ installPackage <- function(package){
 	)
 	if(file.exists(pkgGz)){
 		install.packages(pkgGz)
-		library(package,TRUE)
+		requireNamespace(package)
 	}
 }
 
