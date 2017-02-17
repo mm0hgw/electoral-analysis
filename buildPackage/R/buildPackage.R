@@ -76,6 +76,7 @@ buildPackage <- function(package,
 	push=cran,
 	install=build
 ){
+	detachPackage(package, TRUE)
 	if(pull)gitPull()
 	if(clean)cleanPackage(package)
 	if(build){
@@ -100,8 +101,10 @@ installPackage <- function(package){
 		x[1,"Version"],
 		".tar.gz"
 	)
-	if(file.exists(pkgGz))
+	if(file.exists(pkgGz)){
 		install.packages(pkgGz)
+		library(package,TRUE)
+	}
 }
 
 addPackage<-function(package){
