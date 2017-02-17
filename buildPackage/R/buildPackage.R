@@ -5,7 +5,7 @@
 
 require(devtools)
 
-#'detachapckage
+#'detachPackage
 #'@param package a 'character' describing a package to unload.
 #'@param character.only a 'logical' flag, whether to skip deparsing/
 #'@export
