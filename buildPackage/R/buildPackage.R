@@ -94,6 +94,7 @@ buildPackage <- function(package,
 	if(pull)gitPull()
 	if(clean)cleanPackage(package)
 	if(build){
+		devtools::document(package)
 		Rcpp::compileAttributes(package)
 		devtools::build(package)
 	}
