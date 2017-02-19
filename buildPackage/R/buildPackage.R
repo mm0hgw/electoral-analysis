@@ -51,12 +51,6 @@ findPackages <- function(path="."){
 }
 
 cleanPackage <- function(package){
-	system(paste(sep="","rm -r ",package,".Rcheck/ ",
-		package,"/man/* ",package,"*.tar.gz")
-	)
-	#system(paste(sep="","git rm -r ",package,"/man/*"))
-	system(paste(sep="","mkdir -p /dev/shm/",package,".Rcheck"))
-	system(paste(sep="","ln -s /dev/shm/",package,".Rcheck ."))
 }
 
 installPackage<-function(package){
@@ -152,37 +146,7 @@ addPackage<-function(package){
 			)
 		)
 	)
-		# pull check log
-	system2("mv",
-		c(
-			paste(sep="",
-				package,
-				".Rcheck/00check.log"
-			),
-			paste(sep="",
-				package,
-				"-00Rcheck.log"
-			)
-		)
-	)
-		# pull manual, examples and example timings
-	system2("mv",
-		c(
-			paste(sep="",
-				package,
-				".Rcheck/",
-				package,
-				c("-manual.pdf",
-					"-Ex.Rout",
-					"-Ex.timings"
-				)
-			),
-			"."
-		)
-	)
-		# list build feedback
-	Rcheckfiles<-list.files(pattern=paste(sep="",package,"-"))
-	files<-c(roxygenfiles,Rcheckfiles)
+	files<-roxygenfiles
 	#print(files)
 	files<-c(files[sapply(files,file.exists)]	)
 	gitAdd(files)
