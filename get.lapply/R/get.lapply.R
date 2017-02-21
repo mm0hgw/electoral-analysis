@@ -27,7 +27,6 @@ set.lapply <- function(x){
 #'get.chunkSize
 #'@description
 #'Get a chunkSize
-#'@param x an 'integer'
 #'@export
 get.chunkSize <- function(){
 	get("chunkSize",envir=get.lapply.env)
