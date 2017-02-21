@@ -3,6 +3,7 @@
 export(buildPackage)
 export(buildPackages)
 export(checkPackage)
+export(detachPackage)
 export(findPackages)
 export(gitAdd)
 export(gitPull)

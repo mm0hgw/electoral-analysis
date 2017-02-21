@@ -5,7 +5,7 @@
 \title{buildPackage}
 \usage{
 buildPackage(package, pull = build, build = check, check = cran,
-  clean = build, cran = FALSE, add = build, push = cran,
+  clean = push, cran = FALSE, add = build, push = cran,
   install = build)
 }
 \description{
