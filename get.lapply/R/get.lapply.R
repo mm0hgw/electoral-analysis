@@ -21,7 +21,7 @@ get.lapply <- function(){
 #'@export
 set.lapply <- function(x){
 	stopifnot(is.function(x))
-	assign("chunkSize",x,envir=get.lapply.env)
+	assign("lapply",x,envir=get.lapply.env)
 }
 
 #'get.chunkSize
