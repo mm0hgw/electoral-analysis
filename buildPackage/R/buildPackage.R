@@ -20,6 +20,13 @@ detachPackage <- function(package, character.only = FALSE){
   }
 }
 
+#' gitClone
+#'@param url the url to clone
+#'@export
+gitClone <- function(url){
+	system(paste('git','clone','--progress',url))
+}
+
 #'	 gitPull
 #'	@description Execute a git pull
 #'	@export
