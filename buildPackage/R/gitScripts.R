@@ -40,7 +40,7 @@ readFilenames <- function(pattern='.*',
 	)
 	z2<-z1[!sapply(z1,is.null)]
 	z3<-sapply(z2,'[',2)
-	z4<-ultraCombo::multiUnion(z3)
+	z4<-z3[!duplicated(z3)]
 	z5<-grep(pattern,z4,value=TRUE)
 	z5
 }
