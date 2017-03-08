@@ -4,7 +4,7 @@ sizeSorter <- function(line)as.integer(line[5])
 #'ls.git.hashes
 #'@param pattern 'character' a regexp to filter output
 #'@export
-ls.git.hashes <- function(pattern='.*',){
+ls.git.hashes <- function(pattern='.*'){
 	z1<-system('git verify-pack -v .git/objects/pack/pack-*.idx',
 		intern=TRUE
 	)
