@@ -55,23 +55,3 @@ gitPurge <- function(){
 	system('git gc --prune=now')
 	system('git gc --aggressive --prune=now')
 }
-
-#'readFilenames
-#'@param hashes a 
-#'@param lookupTable 
-#'@export
-readFilenames <- function(pattern='.*',
-	hashes=ls.git.hashes(),
-	lookupTable=filenameLookup()
-){
-	z1<-lapply(names(hashes),
-		function(hash){
-			lookupTable[[hash]]
-		}
-	)
-	z2<-z1[!sapply(z1,is.null)]
-	z3<-sapply(z2,'[',2)
-	z4<-unique(z3)
-	z5<-grep(pattern,z4,value=TRUE)
-	z5
-}
