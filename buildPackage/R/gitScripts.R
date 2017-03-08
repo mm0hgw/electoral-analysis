@@ -1,19 +1,33 @@
 hashFinder <- function(line)if(nchar(line[1])==40){TRUE}else{FALSE}
 sizeSorter <- function(line)as.integer(line[5])
 
-#'readHashes
+#'ls.git.hashes
+#'@param pattern 'character' a regexp to filter output
 #'@export
-readHashes <- function(){
+ls.git.hashes <- function(pattern='.*',){
 	z1<-system('git verify-pack -v .git/objects/pack/pack-*.idx',
 		intern=TRUE
 	)
 	z2<-strsplit(z1,' ')
-	z3<-z2[sapply(z2,hashFinder)]
-	z4<-z3[order(sapply(z3,sizeSorter),decreasing=TRUE)]
-	z4
+	z3<-z2[sapply(z2,function(x)nchar(x[1])==40)]
+	z4<-as.integer(sapply(z3,'[',5))
+	names(z4)<-sapply(z3,'[',1)
+	z5<-z4[grep(pattern,names(z4))]
+	sort(z5,decreasing=TRUE)
 }
 
-#'filenameLookup
+#'ls.git.files
+#'@param pattern 'character' a regexp to filter output
+#'@export
+ls.git.files <- function(pattern='.*'){
+	z1<-system(intern=TRUE,'git rev-list --all --objects')
+	z2<-strsplit(z1,' ')
+	z3<-z2[sapply(z2,length)==2]
+	z4<-sapply(z3,'[',2)
+	grep(pattern,value=TRUE,sort(unique(z4)))
+}
+
+#'hashFilenameLookup
 #'@export
 filenameLookup <- function(){
 	z1<-system(intern=TRUE,'git rev-list --all --objects')
@@ -26,7 +40,7 @@ filenameLookup <- function(){
 #'gitExpunge
 #'@param fileName a 'character' vector of filenames to expunge from repo
 #'@export
-gitSuperRm <- function(fileName){
+gitExpunge <- function(fileName){
 	system(paste(sep='','git filter-branch --tag-name-filter cat ',
 		'--index-filter \'git rm -r --cached --ignore-unmatch ',
 		paste(collapse=' ',fileName),'\' --prune-empty -f -- --all')
@@ -43,20 +57,21 @@ gitPurge <- function(){
 }
 
 #'readFilenames
-#'@param pattern 'character' a regexp to filter output
+#'@param hashes a 
+#'@param lookupTable 
 #'@export
 readFilenames <- function(pattern='.*',
-	hashes=readHashes(),
+	hashes=ls.git.hashes(),
 	lookupTable=filenameLookup()
 ){
-	z1<-lapply(hashes,
+	z1<-lapply(names(hashes),
 		function(hash){
-			lookupTable[[hash[1]]]
+			lookupTable[[hash]]
 		}
 	)
 	z2<-z1[!sapply(z1,is.null)]
 	z3<-sapply(z2,'[',2)
-	z4<-z3[!duplicated(z3)]
+	z4<-unique(z3)
 	z5<-grep(pattern,z4,value=TRUE)
 	z5
 }
