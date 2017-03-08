@@ -6,6 +6,9 @@
 \usage{
 findPackages(path = ".")
 }
+\arguments{
+\item{path}{'character'}
+}
 \description{
 Provide package directories
 }

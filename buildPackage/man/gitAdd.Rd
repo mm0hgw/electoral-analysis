@@ -6,6 +6,9 @@
 \usage{
 gitAdd(filelist)
 }
+\arguments{
+\item{filelist}{'character'}
+}
 \description{
 Git add, commit and push
 }

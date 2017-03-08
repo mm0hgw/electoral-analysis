@@ -6,6 +6,9 @@
 \usage{
 gitPush(comment)
 }
+\arguments{
+\item{comment}{'character'}
+}
 \description{
 Git add, commit and push
 }

@@ -5,8 +5,24 @@
 \title{buildPackage}
 \usage{
 buildPackage(package, pull = build, build = check, check = cran,
-  clean = push, cran = FALSE, add = build, push = cran,
-  install = build)
+  cran = FALSE, add = build, push = cran, install = build)
+}
+\arguments{
+\item{package}{'character'}
+
+\item{pull}{'logical'}
+
+\item{build}{'logical'}
+
+\item{check}{'logical'}
+
+\item{cran}{'logical'}
+
+\item{add}{'logical'}
+
+\item{push}{'logical'}
+
+\item{install}{'logical'}
 }
 \description{
 Build a package.
