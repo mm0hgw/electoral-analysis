@@ -125,7 +125,12 @@ pushPackage <- function(package){
 }
 
 installPackage <- function(package){
-		pkgGz <- paste(sep="",
+	DFile <- 	paste(sep="",
+		package,
+		"/DESCRIPTION"
+	)
+	x <- read.dcf(DFile)
+	pkgGz <- paste(sep="",
 		package,
 		"_",
 		x[1,"Version"],
