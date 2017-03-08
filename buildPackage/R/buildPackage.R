@@ -115,13 +115,17 @@ buildPackage <- function(package,
 	if(install)installPackage(package)
 }
 
-installPackage <- function(package){
+pushPackage <- function(package){
 	DFile <- 	paste(sep="",
 		package,
 		"/DESCRIPTION"
 	)
 	x <- read.dcf(DFile)
-	pkgGz <- paste(sep="",
+	gitPush(paste('buildPackage',package,x[1,'Version']))
+}
+
+installPackage <- function(package){
+		pkgGz <- paste(sep="",
 		package,
 		"_",
 		x[1,"Version"],
