@@ -35,6 +35,7 @@ gitPull<- function(){
 }
 
 #'	 gitPush
+#'@param comment 'character'
 #'	@description Git add, commit and push
 #'	@export
 gitPush<-function(comment){
@@ -44,6 +45,7 @@ gitPush<-function(comment){
 }
 
 #'	 gitAdd
+#'@param filelist 'character'
 #'	@description Git add, commit and push
 #'	@export
 gitAdd<-function(filelist){
@@ -52,6 +54,7 @@ gitAdd<-function(filelist){
 
 #'	 findPackages
 #'	@description Provide package directories
+#'@param path 'character'
 #'	@export
 findPackages <- function(path="."){
 	l<-list.dirs(path=path)
@@ -78,6 +81,14 @@ installPackage<-function(package){
 }
 
 #'	 buildPackage
+#'@param package 'character'
+#'@param pull 'logical'
+#'@param build 'logical'
+#'@param check 'logical'
+#'@param cran 'logical'
+#'@param add 'logical'
+#'@param push 'logical'
+#'@param install 'logical'
 #'	@description Build a package.
 #'	@import devtools
 #'	@import Rcpp
@@ -86,7 +97,6 @@ buildPackage <- function(package,
 	pull=build,
 	build=check,
 	check=cran,
-	clean=push,
 	cran=FALSE,
 	add=build,
 	push=cran,
@@ -94,7 +104,6 @@ buildPackage <- function(package,
 ){
 	detachPackage(package, TRUE)
 	if(pull)gitPull()
-	if(clean)cleanPackage(package)
 	if(build){
 		devtools::document(package)
 		Rcpp::compileAttributes(package)
@@ -158,31 +167,4 @@ addPackage<-function(package){
 	#print(files)
 	files<-c(files[sapply(files,file.exists)]	)
 	gitAdd(files)
-}
-
-#' checkPackage
-#' @export
-checkPackage<-function(package,as.cran=FALSE){
-	p<-list.files(pattern=".tar.gz")
-	p<-p[tail(n=1,grep(paste(package,"_",sep=""),p))]
-	if(as.cran==TRUE){
-		system2("R",c("CMD","check","--as-cran",p))
-	}else{
-		system2("R",c("CMD","check",p))
-	}
-}
-
-#'	 buildPackages
-#'	@description Build a list of packages.
-#'	@import devtools
-#'	@export
-buildPackages<-function(packages=findPackages()){
-	lapply(packages,buildPackage)
-}
-
-#' rebuild
-#' @export
-rebuild<-function(p){
-		buildPackage(p)
-	require(p,character.only=TRUE)
 }

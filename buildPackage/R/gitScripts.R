@@ -42,6 +42,8 @@ gitPurge <- function(){
 	system('git gc --aggressive --prune=now')
 }
 
+#'readFilenames
+#'@param pattern 'character' a regexp to filter output
 #'@export
 readFilenames <- function(pattern='.*',
 	hashes=readHashes(),
