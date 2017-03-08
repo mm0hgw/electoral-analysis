@@ -4,10 +4,26 @@
 \alias{buildPackage}
 \title{buildPackage}
 \usage{
-buildPackage(package, pull = TRUE, check = TRUE, as.cran = FALSE,
-  push = FALSE)
+buildPackage(package, pull = build, build = check, check = cran,
+  cran = FALSE, add = build, push = cran, install = build)
+}
+\arguments{
+\item{package}{'character'}
+
+\item{pull}{'logical'}
+
+\item{build}{'logical'}
+
+\item{check}{'logical'}
+
+\item{cran}{'logical'}
+
+\item{add}{'logical'}
+
+\item{push}{'logical'}
+
+\item{install}{'logical'}
 }
 \description{
 Build a package.
 }
-

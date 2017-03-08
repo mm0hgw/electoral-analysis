@@ -1,0 +1,10 @@
+Package: mclapplyFunGen
+Title: An mclapply function generator
+Version: 0.0.0.9000
+Authors@R: person("Dale",  email = "dale@piratepress.org", role = c("aut", "cre", "cph"))
+Description: Generates an mclapply function.
+Depends:
+    R (>= 3.3.2)
+License: GPL-2
+LazyData: true
+RoxygenNote: 6.0.0

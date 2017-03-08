@@ -1,0 +1,48 @@
+#'get.lapply-package
+#'@aliases NULL
+#'@description
+#'The get.lapply package.
+"_PACKAGE"
+
+get.lapply.env <- new.env()
+
+#'get.lapply
+#'@description
+#'Get a lapply
+#'@export
+get.lapply <- function(){
+	get("lapply",envir=get.lapply.env)
+}
+
+#'set.lapply
+#'@description
+#'Set the served lapply.
+#'@param x a 'function'
+#'@export
+set.lapply <- function(x){
+	stopifnot(is.function(x))
+	assign("lapply",x,envir=get.lapply.env)
+}
+
+#'get.chunkSize
+#'@description
+#'Get a chunkSize
+#'@export
+get.chunkSize <- function(){
+	get("chunkSize",envir=get.lapply.env)
+}
+
+#'set.chunkSize
+#'@description
+#'Set the served chunkSize
+#'@param x an 'integer'
+#'@export
+set.chunkSize <- function(x){
+	stopifnot(length(x)==1)
+	x <- as.integer(x)
+	stopifnot(is.integer(x))
+	assign("chunkSize",x,envir=get.lapply.env)
+}
+
+set.chunkSize(1e3)
+set.lapply(lapply)

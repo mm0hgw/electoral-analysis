@@ -4,6 +4,8 @@ require(foreach)
 require(combnGen)
 require(doParallel)
 require(plyr)
+require(bit)
+require(superChoose)
 
 # setup parallelisation parameters
 no_cores <- max(1,detectCores()-1)
@@ -24,16 +26,17 @@ analyse_sample<-function (s = rnorm(15), k = 7)
 {
     n <- length(s)
     combnGen <- combnGG(n, k)
-    chunks <- chunker(0, choose(n, k))
+    ch <- chunk(1,superChoose(n,k))
     cl<-makeCustomCluster()
     chisq_table <- foreach(
-    	offset = chunks$offset, 
-    	n = chunks$n, 
+    	chunk<-ch, 
     	.inorder = TRUE, 
     	.packages = "stats",
     	.combine = c,
     	.options.multicore = mcoptions
     ) %dopar% {
+    	n <- chunk[2]-chunk[1]+1
+    	offset <- chunk[1]-1
         if (n == 0) {
             return(vector())
         }
@@ -90,21 +93,4 @@ analyse_sample<-function (s = rnorm(15), k = 7)
     	combinations = out3, 
     	report = out2
     )
-}
-
-chunker<-function (from, to, chunkSize=1e5) 
-{
-    d<-to-from
-    if (d<3*chunkSize) {
-        return(list(offset=from, n=d))
-    }
-    
-    n <- d%/%chunkSize
-    if(d%%chunkSize==0){
-    	n<-n-1
-    }
-    f1 <- round(c(from + chunkSize * seq(0, n)))
-    t1 <- round(c(from + chunkSize * seq(1, n), to))
-    out <- list(offset = f1, n=t1 - f1)
-    out
 }

@@ -9,4 +9,3 @@ gitPull()
 \description{
 Execute a git pull
 }
-
