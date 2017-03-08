@@ -160,10 +160,6 @@ addPackage<-function(package){
 	gitAdd(files)
 }
 
-pushPackage<-function(package){
-	gitPush(paste(sep="","build:", package))
-}
-
 #' checkPackage
 #' @export
 checkPackage<-function(package,as.cran=FALSE){
