@@ -5,6 +5,7 @@ Authors@R: person("Dale",  email = "dale@piratepress.org", role = c("aut", "cre"
 Description: Generates an mclapply function.
 Depends:
     R (>= 3.3.2)
+Imports: get.lapply
 License: GPL-2
 LazyData: true
 RoxygenNote: 6.0.0
