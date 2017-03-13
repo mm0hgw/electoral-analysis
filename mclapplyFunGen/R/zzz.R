@@ -1,4 +1,4 @@
 #'@importFrom get.lapply set.lapply
-.onLoad <- function(){
+.onLoad <- function(libname, pkgname){
 	set.lapply(mclapplyFunGen())
 }
