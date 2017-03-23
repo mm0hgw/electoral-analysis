@@ -40,7 +40,11 @@ filenameLookup <- function(){
 #'gitExpunge
 #'@param fileName a 'character' vector of filenames to expunge from repo
 #'@export
-gitExpunge <- function(fileName){
+gitExpunge <- function(fileName,n=200){
+	while(length(fileName)>n){
+		gitExpunge(head(fileName,n=n))
+		fileName <- fileName[-seq(n)]
+	}
 	system(paste(sep='','git filter-branch --tag-name-filter cat ',
 		'--index-filter \'git rm -r --cached --ignore-unmatch ',
 		paste(collapse=' ',fileName),'\' --prune-empty -f -- --all')
