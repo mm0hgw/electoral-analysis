@@ -97,4 +97,4 @@ TEST <- function(
 
 TEST(i=seq(49))
 TEST(i=seq(7))
-TEST(i=seq(7)+42)
+TEST(i=seq(7)+42L)
