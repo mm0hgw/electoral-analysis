@@ -37,6 +37,12 @@ hashLookup <- function(){
 	z3
 }
 
+#'gitForcePush
+#'@export
+gitForcePush <- function(dest='origin'){
+	system(paste('git push --force --all',dest))
+}
+
 #'gitExpunge
 #'@param fileName a 'character' vector of filenames to expunge from repo
 #'@export
