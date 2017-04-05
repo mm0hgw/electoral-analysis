@@ -27,9 +27,9 @@ ls.git.files <- function(pattern='.*'){
 	grep(pattern,value=TRUE,sort(unique(z4)))
 }
 
-#'hashFilenameLookup
+#'hashLookup
 #'@export
-filenameLookup <- function(){
+hashLookup <- function(){
 	z1<-system(intern=TRUE,'git rev-list --all --objects')
 	z2<-strsplit(z1,' ')
 	z3<-z2[sapply(z2,function(x)length(x)==2 && x[2]!='')]
