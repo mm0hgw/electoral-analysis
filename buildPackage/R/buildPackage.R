@@ -61,25 +61,6 @@ findPackages <- function(path="."){
 	l[unlist(lapply(paste(l,"/DESCRIPTION",sep=""),file.exists))]
 }
 
-cleanPackage <- function(package){
-}
-
-installPackage<-function(package){
-	x<-read.xcf(paste(sep="",package,"/DESCRIPTION"))
-	
-	files<-grep(paste(sep="",package,"_",x[1,"Version"],".tar.gz"),
-		list.files(),
-		value=TRUE
-	)
-	#print(files)
-	if(length(files)>0){
-		install.packages(
-			repos=NULL,
-			pkgs=files
-		)
-	}
-}
-
 #'	 buildPackage
 #'@param package 'character'
 #'@param pull 'logical'
@@ -154,7 +135,7 @@ addPackage<-function(package){
 			"/src/RcppExports.cpp",
 			paste(sep="",
 				"/R/",
-				list.files(paste(sep="",package,"/man/"),
+				list.files(paste(sep="",package,"/R/"),
 					pattern="*.R"
 				)
 			),
@@ -166,7 +147,7 @@ addPackage<-function(package){
 			),
 			paste(sep="",
 				"/src/",
-				list.files(paste(sep="",package,"/man/"),
+				list.files(paste(sep="",package,"/src/"),
 					pattern="(*.c)|(*.cpp)|(*.h)|(*.hpp)|"
 				)
 			)
