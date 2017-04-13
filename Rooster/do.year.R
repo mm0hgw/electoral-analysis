@@ -23,7 +23,7 @@ CID <- sort(unique(dt$name))# unique people
 names(CID) <- CID
 group <- dt$group
 names(group) <- group
-temps <-  colSums(mat)
+temps <- colSums(mat)
 
 do.year <- function(year){
 	do.call(rbind,
