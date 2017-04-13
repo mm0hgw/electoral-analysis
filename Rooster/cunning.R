@@ -20,9 +20,26 @@ year2 = c(1,2,3,4,5,3,3), stringsAsFactors = FALSE)
 
 dt <- as.data.table(dt)
 
- 
-
 CID <- sort(unique(dt$name))  # unique people
+names(CID) <- CID
+group <- dt$group
+names(group) <- group
+temps <-  apply(mat,2, sum)
+
+lapply(c(year1='year1',year2='year2'),
+	function(year){
+		lapply(CID,
+			function(noob){
+				groupMask <- dt[[year]]!=0 & dt[['name']] %in% noob
+				print(groupMask)
+				colSums(mat[group[groupMask],]) / temps
+			}
+		)
+	}
+)
+
+
+
 
  
 
