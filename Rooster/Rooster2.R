@@ -58,24 +58,21 @@ temps <- apply(mat,2, sum)
 
 avg <-foreach(years = 1 : length(list)) %:%
 
-   foreach(names = c(1:length(CID)), .combine = cbind) %do%  {  
+foreach(names = c(1:length(CID)), .combine = cbind) %do%  {  
 
-    apply(mat[list[[years]][[names]], , drop = FALSE],2, sum)/ temps
+apply(mat[list[[years]][[names]], , drop = FALSE],2, sum)/ temps
 
-    }
+}
 
 years <- c("year1","year2")
 
- for (i in 1:length(years)){
-
-   colnames(avg[[i]]) <- CID
-    avg[[i]] <- melt(avg[[i]])
-    avg[[i]] <- subset(avg[[i]], value != 0)
-    colnames(avg[[i]])[1:3] <- c("group", "name", paste0(years[i]))
-
-  }
-
-  avgall <- Reduce(full_join, avg)
+for (i in 1:length(years)){
+colnames(avg[[i]]) <- CID
+avg[[i]] <- melt(avg[[i]])
+avg[[i]] <- subset(avg[[i]], value != 0)
+colnames(avg[[i]])[1:3] <- c("group", "name", paste0(years[i]))
+}
+avgall <- Reduce(full_join, avg)
 
 }
 
