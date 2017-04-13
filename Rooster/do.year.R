@@ -19,7 +19,7 @@ year2 = c(1,2,3,4,5,3,3), stringsAsFactors = FALSE)
 
 dt <- as.data.table(dt)
 
-CID <- sort(unique(dt$name))  # unique people
+CID <- sort(unique(dt$name))# unique people
 names(CID) <- CID
 group <- dt$group
 names(group) <- group
