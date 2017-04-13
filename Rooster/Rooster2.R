@@ -34,7 +34,7 @@ tmp <- dt[, c("name", "group", years), with = FALSE][get(years) != 0][, unique(g
 
 colnames(tmp)[2] <- "group"
 
-  setkey(tmp, name)
+setkey(tmp, name)
 
 }
 
