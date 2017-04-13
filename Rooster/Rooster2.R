@@ -58,7 +58,7 @@ temps <- apply(mat,2, sum)
 
 avg <-foreach(years = 1 : length(list)) %:%
 
-foreach(names = c(1:length(CID)), .combine = cbind) %do%  {  
+foreach(names = c(1:length(CID)), .combine = cbind) %do% {  
 
 apply(mat[list[[years]][[names]], , drop = FALSE],2, sum)/ temps
 
