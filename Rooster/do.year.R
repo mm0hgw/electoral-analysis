@@ -41,5 +41,5 @@ do.year <- function(year){
 	)
 }
 
-print(system.time(uh2<-lapply(c(year1='year1',year2='year2'),do.year))
+print(system.time(uh2<-lapply(c(year1='year1',year2='year2'),do.year)))
 print(uh2)
