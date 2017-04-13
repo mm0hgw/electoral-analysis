@@ -4,7 +4,6 @@ library(data.table)
 
 library(dplyr)
 
- 
 
 mat<-matrix(c(rnorm(100)),nrow=10)
 
