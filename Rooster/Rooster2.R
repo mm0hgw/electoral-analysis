@@ -24,7 +24,7 @@ dt <- as.data.table(dt)
 
 CID <- sort(unique(dt$name))# unique people
 
- 
+
 
 # I need to filter for every year and get only those names of people and group that values in years arent 0 so i #jam this result into a list
 
