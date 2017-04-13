@@ -4,7 +4,7 @@ library(data.table)
 
 library(dplyr)
 
- 
+
 
 mat<-matrix(c(rnorm(100)),nrow=10)
 
@@ -22,7 +22,7 @@ dt <- as.data.table(dt)
 
  
 
-CID <- sort(unique(dt$name))  # unique people
+CID <- sort(unique(dt$name))# unique people
 
  
 
