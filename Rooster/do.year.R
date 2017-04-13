@@ -14,7 +14,7 @@ colnames(mat) <- letters[1:10]
 
 dt <- data.frame(name =c("bob","bob","bob","john","john","greg","greg"),
 
-group = c("a","b","c","d","f","e","c"), year1 = c(0,2,2,0,1,2,2),
+group = c("a","b","c","d","f","e","c"), year1 = c(0,2,2,0,0,2,2),
 
 year2 = c(1,2,3,4,5,3,3), stringsAsFactors = FALSE)
 
@@ -27,12 +27,18 @@ names(group) <- group
 temps <-  colSums(mat)
 
 do.year <- function(year){
-	lapply(CID,
-		function(noob){
-			groupMask <- dt[['name']] %in% noob & dt[[year]]!=0
-			print(group[groupMask])
-			colSums(mat[group[groupMask],]) / temps
-		}
+	do.call(rbind,
+		lapply(CID,
+			function(noob){
+				groupMask <- dt[['name']] %in% noob & dt[[year]]!=0
+				print(group[groupMask])
+				if(any(groupMask)){
+					colSums(mat[group[groupMask],]) / temps
+				}else{
+					vector()
+				}
+			}
+		)
 	)
 }
 
