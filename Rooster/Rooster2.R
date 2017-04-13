@@ -30,7 +30,7 @@ CID <- sort(unique(dt$name))# unique people
 
 EachYearList <- foreach( years = c("year1","year2")) %do% {
 
-  tmp <- dt[, c("name", "group", years), with = FALSE][get(years) != 0][, unique(group), by = name]
+tmp <- dt[, c("name", "group", years), with = FALSE][get(years) != 0][, unique(group), by = name]
 
   colnames(tmp)[2] <- "group"
 
