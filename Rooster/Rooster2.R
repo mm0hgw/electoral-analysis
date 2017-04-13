@@ -82,7 +82,7 @@ final <- function(mat = "", list = "") {
 
 }
 
-uh <-final(mat=mat,list=List)
+print(system.time(uh <-final(mat=mat,list=List)))
 
-uh
+print(uh)
 

@@ -33,7 +33,7 @@ do.year <- function(year){
 				groupMask <- dt[['name']] %in% noob & dt[[year]]!=0
 				print(group[groupMask])
 				if(any(groupMask)){
-					colSums(mat[group[groupMask],]) / temps
+					colSums(mat[group[groupMask],,drop=FALSE]) / temps
 				}else{
 					vector()
 				}
@@ -42,4 +42,5 @@ do.year <- function(year){
 	)
 }
 
-lapply(c(year1='year1',year2='year2'),do.year)
+print(system.time(uh2<-lapply(c(year1='year1',year2='year2'),do.year))
+print(uh2)
