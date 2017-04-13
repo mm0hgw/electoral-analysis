@@ -47,20 +47,17 @@ do.dt <- function(dt){
 	do.call(rbind,
 		lapply(seq_along(years),
 			function(yearI){
-				if(dt[[years[yearI]]]==0)
-					return(vector())
 				do.call(rbind,
 					lapply(CID,
 						function(noob){
-							groupMask <- dt[['name']] %in% noob
+							groupMask <- dt[['name']] %in% noob & dt[[years[yearI]]]!=0
 							if(any(groupMask)){
 								print(names(year))
-								data.frame(noob=as.factor(rep(noob,n)),
+								data.table(noob=as.factor(rep(noob,n)),
 									year=as.factor(rep(names(years)[yearI],n)),
 									group=as.factor(group),
 									as.numeric(colSums(procGroups[groupMask,,drop=FALSE]))
 								)
-								
 							}else{
 								vector()
 							}
