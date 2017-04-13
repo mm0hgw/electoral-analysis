@@ -4,8 +4,8 @@ library(data.table)
 
 library(dplyr)
 
-
-mat<-matrix(c(rnorm(100)),nrow=10)
+if(!exists('mat'))
+	mat<-matrix(c(rnorm(100)),nrow=10)
 
 rownames(mat) <- letters[1:10]
 
