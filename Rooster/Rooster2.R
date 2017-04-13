@@ -44,19 +44,19 @@ List <- lapply(1:length(EachYearList), function(y)
 
 lapply(1:length(CID), function(x) as.character(EachYearList[[y]][J(CID[x]), nomatch = 0L][, group])))
 
- 
 
- 
 
- 
+
+
+
 
 final <- function(mat = "", list = "") {
 
-  CID <- sort(unique(dt$name))
+CID <- sort(unique(dt$name))
 
-  temps <-  apply(mat,2, sum)
+temps <-  apply(mat,2, sum)
 
-  avg <-foreach(years = 1 : length(list)) %:%
+avg <-foreach(years = 1 : length(list)) %:%
 
        foreach(names = c(1:length(CID)), .combine = cbind) %do%  {  
 
