@@ -25,21 +25,68 @@ group <- dt$group
 names(group) <- group
 temps <- colSums(mat)
 
-do.year <- function(year){
-	do.call(rbind,
+do.dt <- function(dt){
+	CID <- sort(unique(dt$name))# unique people
+	names(CID) <- CID
+	group <- dt$group
+	names(group) <- group
+	temps <- colSums(mat)
+	years <- grep('^year',names(dt))
+	names(years) <- names(dt)[years]
+	notYears <- setdiff(seq_along(names(dt)),years)
+	names(notYears) <- names(dt)[notYears]
+	
+	procGroups <- lapply(group,
+		function(x){
+			mat[x,,drop=FALSE] / temps
+		}
+	)
+	
+#	do.call(rbind,
 		lapply(CID,
 			function(noob){
-				groupMask <- dt[['name']] %in% noob & dt[[year]]!=0
+				groupMask <- dt[['name']] %in% noob
 				print(group[groupMask])
 				if(any(groupMask)){
-					colSums(mat[group[groupMask],,drop=FALSE]) / temps
+					lapply(group[groupMask],
+						function(gr){
+							i <- which.max(gr==group)
+							print(i)
+							runYears <- years[sapply(years,function(x){dt[[x]][i]!=0})]
+							out <- lapply(runYears,
+								function(year){
+									procGroups[[i]]
+								}
+							)
+							print(out)
+							if(length(out)>0){
+								out <- lapply(seq_along(out),
+									function(x){
+										do.call(rbind,
+											lapply(x,
+												function(y){
+													cbind(noob=noob,
+														group=group,
+														year=names(runYears)[y],
+														out=out[y]
+													)
+												}
+											)
+										)
+									}
+								)
+							}
+							print(out)
+							out
+						}
+					)
 				}else{
-					vector()
+					vector('list',0)
 				}
 			}
 		)
-	)
+#	)
 }
 
-print(system.time(uh2<-lapply(c(year1='year1',year2='year2'),do.year)))
+print(system.time(uh2<-do.dt(dt)))
 print(uh2)
