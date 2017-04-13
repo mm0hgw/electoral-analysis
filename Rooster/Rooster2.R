@@ -54,7 +54,7 @@ final <- function(mat = "", list = "") {
 
 CID <- sort(unique(dt$name))
 
-temps <-  apply(mat,2, sum)
+temps <- apply(mat,2, sum)
 
 avg <-foreach(years = 1 : length(list)) %:%
 
