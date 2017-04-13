@@ -30,62 +30,46 @@ do.dt <- function(dt){
 	names(CID) <- CID
 	group <- dt$group
 	names(group) <- group
+	n <- length(group)
 	temps <- colSums(mat)
 	years <- grep('^year',names(dt))
 	names(years) <- names(dt)[years]
 	notYears <- setdiff(seq_along(names(dt)),years)
 	names(notYears) <- names(dt)[notYears]
 	
-	procGroups <- lapply(group,
-		function(x){
-			mat[x,,drop=FALSE] / temps
-		}
-	)
-	
-#	do.call(rbind,
-		lapply(CID,
-			function(noob){
-				groupMask <- dt[['name']] %in% noob
-				print(group[groupMask])
-				if(any(groupMask)){
-					lapply(group[groupMask],
-						function(gr){
-							i <- which.max(gr==group)
-							print(i)
-							runYears <- years[sapply(years,function(x){dt[[x]][i]!=0})]
-							out <- lapply(runYears,
-								function(year){
-									procGroups[[i]]
-								}
-							)
-							print(out)
-							if(length(out)>0){
-								out <- lapply(seq_along(out),
-									function(x){
-										do.call(rbind,
-											lapply(x,
-												function(y){
-													cbind(noob=noob,
-														group=group,
-														year=names(runYears)[y],
-														out=out[y]
-													)
-												}
-											)
-										)
-									}
-								)
-							}
-							print(out)
-							out
-						}
-					)
-				}else{
-					vector('list',0)
-				}
+	procGroups <- do.call(rbind, 
+		lapply(group,
+			function(x){
+				mat[x,,drop=FALSE] / temps
 			}
 		)
-#	)
+	)
+	do.call(rbind,
+		lapply(seq_along(years),
+			function(yearI){
+				if(dt[[years[yearI]]]==0)
+					return(vector())
+				do.call(rbind,
+					lapply(CID,
+						function(noob){
+							groupMask <- dt[['name']] %in% noob
+							if(any(groupMask)){
+								print(names(year))
+								data.frame(noob=as.factor(rep(noob,n)),
+									year=as.factor(rep(names(years)[yearI],n)),
+									group=as.factor(group),
+									as.numeric(colSums(procGroups[groupMask,,drop=FALSE]))
+								)
+								
+							}else{
+								vector()
+							}
+						}
+					)
+				)
+			}
+		)
+	)
 }
 
 print(system.time(uh2<-do.dt(dt)))
