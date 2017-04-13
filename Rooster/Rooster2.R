@@ -42,7 +42,7 @@ setkey(tmp, name)
 
 List <- lapply(1:length(EachYearList), function(y)
 
-    lapply(1:length(CID), function(x) as.character(EachYearList[[y]][J(CID[x]), nomatch = 0L][, group])))
+lapply(1:length(CID), function(x) as.character(EachYearList[[y]][J(CID[x]), nomatch = 0L][, group])))
 
  
 
