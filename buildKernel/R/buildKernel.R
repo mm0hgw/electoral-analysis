@@ -12,7 +12,7 @@ cloneKernel <- function(
 buildKernel <- function(
 	buildDir='/tmp/linux',
 	local='brain',
-	rev=0.1,
+	rev=4.11,
 	jobs=max(1,parallel::detectCores()-1)
 ){
 	system(paste('rm -rf',buildDir))
@@ -27,5 +27,5 @@ buildKernel <- function(
 	
 }
 
-buildKernel()
+#buildKernel()
 
