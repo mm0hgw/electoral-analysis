@@ -2,7 +2,6 @@
 
 export(buildPackage)
 export(detachPackage)
-export(filenameLookup)
 export(findPackages)
 export(gitAdd)
 export(gitClone)

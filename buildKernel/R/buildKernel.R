@@ -9,13 +9,9 @@ cloneKernel <- function(
 	setwd('~/git/linux/')
 }
 
-buildKernel <- function(
+pullBuildDir <- function(
 	HDDDir='~/git/linux',
-	buildDir='/tmp/linux',
-	local='brain',
-	rev=4.11,
-	jobs=max(1,parallel::detectCores()-1),
-	job='bindeb-pkg'
+	buildDir='/tmp/linux'
 ){
 	setwd(HDDDir)
 	buildPackage::gitPull()
@@ -24,12 +20,25 @@ buildKernel <- function(
 	system(paste(sep='','cp -uR ',HDDDir,'/* ',buildDir))
 	system(paste(sep='','cp ',HDDDir,'/.config ',buildDir,'/.config'))
 	setwd(buildDir)
-	
+}
+
+buildKernel <- function(
+	HDDDir='~/git/linux',
+	buildDir='/tmp/linux',
+	local='brain',
+	rev=4.11,
+	jobs=max(1,parallel::detectCores()-1),
+	job='bindeb-pkg'
+){
+	pullBuildDir(HDDDir,buildDir)
 	system(paste(sep='','make ',job,' -j',jobs,' LOCALVERSION=',
 			local,' KDEB_PKGVERSION=',rev
 		)
 	)
-	
+}
+
+testKernel <- function(
+){
 }
 
 #system.time(buildKernel())
