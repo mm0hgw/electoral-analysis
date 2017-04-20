@@ -24,6 +24,24 @@ set.lapply <- function(x){
 	assign("lapply",x,envir=get.lapply.env)
 }
 
+#'get.seeded.lapply
+#'@description
+#'Get a lapply
+#'@export
+get.seeded.lapply <- function(){
+	get("seeded.lapply",envir=get.lapply.env)
+}
+
+#'set.seeded.lapply
+#'@description
+#'Set the served lapply.
+#'@param x a 'function'
+#'@export
+set.seeded.lapply <- function(x){
+	stopifnot(is.function(x))
+	assign("seeded.lapply",x,envir=get.lapply.env)
+}
+
 #'get.chunkSize
 #'@description
 #'Get a chunkSize
@@ -44,5 +62,6 @@ set.chunkSize <- function(x){
 	assign("chunkSize",x,envir=get.lapply.env)
 }
 
-set.chunkSize(1e3)
+set.chunkSize(.Machine$integer.max)
 set.lapply(lapply)
+set.seeded.lapply(lapply)
