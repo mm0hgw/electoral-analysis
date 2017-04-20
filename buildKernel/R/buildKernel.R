@@ -15,7 +15,6 @@ pullBuildDir <- function(
 ){
 	setwd(HDDDir)
 	buildPackage::gitPull()
-	system(paste('rm -rf',buildDir))
 	system(paste('mkdir -p',buildDir))
 	system(paste(sep='','cp -uR ',HDDDir,'/* ',buildDir))
 	system(paste(sep='','cp ',HDDDir,'/.config ',buildDir,'/.config'))
