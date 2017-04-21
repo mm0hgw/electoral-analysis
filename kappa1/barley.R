@@ -22,4 +22,4 @@ bwplot(yield ~ variety, data = barley, box.width = 1/ ngroups,
 )
 dev.off()
 gitAdd(pngFile)
-gitPush(pngFile,pngFile)
+gitPush(pngFile)
