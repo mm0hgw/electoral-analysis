@@ -1,4 +1,9 @@
 library(lattice)
+library(buildPackage)
+
+pngFile <- 'test.png'
+
+png(pngFile)
 ngroups <- length(unique(barley$site)) + 1 
 bwplot(yield ~ variety, data = barley, box.width = 1/ ngroups, 
 	groups = year, scales=(x=list(rot=45)), 
@@ -15,3 +20,6 @@ bwplot(yield ~ variety, data = barley, box.width = 1/ ngroups,
 	 panel.superpose(par.settings=list(box.rectangle=list(col=c("green", "red"))), ...) 
 	} 
 )
+dev.off()
+gitAdd(pngFile)
+gitPush(pngFile,pngFile)
