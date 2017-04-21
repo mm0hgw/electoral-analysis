@@ -2,5 +2,7 @@
 
 export(get.chunkSize)
 export(get.lapply)
+export(get.seeded.lapply)
 export(set.chunkSize)
 export(set.lapply)
+export(set.seeded.lapply)
