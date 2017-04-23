@@ -24,9 +24,9 @@ SIZE=$(( MEMORY * FRACTION / 100 ))
 case "$1" in 
 	"start") 
 		modprobe zram
-		zramctl -f -a lz4 --size $SIZE -t $THREADS /dev/zram0
-		mkswap /dev/zram0
-		swapon /dev/zram0 -p 100
+		DEVICE=`zramctl -f -a lz4 --size $SIZE -t $THREADS`
+		mkswap $DEVICE
+		swapon $DEVICE -p 100
 		;; 
 	"stop") 
 		swapoff /dev/zram0 
