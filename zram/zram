@@ -18,18 +18,21 @@
 
 FRACTION=75 
 MEMORY=`perl -ne'/^MemTotal:\s+(\d+)/ && print $1*1024;' < /proc/meminfo` 
-CPUS=`nproc` 
-SIZE=$(( MEMORY * FRACTION / 100 / CPUS )) 
+CPUS=`nproc`
+THREADS=$(( 1 > CPUS - 1 ? 1 : CPUS - 1 )) 
+SIZE=$(( MEMORY * FRACTION / 100 )) 
 case "$1" in 
 	"start") 
 		param=`modinfo zram|grep num_devices|cut -f2 -d:|tr -d ' '` 
-		modprobe zram $param=$CPUS 
+		modprobe zram $param=1
+	
 		for n in `seq $CPUS`; do 
 			i=$((n - 1)) 
-			zramctl --reset /dev/zram$i
-			zramctl --find --size $SIZE  /dev/zram$i 
-			mkswap /dev/zram$i 
-			swapon /dev/zram$i -p 100
+			swapoff /dev/zram0
+			zramctl --reset /dev/zram0
+			zramctl -a lz4 --size $SIZE -t $THREADS /dev/zram0
+			mkswap /dev/zram0
+			swapon /dev/zram0 -p 100
 		done 
 		;; 
 	"stop") 
