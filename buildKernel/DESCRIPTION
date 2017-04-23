@@ -1,0 +1,11 @@
+Package: buildKernel
+Title: Build Kernel
+Version: 0.0.0.9000
+Authors@R: person("Dale", email = "dale@piratepress.org", role = c("aut", "cre", "cph"))
+Description: Routines for kernel development, building and testing.
+Depends: R (>= 3.3.2)
+Imports: buildPackage
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
