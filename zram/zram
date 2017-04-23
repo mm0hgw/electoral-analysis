@@ -9,6 +9,8 @@
 # Description: Use compressed RAM as in-memory swap 
 ### END INIT INFO 
 
+# Forked by: Dale MM0HGW <dale@piratepress.org>
+# rev 1: zramctl as https://askubuntu.com/questions/730749/how-to-change-zram-size
 # Author: Antonio Galea <antonio.galea@gmail.com> 
 # Thanks to Przemysław Tomczyk for suggesting swapoff parallelization 
 # Distributed under the GPL version 3 or above, see terms at 
@@ -24,9 +26,10 @@ case "$1" in
 		modprobe zram $param=$CPUS 
 		for n in `seq $CPUS`; do 
 			i=$((n - 1)) 
-			echo $SIZE > /sys/block/zram$i/disksize 
+			zramctl --reset /dev/zram$i
+			zramctl --find --size $SIZE  /dev/zram$i 
 			mkswap /dev/zram$i 
-			swapon /dev/zram$i -p 10 
+			swapon /dev/zram$i -p 100
 		done 
 		;; 
 	"stop") 
