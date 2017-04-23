@@ -23,10 +23,8 @@ THREADS=$(( 1 > CPUS - 1 ? 1 : CPUS - 1 ))
 SIZE=$(( MEMORY * FRACTION / 100 )) 
 case "$1" in 
 	"start") 
-		param=`modinfo zram|grep num_devices|cut -f2 -d:|tr -d ' '` 
-		modprobe zram $param=1
-		zramctl --reset /dev/zram0
-		zramctl -a lz4 --size $SIZE -t $THREADS /dev/zram0
+		modprobe zram
+		zramctl -f -a lz4 --size $SIZE -t $THREADS /dev/zram0
 		mkswap /dev/zram0
 		swapon /dev/zram0 -p 100
 		;; 
