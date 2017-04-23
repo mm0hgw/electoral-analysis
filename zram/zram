@@ -25,21 +25,13 @@ case "$1" in
 	"start") 
 		param=`modinfo zram|grep num_devices|cut -f2 -d:|tr -d ' '` 
 		modprobe zram $param=1
-	
-		for n in `seq $CPUS`; do 
-			i=$((n - 1)) 
-			swapoff /dev/zram0
-			zramctl --reset /dev/zram0
-			zramctl -a lz4 --size $SIZE -t $THREADS /dev/zram0
-			mkswap /dev/zram0
-			swapon /dev/zram0 -p 100
-		done 
+		zramctl --reset /dev/zram0
+		zramctl -a lz4 --size $SIZE -t $THREADS /dev/zram0
+		mkswap /dev/zram0
+		swapon /dev/zram0 -p 100
 		;; 
 	"stop") 
-		for n in `seq $CPUS`; do 
-			i=$((n - 1)) 
-			swapoff /dev/zram$i && echo "disabled disk $n of $CPUS" & 
-		done 
+		swapoff /dev/zram0 
 		wait 
 		sleep .5 
 		modprobe -r zram 
