@@ -10,7 +10,7 @@
 ### END INIT INFO 
 
 # Forked by: Dale MM0HGW <dale@piratepress.org>
-# rev 1: zramctl as https://askubuntu.com/questions/730749/how-to-change-zram-size
+# rev 1: zramctl 
 # Author: Antonio Galea <antonio.galea@gmail.com> 
 # Thanks to Przemysław Tomczyk for suggesting swapoff parallelization 
 # Distributed under the GPL version 3 or above, see terms at 

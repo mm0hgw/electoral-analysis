@@ -1,4 +1,6 @@
 
+#' cloneKernel
+#' @export
 cloneKernel <- function(
 	kernelCloneUrl='https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git',
 	branch='master'
@@ -9,6 +11,8 @@ cloneKernel <- function(
 	setwd('~/git/linux/')
 }
 
+#' pullBuildDir
+#' @export
 pullBuildDir <- function(
 	HDDDir='~/git/linux',
 	buildDir='/tmp/linux'
@@ -21,6 +25,8 @@ pullBuildDir <- function(
 	setwd(buildDir)
 }
 
+#' buildKernel
+#' @export
 buildKernel <- function(
 	HDDDir='~/git/linux',
 	buildDir='/tmp/linux',
