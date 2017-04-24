@@ -25,7 +25,7 @@ case "$1" in
 	"start") 
 		modprobe zram
 		zramctl -f --size $SIZE -t $THREADS
-		cat lz4hc >> /sys/devices/virtual/block/zram0/comp_algorithm
+		echo lz4hc >> /sys/devices/virtual/block/zram0/comp_algorithm
 		mkswap /dev/zram0
 		swapon /dev/zram0 -p 100
 		;; 
