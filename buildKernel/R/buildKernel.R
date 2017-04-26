@@ -36,8 +36,8 @@ buildKernel <- function(
 	job='bindeb-pkg'
 ){
 	pullBuildDir(HDDDir,buildDir)
-	system(paste(sep='','make ',job,' -j',jobs,' LOCALVERSION=',
-			local,' KDEB_PKGVERSION=',rev
+	system(paste(sep='','nice -19 distcc-pump make ',job,' -j',jobs+1,
+			' -l',jobs,' LOCALVERSION=',local,' KDEB_PKGVERSION=',rev
 		)
 	)
 }
