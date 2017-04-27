@@ -73,6 +73,7 @@ findPackages <- function(path="."){
 #'	@description Build a package.
 #'	@import devtools
 #'	@import Rcpp
+#' @importFrom formatR tidy_dir
 #'	@export
 buildPackage <- function(package,
 	pull=build,
@@ -86,6 +87,7 @@ buildPackage <- function(package,
 	detachPackage(package, TRUE)
 	if(pull)gitPull()
 	if(build){
+		formatR::tidy_dir(paste(sep='',package."/R")
 		devtools::document(package)
 		Rcpp::compileAttributes(package)
 		devtools::build(package)
