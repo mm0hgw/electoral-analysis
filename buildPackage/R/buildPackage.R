@@ -80,11 +80,9 @@ buildPackage <- function(package, pull = build, build = check, check = cran, cra
     if (pull) 
         gitPull()
     if (build) {
-    			lapply(paste(sep='',Rdir,list.files(Rdir)),
-    				function(f){
-    					system(paste('sed $\'s/\t//g\'',f,'>',f)) 
-    				}
-    			)
+        lapply(paste(sep = "", Rdir, list.files(Rdir)), function(f) {
+            system(paste("sed $'s/\t//g'", f, ">", f))
+        })
         formatR::tidy_dir(Rdir)
         devtools::document(package)
         Rcpp::compileAttributes(package)
