@@ -27,41 +27,41 @@ gitClone <- function(url) {
     system(paste("git", "clone", "--progress", url))
 }
 
-#'\t gitPull
-#'\t@description Execute a git pull
-#'\t@export
+#' gitPull
+#'@description Execute a git pull
+#'@export
 gitPull <- function() {
     system2("git", c("pull"))
 }
 
-#'\t gitPush
+#' gitPush
 #'@param comment 'character'
-#'\t@description Git add, commit and push
-#'\t@export
+#'@description Git add, commit and push
+#'@export
 gitPush <- function(comment) {
     system2("git", c("pull"))
     system2("git", c("commit", "-a", "-m", paste(sep = "", "\"", comment, "\"")))
     system2("git", c("push"))
 }
 
-#'\t gitAdd
+#' gitAdd
 #'@param filelist 'character'
-#'\t@description Git add, commit and push
-#'\t@export
+#'@description Git add, commit and push
+#'@export
 gitAdd <- function(filelist) {
     system2("git", c("add", filelist))
 }
 
-#'\t findPackages
-#'\t@description Provide package directories
+#' findPackages
+#'@description Provide package directories
 #'@param path 'character'
-#'\t@export
+#'@export
 findPackages <- function(path = ".") {
     l <- list.dirs(path = path)
     l[unlist(lapply(paste(l, "/DESCRIPTION", sep = ""), file.exists))]
 }
 
-#'\t buildPackage
+#' buildPackage
 #'@param package 'character'
 #'@param pull 'logical'
 #'@param build 'logical'
@@ -70,11 +70,11 @@ findPackages <- function(path = ".") {
 #'@param add 'logical'
 #'@param push 'logical'
 #'@param install 'logical'
-#'\t@description Build a package.
-#'\t@import devtools
-#'\t@import Rcpp
+#'@description Build a package.
+#'@import devtools
+#'@import Rcpp
 #' @importFrom formatR tidy_dir
-#'\t@export
+#'@export
 buildPackage <- function(package, pull = build, build = check, check = cran, cran = FALSE, 
     add = build, push = cran, install = build) {
     detachPackage(package, TRUE)
