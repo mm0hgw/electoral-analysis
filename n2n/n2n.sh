@@ -1,7 +1,7 @@
 #!/bin/bash
 killall edge
 [ -r /etc/default/n2n ] & . /etc/default/n2n
-edge -f -l $N2N_SUPERNODE:$N2N_SUPERNODE_PORT -a $N2N_SUBNET_PREFIX.254 -c $N2N_COMMUNITY $N2N_DAEMON_OPTS
+edge -f -l $N2N_SUPERNODE:$N2N_SUPERNODE_PORT -a $N2N_SUBNET_PREFIX.254 -s 255.255.255.0 -c $N2N_COMMUNITY $N2N_DAEMON_OPTS
 for i in `seq 253`; do
 	ping -c 1 192.168.41.$i
 	if [ $? -eq 1 ] ; then
