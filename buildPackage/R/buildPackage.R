@@ -82,8 +82,7 @@ buildPackage <- function(package, pull = build, build = check, check = cran, cra
     if (build) {
         # RcppExports gets b0rked by formatR, so remove and regenerate  
     RcppFiles <- paste(sep='',package,'/',c('R','src'),'/RcppExports.',c('R','cpp'))
-    print(RcppFiles)
-    lapply(RcppFiles[sapply(RcppFiles,file.exists)],print)
+    lapply(RcppFiles[sapply(RcppFiles,file.exists)],file.remove)
         formatR::tidy_dir(Rdir)
         devtools::document(package)
         Rcpp::compileAttributes(package)
