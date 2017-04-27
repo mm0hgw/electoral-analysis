@@ -2,7 +2,7 @@
 % Please edit documentation in R/buildPackage.R
 \name{buildPackage}
 \alias{buildPackage}
-\title{buildPackage}
+\title{\t buildPackage}
 \usage{
 buildPackage(package, pull = build, build = check, check = cran,
   cran = FALSE, add = build, push = cran, install = build)
@@ -22,8 +22,11 @@ buildPackage(package, pull = build, build = check, check = cran,
 
 \item{push}{'logical'}
 
-\item{install}{'logical'}
+\item{install}{'logical'
+\t@description Build a package.
+\t@import devtools
+\t@import Rcpp}
 }
 \description{
-Build a package.
+\t buildPackage
 }

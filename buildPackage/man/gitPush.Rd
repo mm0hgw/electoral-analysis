@@ -2,13 +2,15 @@
 % Please edit documentation in R/buildPackage.R
 \name{gitPush}
 \alias{gitPush}
-\title{gitPush}
+\title{\t gitPush}
 \usage{
 gitPush(comment)
 }
 \arguments{
-\item{comment}{'character'}
+\item{comment}{'character'
+\t@description Git add, commit and push
+\t@export}
 }
 \description{
-Git add, commit and push
+\t gitPush
 }

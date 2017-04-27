@@ -2,10 +2,14 @@
 % Please edit documentation in R/buildPackage.R
 \name{gitPull}
 \alias{gitPull}
-\title{gitPull}
+\title{\t gitPull
+\t@description Execute a git pull
+\t@export}
 \usage{
 gitPull()
 }
 \description{
-Execute a git pull
+\t gitPull
+\t@description Execute a git pull
+\t@export
 }

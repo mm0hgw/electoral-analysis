@@ -2,13 +2,15 @@
 % Please edit documentation in R/buildPackage.R
 \name{gitAdd}
 \alias{gitAdd}
-\title{gitAdd}
+\title{\t gitAdd}
 \usage{
 gitAdd(filelist)
 }
 \arguments{
-\item{filelist}{'character'}
+\item{filelist}{'character'
+\t@description Git add, commit and push
+\t@export}
 }
 \description{
-Git add, commit and push
+\t gitAdd
 }

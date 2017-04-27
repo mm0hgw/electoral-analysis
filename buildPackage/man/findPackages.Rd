@@ -2,13 +2,16 @@
 % Please edit documentation in R/buildPackage.R
 \name{findPackages}
 \alias{findPackages}
-\title{findPackages}
+\title{\t findPackages
+\t@description Provide package directories}
 \usage{
 findPackages(path = ".")
 }
 \arguments{
-\item{path}{'character'}
+\item{path}{'character'
+\t@export}
 }
 \description{
-Provide package directories
+\t findPackages
+\t@description Provide package directories
 }
