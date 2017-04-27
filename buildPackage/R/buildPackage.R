@@ -87,7 +87,7 @@ buildPackage <- function(package,
 	detachPackage(package, TRUE)
 	if(pull)gitPull()
 	if(build){
-		formatR::tidy_dir(paste(sep='',package,"/R")
+		formatR::tidy_dir(paste(sep='',package,"/R"))
 		devtools::document(package)
 		Rcpp::compileAttributes(package)
 		devtools::build(package)
