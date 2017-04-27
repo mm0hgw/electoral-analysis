@@ -4,8 +4,6 @@
 #'@import devtools
 "_PACKAGE"
 
-require(devtools)
-
 #'detachPackage
 #'@param package a 'character' describing a package to unload.
 #'@param character.only a 'logical' flag, whether to skip deparsing/
