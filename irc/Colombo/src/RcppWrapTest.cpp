@@ -22,7 +22,7 @@ int test_char(){
 
 // [[Rcpp::export]]
 int test_string(){
-	char* i="zero";
+	char i[]="zero";
 	return(i);
 }
 
