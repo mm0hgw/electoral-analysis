@@ -20,10 +20,10 @@ int test_char(){
 	return(i);
 }
 
-// [[Rcpp::export]]
+/*// [[Rcpp::export]]
 int test_string(){
 	char i[]="zero";
 	return(i);
-}
+}*/
 
 
