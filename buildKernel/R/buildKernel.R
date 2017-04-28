@@ -22,7 +22,7 @@ pullBuildDir <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux") {
 
 #' buildKernel
 #' @export
-buildKernel <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux", local = "brain", 
+buildKernel <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux", local = system(intern=TRUE,'uname -n'), 
     rev = 4.11, jobs = max(1, parallel::detectCores() - 1), job = "bindeb-pkg") {
     pullBuildDir(HDDDir, buildDir)
     system(paste(sep = "", "nice -19 distcc-pump make ", job, " -j", jobs + 1, " -l", 
