@@ -1,9 +1,9 @@
 Package: Colombo
-Title: What the Package Does (one line, title case)
+Title: Test Rcpp wrapping from C
 Version: 0.0.0.9000
 Authors@R: person("Dale", email = "dale@piratepress.org", role = c("aut", "cre", "cph"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.4.0)
+Description: Test Rcpp wrapping from C.
+Depends: R (>= 3.4.0), Rcpp
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
