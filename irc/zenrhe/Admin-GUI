@@ -99,4 +99,5 @@ new user adding script. If you could collect 'gecos' data, there'd
 be some point in my seeing if i could pipe it through to the LDAP
 server.
 
- 
+https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system
+

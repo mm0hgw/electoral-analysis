@@ -1,7 +1,8 @@
-dn: uid=trumpette,ou=users,dc=tortuga,dc=piratepress,dc=org
+dn: uid=trumpette,ou=People,dc=tortuga,dc=piratepress,dc=org
 objectClass: top
 objectClass: account
-objectClass: posixAccountcn: trumpette
+objectClass: posixAccount
+cn: trumpette
 uid: trumpette
 uidNumber: 2000
 gidNumber: 100
@@ -10,10 +11,11 @@ loginShell: /bin/bash
 gecos: trumpette
 userPassword: {SASL}trumpette@TORTUGA.PIRATEPRESS.ORG
 
-dn: uid=grumpybrian,ou=users,dc=tortuga,dc=piratepress,dc=org
+dn: uid=grumpybrian,ou=People,dc=tortuga,dc=piratepress,dc=org
 objectClass: top
 objectClass: account
-objectClass: posixAccountcn: grumpybrian
+objectClass: posixAccount
+cn: grumpybrian
 uid: grumpybrian
 uidNumber: 2001
 gidNumber: 100
@@ -22,10 +24,11 @@ loginShell: /bin/bash
 gecos: grumpybrian
 userPassword: {SASL}grumpybrian@TORTUGA.PIRATEPRESS.ORG
 
-dn: uid=trunkybrian,ou=users,dc=tortuga,dc=piratepress,dc=org
+dn: uid=trunkybrian,ou=People,dc=tortuga,dc=piratepress,dc=org
 objectClass: top
 objectClass: account
-objectClass: posixAccountcn: trunkybrian
+objectClass: posixAccount
+cn: trunkybrian
 uid: trunkybrian
 uidNumber: 2002
 gidNumber: 100
@@ -34,10 +37,11 @@ loginShell: /bin/bash
 gecos: trunkybrian
 userPassword: {SASL}trunkybrian@TORTUGA.PIRATEPRESS.ORG
 
-dn: uid=toto,ou=users,dc=tortuga,dc=piratepress,dc=org
+dn: uid=toto,ou=People,dc=tortuga,dc=piratepress,dc=org
 objectClass: top
 objectClass: account
-objectClass: posixAccountcn: toto
+objectClass: posixAccount
+cn: toto
 uid: toto
 uidNumber: 2003
 gidNumber: 100
@@ -46,10 +50,11 @@ loginShell: /bin/bash
 gecos: toto
 userPassword: {SASL}toto@TORTUGA.PIRATEPRESS.ORG
 
-dn: uid=jumbo,ou=users,dc=tortuga,dc=piratepress,dc=org
+dn: uid=jumbo,ou=People,dc=tortuga,dc=piratepress,dc=org
 objectClass: top
 objectClass: account
-objectClass: posixAccountcn: jumbo
+objectClass: posixAccount
+cn: jumbo
 uid: jumbo
 uidNumber: 2004
 gidNumber: 100
@@ -58,10 +63,11 @@ loginShell: /bin/bash
 gecos: jumbo
 userPassword: {SASL}jumbo@TORTUGA.PIRATEPRESS.ORG
 
-dn: uid=freya,ou=users,dc=tortuga,dc=piratepress,dc=org
+dn: uid=freya,ou=People,dc=tortuga,dc=piratepress,dc=org
 objectClass: top
 objectClass: account
-objectClass: posixAccountcn: freya
+objectClass: posixAccount
+cn: freya
 uid: freya
 uidNumber: 2005
 gidNumber: 100
