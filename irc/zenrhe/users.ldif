@@ -1,0 +1,72 @@
+dn: uid=trumpette,ou=users,dc=tortuga,dc=piratepress,dc=org
+objectClass: top
+objectClass: account
+objectClass: posixAccountcn: trumpette
+uid: trumpette
+uidNumber: 2000
+gidNumber: 100
+homeDirectory: /home/trumpette
+loginShell: /bin/bash
+gecos: trumpette
+userPassword: {SASL}trumpette@TORTUGA.PIRATEPRESS.ORG
+
+dn: uid=grumpybrian,ou=users,dc=tortuga,dc=piratepress,dc=org
+objectClass: top
+objectClass: account
+objectClass: posixAccountcn: grumpybrian
+uid: grumpybrian
+uidNumber: 2001
+gidNumber: 100
+homeDirectory: /home/grumpybrian
+loginShell: /bin/bash
+gecos: grumpybrian
+userPassword: {SASL}grumpybrian@TORTUGA.PIRATEPRESS.ORG
+
+dn: uid=trunkybrian,ou=users,dc=tortuga,dc=piratepress,dc=org
+objectClass: top
+objectClass: account
+objectClass: posixAccountcn: trunkybrian
+uid: trunkybrian
+uidNumber: 2002
+gidNumber: 100
+homeDirectory: /home/trunkybrian
+loginShell: /bin/bash
+gecos: trunkybrian
+userPassword: {SASL}trunkybrian@TORTUGA.PIRATEPRESS.ORG
+
+dn: uid=toto,ou=users,dc=tortuga,dc=piratepress,dc=org
+objectClass: top
+objectClass: account
+objectClass: posixAccountcn: toto
+uid: toto
+uidNumber: 2003
+gidNumber: 100
+homeDirectory: /home/toto
+loginShell: /bin/bash
+gecos: toto
+userPassword: {SASL}toto@TORTUGA.PIRATEPRESS.ORG
+
+dn: uid=jumbo,ou=users,dc=tortuga,dc=piratepress,dc=org
+objectClass: top
+objectClass: account
+objectClass: posixAccountcn: jumbo
+uid: jumbo
+uidNumber: 2004
+gidNumber: 100
+homeDirectory: /home/jumbo
+loginShell: /bin/bash
+gecos: jumbo
+userPassword: {SASL}jumbo@TORTUGA.PIRATEPRESS.ORG
+
+dn: uid=freya,ou=users,dc=tortuga,dc=piratepress,dc=org
+objectClass: top
+objectClass: account
+objectClass: posixAccountcn: freya
+uid: freya
+uidNumber: 2005
+gidNumber: 100
+homeDirectory: /home/freya
+loginShell: /bin/bash
+gecos: freya
+userPassword: {SASL}freya@TORTUGA.PIRATEPRESS.ORG
+
