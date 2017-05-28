@@ -4,8 +4,8 @@
 \alias{buildPackage}
 \title{buildPackage}
 \usage{
-buildPackage(package, pull = build, build = check, check = cran,
-  cran = FALSE, add = build, push = cran, install = build)
+buildPackage(package, pull = build, build = check || push, check = cran,
+  cran = FALSE, add = build, push = TRUE, install = build)
 }
 \arguments{
 \item{package}{'character'}
