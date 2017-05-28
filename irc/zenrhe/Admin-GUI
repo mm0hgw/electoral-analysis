@@ -1,0 +1,103 @@
+
+So i need an admin GUI to edit the following stuffs.
+
+			
+			KEYSERVER ONLY
+
+
+		kerberos configuration
+
+	/etc/krb5.conf	*PUBLIC*
+This file contains the realm definition. If you're not using DNS to
+point clients at the keyservers, this needs pushed to all clients.
+
+
+	/etc/krb5kdc/kadm5.acl	*SENSTIVE*
+This file describes who is allowed to use the admin server. Usually 
+it is */admin so we'll punch you out two principals.
+
+	/etc/krb5kdc/kdc.conf	*SENSITIVE*
+This file defines the behaviour of the keyservers, including what 
+encryption types they offer, and logging options.
+
+
+		key database initialisation
+
+	krb5_newrealm
+IGNORE THE MESSAGE. You don't ever need the main DB password again. 
+The risk is not that you lose it, but that someone else gets it.
+	
+	keyserver escape
+Now the master password is generated we generate two principals 
+user@DOMAIN and user/admin@DOMAIN.
+
+Further tasks can be done off the keyserver, and it should be 
+considered "best practise" to do so.
+
+	kadmin policies
+
+Policy: host
+Maximum password life: 120 days 00:00:00
+Minimum password life: 0 days 00:00:00
+Minimum password length: 64
+Minimum number of password character classes: 4
+Number of old keys kept: 1
+Maximum password failures before lockout: 3
+Password failure count reset interval: 0 days 00:00:00
+Password lockout duration: 0 days 00:00:00
+
+Policy: n00b
+Maximum password life: 0 days 00:00:00
+Minimum password life: 0 days 00:00:00
+Minimum password length: 8
+Minimum number of password character classes: 2
+Number of old keys kept: 5
+Maximum password failures before lockout: 3
+Password failure count reset interval: 1 day 00:00:00
+Password lockout duration: 0 days 00:01:00
+
+Policy: n00b_herder
+Maximum password life: 0 days 00:00:00
+Minimum password life: 0 days 00:00:00
+Minimum password length: 8
+Minimum number of password character classes: 3
+Number of old keys kept: 5
+Maximum password failures before lockout: 3
+Password failure count reset interval: 1 day 00:00:00
+Password lockout duration: 0 days 01:00:00
+
+So, these are your basic default policies. One for machine 
+passwords, one for regular people, and one for administrative 
+tasks. Someone with complex needs would love a simple GUI 
+with input validation and copying.
+
+These are the 'host' policy principals in the current, 
+basic database.
+
+host/brain.tortuga.piratepress.org@TORTUGA.PIRATEPRESS.ORG
+kadmin/admin@TORTUGA.PIRATEPRESS.ORG
+kadmin/brain.tortuga.piratepress.org@TORTUGA.PIRATEPRESS.ORG
+kadmin/changepw@TORTUGA.PIRATEPRESS.ORG
+kiprop/brain.tortuga.piratepress.org@TORTUGA.PIRATEPRESS.ORG
+krbtgt/TORTUGA.PIRATEPRESS.ORG@TORTUGA.PIRATEPRESS.ORG
+ldap/brain.tortuga.piratepress.org@TORTUGA.PIRATEPRESS.ORG
+
+Most of the time I'm active on my 'n00b' policy account.
+smollet@TORTUGA.PIRATEPRESS.ORG
+
+My 'n00b_herder' policy account allows kerberos db edits
+including arbitrary password resets, as well as granting
+write access to the LDAP server.
+smollet/admin@TORTUGA.PIRATEPRESS.ORG
+
+
+users = c("trumpette", "grumpybrian", "trunkybrian", 
+"toto", "jumbo", "freya")
+
+So, I used this list of users to generate users.ldif, using my 
+new user adding script. If you could collect 'gecos' data, there'd 
+be some point in my seeing if i could pipe it through to the LDAP
+server.
+
+https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system
+
