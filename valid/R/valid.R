@@ -10,7 +10,7 @@
 #' data, since the constructor uses this code for 
 #' validation.
 #' @export
-valid <- function(x,class1){
-	class(x)<-c(class1,class(x))
-	UseMethod('valid',x)
+valid <- function(x, class1) {
+    class(x) <- c(class1, class(x))
+    UseMethod("valid", x)
 }
