@@ -23,7 +23,11 @@ pullBuildDir <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux") {
 #' buildKernel
 #' @export
 buildKernel <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux", local = system(intern = TRUE, 
-    "uname -n"), rev = 4.11, jobs = max(1, parallel::detectCores() - 1), job = "bindeb-pkg") {
+    "uname -n"), jobs = max(1, parallel::detectCores() - 1), job = "bindeb-pkg") {
+    rev_ <- system(intern=TRUE,
+    	paste('cat ',HDDDir,'/Makefile|head -n4|awk \'{print $3;}\'',sep='')
+    )
+    rev <- paste(paste(rev_[1:3],collapse='.'),rev_[4],sep='')
     pullBuildDir(HDDDir, buildDir)
     system(paste(sep = "", "nice -19 distcc-pump make ", job, " -j", jobs + 1, " -l", 
         jobs, " LOCALVERSION=", local, " KDEB_PKGVERSION=", rev))
