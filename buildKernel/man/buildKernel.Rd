@@ -5,7 +5,7 @@
 \title{buildKernel}
 \usage{
 buildKernel(HDDDir = "~/git/linux", buildDir = "/tmp/linux",
-  local = system(intern = TRUE, "uname -n"), rev = 4.11, jobs = max(1,
+  local = system(intern = TRUE, "uname -n"), jobs = max(1,
   parallel::detectCores() - 1), job = "bindeb-pkg")
 }
 \description{
