@@ -29,7 +29,7 @@ buildKernel <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux", local =
     rev <- paste(paste(rev_[1:3], collapse = "."), rev_[4], sep = "")
     pullBuildDir(HDDDir, buildDir)
     system(paste(sep = "", "nice -19 distcc-pump make ", job, " -j", jobs + 1, " -l", 
-        jobs, " LOCALVERSION=", local, " KDEB_PKGVERSION=", rev))
+        jobs, " LOCALVERSION=", paste('-',local,sep=''), " KDEB_PKGVERSION=", rev))
     system(paste(sep = "", "cp -u ", buildDir, "/.config ", HDDDir, "/.config"))
 }
 
