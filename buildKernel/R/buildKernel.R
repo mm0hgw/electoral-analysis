@@ -32,9 +32,9 @@ buildKernel <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux", local =
         jobs, " LOCALVERSION=", paste("-", local, sep = ""), " KDEB_PKGVERSION=", 
         rev))
     system(paste(sep = "", "cp -u ", buildDir, "/.config ", HDDDir, "/.config"))
-    deb <- list.files(paste(sep='',buildDir,'/..'),pattern='.deb$')
-    bindeb <- deb[-grep('-dbg',deb)]
-    system(paste('sudo dpkg -i',paste(collapse=' ',bindeb)))
+    deb <- list.files(paste(sep = "", buildDir, "/.."), pattern = ".deb$")
+    bindeb <- deb[-grep("-dbg", deb)]
+    system(paste("sudo dpkg -i", paste(collapse = " ", bindeb)))
 }
 
 testKernel <- function() {
