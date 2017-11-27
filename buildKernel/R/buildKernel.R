@@ -39,7 +39,8 @@ buildKernel <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux", local =
 }
 
 installKernel <- function(buildDir) {
-    deb <- list.files(paste(sep = "", buildDir, "/.."), pattern = ".deb$")
+	setwd( paste(sep = "", buildDir, "/.."))
+    deb <- list.files(pattern = ".deb$")
     bindeb <- deb[-grep("-dbg", deb)]
     system(paste("sudo dpkg -i", paste(collapse = " ", bindeb)))
 }
