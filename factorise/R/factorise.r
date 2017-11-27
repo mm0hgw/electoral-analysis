@@ -70,6 +70,8 @@ time_display<-function(s){
 	sprintf("%.0f:%2.0f:%2.2f",s%/%3600,s%/%60%%60,s%%60)
 }
 
+#' primes_list
+#' @export
 primes_list<-function(to){		# non prime finder
 	if(to-primes_cache_top>max_job_size){
 		j<-seq(primes_cache_top,to,by=max_job_size)
@@ -148,6 +150,8 @@ multi_union<-function(...){
 	x[!duplicated(x)]
 }
 
+#' factorise
+#' @export
 factorise<-function(x){				# factoriser
 	xsqrt<-floor(sqrt(x))			# find sqrt(x) (max possible prime factor)
 	primes<-primes_list(xsqrt) 		# pull all required primes
