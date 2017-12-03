@@ -4,7 +4,7 @@
 primes_list <- function(x, cacheFile = "~/primes.rda") {
     if (file.exists(cacheFile)) 
         load(cacheFile)
-    if (!exists(cap)) 
+    if (!exists('cap')) 
         cap <- 1
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
