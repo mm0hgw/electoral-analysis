@@ -43,7 +43,7 @@ chunker <- function(from, to) {
     print(length(dim(o)))
     if (length(dim(o)) != 2) 
         return(list(o))
-    lapply(nrow(o), function(x) o[x, ])
+    lapply(seq(nrow(o)), function(x) o[x, ])
 }
 
 non_prime_factory <- function(from, to) {
