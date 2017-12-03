@@ -4,7 +4,7 @@
 \alias{set.seeded.lapply}
 \title{set.seeded.lapply}
 \usage{
-set.seeded.lapply(x)
+set.seeded.lapply(x = lapply)
 }
 \arguments{
 \item{x}{a 'function'}

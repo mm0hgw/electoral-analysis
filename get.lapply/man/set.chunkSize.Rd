@@ -4,10 +4,11 @@
 \alias{set.chunkSize}
 \title{set.chunkSize}
 \usage{
-set.chunkSize(x)
+set.chunkSize(x = .Machine$integer.max)
 }
 \arguments{
-\item{x}{an 'integer'}
+\item{x}{an 'integer' defining a sensible max chunk size
+\rDefault : .Machine$integer.max}
 }
 \description{
 Set the served chunkSize
