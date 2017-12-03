@@ -107,5 +107,5 @@ generator_controller <- function(from, to) {
 factorise <- function(x) {
 	stopifnot(length(x)==1)
     p <- primes_list(floor(sqrt(x)))
-    p[(p%%x) == 0]
+    p[(x%%p) == 0]
 }
