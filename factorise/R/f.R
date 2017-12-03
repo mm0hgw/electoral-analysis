@@ -1,4 +1,6 @@
 
+#' primes_list
+#' @export
 primes_list <- function(x, cacheFile = "~/primes.rda") {
     if (file.exists(cacheFile)) 
         load(cacheFile)
@@ -9,7 +11,21 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
         primes_list(capreq, cacheFile)
         load(cacheFile)
     }
-    
+	max_job_size <- get.lapply::get.chunkSize()
+	if(x-cap>max_job_size){
+		j<-seq(cap,x,by=max_job_size)
+		lapply(j,primes_list)
+	}
+	if(cap<x){
+		r<-setdiff(generator_controller(cap,x),primes_cache)
+		primes<-c(primes,r)
+		cap<-x
+		save(list=c('cap','primes'),file=cacheFile)
+		cat(paste("Extended cache from",cap,
+			"to",x,"and found",length(r),"new primes ",
+			length(primes),"in cache\n"))
+	}
+	primes[primes<=x]	# assemble and return all 
 }
 
 #' @importFrom get.lapply get.sensible.threads
