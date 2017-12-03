@@ -3,6 +3,8 @@
 export(get.chunkSize)
 export(get.lapply)
 export(get.seeded.lapply)
+export(get.sensible.threads)
 export(set.chunkSize)
 export(set.lapply)
 export(set.seeded.lapply)
+export(set.sensible.threads)
