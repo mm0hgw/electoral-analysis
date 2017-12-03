@@ -6,6 +6,8 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
         load(cacheFile)
     if (!exists('cap')) 
         cap <- 1
+    if (!exists('primes')) 
+        primes <- vector()
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
         primes_list(capreq, cacheFile)
