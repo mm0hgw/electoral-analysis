@@ -4,7 +4,7 @@
 \alias{set.lapply}
 \title{set.lapply}
 \usage{
-set.lapply(x)
+set.lapply(x = lapply)
 }
 \arguments{
 \item{x}{a 'function'}

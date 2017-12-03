@@ -19,7 +19,7 @@ get.lapply <- function() {
 #'Set the served lapply.
 #'@param x a 'function'
 #'@export
-set.lapply <- function(x=lapply) {
+set.lapply <- function(x = lapply) {
     stopifnot(is.function(x))
     assign("lapply", x, envir = get.lapply.env)
 }
@@ -37,7 +37,7 @@ get.seeded.lapply <- function() {
 #'Set the served lapply.
 #'@param x a 'function' 
 #'@export
-set.seeded.lapply <- function(x=lapply) {
+set.seeded.lapply <- function(x = lapply) {
     stopifnot(is.function(x))
     assign("seeded.lapply", x, envir = get.lapply.env)
 }
@@ -56,7 +56,7 @@ get.chunkSize <- function() {
 #'@param x an 'integer' defining a sensible max chunk size
 #'\rDefault : .Machine$integer.max
 #'@export
-set.chunkSize <- function(x=.Machine$integer.max) {
+set.chunkSize <- function(x = .Machine$integer.max) {
     stopifnot(length(x) == 1)
     x <- as.integer(x)
     stopifnot(is.integer(x))
