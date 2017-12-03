@@ -61,7 +61,7 @@ non_prime_factory <- function(from, to) {
 #' @importFrom get.lapply get.lapply
 #' @importFrom ultraCombo multiUnion
 generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
-	print(fromto)
+    print(fromto)
     from <- fromto[1]
     to <- fromto[2]
     if (to <= from) {
