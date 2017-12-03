@@ -60,6 +60,8 @@ set.chunkSize <- function(x = .Machine$integer.max) {
     stopifnot(length(x) == 1)
     x <- as.integer(x)
     stopifnot(is.integer(x))
+    stopifnot(!is.na(x))
+    stopifnot(x>0)
     assign("chunkSize", x, envir = get.lapply.env)
 }
 
@@ -71,11 +73,16 @@ get.sensible.threads <- function() {
 }
 
 #'set.sensible.threads
-#'@param x a 'numeric' defining a sensible number of threads to run. 
+#'@param x a positive 'integer' defining a sensible number of threads to run. 
 #'  Default : \code{min(1,parallel::detectCores()-1)}
 #'@importfrom parallel detectCores
 #'@export
 set.sensible.threads <- function(x = min(1, parallel::detectCores() - 1)) {
+    stopifnot(length(x) == 1)
+    x <- as.integer(x)
+    stopifnot(is.integer(x))
+    stopifnot(!is.na(x))
+    stopifnot(x>0)
     assign("sensible.threads", x)
 }
 
