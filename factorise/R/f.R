@@ -19,7 +19,7 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
         lapply(j, primes_list)
     }
     if (cap < x) {
-        r <- setdiff(generator_controller(cap, x), primes_cache)
+        r <- setdiff(generator_controller(cap, x), primes)
         primes <- c(primes, r)
         cap <- x
         save(list = c("cap", "primes"), file = cacheFile)
@@ -38,7 +38,7 @@ chunker <- function(from, to) {
     n <- ((to - from)/no_cores)
     f1 <- round(c(from + n * seq(0, no_cores - 1)))
     t1 <- round(c(from + n * seq(1, no_cores - 1), to))
-    list(f1[f1 != t1], t1[f1 != t1])
+    cbind(f1[f1 != t1], t1[f1 != t1])
 }
 
 non_prime_factory <- function(from, to) {
