@@ -74,10 +74,10 @@ get.sensible.threads <- function() {
 
 #'set.sensible.threads
 #'@param x a positive 'integer' defining a sensible number of threads to run. 
-#'  Default : \code{min(1,parallel::detectCores()-1)}
+#'  Default : \code{max(1,parallel::detectCores()-1)}
 #'@importfrom parallel detectCores
 #'@export
-set.sensible.threads <- function(x = min(1, parallel::detectCores() - 1)) {
+set.sensible.threads <- function(x = max(1, parallel::detectCores() - 1)) {
     stopifnot(length(x) == 1)
     x <- as.integer(x)
     stopifnot(is.integer(x))
