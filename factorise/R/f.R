@@ -1,20 +1,4 @@
 
-parallelEnv <- new.env()
-
-get.sensible.threads <- function(){
-	get('sensible.threads',env=parallelEnv)
-}
-
-#' @importfrom parallel detectCores
-set.sensible.threads <- function(x=min(1,parallel::detectCores()-1)){
-	assign('sensible.threads',x)
-	if(file.exists(x)){
-		load(x,env=primesEnv)
-	}
-}
-
-if(!exists('sensible.threads',env=parallelEnv)) set.sensible.threads()
-
 primes_list <- function(x,cacheFile='~/primes.rda'){
 	if(file.exists(cacheFile)) load(cacheFile)
 	if(!exists(cap)) cap <- 1
@@ -26,8 +10,9 @@ primes_list <- function(x,cacheFile='~/primes.rda'){
 	
 }
 
+#' @importFrom get.lapply get.sensible.threads
 chunker <- function(from,to){
-	no_cores <- min(get.sensible.threads(),to-from)
+	no_cores <- get.lapply::get.sensible.threads()
 	if(no_cores==1){
 		return(list(c(from,to)))
 	}
