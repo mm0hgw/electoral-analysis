@@ -69,7 +69,7 @@ set.seeded.lapply(lapply)
 #'get.sensible.threads
 #'@export
 get.sensible.threads <- function(){
-	get('sensible.threads',env=parallelEnv)
+	get('sensible.threads',envir=get.lapply.env)
 }
 #'set.sensible.threads
 #' @importfrom parallel detectCores
@@ -77,8 +77,8 @@ get.sensible.threads <- function(){
 set.sensible.threads <- function(x=min(1,parallel::detectCores()-1)){
 	assign('sensible.threads',x)
 	if(file.exists(x)){
-		load(x,env=primesEnv)
+		load(x,envir=get.lapply.env)
 	}
 }
 
-if(!exists('sensible.threads',env=parallelEnv)) set.sensible.threads()
+if(!exists('sensible.threads',envir=get.lapply.env)) set.sensible.threads()
