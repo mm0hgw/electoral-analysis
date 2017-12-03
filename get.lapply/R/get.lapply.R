@@ -54,7 +54,7 @@ get.chunkSize <- function() {
 #'@description
 #'Set the served chunkSize
 #'@param x an 'integer' defining a sensible max chunk size
-#'\rDefault : .Machine$integer.max
+#'\r Default : .Machine$integer.max
 #'@export
 set.chunkSize <- function(x=.Machine$integer.max) {
     stopifnot(length(x) == 1)
@@ -72,7 +72,7 @@ get.sensible.threads <- function() {
 
 #'set.sensible.threads
 #'@param x a 'numeric' defining a sensible number of threads to run. 
-#' \rDefault : min(1,parallel::detectCores()-1)
+#' \r Default : min(1,parallel::detectCores()-1)
 #'@importfrom parallel detectCores
 #'@export
 set.sensible.threads <- function(x = min(1, parallel::detectCores() - 1)) {
