@@ -19,7 +19,7 @@ get.lapply <- function() {
 #'Set the served lapply.
 #'@param x a 'function'
 #'@export
-set.lapply <- function(x) {
+set.lapply <- function(x=lapply) {
     stopifnot(is.function(x))
     assign("lapply", x, envir = get.lapply.env)
 }
@@ -35,9 +35,9 @@ get.seeded.lapply <- function() {
 #'set.seeded.lapply
 #'@description
 #'Set the served lapply.
-#'@param x a 'function'
+#'@param x a 'function' 
 #'@export
-set.seeded.lapply <- function(x) {
+set.seeded.lapply <- function(x=lapply) {
     stopifnot(is.function(x))
     assign("seeded.lapply", x, envir = get.lapply.env)
 }
@@ -53,18 +53,16 @@ get.chunkSize <- function() {
 #'set.chunkSize
 #'@description
 #'Set the served chunkSize
-#'@param x an 'integer'
+#'@param x an 'integer' defining a sensible max chunk size
+#'\rDefault : .Machine$integer.max
 #'@export
-set.chunkSize <- function(x) {
+set.chunkSize <- function(x=.Machine$integer.max) {
     stopifnot(length(x) == 1)
     x <- as.integer(x)
     stopifnot(is.integer(x))
     assign("chunkSize", x, envir = get.lapply.env)
 }
 
-set.chunkSize(.Machine$integer.max)
-set.lapply(lapply)
-set.seeded.lapply(lapply)
 
 #'get.sensible.threads
 #'@export
@@ -73,11 +71,15 @@ get.sensible.threads <- function() {
 }
 
 #'set.sensible.threads
-#'@param x a 'numeric' defining a sensible number of threads to run. Default : min(1,parallel::detectCores()-1)
+#'@param x a 'numeric' defining a sensible number of threads to run. 
+#' \rDefault : min(1,parallel::detectCores()-1)
 #'@importfrom parallel detectCores
 #'@export
 set.sensible.threads <- function(x = min(1, parallel::detectCores() - 1)) {
     assign("sensible.threads", x)
 }
 
-if (!exists("sensible.threads", envir = get.lapply.env)) set.sensible.threads()
+set.sensible.threads()
+set.chunkSize()
+set.lapply()
+set.seeded.lapply()
