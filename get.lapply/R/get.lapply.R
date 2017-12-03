@@ -71,8 +71,10 @@ set.seeded.lapply(lapply)
 get.sensible.threads <- function(){
 	get('sensible.threads',envir=get.lapply.env)
 }
+
 #'set.sensible.threads
-#' @importfrom parallel detectCores
+#'@param x a 'numeric' defining a sensible number of threads to run. Default : min(1,parallel::detectCores()-1)
+#'@importfrom parallel detectCores
 #'@export
 set.sensible.threads <- function(x=min(1,parallel::detectCores()-1)){
 	assign('sensible.threads',x)
