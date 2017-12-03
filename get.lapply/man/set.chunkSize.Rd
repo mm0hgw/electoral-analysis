@@ -7,8 +7,8 @@
 set.chunkSize(x = .Machine$integer.max)
 }
 \arguments{
-\item{x}{an 'integer' defining a sensible max chunk size
-\r Default : .Machine$integer.max}
+\item{x}{an 'integer' defining a sensible max chunk size.
+Default : \code{.Machine$integer.max}}
 }
 \description{
 Set the served chunkSize

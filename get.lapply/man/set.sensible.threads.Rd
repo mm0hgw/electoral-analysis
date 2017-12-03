@@ -8,7 +8,7 @@ set.sensible.threads(x = min(1, parallel::detectCores() - 1))
 }
 \arguments{
 \item{x}{a 'numeric' defining a sensible number of threads to run. 
-\r Default : min(1,parallel::detectCores()-1)}
+Default : \code(min(1,parallel::detectCores()-1))}
 }
 \description{
 set.sensible.threads
