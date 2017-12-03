@@ -93,7 +93,8 @@ generator_controller <- function(from, to) {
     r <- chunker(from, to)
     print(r)
     a <- to - from
-    cat(paste("from", from, "to", to, ":", a, "candidates... Running", length(r), "jobs\n"))
+    cat(paste("from", from, "to", to, ":", a, "candidates... Running", length(r), 
+        "jobs\n"))
     LAPPLYFUN <- get.lapply::get.lapply()
     out <- do.call(c, LAPPLYFUN(r, generator_worker, pl))
     b <- length(out)
