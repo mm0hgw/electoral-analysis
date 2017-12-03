@@ -39,6 +39,8 @@ chunker <- function(from, to) {
     f1 <- round(c(from + n * seq(0, no_cores - 1)))
     t1 <- round(c(from + n * seq(1, no_cores - 1), to))
     o <- cbind(f1[f1 != t1], t1[f1 != t1])
+    print(o)
+    print(length(dim(o)))
     if (length(dim(o)) != 2) 
         return(list(o))
     lapply(nrow(o), function(x) o[x, ])
