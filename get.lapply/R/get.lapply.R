@@ -65,3 +65,20 @@ set.chunkSize <- function(x){
 set.chunkSize(.Machine$integer.max)
 set.lapply(lapply)
 set.seeded.lapply(lapply)
+
+#'get.sensible.threads
+#'@export
+get.sensible.threads <- function(){
+	get('sensible.threads',env=parallelEnv)
+}
+#'set.sensible.threads
+#' @importfrom parallel detectCores
+#'@export
+set.sensible.threads <- function(x=min(1,parallel::detectCores()-1)){
+	assign('sensible.threads',x)
+	if(file.exists(x)){
+		load(x,env=primesEnv)
+	}
+}
+
+if(!exists('sensible.threads',env=parallelEnv)) set.sensible.threads()
