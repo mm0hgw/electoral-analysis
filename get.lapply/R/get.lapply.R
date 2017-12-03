@@ -72,7 +72,7 @@ get.sensible.threads <- function() {
 
 #'set.sensible.threads
 #'@param x a 'numeric' defining a sensible number of threads to run. 
-#'  Default : \code(min(1,parallel::detectCores()-1))
+#'  Default : \code{min(1,parallel::detectCores()-1)}
 #'@importfrom parallel detectCores
 #'@export
 set.sensible.threads <- function(x = min(1, parallel::detectCores() - 1)) {
