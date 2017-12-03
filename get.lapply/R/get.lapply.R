@@ -83,7 +83,7 @@ set.sensible.threads <- function(x = min(1, parallel::detectCores() - 1)) {
     stopifnot(is.integer(x))
     stopifnot(!is.na(x))
     stopifnot(x > 0)
-    assign("sensible.threads", x,envir=get.lapply.env)
+    assign("sensible.threads", x, envir = get.lapply.env)
 }
 
 set.sensible.threads()
