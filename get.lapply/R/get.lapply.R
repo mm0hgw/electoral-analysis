@@ -76,9 +76,6 @@ get.sensible.threads <- function(){
 #'@export
 set.sensible.threads <- function(x=min(1,parallel::detectCores()-1)){
 	assign('sensible.threads',x)
-	if(file.exists(x)){
-		load(x,envir=get.lapply.env)
-	}
 }
 
 if(!exists('sensible.threads',envir=get.lapply.env)) set.sensible.threads()
