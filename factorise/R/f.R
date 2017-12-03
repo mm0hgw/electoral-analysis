@@ -59,6 +59,7 @@ non_prime_factory <- function(from, to) {
 }
 
 #' @importFrom get.lapply get.lapply
+#' @importFrom ultraCombo multiUnion
 generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
 	print(fromto)
     from <- fromto[1]
@@ -68,7 +69,7 @@ generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
     }
     fun <- non_prime_factory(from, to)
     LAPPLYFUN <- get.lapply::get.lapply()
-    np <- do.call(multi_union, LAPPLYFUN(p[p <= floor(sqrt(fromto[2]))], fun))
+    np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(p[p <= floor(sqrt(fromto[2]))], fun))
     setdiff(seq(from + 1, to), np)
 }
 
