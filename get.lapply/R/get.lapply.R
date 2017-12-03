@@ -56,7 +56,7 @@ get.chunkSize <- function() {
 #'@param x an 'integer' defining a sensible max chunk size.
 #' Default : \code{.Machine$integer.max}
 #'@export
-set.chunkSize <- function(x = .Machine$integer.max) {
+set.chunkSize <- function(x = 2^24) {
     stopifnot(length(x) == 1)
     x <- as.integer(x)
     stopifnot(is.integer(x))
