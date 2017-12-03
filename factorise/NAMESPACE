@@ -2,3 +2,5 @@
 
 export(factorise)
 export(primes_list)
+importFrom(get.lapply,get.lapply)
+importFrom(get.lapply,get.sensible.threads)
