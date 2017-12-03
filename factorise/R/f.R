@@ -105,6 +105,6 @@ generator_controller <- function(from, to) {
 #' factorise
 #'@export
 factorise <- function(x) {
- p<- primes_list(floor(sqrt(x)))
- p[p%%x==0]   
+    p <- primes_list(floor(sqrt(x)))
+    p[p%%x == 0]
 }
