@@ -7,7 +7,7 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
     if (!exists("cap")) 
         cap <- 1
     if (!exists("primes")) 
-        primes <- vector()
+        primes <- vector('numeric')
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
         primes_list(capreq, cacheFile)
@@ -21,12 +21,21 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
     if (cap < x) {
         r <- setdiff(generator_controller(cap, x), primes)
         primes <- c(primes, r)
-        cap <- x
-        save(list = c("cap", "primes"), file = cacheFile)
         cat(paste("Extended cache from", cap, "to", x, "and found", length(r), "new primes ", 
             length(primes), "in cache\n"))
+        cap <- x
+        save(list = c("cap", "primes"), file = cacheFile)
     }
     primes[primes <= x]  # assemble and return all 
+}
+
+primesN <- function(x,cacheFile = "~/primes.rda"){
+	 if (file.exists(cacheFile)) 
+        load(cacheFile)
+    if (!exists("cap")||x<=cap) 
+        stop()
+       primes[x]
+
 }
 
 #' @importFrom get.lapply get.sensible.threads
@@ -92,3 +101,6 @@ generator_controller <- function(from, to) {
     return(out)
 }
 
+factorise <- function(x){
+	
+}
