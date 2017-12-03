@@ -4,11 +4,11 @@
 \alias{set.sensible.threads}
 \title{set.sensible.threads}
 \usage{
-set.sensible.threads(x = min(1, parallel::detectCores() - 1))
+set.sensible.threads(x = max(1, parallel::detectCores() - 1))
 }
 \arguments{
 \item{x}{a positive 'integer' defining a sensible number of threads to run. 
-Default : \code{min(1,parallel::detectCores()-1)}}
+Default : \code{max(1,parallel::detectCores()-1)}}
 }
 \description{
 set.sensible.threads
