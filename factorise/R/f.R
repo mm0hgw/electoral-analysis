@@ -85,9 +85,9 @@ generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
         return(vector())
     }
     fun <- non_prime_factory(from, to)
-    p<-p[p <= floor(sqrt(to))]
+    p <- p[p <= floor(sqrt(to))]
     LAPPLYFUN <- get.lapply::get.lapply()
-    np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(   p,     fun))
+    np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(p, fun))
     setdiff(seq(from + 1, to), np)
 }
 
