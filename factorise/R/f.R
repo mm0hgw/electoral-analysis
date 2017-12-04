@@ -1,5 +1,5 @@
 
-primesEnv <- new.env()
+if (!exists('primesEnv'))primesEnv <- new.env()
 
 #' primes_list
 #' @export
