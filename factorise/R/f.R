@@ -3,26 +3,26 @@ if (!exists("primesEnv")) primesEnv <- new.env()
 
 precisionLimit <- 2^.Machine$double.digits - 1
 
-#' primes_list
+#' getPrimes
 #' @export
-primes_list <- function(x) {
+getPrimes <- function(x) {
     stopifnot(x <= precisionLimit)
     stopifnot(length(x) == 1)
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
     if (!exists("cap", envir = primesEnv)) 
-        cap <- 1 else cap <- get("cap", envir = primesEnv)
+        {cap <- 1} else {cap <- get("cap", envir = primesEnv)}
     if (!exists("primes", envir = primesEnv)) 
-        primes <- vector("numeric") else primes <- get("primes", envir = primesEnv)
+{        primes <- vector("numeric")} else {primes <- get("primes", envir = primesEnv)}
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
-        primes <- primes_list(capreq)
+        primes <- getPrimes(capreq)
         cap <- capreq
     }
     ch <- get.lapply::get.chunkSize()
     if (x - cap > ch) {
         j <- seq(cap, x, by = ch)
-        lapply(j, primes_list)
+        lapply(j, getPrimes)
     }
     if (cap < x) {
         r <- setdiff(generator_controller(cap, x), primes)
@@ -78,7 +78,7 @@ non_prime_factory <- function(from, to) {
 
 #' @importFrom get.lapply get.lapply
 #' @importFrom ultraCombo multiUnion
-generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
+generator_worker <- function(fromto, p = getPrimes(floor(sqrt(fromto[2])))) {
     from <- fromto[1]
     to <- fromto[2]
     if (to <= from) {
@@ -94,7 +94,7 @@ generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
 #' @importFrom get.lapply get.lapply
 generator_controller <- function(from, to) {
     # domain extender
-    pl <- primes_list(floor(sqrt(to)))
+    pl <- getPrimes(floor(sqrt(to)))
     r <- chunker(from, to)
     a <- to - from
     cat(paste("from", from, "to", to, ":", a, "candidates... Running", length(r), 
@@ -113,6 +113,6 @@ factorise <- function(x) {
     stopifnot(x <= precisionLimit)
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
-    p <- primes_list(floor(sqrt(x)))
+    p <- getPrimes(floor(sqrt(x)))
     p[(x%%p) == 0]
 }
