@@ -2,8 +2,7 @@
 #' primes_list
 #' @export
 primes_list <- function(x, cacheFile = "~/primes.rda") {
-#    if (file.exists(cacheFile)) 
-#        load(cacheFile)
+    # if (file.exists(cacheFile)) load(cacheFile)
     if (!exists("cap")) 
         cap <- 1
     if (!exists("primes")) 
@@ -11,7 +10,7 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
         primes_list(capreq, cacheFile)
-#        load(cacheFile)
+        # load(cacheFile)
     }
     max_job_size <- get.lapply::get.chunkSize()
     if (x - cap > max_job_size) {
@@ -24,17 +23,14 @@ primes_list <- function(x, cacheFile = "~/primes.rda") {
         cat(paste("Extended cache from", cap, "to", x, "and found", length(r), "new primes ", 
             length(primes), "in cache\n"))
         cap <- x
-#        save(list = c("cap", "primes"), file = cacheFile)
+        # save(list = c('cap', 'primes'), file = cacheFile)
     }
     primes[primes <= x]  # assemble and return all 
 }
 
 primesN <- function(x, cacheFile = "~/primes.rda") {
-#    if (file.exists(cacheFile)) 
-#        load(cacheFile)
-#    if (!exists("cap") || x <= cap) 
-#        stop()
-#    primes[x]   
+    # if (file.exists(cacheFile)) load(cacheFile) if (!exists('cap') || x <= cap)
+    # stop() primes[x]
 }
 
 #' @importFrom get.lapply get.sensible.threads
