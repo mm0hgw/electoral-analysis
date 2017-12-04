@@ -19,9 +19,9 @@ primes_list <- function(x) {
         primes <- primes_list(capreq)
         cap <- capreq
     }
-    max_job_size <- get.lapply::get.chunkSize()
-    if (x - cap > max_job_size) {
-        j <- seq(cap, x, by = max_job_size)
+    ch <- get.lapply::get.chunkSize()
+    if (x - cap > ch) {
+        j <- seq(cap, x, by = ch)
         lapply(j, primes_list)
     }
     if (cap < x) {
@@ -85,9 +85,9 @@ generator_worker <- function(fromto, p = primes_list(floor(sqrt(fromto[2])))) {
         return(vector())
     }
     fun <- non_prime_factory(from, to)
+    p<-p[p <= floor(sqrt(to))]
     LAPPLYFUN <- get.lapply::get.lapply()
-    np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(p[p <= floor(sqrt(fromto[2]))], 
-        fun))
+    np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(   p,     fun))
     setdiff(seq(from + 1, to), np)
 }
 
