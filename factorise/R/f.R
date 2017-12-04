@@ -30,9 +30,13 @@ primes_list <- function(x) {
     primes[primes <= x]  # assemble and return all 
 }
 
-primesN <- function(x, cacheFile = "~/primes.rda") {
-    # if (file.exists(cacheFile)) load(cacheFile) if (!exists('cap') || x <= cap)
-    # stop() primes[x]
+primesN <- function(x) {
+if(!exists("primes", envir = primesEnv))stop('no primes cache')
+primes <- get("primes", envir = primesEnv)
+stopifnot(all(x<length(primes)))
+stopifnot(all(x%%1==0))
+stopifnot(all(x>0))
+primes[x]
 }
 
 #' @importFrom get.lapply get.sensible.threads
@@ -45,8 +49,6 @@ chunker <- function(from, to) {
     f1 <- round(c(from + n * seq(0, no_cores - 1)))
     t1 <- round(c(from + n * seq(1, no_cores - 1), to))
     o <- cbind(f1[f1 != t1], t1[f1 != t1])
-    if (length(dim(o)) != 2) 
-        return(list(o))
     lapply(seq(nrow(o)), function(x) o[x, ])
 }
 
