@@ -34,7 +34,7 @@ primesN <- function(x) {
     if (!exists("primes", envir = primesEnv)) 
         stop("no primes cache")
     primes <- get("primes", envir = primesEnv)
-    stopifnot(all(x < length(primes)))
+    stopifnot(all(x <= length(primes)))
     stopifnot(all(x%%1 == 0))
     stopifnot(all(x > 0))
     primes[x]
