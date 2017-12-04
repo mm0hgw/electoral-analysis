@@ -110,13 +110,8 @@ generator_controller <- function(from, to) {
 #'@export
 factorise <- function(x) {
     stopifnot(length(x) == 1)
-<<<<<<< HEAD
 	stopifnot(x<=precisionLimit)
      stopifnot(x%%1 == 0)
-=======
-    stopifnot(x < precisionLimit)
-    stopifnot(x%%1 == 0)
->>>>>>> branch 'dev' of git@github.com:mm0hgw/electoral-analysis.git
     stopifnot(x > 0)
     p <- primes_list(floor(sqrt(x)))
     p[(x%%p) == 0]
