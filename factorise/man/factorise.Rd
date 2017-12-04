@@ -6,6 +6,9 @@
 \usage{
 factorise(x)
 }
+\arguments{
+\item{x}{a 'numeric' integer describing a number to factorise.}
+}
 \description{
 factorise
 }
