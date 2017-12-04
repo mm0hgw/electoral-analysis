@@ -4,6 +4,7 @@ if (!exists("primesEnv")) primesEnv <- new.env()
 precisionLimit <- 2^.Machine$double.digits - 1
 
 #' getPrimes
+#'@param x a 'numeric' integer describing the maximum desired prime.
 #' @export
 getPrimes <- function(x) {
     stopifnot(x <= precisionLimit)
@@ -113,6 +114,7 @@ generator_controller <- function(from, to) {
 }
 
 #' factorise
+#'@param x a 'numeric' integer describing a number to factorise.
 #'@export
 factorise <- function(x) {
     stopifnot(length(x) == 1)
