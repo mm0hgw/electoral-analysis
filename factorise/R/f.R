@@ -4,18 +4,14 @@ primesEnv <- new.env()
 #' primes_list
 #' @export
 primes_list <- function(x) {
-    if (!exists("cap",envir=primesEnv)) 
-        cap <- 1
-    else
-    	cap<-get("cap",envir=primesEnv)
-    if (!exists("primes",envir=primesEnv)) 
-        primes <- vector("numeric")
-       else
-       primes <-get("primes",envir=primesEnv)
+    if (!exists("cap", envir = primesEnv)) 
+        cap <- 1 else cap <- get("cap", envir = primesEnv)
+    if (!exists("primes", envir = primesEnv)) 
+        primes <- vector("numeric") else primes <- get("primes", envir = primesEnv)
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
         primes <- primes_list(capreq)
-    		cap<-capreq
+        cap <- capreq
     }
     max_job_size <- get.lapply::get.chunkSize()
     if (x - cap > max_job_size) {
@@ -28,8 +24,8 @@ primes_list <- function(x) {
         cat(paste("Extended cache from", cap, "to", x, "and found", length(r), "new primes ", 
             length(primes), "in cache\n"))
         cap <- x
-			assign('primes',primes,envir=primesEnv)
-			assign('cap',cap,envir=primesEnv)
+        assign("primes", primes, envir = primesEnv)
+        assign("cap", cap, envir = primesEnv)
     }
     primes[primes <= x]  # assemble and return all 
 }

@@ -4,7 +4,7 @@
 \alias{primes_list}
 \title{primes_list}
 \usage{
-primes_list(x, cacheFile = "~/primes.rda")
+primes_list(x)
 }
 \description{
 primes_list
