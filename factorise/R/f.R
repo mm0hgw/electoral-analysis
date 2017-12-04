@@ -10,15 +10,15 @@ getPrimes <- function(x) {
     stopifnot(length(x) == 1)
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
-    if (!exists("cap", envir = primesEnv)) {
-        cap <- 1
-    } else {
+    if (exists("cap", envir = primesEnv)) {
         cap <- get("cap", envir = primesEnv)
-    }
-    if (!exists("primes", envir = primesEnv)) {
-        primes <- vector("numeric")
     } else {
+        cap <- 1
+    }
+    if (exists("primes", envir = primesEnv)) {
         primes <- get("primes", envir = primesEnv)
+    } else {
+        primes <- vector("numeric")
     }
     capreq <- floor(sqrt(x))
     if (cap < capreq) {
