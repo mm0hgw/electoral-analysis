@@ -6,7 +6,7 @@ precisionLimit <- 2^.Machine$double.digits-1
 #' primes_list
 #' @export
 primes_list <- function(x) {
-	stopifnot(x<precisionLimit)
+	stopifnot(x<=precisionLimit)
      stopifnot(length(x) == 1)
       stopifnot(x%%1 == 0)
     stopifnot(x > 0)
@@ -110,7 +110,7 @@ generator_controller <- function(from, to) {
 #'@export
 factorise <- function(x) {
     stopifnot(length(x) == 1)
-	stopifnot(x<precisionLimit)
+	stopifnot(x<=precisionLimit)
      stopifnot(x%%1 == 0)
     stopifnot(x > 0)
     p <- primes_list(floor(sqrt(x)))
