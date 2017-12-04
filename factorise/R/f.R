@@ -6,9 +6,9 @@ precisionLimit <- 2^.Machine$double.digits - 1
 #' primes_list
 #' @export
 primes_list <- function(x) {
-	stopifnot(x<=precisionLimit)
-     stopifnot(length(x) == 1)
-      stopifnot(x%%1 == 0)
+    stopifnot(x <= precisionLimit)
+    stopifnot(length(x) == 1)
+    stopifnot(x%%1 == 0)
     stopifnot(x > 0)
     if (!exists("cap", envir = primesEnv)) 
         cap <- 1 else cap <- get("cap", envir = primesEnv)
@@ -110,8 +110,8 @@ generator_controller <- function(from, to) {
 #'@export
 factorise <- function(x) {
     stopifnot(length(x) == 1)
-	stopifnot(x<=precisionLimit)
-     stopifnot(x%%1 == 0)
+    stopifnot(x <= precisionLimit)
+    stopifnot(x%%1 == 0)
     stopifnot(x > 0)
     p <- primes_list(floor(sqrt(x)))
     p[(x%%p) == 0]
