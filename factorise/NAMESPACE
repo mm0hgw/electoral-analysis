@@ -2,6 +2,6 @@
 
 export(factorise)
 export(getPrimes)
-importFrom(get.lapply,get.lapply)
-importFrom(get.lapply,get.sensible.threads)
+importFrom(getLapply,get.sensible.threads)
+importFrom(getLapply,getLapply)
 importFrom(ultraCombo,multiUnion)
