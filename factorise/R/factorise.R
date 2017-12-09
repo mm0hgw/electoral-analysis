@@ -54,9 +54,9 @@ primesN <- function(x) {
     primes[x]
 }
 
-#' @importFrom getLapply get.sensible.threads
+#' @importFrom getLapply getSensibleThreads
 chunker <- function(from, to) {
-    no_cores <- getLapply::get.sensible.threads()
+    no_cores <- getLapply::getSensibleThreads()
     if (no_cores == 1) {
         return(list(c(from, to)))
     }
