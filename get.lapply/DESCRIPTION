@@ -1,8 +1,8 @@
-Package: get.lapply
-Title: What the Package Does (one line, title case)
+Package: getLapply
+Title: Parallel task administration
 Version: 0.0.0.9000
 Authors@R: person("Dale", email = "dale@piratepress.org", role = c("aut", "cre", "cph"))
-Description: What the package does (one paragraph).
+Description: Methods for parallel task administration.
 Depends: R (>= 3.3.2)
 License: GPL-2
 Encoding: UTF-8
