@@ -5,6 +5,8 @@ precisionLimit <- 2^.Machine$double.digits - 1
 
 #' getPrimes
 #'@param x a 'numeric' integer describing the maximum desired prime.
+#'@importFrom utils tail
+#'@importFrom getLapply getChunkSize
 #' @export
 getPrimes <- function(x) {
     stopifnot(x <= precisionLimit)
@@ -26,7 +28,7 @@ getPrimes <- function(x) {
         primes <- getPrimes(capreq)
         cap <- capreq
     }
-    ch <- getLapply::get.chunkSize()
+    ch <- getLapply::getChunkSize()
     if (x - cap > ch) {
         j <- seq(cap, x, by = ch)
         lapply(j, getPrimes)
