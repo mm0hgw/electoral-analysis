@@ -30,7 +30,7 @@ getPrimes <- function(x) {
     if (x - cap > ch) {
         j <- seq(cap, x, by = ch)
         lapply(j, getPrimes)
-        cap <- tail(j,n=1)
+        cap <- tail(j, n = 1)
     }
     if (cap < x) {
         r <- setdiff(generator_controller(cap, x), primes)
