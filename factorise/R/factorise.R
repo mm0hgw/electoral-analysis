@@ -36,7 +36,7 @@ getPrimes <- function(x) {
         assign("primes", primes, envir = primesEnv)
         assign("cap", cap, envir = primesEnv)
     }
-    primes[primes <= x]  # assemble and return all 
+    primes[primes <= x]
 }
 
 #'primesN
