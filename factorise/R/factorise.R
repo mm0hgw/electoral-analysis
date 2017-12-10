@@ -25,7 +25,7 @@ getPrimes <- function(x) {
     ch <- getLapply::getChunkSize()
     if (x - cap > ch) {
         j <- seq(cap, x, by = ch)
-primes <-       lapply(j, getPrimes)[[length(j)]]
+        primes <- lapply(j, getPrimes)[[length(j)]]
     }
     if (cap < x) {
         r <- setdiff(primeGen(cap, x), primes)
@@ -87,14 +87,14 @@ nonPrimeGen <- function(from, to) {
 
 #' @importFrom getLapply getLapply
 #' @importFrom ultraCombo multiUnion
-primeGenThread <- function(fromto){
+primeGenThread <- function(fromto) {
     from <- fromto[1]
     to <- fromto[2]
     if (to <= from) {
         return(vector())
     }
     fun <- nonPrimeGen(from, to)
- p <- getPrimes(floor(sqrt(to)))
+    p <- getPrimes(floor(sqrt(to)))
     LAPPLYFUN <- getLapply::getLapply()
     np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(p, fun))
     setdiff(seq(from + 1, to), np)
