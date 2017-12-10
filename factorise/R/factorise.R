@@ -25,8 +25,7 @@ getPrimes <- function(x) {
     ch <- getLapply::getChunkSize()
     if (x - cap > ch) {
         j <- seq(cap, x, by = ch)
-        lapply(j, getPrimes)
-        cap <- tail(j, n = 1)
+primes <-       lapply(j, getPrimes)[[length(j)]]
     }
     if (cap < x) {
         r <- setdiff(primeGen(cap, x), primes)
@@ -88,14 +87,14 @@ nonPrimeGen <- function(from, to) {
 
 #' @importFrom getLapply getLapply
 #' @importFrom ultraCombo multiUnion
-primeGenThread <- function(fromto, p = getPrimes(floor(sqrt(fromto[2])))) {
+primeGenThread <- function(fromto){
     from <- fromto[1]
     to <- fromto[2]
     if (to <= from) {
         return(vector())
     }
     fun <- nonPrimeGen(from, to)
-    p <- p[p <= floor(sqrt(to))]
+ p <- getPrimes(floor(sqrt(to)))
     LAPPLYFUN <- getLapply::getLapply()
     np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(p, fun))
     setdiff(seq(from + 1, to), np)
@@ -104,13 +103,12 @@ primeGenThread <- function(fromto, p = getPrimes(floor(sqrt(fromto[2])))) {
 #' @importFrom getLapply getLapply
 primeGen <- function(from, to) {
     # domain extender
-    pl <- getPrimes(floor(sqrt(to)))
     r <- chunker(from, to)
     a <- to - from
     cat(paste("from", from, "to", to, ":", a, "candidates... Running", length(r), 
         "jobs\n"))
     LAPPLYFUN <- getLapply::getLapply()
-    out <- do.call(c, LAPPLYFUN(r, primeGenThread, pl))
+    out <- do.call(c, LAPPLYFUN(r, primeGenThread))
     b <- length(out)
     cat(paste(b, "found in", a, "candidates", sprintf("%0.2f%%", b/a * 100), "\n"))
     return(out)
