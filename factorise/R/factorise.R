@@ -120,7 +120,8 @@ primeGen <- function(from, to) {
 #'@param x a 'numeric' integer describing a number to factorise.
 #'@export
 factorise <- function(x) {
-    stopifnot(length(x) == 1)
+    if (length(x) > 1) 
+        return(lapply(x, factorise))
     stopifnot(x <= precisionLimit)
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
