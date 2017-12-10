@@ -1,5 +1,6 @@
-
-if (!exists("primesEnv")) primesEnv <- new.env()
+primesEnv <- new.env()
+assign('cap',1,envir=primesEnv)
+assign('primes',vector(),envir=primesEnv)
 
 precisionLimit <- 2^.Machine$double.digits - 1
 
@@ -9,21 +10,13 @@ precisionLimit <- 2^.Machine$double.digits - 1
 #'@importFrom getLapply getChunkSize
 #' @export
 getPrimes <- function(x) {
+if (length(x)>1) return(lapply(x,getPrimes))
     stopifnot(x <= precisionLimit)
-    stopifnot(length(x) == 1)
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
-    if (exists("cap", envir = primesEnv)) {
         cap <- get("cap", envir = primesEnv)
-    } else {
-        cap <- 1
-    }
-    if (exists("primes", envir = primesEnv)) {
         primes <- get("primes", envir = primesEnv)
-    } else {
-        primes <- vector("numeric")
-    }
-    capreq <- floor(sqrt(x))
+   capreq <- floor(sqrt(x))
     if (cap < capreq) {
         primes <- getPrimes(capreq)
         cap <- capreq
@@ -35,7 +28,7 @@ getPrimes <- function(x) {
         cap <- tail(j, n = 1)
     }
     if (cap < x) {
-        r <- setdiff(generator_controller(cap, x), primes)
+        r <- setdiff(primeGen(cap, x), primes)
         primes <- c(primes, r)
         cat(paste("Extended cache from", cap, "to", x, "and found", length(r), "new primes ", 
             length(primes), "in cache\n"))
@@ -46,13 +39,18 @@ getPrimes <- function(x) {
     primes[primes <= x]  # assemble and return all 
 }
 
+#'primesN
+#'@param x a 'numeric' indexing the primes cache
+#'@export
 primesN <- function(x) {
-    if (!exists("primes", envir = primesEnv)) 
-        stop("no primes cache")
+ if (length(x)>1) return(lapply(x,primesN))
+    stopifnot(x%%1 == 0)
+    stopifnot(x > 0)
     primes <- get("primes", envir = primesEnv)
-    stopifnot(all(x <= length(primes)))
-    stopifnot(all(x%%1 == 0))
-    stopifnot(all(x > 0))
+    while (length(primes)<x){
+    	d <- x-length(primes)
+    	primes <- getPrimes(get('cap',envir=primesEnv)+20*d)
+    }
     primes[x]
 }
 
@@ -69,7 +67,7 @@ chunker <- function(from, to) {
     lapply(seq(nrow(o)), function(x) o[x, ])
 }
 
-non_prime_factory <- function(from, to) {
+nonPrimeGen <- function(from, to) {
     function(n) {
         if (n^2 + n > to) {
             return(n^2)
@@ -88,13 +86,13 @@ non_prime_factory <- function(from, to) {
 
 #' @importFrom getLapply getLapply
 #' @importFrom ultraCombo multiUnion
-generator_worker <- function(fromto, p = getPrimes(floor(sqrt(fromto[2])))) {
+primeGenThread <- function(fromto, p = getPrimes(floor(sqrt(fromto[2])))) {
     from <- fromto[1]
     to <- fromto[2]
     if (to <= from) {
         return(vector())
     }
-    fun <- non_prime_factory(from, to)
+    fun <- nonPrimeGen(from, to)
     p <- p[p <= floor(sqrt(to))]
     LAPPLYFUN <- getLapply::getLapply()
     np <- do.call(ultraCombo::multiUnion, LAPPLYFUN(p, fun))
@@ -102,7 +100,7 @@ generator_worker <- function(fromto, p = getPrimes(floor(sqrt(fromto[2])))) {
 }
 
 #' @importFrom getLapply getLapply
-generator_controller <- function(from, to) {
+primeGen <- function(from, to) {
     # domain extender
     pl <- getPrimes(floor(sqrt(to)))
     r <- chunker(from, to)
@@ -110,7 +108,7 @@ generator_controller <- function(from, to) {
     cat(paste("from", from, "to", to, ":", a, "candidates... Running", length(r), 
         "jobs\n"))
     LAPPLYFUN <- getLapply::getLapply()
-    out <- do.call(c, LAPPLYFUN(r, generator_worker, pl))
+    out <- do.call(c, LAPPLYFUN(r, primeGenThread, pl))
     b <- length(out)
     cat(paste(b, "found in", a, "candidates", sprintf("%0.2f%%", b/a * 100), "\n"))
     return(out)
