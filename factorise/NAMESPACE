@@ -2,6 +2,7 @@
 
 export(factorise)
 export(getPrimes)
+export(primesN)
 importFrom(getLapply,getChunkSize)
 importFrom(getLapply,getLapply)
 importFrom(getLapply,getSensibleThreads)

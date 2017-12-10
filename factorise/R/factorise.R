@@ -1,6 +1,6 @@
 primesEnv <- new.env()
-assign('cap',1,envir=primesEnv)
-assign('primes',vector(),envir=primesEnv)
+assign("cap", 1, envir = primesEnv)
+assign("primes", vector(), envir = primesEnv)
 
 precisionLimit <- 2^.Machine$double.digits - 1
 
@@ -10,13 +10,14 @@ precisionLimit <- 2^.Machine$double.digits - 1
 #'@importFrom getLapply getChunkSize
 #' @export
 getPrimes <- function(x) {
-if (length(x)>1) return(lapply(x,getPrimes))
+    if (length(x) > 1) 
+        return(lapply(x, getPrimes))
     stopifnot(x <= precisionLimit)
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
-        cap <- get("cap", envir = primesEnv)
-        primes <- get("primes", envir = primesEnv)
-   capreq <- floor(sqrt(x))
+    cap <- get("cap", envir = primesEnv)
+    primes <- get("primes", envir = primesEnv)
+    capreq <- floor(sqrt(x))
     if (cap < capreq) {
         primes <- getPrimes(capreq)
         cap <- capreq
@@ -43,13 +44,14 @@ if (length(x)>1) return(lapply(x,getPrimes))
 #'@param x a 'numeric' indexing the primes cache
 #'@export
 primesN <- function(x) {
- if (length(x)>1) return(lapply(x,primesN))
+    if (length(x) > 1) 
+        return(lapply(x, primesN))
     stopifnot(x%%1 == 0)
     stopifnot(x > 0)
     primes <- get("primes", envir = primesEnv)
-    while (length(primes)<x){
-    	d <- x-length(primes)
-    	primes <- getPrimes(get('cap',envir=primesEnv)+20*d)
+    while (length(primes) < x) {
+        d <- x - length(primes)
+        primes <- getPrimes(get("cap", envir = primesEnv) + 20 * d)
     }
     primes[x]
 }
