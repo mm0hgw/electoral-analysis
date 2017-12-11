@@ -1,3 +1,4 @@
+# setup cache
 primesEnv <- new.env()
 assign("cap", 1, envir = primesEnv)
 assign("primes", vector(), envir = primesEnv)
