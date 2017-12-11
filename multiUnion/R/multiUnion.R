@@ -6,8 +6,7 @@
 #'@param ... vectors of values
 #'@export
 multiUnion <- function(...){
-	o<-c(...)
-	o[!duplicated(o)]
+	unique(c(...))
 }
 
 #'multiIntersect
