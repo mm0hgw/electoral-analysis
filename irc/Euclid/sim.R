@@ -148,15 +148,17 @@ cores <- max(parallel::detectCores() - 1, 1)
 data <- list()
 cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"ssx\", \"ssy\", \"rat\", \"wu/M\", \"we/M\", \"wf1/M\", \"wf2/M\", \"wf3/M\", \"cpu/M\", \"cpe/M\", \"cpf1/M\", \"cpf3/M\", \"cpf3/M\"", 
     sapply(modelsx[1], function(modx) {
-        X <- switch(modx, snorm = rnorm(ssx, 0, 1), rom2 = rrom(ssx, 0.2, 0, 1, 0, 
-            4), fom2 = rfom(ssx, 2, 0, 1, 0, 4), logist = rslogis(ssx, 0, 1), laplace = rslaplace(ssx, 
-            0, 1), stop("Model Not Defined"))
-        sapply(modelsy[1], function(mody) {
-            ratY <- switch(mody, snorm = rnorm(ssy, 0, 1), rom2 = rrom(ssy, 0.2, 
+         sapply(modelsy[1], function(mody) {
+            sapply(sampsizey[1], function(ssy) {
+                       ratY <- switch(mody, snorm = rnorm(ssy, 0, 1), rom2 = rrom(ssy, 0.2, 
                 0, 1, 0, 4), fom2 = rfom(ssy, 2, 0, 1, 0, 4), logist = rslogis(ssy, 
                 0, 1), laplace = rslaplace(ssy, 0, 1), stop("Model Not Defined"))
-            sapply(sampsizey[1], function(ssy) {
-                sapply(sampsizex[1], function(ssx) {
+ 
+                sapply(sampsizex[1], function(ssx) {     
+                  X <- switch(modx, snorm = rnorm(ssx, 0, 1), rom2 = rrom(ssx, 0.2, 0, 1, 0, 
+            4), fom2 = rfom(ssx, 2, 0, 1, 0, 4), logist = rslogis(ssx, 0, 1), laplace = rslaplace(ssx, 
+            0, 1), stop("Model Not Defined"))
+
                   do.call(c, parallel::mclapply(mc.cores = cores, mc.set.seed = TRUE, 
                     varratios, function(rat) {
                       
