@@ -172,50 +172,50 @@ cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"s
                       cpf3 <- 0
                       for (i in 1:M) {
                         Y <- ratY/sqrt(rat)
-                                         
-                          cl.u <- tconf.uneq(X, Y)
-                          cl <- cl.u
-                          
-                          # Compute the Width and See if 0 on interval
-                          wu <- wu + cl[2] - cl[1]
-                          cpu <- cpu + (cl[2] * cl[1] < 0)
-                          
-                          cl <- tconf.eq(X, Y)
-                          
-                          # Compute the Width and See if 0 on interval
-                          we <- we + cl[2] - cl[1]
-                          cpe <- cpe + (cl[2] * cl[1] < 0)
-                          cl <- tconf.ft(X, Y, fcl = 0.01)
-                          
-                          # Compute the Width and See if 0 on interval
-                          wf1 <- wf1 + cl[2] - cl[1]
-                          cpf1 <- cpf1 + (cl[2] * cl[1] < 0)
-                          if (cl == cl.u) {
-                            wf2 <- wf2 + cl[2] - cl[1]
-                            cpf2 < cpf2 + (cl[2] * cl[1] < 0)
-                            wf3 <- wf3 + cl[2] - cl[1]
-                            cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
-                            (next)()
-                          }
-                          cl <- tconf.ft(X, Y, fcl = 0.05)
-                          
-                          # Compute the Width and See if 0 on interval
+                        
+                        cl.u <- tconf.uneq(X, Y)
+                        cl <- cl.u
+                        
+                        # Compute the Width and See if 0 on interval
+                        wu <- wu + cl[2] - cl[1]
+                        cpu <- cpu + (cl[2] * cl[1] < 0)
+                        
+                        cl <- tconf.eq(X, Y)
+                        
+                        # Compute the Width and See if 0 on interval
+                        we <- we + cl[2] - cl[1]
+                        cpe <- cpe + (cl[2] * cl[1] < 0)
+                        cl <- tconf.ft(X, Y, fcl = 0.01)
+                        
+                        # Compute the Width and See if 0 on interval
+                        wf1 <- wf1 + cl[2] - cl[1]
+                        cpf1 <- cpf1 + (cl[2] * cl[1] < 0)
+                        if (cl == cl.u) {
                           wf2 <- wf2 + cl[2] - cl[1]
-                          cpf2 <- cpf2 + (cl[2] * cl[1] < 0)
-                          if (cl == cl.u) {
-                            wf3 <- wf3 + cl[2] - cl[1]
-                            cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
-                            (next)()
-                          }
-                          cl <- tconf.ft(X, Y, fcl = 0.1)
-                          
-                          # Compute the Width and See if 0 on interval
+                          cpf2 < cpf2 + (cl[2] * cl[1] < 0)
                           wf3 <- wf3 + cl[2] - cl[1]
                           cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
+                          (next)()
                         }
-                        sprintf("%s,%s,%d,%d,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
-                          modx, mody, ssx, ssy, rat, wu/M, we/M, wf1/M, wf2/M, wf3/M, 
-                          cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M)
+                        cl <- tconf.ft(X, Y, fcl = 0.05)
+                        
+                        # Compute the Width and See if 0 on interval
+                        wf2 <- wf2 + cl[2] - cl[1]
+                        cpf2 <- cpf2 + (cl[2] * cl[1] < 0)
+                        if (cl == cl.u) {
+                          wf3 <- wf3 + cl[2] - cl[1]
+                          cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
+                          (next)()
+                        }
+                        cl <- tconf.ft(X, Y, fcl = 0.1)
+                        
+                        # Compute the Width and See if 0 on interval
+                        wf3 <- wf3 + cl[2] - cl[1]
+                        cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
+                      }
+                      sprintf("%s,%s,%d,%d,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
+                        modx, mody, ssx, ssy, rat, wu/M, we/M, wf1/M, wf2/M, wf3/M, 
+                        cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M)
                       
                     }))
                 })
