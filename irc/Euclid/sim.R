@@ -150,14 +150,8 @@ cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"s
     sapply(modelsx[1], function(modx) {
          sapply(modelsy[1], function(mody) {
             sapply(sampsizey[1], function(ssy) {
-                       ratY <- switch(mody, snorm = rnorm(ssy, 0, 1), rom2 = rrom(ssy, 0.2, 
-                0, 1, 0, 4), fom2 = rfom(ssy, 2, 0, 1, 0, 4), logist = rslogis(ssy, 
-                0, 1), laplace = rslaplace(ssy, 0, 1), stop("Model Not Defined"))
  
                 sapply(sampsizex[1], function(ssx) {     
-                  X <- switch(modx, snorm = rnorm(ssx, 0, 1), rom2 = rrom(ssx, 0.2, 0, 1, 0, 
-            4), fom2 = rfom(ssx, 2, 0, 1, 0, 4), logist = rslogis(ssx, 0, 1), laplace = rslaplace(ssx, 
-            0, 1), stop("Model Not Defined"))
 
                   do.call(c, parallel::mclapply(mc.cores = cores, mc.set.seed = TRUE, 
                     varratios, function(rat) {
@@ -173,7 +167,13 @@ cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"s
                       wf3 <- 0
                       cpf3 <- 0
                       for (i in 1:M) {
-                        Y <- ratY/sqrt(rat)
+                      X <- switch(modx, snorm = rnorm(ssx, 0, 1), rom2 = rrom(ssx, 0.2, 0, 1, 0, 
+            4), fom2 = rfom(ssx, 2, 0, 1, 0, 4), logist = rslogis(ssx, 0, 1), laplace = rslaplace(ssx, 
+            0, 1), stop("Model Not Defined"))
+                              Y <- switch(mody, snorm = rnorm(ssy, 0, 1), rom2 = rrom(ssy, 0.2, 
+                0, 1, 0, 4), fom2 = rfom(ssy, 2, 0, 1, 0, 4), logist = rslogis(ssy, 
+                0, 1), laplace = rslaplace(ssy, 0, 1), stop("Model Not Defined"))
+             Y <- Y/sqrt(rat)
                         
                         cl.u <- tconf.uneq(X, Y)
                         cl <- cl.u
