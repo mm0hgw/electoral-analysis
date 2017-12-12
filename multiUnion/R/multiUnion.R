@@ -3,6 +3,8 @@
 '_PACKAGE'
 
 #'multiUnion
+#'@description A union function 
+#' which takes multiple arguments.
 #'@param ... vectors of values
 #'@export
 multiUnion <- function(...){
