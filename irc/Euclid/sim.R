@@ -148,11 +148,9 @@ cores <- max(parallel::detectCores() - 1, 1)
 data <- list()
 cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"ssx\", \"ssy\", \"rat\", \"wu/M\", \"we/M\", \"wf1/M\", \"wf2/M\", \"wf3/M\", \"cpu/M\", \"cpe/M\", \"cpf1/M\", \"cpf3/M\", \"cpf3/M\"", 
     sapply(modelsx[1], function(modx) {
-         sapply(modelsy[1], function(mody) {
-            sapply(sampsizey[1], function(ssy) {
- 
+        sapply(modelsy[1], function(mody) {
+            sapply(sampsizey[1], function(ssy) { 
                 sapply(sampsizex[1], function(ssx) {     
-
                   do.call(c, parallel::mclapply(mc.cores = cores, mc.set.seed = TRUE, 
                     varratios, function(rat) {
                       
