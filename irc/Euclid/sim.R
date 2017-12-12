@@ -213,7 +213,7 @@ sapply(modelsx, function(modx) {
                       wf3 <- wf3 + cl[2] - cl[1]
                       cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
                     }
-                    sprintf("%10s,%10s,%5f,%5f,%5f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
+                    sprintf("%s,%s,%d,%d,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
                       modx, mody, ssx, ssy, rat, wu/M, we/M, wf1/M, wf2/M, wf3/M, 
                       cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M)
                   }))
