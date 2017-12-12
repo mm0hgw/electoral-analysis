@@ -146,7 +146,8 @@ procedures <- c("uneq", "eq", "ft1", "ft2", "ft3")
 # function(n,nc,tc=0,tv=1,cc=0,cv=2) function(n,l=0,s=1)
 cores <- max(parallel::detectCores() - 1, 1)
 data <- list()
-cat(file="SimulationData.csv",paste(collapse='\n',sapply(modelsx, function(modx) {
+cat(file="SimulationData.csv",paste(collapse='\n','\"modx\", \"mody\", \"ssx\", \"ssy\", \"rat\", \"wu/M\", \"we/M\", \"wf1/M\", \"wf2/M\", \"wf3/M\", \"cpu/M\", \"cpe/M\", \"cpf1/M\", \"cpf3/M\", \"cpf3/M\"',
+sapply(modelsx, function(modx) {
     sapply(modelsy, function(mody) {
         sapply(sampsizey, function(ssy) {
             sapply(sampsizex, function(ssx) {
