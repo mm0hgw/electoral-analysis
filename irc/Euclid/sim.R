@@ -164,7 +164,7 @@ cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"s
                       cpf2 <- 0
                       wf3 <- 0
                       cpf3 <- 0
-                      for (i in 1:M) {
+                      sapply (1:M,function(i) {
                       X <- switch(modx, snorm = rnorm(ssx, 0, 1), rom2 = rrom(ssx, 0.2, 0, 1, 0, 
             4), fom2 = rfom(ssx, 2, 0, 1, 0, 4), logist = rslogis(ssx, 0, 1), laplace = rslaplace(ssx, 
             0, 1), stop("Model Not Defined"))
