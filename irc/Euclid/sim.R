@@ -144,12 +144,13 @@ procedures <- c("uneq", "eq", "ft1", "ft2", "ft3")
 dfile <- file("SimulationData.csv", "w")
 # ftestconflvls <- c(0.01,0.05,0.1) function(n,pc,tc=0,tv=1,cc=0,cv=2)
 # function(n,nc,tc=0,tv=1,cc=0,cv=2) function(n,l=0,s=1)
+cores <- max( parallel::detectCores()-1,1)
 data <- list()
 lapply(modelsx, function(modx) {
     lapply(modelsy, function(mody) {
         lapply(sampsizey, function(ssy) {
             lapply(sampsizex, function(ssx) {
-                lapply(varratios, function(rat) {
+                parallel::mclapply(mc.cores=cores, mc.set.seed=TRUE, varratios, function(rat) {
                   
                   wu <- 0
                   cpu <- 0
