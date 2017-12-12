@@ -217,7 +217,7 @@ lapply(varratios,function (rat) {
                     wf2/M, wf3/M, cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M))
                   
                   # cat(sizex, ' ', sizex, ' ', rat, ' ', we/M, ' ', cpe/M, '\n')
-                }
+                })
             })
             
             
