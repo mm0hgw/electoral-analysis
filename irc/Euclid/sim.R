@@ -172,26 +172,7 @@ cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"s
                       cpf3 <- 0
                       for (i in 1:M) {
                         Y <- ratY/sqrt(rat)
-                        
-                        wu <- 0
-                        cpu <- 0
-                        we <- 0
-                        cpe <- 0
-                        wf1 <- 0
-                        cpf1 <- 0
-                        wf2 <- 0
-                        cpf2 <- 0
-                        wf3 <- 0
-                        cpf3 <- 0
-                        for (i in 1:M) {
-                          X <- switch(modx, snorm = rnorm(ssx, 0, 1), rom2 = rrom(ssx, 
-                            0.2, 0, 1, 0, 4), fom2 = rfom(ssx, 2, 0, 1, 0, 4), logist = rslogis(ssx, 
-                            0, 1), laplace = rslaplace(ssx, 0, 1), stop("Model Not Defined"))
-                          Y <- switch(mody, snorm = rnorm(ssy, 0, 1), rom2 = rrom(ssy, 
-                            0.2, 0, 1, 0, 4), fom2 = rfom(ssy, 2, 0, 1, 0, 4), logist = rslogis(ssy, 
-                            0, 1), laplace = rslaplace(ssy, 0, 1), stop("Model Not Defined"))
-                          Y <- Y/sqrt(rat)
-                          
+                                         
                           cl.u <- tconf.uneq(X, Y)
                           cl <- cl.u
                           
@@ -235,7 +216,7 @@ cat(file = "SimulationData.csv", paste(collapse = "\n", "\"modx\", \"mody\", \"s
                         sprintf("%s,%s,%d,%d,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
                           modx, mody, ssx, ssy, rat, wu/M, we/M, wf1/M, wf2/M, wf3/M, 
                           cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M)
-                      }
+                      
                     }))
                 })
                 
