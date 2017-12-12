@@ -235,7 +235,7 @@ sapply(modelsx[1], function(modx) {
                       sprintf("%s,%s,%d,%d,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
                         modx, mody, ssx, ssy, rat, wu/M, we/M, wf1/M, wf2/M, wf3/M, 
                         cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M)
-                    }))
+                    }}))
                 })
                 
                 
