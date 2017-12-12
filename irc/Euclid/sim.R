@@ -141,16 +141,16 @@ sampsizex <- c(10, 20, 30)
 sampsizey <- c(10, 20, 30)
 dfestimtec <- c(df.sat)
 procedures <- c("uneq", "eq", "ft1", "ft2", "ft3")
-dfile <- file("SimulationData.csv", "w")
+#dfile <- file("SimulationData.csv", "w")
 # ftestconflvls <- c(0.01,0.05,0.1) function(n,pc,tc=0,tv=1,cc=0,cv=2)
 # function(n,nc,tc=0,tv=1,cc=0,cv=2) function(n,l=0,s=1)
 cores <- max(parallel::detectCores() - 1, 1)
 data <- list()
-lapply(modelsx, function(modx) {
-    lapply(modelsy, function(mody) {
-        lapply(sampsizey, function(ssy) {
-            lapply(sampsizex, function(ssx) {
-                parallel::mclapply(mc.cores = cores, mc.set.seed = TRUE, varratios, 
+cat(file="SimulationData.csv",paste(collapse='\n',sapply(modelsx, function(modx) {
+    sapply(modelsy, function(mody) {
+        sapply(sampsizey, function(ssy) {
+            sapply(sampsizex, function(ssx) {
+                do.call(c,parallel::mclapply(mc.cores = cores, mc.set.seed = TRUE, varratios, 
                   function(rat) {
                     
                     wu <- 0
@@ -212,14 +212,10 @@ lapply(modelsx, function(modx) {
                       wf3 <- wf3 + cl[2] - cl[1]
                       cpf3 <- cpf3 + (cl[2] * cl[1] < 0)
                     }
-                    write(sprintf("%10s,%10s,%5f,%5f,%5f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
+                    sprintf("%10s,%10s,%5f,%5f,%5f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f,%10f", 
                       modx, mody, ssx, ssy, rat, wu/M, we/M, wf1/M, wf2/M, wf3/M, 
-                      cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M), dfile, append = TRUE)
-                    data <- rbind(data, c(ssy, ssx, modx, mody, rat, wu/M, we/M, 
-                      wf1/M, wf2/M, wf3/M, cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M))
-                    
-                    # cat(sizex, ' ', sizex, ' ', rat, ' ', we/M, ' ', cpe/M, '\n')
-                  })
+                      cpu/M, cpe/M, cpf1/M, cpf3/M, cpf3/M)
+                  }))
             })
             
             
@@ -230,3 +226,4 @@ lapply(modelsx, function(modx) {
     # cat('\n')
     cat("\n")
 })
+))
