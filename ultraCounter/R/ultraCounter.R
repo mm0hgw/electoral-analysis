@@ -104,7 +104,7 @@ a3 <- seq(0, 1, 0.05)
 a4 <- seq(0, 5, 0.2)
 uc4 <- ultraCounter(a3, a3, a4)
 uc4
-uc4$sample(10)
+do.call(rbind,uc4$sample(10))
 
 z1 <- uc4$index(1)
 z2 <- uc4$index(length(uc4))
@@ -116,4 +116,4 @@ octchar <- seq(0, 7)
 
 uc5 <- ultraCounter(hexchar, hexchar, hexchar, hexchar)
 uc5$index(1)
-do.call(rbind, uc5$index(uc5$len))
+uc5$index(uc5$len)
