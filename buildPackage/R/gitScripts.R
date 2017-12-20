@@ -1,3 +1,35 @@
+#' gitClone
+#'@param url the url to clone
+#'@export
+gitClone <- function(url) {
+    system(paste("git", "clone", "--progress", url))
+}
+
+#' gitPull
+#'@description Execute a git pull
+#'@export
+gitPull <- function() {
+    system2("git", c("pull"))
+}
+
+#' gitPush
+#'@param comment 'character'
+#'@description Git add, commit and push
+#'@export
+gitPush <- function(comment) {
+    system2("git", c("pull"))
+    system2("git", c("commit", "-a", "-m", paste(sep = "", "\"", comment, "\"")))
+    system2("git", c("push"))
+}
+
+#' gitAdd
+#'@param filelist 'character'
+#'@description Git add, commit and push
+#'@export
+gitAdd <- function(filelist) {
+    system2("git", c("add", filelist))
+}
+
 hashFinder <- function(line) if (nchar(line[1]) == 40) {
     TRUE
 } else {
