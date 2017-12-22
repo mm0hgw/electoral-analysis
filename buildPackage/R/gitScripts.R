@@ -99,13 +99,22 @@ hashLookup <- function() {
 }
 
 #'gitForcePush
+#'@param remote a 'character' label of the remote to use
 #'@export
-gitForcePush <- function(dest = "origin") {
-    system(paste("git push --force --all", dest))
+gitForcePush <- function(branch = NULL) {
+    if (is.null(branch)) {
+        line <- gitStatus("-sb")[1]
+        branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
+    }
+    if (length(branch) == 1) {
+        branch <- strsplit(branch, "/")[[1]]}
+    system(paste("git push --force", branch))
 }
 
 #'gitExpunge
 #'@param fileName a 'character' vector of filenames to expunge from repo
+#'@param n max number to handle
+#'@importFrom utils head
 #'@export
 gitExpunge <- function(fileName, n = 200) {
     while (length(fileName) > n) {
