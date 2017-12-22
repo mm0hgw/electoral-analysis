@@ -166,8 +166,8 @@ goodErrors <-  c(system2("git",c( "rebase", "--continue"),stdout=TRUE),
 
 system2('git','mergetool',stdout=TRUE))
 
-        while (!(system2("git",c( "rebase", "--continue"),stdout=TRUE)%in%goodErrors)) {
-    while (!(system2('git','mergetool',stdout=TRUE) %in%goodErrors)) 0
+        while (!(system2("git",c( "rebase", "--continue"))==0)) {
+    while (!(system2('git','mergetool',stdout=TRUE) ==0)) 0
     }
 }
 
