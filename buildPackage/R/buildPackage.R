@@ -29,11 +29,12 @@ findPackages <- function(path = ".") {
 
 #' buildPackage
 #'@param package 'character'
-#'@param pull 'logical'
+#'@param fetch 'logical'
 #'@param build 'logical'
 #'@param check 'logical'
 #'@param cran 'logical'
 #'@param add 'logical'
+#'@param commit 'logical'
 #'@param push 'logical'
 #'@param install 'logical'
 #'@description Build a package.
@@ -41,8 +42,8 @@ findPackages <- function(path = ".") {
 #'@import Rcpp
 #' @importFrom formatR tidy_dir
 #'@export
-buildPackage <- function(package, pull = build, build = check || push, check = cran, 
-    cran = FALSE, add = build, push = TRUE, install = build) {
+buildPackage <- function(package, fetch = build, build = check || push, check = cran, 
+    cran = FALSE, add = build, commit=build,push = TRUE, install = build) {
     Rdir <- paste(sep = "", package, "/R")
     detachPackage(package, TRUE)
     if (pull) 
@@ -61,16 +62,18 @@ buildPackage <- function(package, pull = build, build = check || push, check = c
         devtools::check(package, cran = cran)
     if (add) 
         addPackage(package)
+    if (commit)
+    commitPackage(package)
     if (push) 
-        pushPackage(package)
+        gitPush()
     if (install) 
         installPackage(package)
 }
 
-pushPackage <- function(package) {
+commitPackage <- function(package){
     DFile <- paste(sep = "", package, "/DESCRIPTION")
     x <- read.dcf(DFile)
-    gitPush(paste("buildPackage", package, x[1, "Version"]))
+    gitCommit(paste("buildPackage", package, x[1, "Version"]))
 }
 
 installPackage <- function(package) {

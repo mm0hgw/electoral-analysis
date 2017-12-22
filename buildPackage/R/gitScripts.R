@@ -43,13 +43,16 @@ gitMerge <- function(branch){
 
 
 #' gitPush
-#'@param comment 'character'
-#'@description Git add, commit and push
 #'@export
-gitPush <- function(comment) {
-    system2("git", c("pull"))
-    system2("git", c("commit", "-a", "-m", paste(sep = "", "\"", comment, "\"")))
+gitPush <- function() {
     system2("git", c("push"))
+}
+
+#' gitCommit
+#'@param comment 'character'
+#'@export
+gitCommit <- function(comment) {
+    system2("git", c("commit", "-a", "-m", paste(sep = "", "\"", comment, "\"")))
 }
 
 #' gitAdd
@@ -148,7 +151,7 @@ gitRebase <- function(from) {
 }
 
 gitRebaseMerge <- function( ) {
-        while (system2("git",c( "rebase", "--continue")) != 'No rebase in progress?' {
+        while (system2("git",c( "rebase", "--continue")) != 'No rebase in progress?') {
     while (system2('git','mergetool',stdout=TRUE) != 'No files need merging') 0
     }
 }
