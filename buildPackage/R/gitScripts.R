@@ -18,6 +18,7 @@ getBranch <- function(branch=NULL){
     if (length(branch) == 1) 
         branch <- strsplit(branch, "/")[[1]]
     stopifnot(length(branch) == 2)
+    branch
 }
 
 #'gitFetch
