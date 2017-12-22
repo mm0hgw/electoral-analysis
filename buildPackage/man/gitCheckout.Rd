@@ -4,7 +4,7 @@
 \alias{gitCheckout}
 \title{gitCheckout}
 \usage{
-gitCheckout(branch = NULL)
+gitCheckout(branch)
 }
 \arguments{
 \item{branch}{remote branch to checkout}
