@@ -162,7 +162,7 @@ gitRebase <- function(from) {
 
 
 gitRebaseMerge <- function( ) {
-        while (!(system2("git",c( "rebase", "--continue"),stdout=TRUE)%in%goodErrors) {
+        while (!(system2("git",c( "rebase", "--continue"),stdout=TRUE)%in%goodErrors)) {
     while (!(system2('git','mergetool',stdout=TRUE) %in%goodErrors)) 0
     }
 }
