@@ -4,13 +4,14 @@
 \alias{buildPackage}
 \title{buildPackage}
 \usage{
-buildPackage(package, pull = build, build = check || push, check = cran,
-  cran = FALSE, add = build, push = TRUE, install = build)
+buildPackage(package, fetch = build, build = check || push, check = cran,
+  cran = FALSE, add = build, commit = build, push = TRUE,
+  install = build)
 }
 \arguments{
 \item{package}{'character'}
 
-\item{pull}{'logical'}
+\item{fetch}{'logical'}
 
 \item{build}{'logical'}
 
@@ -19,6 +20,8 @@ buildPackage(package, pull = build, build = check || push, check = cran,
 \item{cran}{'logical'}
 
 \item{add}{'logical'}
+
+\item{commit}{'logical'}
 
 \item{push}{'logical'}
 

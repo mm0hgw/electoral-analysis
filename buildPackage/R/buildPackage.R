@@ -43,7 +43,7 @@ findPackages <- function(path = ".") {
 #' @importFrom formatR tidy_dir
 #'@export
 buildPackage <- function(package, fetch = build, build = check || push, check = cran, 
-    cran = FALSE, add = build, commit=build,push = TRUE, install = build) {
+    cran = FALSE, add = build, commit = build, push = TRUE, install = build) {
     Rdir <- paste(sep = "", package, "/R")
     detachPackage(package, TRUE)
     if (fetch) 
@@ -62,15 +62,15 @@ buildPackage <- function(package, fetch = build, build = check || push, check = 
         devtools::check(package, cran = cran)
     if (add) 
         addPackage(package)
-    if (commit)
-    commitPackage(package)
+    if (commit) 
+        commitPackage(package)
     if (push) 
         gitPush()
     if (install) 
         installPackage(package)
 }
 
-commitPackage <- function(package){
+commitPackage <- function(package) {
     DFile <- paste(sep = "", package, "/DESCRIPTION")
     x <- read.dcf(DFile)
     gitCommit(paste("buildPackage", package, x[1, "Version"]))

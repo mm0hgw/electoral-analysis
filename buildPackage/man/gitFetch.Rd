@@ -4,7 +4,7 @@
 \alias{gitFetch}
 \title{gitFetch}
 \usage{
-gitFetch(branch = NULL)
+gitFetch(branch = NULL, checkout = TRUE, merge = checkout)
 }
 \arguments{
 \item{branch}{remote branch to fetch}
