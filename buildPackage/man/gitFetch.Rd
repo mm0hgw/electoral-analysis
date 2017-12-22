@@ -4,10 +4,12 @@
 \alias{gitFetch}
 \title{gitFetch}
 \usage{
-gitFetch(branch = NULL, checkout = TRUE, merge = checkout)
+gitFetch(branch = NULL, merge = TRUE)
 }
 \arguments{
-\item{branch}{remote branch to fetch}
+\item{branch}{'character' remote branch to fetch}
+
+\item{merge}{'logical'}
 }
 \description{
 gitFetch
