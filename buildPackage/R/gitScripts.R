@@ -12,26 +12,34 @@ gitPull <- function() {
     system2("git", c("pull", "--rebase=preserve"))
 }
 
-#'gitFetch
-#'@param branch remote branch to fetch
-#'@export
-gitFetch <- function(branch = NULL, checkout = TRUE, merge = checkout) {
+getBranch <- function(branch=NULL){
     if (is.null(branch)) 
       	branch <- gitCurrentBranch()
     if (length(branch) == 1) 
         branch <- strsplit(branch, "/")[[1]]
     stopifnot(length(branch) == 2)
+}
+
+#'gitFetch
+#'@param branch remote branch to fetch
+#'@export
+gitFetch <- function(branch = NULL, checkout = TRUE, merge = checkout) {
+branch <- getBranch(branch)
     system2("git", c("fetch", branch, "--prune"))
     if(checkout)gitCheckout(branch)
     if(merge)gitMerge(branch)
    }
-   gitCheckout <- function(branch){
-    cat("done fetch\n")
-    system2("git", c("checkout", branch[2]))
-    cat("done checkout\n")
+
+#'gitCheckout
+#'@param branch remote branch to checkout
+#'@export   
+   gitCheckout <- function(branch=NULL){
+branch <- getBranch(branch)
+    system2("git", c("checkout", paste(branch, collapse = "/")))
 }
 
-gitMerge <- function(branch){
+gitMerge <- function(branch=NULL){
+branch <- getBranch(branch)
     flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
     cat("done merge attempt\n")
     
@@ -150,11 +158,16 @@ gitRebase <- function(from) {
     gitRebaseMerge()
 }
 
+
+
 gitRebaseMerge <- function( ) {
-        while (system2("git",c( "rebase", "--continue")) != 'No rebase in progress?') {
-    while (system2('git','mergetool',stdout=TRUE) != 'No files need merging') 0
+        while (!(system2("git",c( "rebase", "--continue"),stdout=TRUE)%in%goodErrors) {
+    while (!(system2('git','mergetool',stdout=TRUE) %in%goodErrors)) 0
     }
 }
+goodErrors <-  c(system2("git",c( "rebase", "--continue"),stdout=TRUE),
+
+system2('git','mergetool',stdout=TRUE))
 
 gitStatus <- function(...) {
     system2("git", c("status", ...), stdout = TRUE)
