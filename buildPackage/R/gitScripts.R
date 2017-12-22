@@ -106,7 +106,7 @@ hashLookup <- function() {
 #'@export
 gitForcePush <- function(branch = NULL) {
     if (is.null(branch)) {
-    	branch <- gitCurrentBranch()
+        branch <- gitCurrentBranch()
     }
     
     if (length(branch) == 1) {
