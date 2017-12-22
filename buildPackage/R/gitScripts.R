@@ -9,7 +9,7 @@ gitClone <- function(url) {
 #'@description Execute a git pull
 #'@export
 gitPull <- function() {
-    system2("git", c("pull",'--rebase=preserve'))
+    system2("git", c("pull", "--rebase=preserve"))
 }
 
 #'gitFetch
@@ -35,8 +35,8 @@ gitFetch <- function(branch=NULL) {
 }
 }
 
-gitStatus <- function(...){
-system2('git',c('status',...),stdout=TRUE)
+gitStatus <- function(...) {
+    system2("git", c("status", ...), stdout = TRUE)
 }
 
 #' gitPush
