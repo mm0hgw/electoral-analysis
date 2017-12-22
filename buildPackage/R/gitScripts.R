@@ -17,9 +17,8 @@ gitPull <- function() {
 #'@export
 gitFetch <- function(branch = NULL) {
     if (is.null(branch)) {
-        line <- gitStatus("-sb")[1]
-        branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
-    }
+      	branch <- gitCurrentBranch()
+  }
     if (length(branch) == 1) {
         branch <- strsplit(branch, "/")[[1]]
     }
@@ -104,9 +103,9 @@ hashLookup <- function() {
 #'@export
 gitForcePush <- function(branch = NULL) {
     if (is.null(branch)) {
-        line <- gitStatus("-sb")[1]
-        branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
+    	branch <- gitCurrentBranch()
     }
+    
     if (length(branch) == 1) {
         branch <- strsplit(branch, "/")[[1]]}
     system(paste("git push --force", branch))
@@ -144,4 +143,10 @@ gitRebase <- function(from, tool = "kdiff3") {
     while (system(paste(sep = "", "git mergetool --tool=", tool)) == 0) {
         while (system("git rebase --continue") == 0) 0
     }
+}
+
+gitCurrentBranch <- function(){
+        line <- gitStatus("-sb")[1]
+        branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
+        strsplit(branch,' ')[[1]][1]
 }
