@@ -34,8 +34,7 @@ branch <- getBranch(branch)
 #'gitCheckout
 #'@param branch remote branch to checkout
 #'@export   
-   gitCheckout <- function(branch=NULL){
-branch <- getBranch(branch)
+   gitCheckout <- function(branch){
     system2("git", c("checkout", paste(branch, collapse = "/")))
 }
 
