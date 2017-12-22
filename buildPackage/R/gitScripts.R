@@ -24,10 +24,9 @@ getBranch <- function(branch=NULL){
 #'gitFetch
 #'@param branch remote branch to fetch
 #'@export
-gitFetch <- function(branch = NULL, checkout = TRUE, merge = checkout) {
+gitFetch <- function(branch = NULL, merge = TRUE) {
 branch <- getBranch(branch)
     system2("git", c("fetch", branch, "--prune"))
-    if(checkout)gitCheckout(branch[2])
     if(merge)gitMerge(branch)
    }
 
@@ -39,6 +38,7 @@ branch <- getBranch(branch)
 }
 
 gitMerge <- function(branch=NULL){
+    gitCheckout(branch[2])
 branch <- getBranch(branch)
     flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
     cat("done merge attempt\n")
