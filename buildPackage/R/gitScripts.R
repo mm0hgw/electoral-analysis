@@ -100,7 +100,7 @@ hashLookup <- function() {
 }
 
 #'gitForcePush
-#'@param remote a 'character' label of the remote to use
+#'@param branch a 'character' label of the branch to use
 #'@export
 gitForcePush <- function(branch = NULL) {
     if (is.null(branch)) {
