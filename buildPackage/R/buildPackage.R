@@ -46,7 +46,7 @@ buildPackage <- function(package, pull = build, build = check || push, check = c
     Rdir <- paste(sep = "", package, "/R")
     detachPackage(package, TRUE)
     if (pull) 
-        gitPull()
+        gitFetch()
     if (build) {
         # RcppExports gets b0rked by formatR, so remove and regenerate
         RcppFiles <- paste(sep = "", package, "/", c("R", "src"), "/RcppExports.", 

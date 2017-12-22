@@ -23,7 +23,7 @@ gitFetch <- function(branch = NULL) {
     if (length(branch) == 1) {
         branch <- strsplit(branch, "/")[[1]]}
     stopifnot(length(branch) == 2)
-    system2("git", c("fetch", branch[1], "--prune"))
+    system2("git", c("fetch", branch, "--prune"))
     cat("done fetch\n")
     system2("git", c("checkout", branch[2]))
     cat("done checkout\n")
