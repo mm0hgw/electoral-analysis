@@ -12,9 +12,9 @@ gitPull <- function() {
     system2("git", c("pull", "--rebase=preserve"))
 }
 
-getBranch <- function(branch=NULL){
+getBranch <- function(branch = NULL) {
     if (is.null(branch)) 
-      	branch <- gitCurrentBranch()
+        branch <- gitCurrentBranch()
     if (length(branch) == 1) 
         branch <- strsplit(branch, "/")[[1]]
     stopifnot(length(branch) == 2)
@@ -26,27 +26,28 @@ getBranch <- function(branch=NULL){
 #'@param merge 'logical'
 #'@export
 gitFetch <- function(branch = NULL, merge = TRUE) {
-branch <- getBranch(branch)
+    branch <- getBranch(branch)
     system2("git", c("fetch", branch, "--prune"))
-    if(merge)gitMerge(branch)
-   }
+    if (merge) 
+        gitMerge(branch)
+}
 
 #'gitCheckout
 #'@param branch remote branch to checkout
 #'@export   
-   gitCheckout <- function(branch){
+gitCheckout <- function(branch) {
     system2("git", c("checkout", paste(branch, collapse = "/")))
 }
 
-gitMerge <- function(branch=NULL){
+gitMerge <- function(branch = NULL) {
     gitCheckout(branch[2])
-branch <- getBranch(branch)
+    branch <- getBranch(branch)
     flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
-  #  cat("done merge attempt\n")
+    # cat('done merge attempt\n')
     
     if (flag != 0) {
         system2("git", c("rebase", "--preserve-merges", paste(branch, collapse = "/")))
-    gitRebaseMerge()
+        gitRebaseMerge()
     }
 }
 
@@ -161,9 +162,9 @@ gitRebase <- function(from) {
 
 
 
-gitRebaseMerge <- function( ) {
-        while (!(system2("git",c( "rebase", "--continue"))==0)) {
-    while (!(system2('git','mergetool',stdout=TRUE) ==0)) 0
+gitRebaseMerge <- function() {
+    while (!(system2("git", c("rebase", "--continue")) == 0)) {
+        while (!(system2("git", "mergetool", stdout = TRUE) == 0)) 0
     }
 }
 
@@ -171,8 +172,8 @@ gitStatus <- function(...) {
     system2("git", c("status", ...), stdout = TRUE)
 }
 
-gitCurrentBranch <- function(){
-        line <- gitStatus("-sb")[1]
-        branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
-        strsplit(branch,' ')[[1]][1]
+gitCurrentBranch <- function() {
+    line <- gitStatus("-sb")[1]
+    branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
+    strsplit(branch, " ")[[1]][1]
 }
