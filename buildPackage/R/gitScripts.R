@@ -9,31 +9,31 @@ gitClone <- function(url) {
 #'@description Execute a git pull
 #'@export
 gitPull <- function() {
-    system2("git", c("pull",'--rebase=preserve'))
+    system2("git", c("pull", "--rebase=preserve"))
 }
 
-gitFetch <- function(branch=NULL) {
-	if(is.null(branch)){
-		line <- gitStatus('-sb')[1]
-		branch <- strsplit(line,'\\.\\.\\.')[[1]][2]		
-	}
-	if(length(branch)==1)
-	branch<-strsplit(branch,'/')[[1]]
-	stopifnot(length(branch)==2)
-	system2('git',c('fetch',branch[1],'--prune'))
-	cat('done fetch\n')
-	system2('git',c('checkout',branch[2]))
-	cat('done checkout\n')
-	flag <- system2('git',c('merge','--ff-only',paste(branch,collapse='/')))
-	cat('done merge attempt\n')
-	
-	if(flag!=0){
-	cat('git',c('rebase',paste(branch,collapse='/')))
-}
+gitFetch <- function(branch = NULL) {
+    if (is.null(branch)) {
+        line <- gitStatus("-sb")[1]
+        branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
+    }
+    if (length(branch) == 1) 
+        branch <- strsplit(branch, "/")[[1]]
+    stopifnot(length(branch) == 2)
+    system2("git", c("fetch", branch[1], "--prune"))
+    cat("done fetch\n")
+    system2("git", c("checkout", branch[2]))
+    cat("done checkout\n")
+    flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
+    cat("done merge attempt\n")
+    
+    if (flag != 0) {
+        cat("git", c("rebase", paste(branch, collapse = "/")))
+    }
 }
 
-gitStatus <- function(...){
-system2('git',c('status',...),stdout=TRUE)
+gitStatus <- function(...) {
+    system2("git", c("status", ...), stdout = TRUE)
 }
 
 #' gitPush
