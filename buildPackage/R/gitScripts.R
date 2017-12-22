@@ -21,7 +21,8 @@ gitFetch <- function(branch = NULL) {
         branch <- strsplit(line, "\\.\\.\\.")[[1]][2]
     }
     if (length(branch) == 1) {
-        branch <- strsplit(branch, "/")[[1]]}
+        branch <- strsplit(branch, "/")[[1]]
+    }
     stopifnot(length(branch) == 2)
     system2("git", c("fetch", branch, "--prune"))
     cat("done fetch\n")
@@ -31,7 +32,7 @@ gitFetch <- function(branch = NULL) {
     cat("done merge attempt\n")
     
     if (flag != 0) {
-        cat("git", c("rebase", '--preserve-merges',paste(branch, collapse = "/")))
+        cat("git", c("rebase", "--preserve-merges", paste(branch, collapse = "/")))
     }
 }
 
