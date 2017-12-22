@@ -8,6 +8,8 @@ gitExpunge(fileName, n = 200)
 }
 \arguments{
 \item{fileName}{a 'character' vector of filenames to expunge from repo}
+
+\item{n}{max number to handle}
 }
 \description{
 gitExpunge

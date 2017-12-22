@@ -107,7 +107,8 @@ gitForcePush <- function(branch = NULL) {
     }
     
     if (length(branch) == 1) {
-        branch <- strsplit(branch, "/")[[1]]}
+        branch <- strsplit(branch, "/")[[1]]
+    }
     system(paste("git push --force", branch))
 }
 
