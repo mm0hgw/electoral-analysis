@@ -31,7 +31,7 @@ gitFetch <- function(branch = NULL, checkout = TRUE, merge = checkout) {
     cat("done checkout\n")
 }
 
-gitMerge <- function(branch,tool=){
+gitMerge <- function(branch){
     flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
     cat("done merge attempt\n")
     
@@ -144,14 +144,12 @@ gitPurge <- function() {
 #'@export
 gitRebase <- function(from) {
     system(paste("git rebase -i", from))
-    gitRebaseMerge(tool)
+    gitRebaseMerge()
 }
 
 gitRebaseMerge <- function( ) {
-    
- 
-    while (system('git','mergetool',stdout=TRUE) != 'No files need merging') {
-        while (system("git rebase --continue") == 0) 0
+        while (system2("git",c( "rebase", "--continue")) != 'No rebase in progress?' {
+    while (system2('git','mergetool',stdout=TRUE) != 'No files need merging') 0
     }
 }
 
