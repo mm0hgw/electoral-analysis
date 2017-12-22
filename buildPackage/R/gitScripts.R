@@ -27,7 +27,7 @@ getBranch <- function(branch=NULL){
 gitFetch <- function(branch = NULL, checkout = TRUE, merge = checkout) {
 branch <- getBranch(branch)
     system2("git", c("fetch", branch, "--prune"))
-    if(checkout)gitCheckout(branch)
+    if(checkout)gitCheckout(branch[2])
     if(merge)gitMerge(branch)
    }
 
