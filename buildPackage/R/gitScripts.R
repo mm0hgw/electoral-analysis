@@ -15,29 +15,32 @@ gitPull <- function() {
 #'gitFetch
 #'@param branch remote branch to fetch
 #'@export
-gitFetch <- function(branch = NULL) {
-    if (is.null(branch)) {
+gitFetch <- function(branch = NULL, checkout = TRUE, merge = checkout) {
+    if (is.null(branch)) 
       	branch <- gitCurrentBranch()
-  }
-    if (length(branch) == 1) {
+    if (length(branch) == 1) 
         branch <- strsplit(branch, "/")[[1]]
-    }
     stopifnot(length(branch) == 2)
     system2("git", c("fetch", branch, "--prune"))
+    if(checkout)gitCheckout(branch)
+    if(merge)gitMerge(branch)
+   }
+   gitCheckout <- function(branch){
     cat("done fetch\n")
     system2("git", c("checkout", branch[2]))
     cat("done checkout\n")
+}
+
+gitMerge <- function(branch,tool=){
     flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
     cat("done merge attempt\n")
     
     if (flag != 0) {
-        cat("git", c("rebase", "--preserve-merges", paste(branch, collapse = "/")))
+        system2("git", c("rebase", "--preserve-merges", paste(branch, collapse = "/")))
+    gitRebaseMerge()
     }
 }
 
-gitStatus <- function(...) {
-    system2("git", c("status", ...), stdout = TRUE)
-}
 
 #' gitPush
 #'@param comment 'character'
@@ -139,11 +142,21 @@ gitPurge <- function() {
 #'@param from identifier to rebase upon.
 #'@param tool mergetool to use
 #'@export
-gitRebase <- function(from, tool = "kdiff3") {
+gitRebase <- function(from) {
     system(paste("git rebase -i", from))
-    while (system(paste(sep = "", "git mergetool --tool=", tool)) == 0) {
+    gitRebaseMerge(tool)
+}
+
+gitRebaseMerge <- function( ) {
+    
+ 
+    while (system('git','mergetool',stdout=TRUE) != 'No files need merging') {
         while (system("git rebase --continue") == 0) 0
     }
+}
+
+gitStatus <- function(...) {
+    system2("git", c("status", ...), stdout = TRUE)
 }
 
 gitCurrentBranch <- function(){
