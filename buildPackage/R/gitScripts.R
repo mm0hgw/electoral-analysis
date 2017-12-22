@@ -12,6 +12,9 @@ gitPull <- function() {
     system2("git", c("pull",'--rebase=preserve'))
 }
 
+#'gitFetch
+#'@param branch remote branch to fetch
+#'@export
 gitFetch <- function(branch=NULL) {
 	if(is.null(branch)){
 		line <- gitStatus('-sb')[1]
