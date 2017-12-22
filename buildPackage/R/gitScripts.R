@@ -82,7 +82,7 @@ ls.git.files <- function(pattern = ".*") {
     z2 <- strsplit(z1, " ")
     z3 <- z2[sapply(z2, length) == 2]
     z4 <- sapply(z3, "[", 2)
-    grep(pattern, value = TRUE, sort(unique(z4)))
+    sort(grep(pattern, value = TRUE, unique(z4)))
 }
 
 #'hashLookup
