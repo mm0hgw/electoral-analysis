@@ -4,7 +4,7 @@
 \alias{gitRebase}
 \title{gitRebase}
 \usage{
-gitRebase(from, tool = "kdiff3")
+gitRebase(from)
 }
 \arguments{
 \item{from}{identifier to rebase upon.}

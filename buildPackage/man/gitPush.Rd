@@ -4,11 +4,8 @@
 \alias{gitPush}
 \title{gitPush}
 \usage{
-gitPush(comment)
-}
-\arguments{
-\item{comment}{'character'}
+gitPush()
 }
 \description{
-Git add, commit and push
+gitPush
 }
