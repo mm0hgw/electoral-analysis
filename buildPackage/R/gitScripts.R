@@ -40,17 +40,14 @@ gitCheckout <- function(branch) {
 }
 
 gitMerge <- function(branch = NULL) {
-    gitCheckout(branch[2])
     branch <- getBranch(branch)
+    gitCheckout(branch[2])
     flag <- system2("git", c("merge", "--ff-only", paste(branch, collapse = "/")))
-    # cat('done merge attempt\n')
-    
     if (flag != 0) {
         system2("git", c("rebase", "--preserve-merges", paste(branch, collapse = "/")))
         gitRebaseMerge()
     }
 }
-
 
 #' gitPush
 #'@export
@@ -159,8 +156,6 @@ gitRebase <- function(from) {
     system(paste("git rebase -i", from))
     gitRebaseMerge()
 }
-
-
 
 gitRebaseMerge <- function() {
     while (!(system2("git", c("rebase", "--continue")) == 0)) {
