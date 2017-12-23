@@ -89,7 +89,7 @@ primes_list<-function(to){		# non prime finder
 	if(length(primes_cache)!=0){
 		i<-1
 		l<-length(primes_cache)
-		while(i<l&primes_cache[i+1]<=to){
+		while(i<l&&primes_cache[i+1]<=to){
 			i <- i+1
 		}
 		return(head(primes_cache,n=i))

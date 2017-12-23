@@ -33,12 +33,15 @@ gitFetch <- function(branch = NULL, merge = TRUE) {
 }
 
 #'gitCheckout
-#'@param branch remote branch to checkout
+#'@param branch 'character' remote branch to checkout
 #'@export   
 gitCheckout <- function(branch) {
     system2("git", c("checkout", paste(branch, collapse = "/")))
 }
 
+#'gitMerge
+#'@param branch 'character' remote branch to merge
+#'@export   
 gitMerge <- function(branch = NULL) {
     branch <- getBranch(branch)
     gitCheckout(branch[2])
