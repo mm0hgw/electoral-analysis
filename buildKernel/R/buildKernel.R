@@ -2,11 +2,12 @@
 #' cloneKernel
 #' @export
 cloneKernel <- function(kernelCloneUrl = "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git", 
-    branch = "master") {
-    system("mkdir -p ~/git")
-    setwd("~/git")
+    branch = "master", baseDir = '~/git') {
+    if(!dir.exists(baseDir))
+    dir.create(baseDir,recursive=TRUE)
+    setwd(baseDir)
     system2("git", c("clone", "-b", branch, "--single-branch", kernelCloneUrl))
-    setwd("~/git/linux/")
+    setwd(paste(baseDir,'/linux'))
 }
 
 #' pullBuildDir
@@ -44,7 +45,6 @@ installKernel <- function(buildDir) {
     setwd(paste(sep = "", buildDir, "/.."))
     deb <- list.files(pattern = ".deb$")
     mask <- grep("-dbg", deb)
-    
     system(paste("rm", paste(collapse = " ", deb[mask])))
     system(paste("sudo dpkg -i", paste(collapse = " ", deb[-mask])))
 }

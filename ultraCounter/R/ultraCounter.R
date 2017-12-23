@@ -99,9 +99,8 @@ length(uc3)
 uc3$index(1, sapply)
 uc3$index(length(uc3), sapply)
 
-
 a3 <- seq(0, 1, 0.05)
-a4 <- seq(0, 5, 0.2)
+a4 <- seq(0, 5, 0.1)
 uc4 <- ultraCounter(a3, a3, a4)
 uc4
 do.call(rbind,uc4$sample(10))
