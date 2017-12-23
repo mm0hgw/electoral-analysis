@@ -49,6 +49,9 @@ XHOST=$?
 
 sdiff -o "$OUTPUT/${FILE}" "$WORK_LOCAL/${FILE}" "$WORK_REMOTE/${FILE}"
 
+echo sdiff return: 
+echo $?
+
 # meld doesn't appear to have any meaningful exit status
 # so just check whether the target was saved, then give
 # git an indication of this via exit status from this script
