@@ -7,7 +7,7 @@
 gitCheckout(branch)
 }
 \arguments{
-\item{branch}{remote branch to checkout}
+\item{branch}{'character' remote branch to checkout}
 }
 \description{
 gitCheckout
