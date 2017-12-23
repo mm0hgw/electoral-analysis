@@ -2,12 +2,12 @@
 #' cloneKernel
 #' @export
 cloneKernel <- function(kernelCloneUrl = "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git", 
-    branch = "master", baseDir = '~/git') {
-    if(!dir.exists(baseDir))
-    dir.create(baseDir,recursive=TRUE)
+    branch = "master", baseDir = "~/git") {
+    if (!dir.exists(baseDir)) 
+        dir.create(baseDir, recursive = TRUE)
     setwd(baseDir)
     system2("git", c("clone", "-b", branch, "--single-branch", kernelCloneUrl))
-    setwd(paste(baseDir,'/linux'))
+    setwd(paste(baseDir, "/linux"))
 }
 
 #' pullBuildDir
@@ -15,8 +15,8 @@ cloneKernel <- function(kernelCloneUrl = "https://git.kernel.org/pub/scm/linux/k
 pullBuildDir <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux") {
     setwd(HDDDir)
     buildPackage::gitFetch()
-    if(!dir.exists(buildDir))
-    dir.create(buildDir,recursive=TRUE)
+    if (!dir.exists(buildDir)) 
+        dir.create(buildDir, recursive = TRUE)
     system(paste(sep = "", "cp -uR ", HDDDir, "/* ", buildDir))
     system(paste(sep = "", "cp ", HDDDir, "/.config ", buildDir, "/.config"))
     setwd(buildDir)

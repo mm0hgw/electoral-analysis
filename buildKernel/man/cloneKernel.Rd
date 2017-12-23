@@ -6,7 +6,7 @@
 \usage{
 
   cloneKernel(kernelCloneUrl = "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
-  branch = "master")
+  branch = "master", baseDir = "~/git")
 }
 \description{
 cloneKernel
