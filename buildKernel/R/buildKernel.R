@@ -14,8 +14,9 @@ cloneKernel <- function(kernelCloneUrl = "https://git.kernel.org/pub/scm/linux/k
 #' @export
 pullBuildDir <- function(HDDDir = "~/git/linux", buildDir = "/tmp/linux") {
     setwd(HDDDir)
-    buildPackage::gitPull()
-    system(paste("mkdir -p", buildDir))
+    buildPackage::gitFetch()
+    if(!dir.exists(buildDir))
+    dir.create(buildDir,recursive=TRUE)
     system(paste(sep = "", "cp -uR ", HDDDir, "/* ", buildDir))
     system(paste(sep = "", "cp ", HDDDir, "/.config ", buildDir, "/.config"))
     setwd(buildDir)
