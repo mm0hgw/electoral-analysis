@@ -52,6 +52,15 @@ gitMerge <- function(branch = NULL) {
     }
 }
 
+#'gitRebaseMerge
+#'@export
+gitRebaseMerge <- function() {
+    while (!(system2("git", "mergetool") == 0)) 0
+    while (!(system2("git", c("rebase", "--continue")) == 0)) {
+        while (!(system2("git", "mergetool") == 0)) 0
+    }
+}
+
 #' gitPush
 #'@export
 gitPush <- function() {
@@ -158,12 +167,6 @@ gitPurge <- function() {
 gitRebase <- function(from) {
     system(paste("git rebase -i", from))
     gitRebaseMerge()
-}
-
-gitRebaseMerge <- function() {
-    while (!(system2("git", c("rebase", "--continue")) == 0)) {
-        while (!(system2("git", "mergetool", stdout = TRUE) == 0)) 0
-    }
 }
 
 gitStatus <- function(...) {
