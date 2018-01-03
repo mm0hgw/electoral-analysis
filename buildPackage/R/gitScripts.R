@@ -79,6 +79,7 @@ gitCommit <- function(comment) {
 #'@description Git add, commit and push
 #'@export
 gitAdd <- function(filelist) {
+
     system2("git", c("add", filelist))
 }
 
