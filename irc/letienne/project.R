@@ -32,6 +32,6 @@ doProject <- function(ToP, ProjectName = ProjectNames[2]) {
 
 lapply(ToPs, function(ToP) {
     lapply(ProjectNames, function(ProjectName) {
-        doProject(Top, ProjectName)
+        try(doProject(Top, ProjectName))
     })
 })
