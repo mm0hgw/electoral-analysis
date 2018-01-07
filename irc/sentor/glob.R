@@ -1,6 +1,5 @@
 showGlob <- function(...){
-files <- Sys.glob(...)
-lapply(files,return)
+Sys.glob(...)
 }
 
 loadGlob <- function(...){
