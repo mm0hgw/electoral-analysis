@@ -4,5 +4,5 @@ Sys.glob(...)
 
 loadGlob <- function(...){
 files <- Sys.glob(...)
-lapply(files,open,sep='\n',what='character')
+lapply(files,scan,sep='\n',what='character')
 }
