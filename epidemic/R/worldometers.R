@@ -17,6 +17,7 @@ calculateInactiveRecoveriesAndNew <- function(tab){
 	x$Inactive.Cases <- x$Total.Cases - x$Active.Cases
 	x$Recoveries <- x$Inactive.Cases - x$Deaths
 	x$New.Cases <- calculateRateOfChange(x$Total.Cases)
+	x$New.Active.Cases <- calculateRateOfChange(x$Active.Cases)
 	x$New.Inactive.Cases <- calculateRateOfChange(x$Inactive.Cases)
 	x$New.Deaths <- calculateRateOfChange(x$Deaths)
 	x$New.Recoveries <- calculateRateOfChange(x$Recoveries)
