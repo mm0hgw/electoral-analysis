@@ -2,7 +2,7 @@
 source("R/worldometers.R")
 
 
-countries <- c("UK", "KR", "IT")
+countries <- c("IT", "KR", "UK", "US")
 
 processCountry <- function(country) {
     
@@ -25,6 +25,9 @@ processCountry <- function(country) {
     plot(tab[, c("Infection.Day", "Infection.Factor")], type = "l", main = paste("Infection factor in", 
         country))
     dev.off()
+
+tab
 }
 
-lapply(countries, processCountry)
+tabList <- lapply(countries, processCountry)
+names(tabList)<-countries
