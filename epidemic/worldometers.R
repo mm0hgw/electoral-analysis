@@ -2,30 +2,25 @@
 source("R/worldometers.R")
 
 
-UKRaw <- read.csv("data/worldometers_UK.csv")
-UK <- calculateInactiveRecoveriesAndNew(UKRaw)
+countries <- c(UK = 16, KR = 27, IT = 17)
 
-write.csv(UK, file = "UK.csv")
+processCountry <- function(country, delta) {
+    
+    rawFile <- paste0("data/worldometers_", country, ".csv")
+    rawTab <- read.csv(rawFile)
+    tab <- calculateInactiveRecoveriesAndNew(rawTab)
+    
+    write.csv(tab, file = paste0(country, ".csv"))
+    
+    newVSActive <- tab[, c("Active.Cases", "New.Cases")]
+    
+    days <- delta + seq_along(tab$Total.Cases)
+    
+    png(paste0(country, ".png"), 1024, 768)
+    plot(newVSActive, log = "xy", type = "b")
+    text(newVSActive, labels = days, pos = 2, cex = 0.75)
+    dev.off()
+    
+}
 
-UKNewVSActive <- UK[, c("Active.Cases", "New.Cases")]
-
-UKDays <- 16 + seq_along(UK$Total.Cases)
-
-png("UK.png", 1024, 768)
-plot(UKNewVSActive, log = "xy", type = "b")
-text(UKNewVSActive, labels = UKDays, pos = 2, cex = 0.75)
-dev.off()
-
-KRRaw <- read.csv("data/worldometers_KR.csv")
-KR <- calculateInactiveRecoveriesAndNew(KRRaw)
-
-write.csv(KR, file = "KR.csv")
-
-KRNewVSActive <- KR[, c("Active.Cases", "New.Cases")]
-
-KRDays <- 27 + seq_along(KR$Total.Cases)
-
-png("KR.png", 1024, 768)
-plot(KRNewVSActive, log = "xy", type = "b")
-text(KRNewVSActive, labels = KRDays, pos = 2, cex = 0.75)
-dev.off()
+lapply(seq_along(countries), function(x) processCountry(names(countries)[x], countries[x]))
