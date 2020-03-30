@@ -7,7 +7,8 @@ countries <- c("IT", "KR", "UK", "US")
 processCountry <- function(country) {
     
     rawFile <- paste0("data/worldometers_", country, ".csv")
-    rawTab <- read.csv(rawFile)
+    rawTab <- read.csv(rawFile,stringsAsFactors=FALSE)
+rawTab$Date <- as.Date(rawTab$Date)
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
@@ -31,3 +32,7 @@ tab
 
 tabList <- lapply(countries, processCountry)
 names(tabList)<-countries
+
+png('Infection.Factor.png',1024,768)
+plotTabList(tabList,c('Date','Infection.Factor'),main='Infection Factor vs Date')
+dev.off()
