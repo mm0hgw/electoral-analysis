@@ -1,7 +1,7 @@
 
 
-initColIDs <- c("Date", "Infection.Day", "Total.Cases", "Active.Cases", "Deaths")
-colIDs <- c("Date", "Infection.Day", "Total.Cases", "Active.Cases", "Deaths", "Inactive.Cases", 
+initColIDs <- c("Date",  "Total.Cases", "Active.Cases", "Deaths")
+colIDs <- c("Date",  "Total.Cases", "Active.Cases", "Deaths", "Inactive.Cases", 
     "Recoveries", "New.Cases", "New.Inactive.Cases", "New.Deaths", "New.Recoveries")
 
 calculateRateOfChange <- function(x) {

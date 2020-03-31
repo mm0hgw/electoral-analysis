@@ -19,7 +19,7 @@ processCountry <- function(country) {
     png(paste0(country, ".png"), 1024, 768)
     plot(newVSActive[key, ], log = "xy", type = "b", main = paste("New cases vs active cases on logarithmic scales in", 
         country))
-    text(newVSActive[key, ], labels = tab$Infection.Day[key], pos = 2, cex = 0.75)
+    text(newVSActive[key, ], labels = format(tab$Date[key],'%b %d'), pos = 2, cex = 0.75)
     dev.off()
     
     
