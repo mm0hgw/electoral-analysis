@@ -2,7 +2,7 @@
 source("R/worldometers.R")
 
 
-countries <- c("ES", "IT", "KR", "UK", "US")
+countries <- c("ES", "IT", "KR",'NL', "UK", "US")
 
 processCountry <- function(country) {
     
@@ -22,10 +22,6 @@ processCountry <- function(country) {
     text(newVSActive[key, ], labels = tab$Infection.Day[key], pos = 2, cex = 0.75)
     dev.off()
     
-    png(paste0(country, "2.png"), 1024, 768)
-    plot(tab[, c("Infection.Day", "Infection.Factor")], type = "l", main = paste("Infection factor in", 
-        country))
-    dev.off()
     
     tab
 }
