@@ -2,13 +2,13 @@
 source("R/worldometers.R")
 
 
-countries <- c("IT", "KR", "UK", "US")
+countries <- c("ES", "IT", "KR", "UK", "US")
 
 processCountry <- function(country) {
     
     rawFile <- paste0("data/worldometers_", country, ".csv")
-    rawTab <- read.csv(rawFile,stringsAsFactors=FALSE)
-rawTab$Date <- as.Date(rawTab$Date)
+    rawTab <- read.csv(rawFile, stringsAsFactors = FALSE)
+    rawTab$Date <- as.Date(rawTab$Date)
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
@@ -26,13 +26,13 @@ rawTab$Date <- as.Date(rawTab$Date)
     plot(tab[, c("Infection.Day", "Infection.Factor")], type = "l", main = paste("Infection factor in", 
         country))
     dev.off()
-
-tab
+    
+    tab
 }
 
 tabList <- lapply(countries, processCountry)
-names(tabList)<-countries
+names(tabList) <- countries
 
-png('Infection.Factor.png',1024,768)
-plotTabList(tabList,c('Date','Infection.Factor'),main='Infection Factor vs Date')
+png("Infection.Factor.png", 1024, 768)
+plotTabList(tabList, c("Date", "Infection.Factor"), main = "Infection Factor vs Date")
 dev.off()

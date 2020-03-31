@@ -21,6 +21,7 @@ calculateInactiveRecoveriesAndNew <- function(tab) {
     x$New.Deaths <- calculateRateOfChange(x$Deaths)
     x$New.Recoveries <- calculateRateOfChange(x$Recoveries)
     x$Infection.Factor <- x$New.Cases/x$Active.Cases
+    x$Infection.Factor[x$Active.Cases==0] <- 0
     x
 }
 
@@ -28,19 +29,19 @@ logFilter <- function(x) {
     sapply(seq(nrow(x)), function(n) all(x[n, ] > 0))
 }
 
-graphRange <- function(tabList){
-	stopifnot(all(sapply(tabList,ncol)==2))
-	xy<-do.call(rbind,tabList)
-	list(xlim=range(xy[,1]),ylim=range(xy[,2]))
+graphRange <- function(tabList) {
+    stopifnot(all(sapply(tabList, ncol) == 2))
+    xy <- do.call(rbind, tabList)
+    list(xlim = range(xy[, 1]), ylim = range(xy[, 2]))
 }
 
-plotTabList <- function(rawTabList,fields,...){
-	tabList <- lapply(rawTabList,'[',TRUE,fields)
-	args <- c(list(...), graphRange(tabList), type='l')
-	args$x <- tabList[[1]]
-	do.call(plot,args)
-	lapply(seq_along(tabList)[-1],function(x){
-	lines(tabList[[x]],col=x)
-})
-	legend('right',legend=names(tabList),col=seq_along(tabList),pch=1)
+plotTabList <- function(rawTabList, fields, ...) {
+    tabList <- lapply(rawTabList, "[", TRUE, fields)
+    args <- c(list(...), graphRange(tabList), type = "l")
+    args$x <- tabList[[1]]
+    do.call(plot, args)
+    lapply(seq_along(tabList)[-1], function(x) {
+        lines(tabList[[x]], col = x)
+    })
+    legend("right", legend = names(tabList), col = seq_along(tabList), pch = 1)
 }
