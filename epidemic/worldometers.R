@@ -9,6 +9,7 @@ processCountry <- function(country) {
     rawFile <- paste0("data/worldometers_", country, ".csv")
     rawTab <- read.csv(rawFile, stringsAsFactors = FALSE)
     rawTab$Date <- as.Date(rawTab$Date)
+write.csv(rawTab[,initColIDs],rawFile)
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
