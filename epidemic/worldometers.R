@@ -21,10 +21,10 @@ dateKeyMids <- as.numeric(format(tab$Date,'%d')) %in% c(1,15)
 dateKey <- (dateKeyStarts | dateKeyMids) & key
     
     png(paste0(country, ".png"), 1024, 768)
-    plot(newVSActive[key, ], log = "xy", type = "b", main = paste("New cases vs active cases on logarithmic scales in", 
+    plot(newVSActive[key, ], log = "xy", type = "l", main = paste("New cases vs active cases on logarithmic scales in", 
         country))
     text(newVSActive[dateKey, ], labels = format(tab$Date[dateKey],'%b %d'), pos =
-3, col=2)
+3)
     dev.off()
     
     
