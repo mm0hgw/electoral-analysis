@@ -2,7 +2,7 @@
 source("R/worldometers.R")
 
 
-countries <- c("ES", "IT", "KR",'NL', "UK", "US")
+countries <- c("CN", "ES", "IT", "KR",'NL', "UK", "US")
 
 processCountry <- function(country) {
     
