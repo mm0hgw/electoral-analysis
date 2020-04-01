@@ -58,3 +58,21 @@ lapply(seq_along(tabListSplit), function(x) {
     })
     dev.off()
 })
+
+
+
+countries <- c('IT','UK','ES','DE','NL','US')
+
+    png("New.vs.Active.png", 1024, 768)
+    New.vs.Active <- lapply(tabList[countries], function(x) {
+        x[x$New.Cases != 0, ]
+    })
+    plotTabList(New.vs.Active, c("Active.Cases", "New.Cases"), main = "New Cases vs Active Cases", 
+        log = "xy")
+    lapply(seq_along(New.vs.Active), function(x) {
+        key <- as.numeric(format(New.vs.Active[[x]]$Date, "%d")) %in% c(1, 15)
+        text(New.vs.Active[[x]][key, c("Active.Cases", "New.Cases")], format(New.vs.Active[[x]][key, 
+            "Date"], "%b %d"), col = x)
+    })
+    dev.off()
+
