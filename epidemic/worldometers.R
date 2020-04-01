@@ -2,33 +2,32 @@
 source("R/worldometers.R")
 
 
-countries <- c("CN", "DE", "ES", "IT", "KR",'NL', "UK", "US")
+countries <- c("CN", "DE", "ES", "IT", "KR", "NL", "UK", "US")
 
 processCountry <- function(country) {
     
     rawFile <- paste0("data/worldometers_", country, ".csv")
     rawTab <- read.csv(rawFile, stringsAsFactors = FALSE)
     rawTab$Date <- as.Date(rawTab$Date)
-write.csv(rawTab[,initColIDs],rawFile)
-
-# clip rows with <500 cases
-
-rawTab <- rawTab[rawTab$Total.Cases>=500,] 
+    write.csv(rawTab[, initColIDs], rawFile)
+    
+    # clip rows with <500 cases
+    
+    rawTab <- rawTab[rawTab$Total.Cases >= 500, ]
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
     
     key <- (tab$Active.Cases != 0) & (tab$New.Cases != 0)
     newVSActive <- tab[, c("Active.Cases", "New.Cases")]
-dateKeyStarts <- key & !c(FALSE,key[-length(key)])
-dateKeyMids <- as.numeric(format(tab$Date,'%d')) %in% c(1,15)
-dateKey <- (dateKeyStarts | dateKeyMids) & key
+    dateKeyStarts <- key & !c(FALSE, key[-length(key)])
+    dateKeyMids <- as.numeric(format(tab$Date, "%d")) %in% c(1, 15)
+    dateKey <- (dateKeyStarts | dateKeyMids) & key
     
     png(paste0(country, ".png"), 1024, 768)
     plot(newVSActive[key, ], log = "xy", type = "l", main = paste("New cases vs active cases on logarithmic scales in", 
         country))
-    text(newVSActive[dateKey, ], labels = format(tab$Date[dateKey],'%b %d'), pos =
-3)
+    text(newVSActive[dateKey, ], labels = format(tab$Date[dateKey], "%b %d"), pos = 3)
     dev.off()
     
     
