@@ -11,12 +11,13 @@ processCountry <- function(country) {
     rawTab$Date <- as.Date(rawTab$Date)
     write.csv(rawTab[, initColIDs], rawFile)
     
-    # clip rows with <500 cases
-    
-    rawTab <- rawTab[rawTab$Total.Cases >= 500, ]
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
+
+    # clip rows with <500 cases
+    
+    tab <- tab[rawTab$Total.Cases >= 500, ]
     
     key <- (tab$Active.Cases != 0) & (tab$New.Cases != 0)
     newVSActive <- tab[, c("Active.Cases", "New.Cases")]
