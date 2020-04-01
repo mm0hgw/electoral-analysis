@@ -41,7 +41,9 @@ plotTabList <- function(rawTabList, fields, ...) {
     args$x <- tabList[[1]]
     do.call(plot, args)
     lapply(seq_along(tabList)[-1], function(x) {
-        lines(tabList[[x]], col = x)
+        lines(tabList[[x]], col = colours[x])
     })
-    legend("right", legend = names(tabList), col = seq_along(tabList), pch = 1)
+    legend("right", legend = names(tabList), col =
+    seq_along(tabList), pch = 1)
 }
+
