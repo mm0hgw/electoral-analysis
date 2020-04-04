@@ -23,6 +23,7 @@ calculateInactiveRecoveriesAndNew <- function(tab) {
     x$Infection.Factor <- x$New.Cases/x$Active.Cases
     x$Infection.Factor[x$Active.Cases == 0] <- 0
     x$Mortality.Rate <- x$Deaths/x$Inactive.Cases
+    x$Activity.Rate <- x$Active.Cases/x$Total.Cases
     x
 }
 

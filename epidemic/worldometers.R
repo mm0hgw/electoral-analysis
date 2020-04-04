@@ -19,17 +19,6 @@ processCountry <- function(country) {
     
     tab <- tab[rawTab$Total.Cases >= 500, ]
     
-    key <- (tab$Active.Cases != 0) & (tab$New.Cases != 0)
-    newVSActive <- tab[, c("Active.Cases", "New.Cases")]
-    dateKeyStarts <- key & !c(FALSE, key[-length(key)])
-    dateKeyMids <- as.numeric(format(tab$Date, "%d")) %in% c(1, 15)
-    dateKey <- (dateKeyStarts | dateKeyMids) & key
-    
-    # png(paste0(country, '.png'), 1024, 768) plot(newVSActive[key, ], log = 'xy',
-    # type = 'l', main = paste('New cases vs active cases on logarithmic scales in',
-    # country)) text(newVSActive[dateKey, ], labels = format(tab$Date[dateKey], '%b
-    # %d'), pos = 3) dev.off()
-    
     tab
 }
 
@@ -60,6 +49,11 @@ lapply(seq_along(tabListSplit), function(x) {
     filename3 <- paste0("Mortality.", x, ".png")
     png(filename3, 1024, 768)
     plotTabList(tabListSplit[[x]], c("Date", "Mortality.Rate"), main = "Mortality Rate")
+    dev.off()
+    filename3 <- paste0("Activity.Rate.", x, ".png")
+    png(filename3, 1024, 768)
+    plotTabList(tabListSplit[[x]], c("Date", "Mortality.Rate"), main =
+    "Active / Total Cases")
     dev.off()
 })
 
