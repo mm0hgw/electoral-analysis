@@ -52,7 +52,7 @@ lapply(seq_along(tabListSplit), function(x) {
     dev.off()
     filename3 <- paste0("Activity.Rate.", x, ".png")
     png(filename3, 1024, 768)
-    plotTabList(tabListSplit[[x]], c("Date", "Mortality.Rate"), main =
+    plotTabList(tabListSplit[[x]], c("Date", "Activity.Rate"), main =
     "Active / Total Cases")
     dev.off()
 })
