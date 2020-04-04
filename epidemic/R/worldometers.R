@@ -1,8 +1,8 @@
 
 
-initColIDs <- c("Date",  "Total.Cases", "Active.Cases", "Deaths")
-colIDs <- c("Date",  "Total.Cases", "Active.Cases", "Deaths", "Inactive.Cases", 
-    "Recoveries", "New.Cases", "New.Inactive.Cases", "New.Deaths", "New.Recoveries")
+initColIDs <- c("Date", "Total.Cases", "Active.Cases", "Deaths")
+colIDs <- c("Date", "Total.Cases", "Active.Cases", "Deaths", "Inactive.Cases", "Recoveries", 
+    "New.Cases", "New.Inactive.Cases", "New.Deaths", "New.Recoveries")
 
 calculateRateOfChange <- function(x) {
     n <- length(x)
@@ -21,7 +21,8 @@ calculateInactiveRecoveriesAndNew <- function(tab) {
     x$New.Deaths <- calculateRateOfChange(x$Deaths)
     x$New.Recoveries <- calculateRateOfChange(x$Recoveries)
     x$Infection.Factor <- x$New.Cases/x$Active.Cases
-    x$Infection.Factor[x$Active.Cases==0] <- 0
+    x$Infection.Factor[x$Active.Cases == 0] <- 0
+    x$Mortality.Rate <- x$Deaths/x$Inactive.Cases
     x
 }
 
@@ -43,7 +44,6 @@ plotTabList <- function(rawTabList, fields, ...) {
     lapply(seq_along(tabList)[-1], function(x) {
         lines(tabList[[x]], col = colours[x])
     })
-    legend("right", legend = names(tabList), col =
-    seq_along(tabList), pch = 1)
+    legend("right", legend = names(tabList), col = seq_along(tabList), pch = 1)
 }
 

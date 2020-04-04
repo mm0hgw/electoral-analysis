@@ -42,7 +42,7 @@ tabListSplit <- split(tabList, ceiling(seq_along(tabList)/4))
 lapply(seq_along(tabListSplit), function(x) {
     filename1 <- paste0("Infection.Factor.", x, ".png")
     png(filename1, 1024, 768)
-    plotTabList(tabListSplit[[x]], c("Date", "Infection.Factor"), main = "Infection Factor vs Date")
+    plotTabList(tabListSplit[[x]], c("Date", "Infection.Factor"), main = "Infection Factor")
     dev.off()
     filename2 <- paste0("New.vs.Active.", x, ".png")
     png(filename2, 1024, 768)
@@ -57,22 +57,24 @@ lapply(seq_along(tabListSplit), function(x) {
             "Date"], "%b %d"), col = x)
     })
     dev.off()
+    filename3 <- paste0("Mortality.", x, ".png")
+    png(filename3, 1024, 768)
+    plotTabList(tabListSplit[[x]], c("Date", "Mortality.Rate"), main = "Mortality Rate")
+    dev.off()
 })
 
+countries <- c("IT", "UK")
 
-
-countries <- c('IT','UK')
-
-    png("New.vs.Active.png", 1024, 768)
-    New.vs.Active <- lapply(tabList[countries], function(x) {
-        x[x$New.Cases != 0, ]
-    })
-    plotTabList(New.vs.Active, c("Active.Cases", "New.Cases"), main = "New Cases vs Active Cases", 
-        log = "xy")
-    lapply(seq_along(New.vs.Active), function(x) {
-        key <- as.numeric(format(New.vs.Active[[x]]$Date, "%d")) %in% c(1, 15)
-        text(New.vs.Active[[x]][key, c("Active.Cases", "New.Cases")], format(New.vs.Active[[x]][key, 
-            "Date"], "%b %d"), col = x)
-    })
-    dev.off()
+png("New.vs.Active.png", 1024, 768)
+New.vs.Active <- lapply(tabList[countries], function(x) {
+    x[x$New.Cases != 0, ]
+})
+plotTabList(New.vs.Active, c("Active.Cases", "New.Cases"), main = "New Cases vs Active Cases", 
+    log = "xy")
+lapply(seq_along(New.vs.Active), function(x) {
+    key <- as.numeric(format(New.vs.Active[[x]]$Date, "%d")) %in% c(1, 15)
+    text(New.vs.Active[[x]][key, c("Active.Cases", "New.Cases")], format(New.vs.Active[[x]][key, 
+        "Date"], "%b %d"), col = x)
+})
+dev.off()
 
