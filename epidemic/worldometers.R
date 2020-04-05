@@ -21,7 +21,7 @@ processCountry <- function(country) {
     
     if (any(warnKey == TRUE)) {
         warnKey2 <- warnKey | c(warnKey[-1], 0)
-        write.csv(tab[warnKey2, ], file = paste0('warnings',country, ".csv"))
+        write.csv(tab[warnKey2, ], file = paste0('warnings.',country, ".csv"))
     }
     
     # clip rows with <500 cases
