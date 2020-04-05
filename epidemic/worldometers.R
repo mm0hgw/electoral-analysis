@@ -2,7 +2,7 @@
 source("R/worldometers.R")
 
 
-countries <- c("CN", "DE", "ES", "IT", "KR", "NL", "UK", "US")
+countries <- c("CN", "DE", "ES", "FR", "IT", "KR", "NL", "UK", "US")
 
 processCountry <- function(country) {
     
@@ -21,7 +21,7 @@ processCountry <- function(country) {
     
     if (any(warnKey == TRUE)) {
         warnKey2 <- warnKey | c(warnKey[-1], 0)
-        write.csv(tab[warnKey2, ], file = paste0(country, ".warnings.csv"))
+        write.csv(tab[warnKey2, ], file = paste0('warnings',country, ".csv"))
     }
     
     # clip rows with <500 cases
@@ -35,7 +35,7 @@ tabList <- lapply(countries, processCountry)
 names(tabList) <- countries
 
 
-tabListSplit <- split(tabList, ceiling(seq_along(tabList)/4))
+tabListSplit <- split(tabList, ceiling(seq_along(tabList)/6))
 
 lapply(seq_along(tabListSplit), function(x) {
     filename1 <- paste0("Infection.Factor.", x, ".png")
@@ -65,7 +65,7 @@ lapply(seq_along(tabListSplit), function(x) {
     dev.off()
 })
 
-countries <- c("IT", "UK")
+countries <- c("IT", "UK", "CN", "KR", "FR", "ES")
 
 png("New.vs.Active.png", 1024, 768)
 New.vs.Active <- lapply(tabList[countries], function(x) {
