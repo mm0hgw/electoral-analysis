@@ -16,7 +16,7 @@ processCountry <- function(country) {
     write.csv(tab, file = paste0(country, ".csv"))
 
 	warnKey <- sapply(seq(nrow(tab)),function(x){
-		any(tab[x,]<0)
+		any(tab[x,-c(8)]<0)
 })
 
 if(any(warnKey==TRUE)){
