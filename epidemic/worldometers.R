@@ -14,6 +14,15 @@ processCountry <- function(country) {
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
+
+	warnKey <- sapply(seq(nrow(tab)),function(x){
+		any(tab[x,]<0)
+})
+
+if(any(warnKey==TRUE)){
+	write.csv (tab[warnKey & c(warnKey[-1],1),], file =
+paste0(country,'.warnings.csv'))
+}
     
     # clip rows with <500 cases
     

@@ -21,9 +21,11 @@ calculateInactiveRecoveriesAndNew <- function(tab) {
     x$New.Deaths <- calculateRateOfChange(x$Deaths)
     x$New.Recoveries <- calculateRateOfChange(x$Recoveries)
     x$Infection.Factor <- x$New.Cases/x$Active.Cases
-    x$Infection.Factor[x$Active.Cases == 0] <- 0
+    x$Infection.Factor[is.na(x$Infection.Factor)] <- 0
     x$Mortality.Rate <- x$Deaths/x$Inactive.Cases
+    x$Mortality.Rate[is.na(x$Mortality.Rate)] <- 0
     x$Activity.Rate <- x$Active.Cases/x$Total.Cases
+    x$Activity.Rate[is.na(x$Activity.Rate)] <- 0
     x
 }
 
