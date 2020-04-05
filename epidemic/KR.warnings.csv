@@ -1,1 +1,3 @@
 "","Date","Total.Cases","Active.Cases","Deaths","Inactive.Cases","Recoveries","New.Cases","New.Active.Cases","New.Inactive.Cases","New.Deaths","New.Recoveries","Infection.Factor","Mortality.Rate","Activity.Rate"
+"21",2020-03-06,6593,6415,43,178,135,309,308,1,1,0,0.0481683554169914,0.241573033707865,0.97300166843622
+"22",2020-03-07,7041,6875,48,166,118,448,460,-12,5,-17,0.0651636363636364,0.289156626506024,0.976423803437012

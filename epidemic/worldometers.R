@@ -14,15 +14,15 @@ processCountry <- function(country) {
     
     tab <- calculateInactiveRecoveriesAndNew(rawTab)
     write.csv(tab, file = paste0(country, ".csv"))
-
-	warnKey <- sapply(seq(nrow(tab)),function(x){
-		any(tab[x,-c(8)]<0)
-})
-
-if(any(warnKey==TRUE)){
-	write.csv (tab[warnKey & c(warnKey[-1],1),], file =
-paste0(country,'.warnings.csv'))
-}
+    
+    warnKey <- sapply(seq(nrow(tab)), function(x) {
+        any(tab[x, -8] < 0)
+    })
+    
+    if (any(warnKey == TRUE)) {
+        warnKey2 <- warnKey | c(warnKey[-1], 0)
+        write.csv(tab[warnKey2, ], file = paste0(country, ".warnings.csv"))
+    }
     
     # clip rows with <500 cases
     
@@ -61,8 +61,7 @@ lapply(seq_along(tabListSplit), function(x) {
     dev.off()
     filename3 <- paste0("Activity.Rate.", x, ".png")
     png(filename3, 1024, 768)
-    plotTabList(tabListSplit[[x]], c("Date", "Activity.Rate"), main =
-    "Active / Total Cases")
+    plotTabList(tabListSplit[[x]], c("Date", "Activity.Rate"), main = "Active / Total Cases")
     dev.off()
 })
 
