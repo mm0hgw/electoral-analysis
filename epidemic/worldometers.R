@@ -26,7 +26,7 @@ processCountry <- function(country) {
     
     # clip rows with <500 cases
     
-    tab <- tab[rawTab$Total.Cases >= 500, ]
+#    tab <- tab[rawTab$Total.Cases >= 500, ]
     
     tab
 }
