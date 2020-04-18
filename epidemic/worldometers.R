@@ -2,7 +2,7 @@
 source("R/worldometers.R")
 
 
-countries <- c("CN", "DE", "ES", "FR", "IT", "KR", "NL", "UK", "US")
+countries <- c("CN", "DE", "ES", "FR", "IT", "KR", "NL", "SE", "UK", "US")
 
 processCountry <- function(country) {
     
@@ -65,7 +65,7 @@ lapply(seq_along(tabListSplit), function(x) {
     dev.off()
 })
 
-countries <- c("IT", "UK", "CN", "KR", "FR", "ES")
+countries <- c("IT", "UK", "SE", "KR", "FR", "ES")
 
 png("New.vs.Active.png", 1024, 768)
 New.vs.Active <- lapply(tabList[countries], function(x) {
