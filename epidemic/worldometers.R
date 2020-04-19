@@ -20,7 +20,7 @@ processCountry <- function(country) {
     })
     
     if (any(warnKey == TRUE)) {
-        warnKey2 <- warnKey | c(warnKey[-1], 0)
+        warnKey2 <- warnKey | c(warnKey[-1], 0) | c(warnKey[c(-1,-2)], 0,0)
         write.csv(tab[warnKey2, ], file = paste0('warnings.',country, ".csv"))
     }
     
