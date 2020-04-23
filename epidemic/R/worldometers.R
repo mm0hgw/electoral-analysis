@@ -42,7 +42,7 @@ graphRange <- function(tabList) {
 plotTabList <- function(rawTabList, fields, ...) {
     tabList <- lapply(rawTabList, "[", TRUE, fields)
     args <- c(list(...), graphRange(tabList), type = "l")
-args <- args[unique(names(args))]
+    args <- args[unique(names(args))]
     args$x <- tabList[[1]]
     do.call(plot, args)
     lapply(seq_along(tabList)[-1], function(x) {
