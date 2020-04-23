@@ -40,12 +40,12 @@ tabListSplit <- split(tabList, ceiling(seq_along(tabList)/6))
 
 lapply(seq_along(tabListSplit), function(x) {
     filename1 <- paste0("out/charts/Infection.Factor.", x, ".png")
-    png(filename1, 1024, 768)
+    png(filename1, 800, 600)
     plotTabList(tabListSplit[[x]], c("Date", "Infection.Factor"), main = "Infection Factor", 
         ylim = c(0, 1))
     dev.off()
     filename2 <- paste0("out/charts/New.vs.Active.", x, ".png")
-    png(filename2, 1024, 768)
+    png(filename2, 800, 600)
     New.vs.Active <- lapply(tabListSplit[[x]], function(x) {
         x[x$New.Cases != 0, ]
     })
@@ -58,19 +58,19 @@ lapply(seq_along(tabListSplit), function(x) {
     })
     dev.off()
     filename3 <- paste0("out/charts/Mortality.", x, ".png")
-    png(filename3, 1024, 768)
+    png(filename3, 800, 600)
     plotTabList(tabListSplit[[x]], c("Date", "Mortality.Rate"), main = "Mortality Rate", 
         ylim = c(0, 1))
     dev.off()
     filename3 <- paste0("out/charts/Activity.Rate.", x, ".png")
-    png(filename3, 1024, 768)
+    png(filename3, 800, 600)
     plotTabList(tabListSplit[[x]], c("Date", "Activity.Rate"), main = "Active / Total Cases")
     dev.off()
 })
 
 countries <- c("IT", "UK", "SE", "KR", "FR", "ES")
 
-png("out/charts/New.vs.Active.png", 1024, 768)
+png("out/charts/New.vs.Active.png", 800, 600)
 New.vs.Active <- lapply(tabList[countries], function(x) {
     x[x$New.Cases != 0, ]
 })
@@ -85,7 +85,7 @@ dev.off()
 
 lapply(seq_along(tabList), function(x) {
     filename1 <- paste0("out/charts/Active.Cases.", names(tabList)[x], ".png")
-    png(filename1, 1024, 768)
+    png(filename1, 800, 600)
     plot(x = tabList[[x]][, c("Date", "Active.Cases")], main = paste("Active Cases in", 
         names(tabList)[x]), type = "l")
     dev.off()
