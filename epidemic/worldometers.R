@@ -84,9 +84,16 @@ lapply(seq_along(New.vs.Active), function(x) {
 dev.off()
 
 lapply(seq_along(tabList), function(x) {
-    filename1 <- paste0("out/charts/Active.Cases.", names(tabList)[x], ".png")
+    filename1 <- paste0("out/charts/Active.Cases.and.New.Deaths.", names(tabList)[x], 
+        ".png")
     png(filename1, 800, 600)
-    plot(x = tabList[[x]][, c("Date", "Active.Cases")], main = paste("Active Cases in", 
-        names(tabList)[x]), type = "l")
+    x.Date <- tabList[[x]]$Date
+    y.Active.Cases <- tabList[[x]]$Active.Cases
+    y.New.Deaths <- tabList[[x]]$New.Cases
+    plot(x = x.Date, y = y.Active.Cases/max(y.Active.Cases), main = paste("Active Cases and New Deaths in", 
+        names(tabList)[x]), type = "l", ylab = "Proportion of peak")
+    lines(x = x.Date, y = y.New.Deaths/max(y.New.Deaths), col = 2)
+    legend("right", col = seq(2), pch = 1, legend = c(paste("Active Cases", max(y.Active.Cases)), 
+        paste("New Deaths", max(y.New.Deaths))))
     dev.off()
 })
