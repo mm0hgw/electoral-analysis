@@ -105,5 +105,5 @@ league <- do.call(rbind,lapply(seq_along(tabList), function(x) {
 	tabList[[x]][nrow(tabList[[x]]),]
 }))
 rownames(league) <- names(tabList)
-league <- league[,order(league$Active.Cases)]
+league <- league[order(league$Active.Cases),]
 write.csv(file='out/tables/league.csv',league)
