@@ -90,10 +90,15 @@ lapply(seq_along(tabList), function(x) {
     x.Date <- tabList[[x]]$Date
     y.Active.Cases <- tabList[[x]]$Active.Cases
     y.New.Deaths <- tabList[[x]]$New.Deaths
+    y.Mortality.Rate <- tabList[[x]]$Mortality.Rate
+    key.Mortality.Rate <- tabList[[x]]$Inactive.Cases >= 1000
     plot(x = x.Date, y = y.Active.Cases/max(y.Active.Cases), main = paste("Active Cases and New Deaths in", 
-        names(tabList)[x]), type = "l", xlab = 'Date', ylab = "Fraction of peak")
+        names(tabList)[x]), type = "l", xlab = "Date", ylab = "Fraction")
     lines(x = x.Date, y = y.New.Deaths/max(y.New.Deaths), col = 2)
-    legend("topleft", col = seq(2), pch = 1, legend = c(paste("Active Cases", max(y.Active.Cases)), 
-        paste("New Deaths", max(y.New.Deaths))))
+    lines(x = x.Date[key.Mortality.Rate], y = y.Mortality.Rate[key.Mortality.Rate], 
+        col = 2)
+    legend("topleft", col = seq(3), pch = 1, legend = c(paste0("Active Cases (peak ", 
+        max(y.Active.Cases), ")"), paste0("New Deaths (peak ", max(y.New.Deaths), 
+        ")"), "Mortality"))
     dev.off()
 })
