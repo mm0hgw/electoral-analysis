@@ -96,9 +96,9 @@ lapply(seq_along(tabList), function(x) {
         names(tabList)[x]), type = "l", xlab = "Date", ylab = "Fraction")
     lines(x = x.Date, y = y.New.Deaths/max(y.New.Deaths), col = 2)
     lines(x = x.Date[key.Mortality.Rate], y = y.Mortality.Rate[key.Mortality.Rate], 
-        col = 2)
+        col = 3)
     legend("topleft", col = seq(3), pch = 1, legend = c(paste0("Active Cases (peak ", 
         max(y.Active.Cases), ")"), paste0("New Deaths (peak ", max(y.New.Deaths), 
-        ")"), "Mortality"))
+        ")"), "Mortality Rate"))
     dev.off()
 })
