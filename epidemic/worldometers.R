@@ -83,7 +83,7 @@ lapply(seq_along(New.vs.Active), function(x) {
 })
 dev.off()
 
-lapply(seq_along(tabList), function(x) {
+league <- do.call(rbind,lapply(seq_along(tabList), function(x) {
     filename1 <- paste0("out/charts/Active.Cases.and.New.Deaths.", names(tabList)[x], 
         ".png")
     png(filename1, 800, 600)
@@ -102,4 +102,8 @@ lapply(seq_along(tabList), function(x) {
         max(y.Active.Cases), ")"), paste0("New Deaths (peak ", max(y.New.Deaths), 
         ")"), "Mortality Rate"))
     dev.off()
-})
+	tabList[[x]][nrow(tabList[[x]]),]
+}))
+rownames(league) <- names(tabList)
+league <- league[,order(league$Active.Cases)]
+write.csv(file='out/tables/league.csv',league)
