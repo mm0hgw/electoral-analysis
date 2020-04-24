@@ -93,7 +93,8 @@ lapply(seq_along(tabList), function(x) {
     y.Mortality.Rate <- tabList[[x]]$Mortality.Rate
     key.Mortality.Rate <- tabList[[x]]$Inactive.Cases >= 1000
     plot(x = x.Date, y = y.Active.Cases/max(y.Active.Cases), main = paste("Active Cases and New Deaths in", 
-        names(tabList)[x]), type = "l", xlab = "Date", ylab = "Fraction", ylim=c(0,1))
+        names(tabList)[x]), type = "l", xlab = "Date", ylab = "Fraction", ylim = c(0, 
+        1))
     lines(x = x.Date, y = y.New.Deaths/max(y.New.Deaths), col = 2)
     lines(x = x.Date[key.Mortality.Rate], y = y.Mortality.Rate[key.Mortality.Rate], 
         col = 3)
