@@ -68,7 +68,7 @@ lapply(seq_along(tabListSplit), function(x) {
     dev.off()
 })
 
-countries <- c("IT", "UK", "SE", "KR", "FR", "ES")
+countries <- c("IT", "UK", "SE", "DE", "FR", "ES")
 
 png("out/charts/New.vs.Active.png", 800, 600)
 New.vs.Active <- lapply(tabList[countries], function(x) {
