@@ -21,8 +21,7 @@ processCountry <- function(country) {
         any(tab[x, -8] < 0)
     })
 
-warnFile <- paste0("out/warnings/", country, ".csv")
-file.create(warnFile)
+    warnFile <- paste0("out/warnings/", country, ".csv")
     
     if (any(warnKey == TRUE)) {
         warnKey2 <- warnKey | c(warnKey[-1], 0) | c(warnKey[c(-1, -2)], 0, 0)
