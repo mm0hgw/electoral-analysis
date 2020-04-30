@@ -2,6 +2,7 @@
 source("R/worldometers.R")
 if (!dir.exists("out/charts")) dir.create("out/charts", recursive = TRUE)
 if (!dir.exists("out/tables")) dir.create("out/tables", recursive = TRUE)
+if (!dir.exists("out/warnings")) dir.create("out/warnings", recursive = TRUE)
 
 countries <- c("CN", "DE", "ES", "FR", "IT", "KR", "NL", "SE", "UK", "US")
 
@@ -19,10 +20,13 @@ processCountry <- function(country) {
     warnKey <- sapply(seq(nrow(tab)), function(x) {
         any(tab[x, -8] < 0)
     })
+
+warnFile <- paste0("out/warnings/", country, ".csv")
+file.create(warnFile)
     
     if (any(warnKey == TRUE)) {
         warnKey2 <- warnKey | c(warnKey[-1], 0) | c(warnKey[c(-1, -2)], 0, 0)
-        write.csv(tab[warnKey2, ], file = paste0("out/warnings.", country, ".csv"))
+        write.csv(tab[warnKey2, ], file = warnFile)
     }
     
     # clip rows with <500 cases
