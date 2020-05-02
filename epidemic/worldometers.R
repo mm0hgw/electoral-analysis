@@ -39,7 +39,7 @@ tabList <- lapply(countries, processCountry)
 names(tabList) <- countries
 
 
-tabListSplit <- split(tabList, ceiling(seq_along(tabList)/6))
+tabListSplit <- split(tabList, ceiling(seq_along(tabList)/5))
 
 lapply(seq_along(tabListSplit), function(x) {
     filename1 <- paste0("out/charts/Infection.Factor.", x, ".png")
