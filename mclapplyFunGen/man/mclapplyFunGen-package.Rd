@@ -4,7 +4,7 @@
 \name{mclapplyFunGen-package}
 \title{mclapplyFunGen}
 \description{
-mclapplyFunGen
+Generates an mclapply function.
 }
 \author{
 \strong{Maintainer}: Dale \email{dale@piratepress.org} [copyright holder]

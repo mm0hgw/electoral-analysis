@@ -4,8 +4,12 @@
 \alias{mclapplyFunGen}
 \title{mclapplyFunGen}
 \usage{
-mclapplyFunGen(mc.preschedule = TRUE, mc.set.seed = FALSE,
-  mc.silent = TRUE, mc.cores = max(1, detectCores() - 1))
+mclapplyFunGen(
+  mc.preschedule = TRUE,
+  mc.set.seed = FALSE,
+  mc.silent = TRUE,
+  mc.cores = getLapply::getSensibleThreads()
+)
 }
 \description{
 mclapplyFunGen
